@@ -12,6 +12,7 @@ getMode();
 
 function createLinkCard(href, icon, text, type, count) {
   var html = `
+      
           <div class="link-card">
             <a href="${href}" target="_blank" referrerpolicy="no-referrer">
               <div class="left">
@@ -23,6 +24,7 @@ function createLinkCard(href, icon, text, type, count) {
               </div>
             </a>
           </div>
+      
   `;
   document.getElementById(type + String(count)).innerHTML = html;
 }
