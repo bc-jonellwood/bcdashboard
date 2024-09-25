@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 14:30:28
+// Last modified: 2024/09/25 15:49:36
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -43,6 +43,38 @@ include "./components/header.php"
         }
     }
 
+    function selectName(event, name) {
+        console.log(event.target);
+        var selectedNameElements = document.getElementsByClassName('border-accent');
+        var selectedButtonElements = document.getElementsByClassName('selected-name');
+        var buttonElement = event.target;
+        console.log(selectedNameElements);
+        for (let i = 0; i < selectedNameElements.length; i++) {
+            selectedNameElements[i].classList.remove('border-accent');
+        }
+        for (let i = 0; i < selectedButtonElements.length; i++) {
+            selectedButtonElements[i].classList.remove('selected-name');
+        }
+        selectedName = name;
+        const element = document.getElementById(name);
+        element.scrollIntoView({
+            behavior: 'smooth'
+        });
+        setTimeout(() => {
+            window.scrollBy(0, -70);
+        }, 500);
+        element.classList.add('border-accent');
+        buttonElement.classList.add('selected-name');
+    }
+
+    function getRandomPhoneNumber() {
+        const areaCode = Math.floor(Math.random() * 900) + 100; // 100-999
+        const prefix = Math.floor(Math.random() * 900) + 100; // 100-999
+        const lineNumber = Math.floor(Math.random() * 10000); // 0-9999
+
+        return `(${areaCode}) ${prefix}-${lineNumber.toString().padStart(4, '0')}`;
+    }
+
     async function getTeamMembers() {
         await fetch('./API/getTeam.php')
             .then(response => response.json())
@@ -64,19 +96,20 @@ include "./components/header.php"
                         <div class="emp-avatar">
                                 <p style="background-color: ${favColor};">${initials}</p>
                             </div>
-                            <h3>${data[i].empName}</h3>
+                            <h3 class="emp-name-headline">${data[i].empName.toLowerCase()}</h3>
                             <a href="mailto:${data[i].email}">
                                 ${truncatedEmail}
                             </a>
                             <button type="button" onclick="copyEmail('${email}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
                             <img src="./icons/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
                             </button>
+                            <p>${getRandomPhoneNumber()}</p>
                         </div>
                     `
                 }
                 let teamHtml = `
                 
-                        ${data.map(emp => `<tr><td class="name"><a href="#${emp.empName}">${emp.empName.toLowerCase()}</a></td> </tr>`).join('')}
+                        ${data.map(emp => `<tr><td class="name"><button class="not-btn" onclick="selectName(event,'${emp.empName}')">${emp.empName.toLowerCase()}</a></td> </tr>`).join('')}
                 
                 `
                 document.getElementById("team-card-holder").innerHTML = html;
@@ -98,11 +131,11 @@ include "./components/header.php"
         </div>
         <div class="list" id="team-list">
             <table class="team-list-table">
-                <thead>
+                <!-- <thead>
                     <tr>
-                        <th>Name</th>
+                        <th></th>
                     </tr>
-                </thead>
+                </thead> -->
                 <tbody id="team-list-body"></tbody>
             </table>
         </div>
@@ -141,7 +174,7 @@ include "./components/header.php"
     #team-card-holder {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 15px;
+        gap: 20px;
         min-height: fit-content;
 
     }
@@ -167,7 +200,9 @@ include "./components/header.php"
     .emp-card:hover {
         border-color: var(--bg);
         /* border-image-source: linear-gradient(to left, #03A9F4, #05DB6C); */
-        filter: brightness(1.6);
+        /* filter: brightness(1.6); */
+        background-color: var(--highlight);
+
     }
 
     .fav-color {
@@ -188,6 +223,8 @@ include "./components/header.php"
         margin-top: -60px;
         color: var(--fg);
 
+
+
         p {
             border-radius: 100%;
             font-weight: 700;
@@ -204,8 +241,16 @@ include "./components/header.php"
             justify-content: center;
             border: 1px solid;
             border-color: dark-light(var(--fg), var(--bg));
-            filter: invert(1)
+
         }
+    }
+
+    .emp-name-headline {
+        font-size: clamp(12px, 2vw, 22px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
     }
 
     .team-list:hover {
@@ -217,24 +262,31 @@ include "./components/header.php"
         overflow-x: auto
     }
 
-    .name {
+    .name,
+    .name button {
         font-size: 1rem;
+        text-transform: capitalize;
+        color: var(--fg);
     }
 
     .team-list-table tr td {
         padding-top: 10px;
         padding-left: 10px;
     }
-</style>
 
-<!-- indigo: {
-100: "#ccdde4",
-200: "#99bbc9",
-300: "#669aad",
-400: "#337892",
-500: "#005677",
-600: "#00455f",
-700: "#003447",
-800: "#002230",
-900: "#001118"
-}, -->
+    .border-accent {
+        border-color: var(--accent) !important;
+        border-width: 2px;
+        border-style: inset;
+        /* filter: brightness(1.6); */
+        box-shadow: inset 0px 0px 10px 1px var(--accent);
+
+        background-color: var(--highlight) !important;
+    }
+
+
+
+    .selected-name {
+        color: var(--accent) !important;
+    }
+</style>
