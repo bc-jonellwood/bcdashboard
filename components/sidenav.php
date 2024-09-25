@@ -1,12 +1,14 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/13 09:54:36
+// Last modified: 2024/09/25 11:19:51
 ?>
-<div class="sidenav">
-    <div class="d-flex flex-column p-3 text-white bg-dark h-100" style="width: 280px;">
+<div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
+    <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
+        style="width: 280px;min-width: -webkit-fill-available;">
         <div class="d-flex w-100 gap-4">
             <img src="./images/jon.png" width="60" alt="fake avatar" class="rounded-circle avatar" />
-            <div class="fs-4 center">Jon's Dashboard</div>
+            <div class="fs-4 center sideNavTitle">Jon's Dashboard</div>
+            <button class="btn-x" popovertarget="sidenav-popover" popovertargetaction="hide">X</button>
         </div>
 
         <hr>
@@ -53,5 +55,19 @@
     .avatar {
         margin-left: auto;
         margin-right: auto;
+    }
+
+    /* .sideNavMain {
+        background-color: var(--fg);
+    } */
+
+    .sidenav-popover {
+        height: 100%;
+        background-color: var(--accent);
+        backdrop-filter: blur(5px);
+    }
+
+    .sideNavTitle {
+        color: var(--fg)
     }
 </style>

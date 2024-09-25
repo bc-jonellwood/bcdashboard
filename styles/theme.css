@@ -1,22 +1,23 @@
 :root {
   /* COLORS */
-  --black: #090707;
+  --black: #1e242b;
   --white: #eee;
 
   /* --blue: #30a9de; */
   --blue: #005677;
+  --light-blue: #bbdefb;
   --yellow: #efdc05;
   --red: #e53a40;
   --dark-blue: #1b3b6f;
   --green: #42b883;
   --light-gray: #cccccc;
   --orange: #ff6b35;
-  --purple: #9a48d0;
+  --purple: #4b006e;
 
   /* --accent: var(--yellow); */
   --accent: var(--blue);
   --primary: var(--blue);
-
+  --contrast: var(--light-gray);
   --bg: light-dark(var(--white), var(--black));
   --fg: light-dark(var(--black), var(--white));
   --tint-or-shade: color-mix(in oklab, var(--fg), transparent 95%);
@@ -39,13 +40,17 @@
   --light-glow: #00ffff;
   --dark-fire: #ff000033;
   --light-fire: #ff0000;
+  --light-gradient: linear-gradient(to left, #03a9f490, #05db6c90);
+  --dark-gradient: linear-gradient(to left, #743ad5, #d53a9d);
 }
 
 body {
   font-size: var(--fs-base);
-  margin: 0 auto;
-  padding: 20px;
-  background: var(--bg);
+  /* margin: 0 auto; */
+  padding: 1px;
+  /* background: light-dark(#00000020, #00000080); */
+  /* background: light-dark(var(--light-gradient), var(--dark-gradient)); */
+  background: var(--light-gradient);
   color: var(--fg);
   /* font-family: system-ui; */
 }
@@ -64,6 +69,8 @@ input {
   color-scheme: only dark;
   background: var(--bg);
   color: var(--fg);
+  --accent: #7480ff;
+  --bright: 0.75;
 }
 
 .mode-light,
@@ -71,6 +78,8 @@ input {
   color-scheme: only light;
   background: var(--bg);
   color: var(--fg);
+  --accent: #005677;
+  --bright: 2;
 }
 
 .inverted {
@@ -81,24 +90,32 @@ input {
 .theme-yellow {
   --bg: light-dark(var(--blue), var(--dark-blue));
   --fg: light-dark(var(--dark-blue), var(--blue));
-  --accent: var(--yellow);
-  --contrast: #0000ff;
+  --accent: #e7de7a;
+  --contrast: #005677;
   --primary: var(--blue);
 }
 .theme-purple {
   --bg: light-dark(var(--blue), var(--dark-blue));
   --fg: light-dark(var(--dark-blue), var(--blue));
   --accent: var(--purple);
-  --contrast: #7ed048;
+  --contrast: light0dark(var(--green), #003f16);
   /* --primary: var(--green); */
-  --primary: #7ed048;
+  --primary: #003f16;
 }
 
-.theme-mono {
+/* .theme-mono {
   --bg: light-dark(#ccc, #222);
   --fg: light-dark(#222, #ccc);
   --primary: light-dark(#666, #aaa);
   --accent: light-dark(#777, #aaa);
+} */
+
+.theme-brand {
+  --bg: light-dark(#e7de7a, #182825);
+  --fg: light-dark(#222, #ccc);
+  --primary: light-dark(#aaa, #666);
+  --accent: light-dark(#005677, #78d9fa);
+  --contrast: light-dark(#000, #afa98d);
 }
 
 .theme-santa {
@@ -106,16 +123,28 @@ input {
   --primary: var(--green);
 }
 .theme-blue {
-  --bg: light-dark(var(--blue), var(--dark-blue));
+  --bg: light-dark(var(--light-blue), var(--dark-blue));
   --fg: light-dark(var(--dark-blue), var(--blue));
   --accent: var(--blue);
-  --primary: var(--light-fire);
-  --contrast: #0000ff;
+  /* --primary: var(--light-blue); */
+  --primary: #99bbc9;
+  --contrast: light-dark(#000, #d1d1d1);
+  --bg-contrast: light-dark(var(--blue), var(--light-blue));
 }
 
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
 h1,
-h3 {
-  color: light-dark(var(--primary), var(--fg));
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: light-dark(#000, #ddd);
 }
 
 button {
@@ -140,13 +169,38 @@ form {
 section {
   padding: 1rem;
 }
-#footer,
-.content,
-.header,
-.sidenav {
-  background-color: var(--accent);
+#footer {
+  background-color: light-dark(#000000, #808080);
 }
 
-/* .recolor {
-  fill: var(--accent);
+/* .notification-icons {
+	display: flex;
+	justify-content: space-evenly;
+	width: 10%;
+	flex-direction: row;
+	align-items: center;
+	background-color: transparent;
 } */
+.sideNavMain {
+  /* background-color: light-dark(#808080, #000000); */
+  border-radius: 7px;
+  border: 2px solid;
+  border-color: light-dark(#000, #ffffff20);
+}
+.dash-main {
+  background-color: light-dark(#808080, #000000);
+  border-radius: 7px;
+}
+
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+.recolor {
+  fill: var(--accent) !important;
+}
