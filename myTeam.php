@@ -1,10 +1,22 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 10:54:15
+// Last modified: 2024/09/25 14:30:28
 include "./components/header.php"
 ?>
-
+<script src="./functions/toast.js"></script>
 <script>
+    let emailElement;
+    let isEmailTruncated = false;
+    let truncatedEmail = '';
+
+    function copyEmail(email) {
+        navigator.clipboard.writeText(email);
+        // alert("Email copied to clipboard");
+        toast('Success', 'Email copied to clipboard', 'success');
+        // toast.success('Email copied to clipboard');
+        setTimeout(closeToast, 2500);
+    }
+
     function getRandomColorName() {
         const colorNames = ["Red", "DeepPink", "Yellow", "Green", "Blue", "Purple", "Coral", "DarkGoldenRod", "Darkorange"];
         return colorNames[Math.floor(Math.random() * colorNames.length)];
@@ -18,6 +30,19 @@ include "./components/header.php"
             .join("")
             .toUpperCase();
     }
+
+    function truncateEmail(email) {
+        const [username] = email.split('@');
+        return `${username}@berkeley...`;
+    }
+
+    function checkEmailOverflow(email) {
+        if (emailElement) {
+            isEmailTruncated = emailElement.scrollWidth > emailElement.clientWidth;
+            truncatedEmail = isEmailTruncated ? truncateEmail(email) : email;
+        }
+    }
+
     async function getTeamMembers() {
         await fetch('./API/getTeam.php')
             .then(response => response.json())
@@ -27,24 +52,35 @@ include "./components/header.php"
                 for (var i = 0; i < data.length; i++) {
                     let favColor = getRandomColorName();
                     let initials = getInitials(data[i].empName);
+                    let email = data[i].email;
+                    let truncatedEmail;
+                    if (email) {
+                        truncatedEmail = truncateEmail(data[i].email);
+                        // truncatedEmail = email;
+                        setTimeout(checkEmailOverflow(email), 0);
+                    }
                     html += `
-                        <div class="emp-card">
+                        <div class="emp-card" data-emp-id="${data[i].empNumber}" id="${data[i].empName}">
                         <div class="emp-avatar">
                                 <p style="background-color: ${favColor};">${initials}</p>
                             </div>
                             <h3>${data[i].empName}</h3>
                             <a href="mailto:${data[i].email}">
-                                ${data[i].email}
+                                ${truncatedEmail}
                             </a>
-                             <div class="fav-color">
-                                <p><b>Favorite Color: </b> </p>
-                                <p style="color: ${favColor};"> ${favColor}</p>
-                            </div>
-                            
+                            <button type="button" onclick="copyEmail('${email}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
+                            <img src="./icons/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
+                            </button>
                         </div>
                     `
                 }
+                let teamHtml = `
+                
+                        ${data.map(emp => `<tr><td class="name"><a href="#${emp.empName}">${emp.empName.toLowerCase()}</a></td> </tr>`).join('')}
+                
+                `
                 document.getElementById("team-card-holder").innerHTML = html;
+                document.getElementById("team-list-body").innerHTML = teamHtml;
             })
     }
     getTeamMembers();
@@ -60,7 +96,16 @@ include "./components/header.php"
             </div>
 
         </div>
-        <div class="list">LIST</div>
+        <div class="list" id="team-list">
+            <table class="team-list-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody id="team-list-body"></tbody>
+            </table>
+        </div>
     </div>
     </div>
 
@@ -111,7 +156,7 @@ include "./components/header.php"
         border-radius: 7px;
         box-shadow: 0 0 5px 0px #808080;
         color: light-dark(#000, #ddd);
-        filter: brightness(1.5);
+        /* filter: brightness(1.5); */
 
         a,
         p {
@@ -163,13 +208,23 @@ include "./components/header.php"
         }
     }
 
-    /* .emp-avatar-img {
-        margin-left: -33px;
-        margin-bottom: -33px;
-        
-        aspect-ratio: 1 / 1;
-        height: 75px;
-    } */
+    .team-list:hover {
+        overflow-y: auto;
+    }
+
+    .team-list-table {
+        overflow-y: auto;
+        overflow-x: auto
+    }
+
+    .name {
+        font-size: 1rem;
+    }
+
+    .team-list-table tr td {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
 </style>
 
 <!-- indigo: {

@@ -1,7 +1,23 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 12:20:09
+// Last modified: 2024/09/25 14:17:01
 ?>
+<script>
+    function closeToast() {
+        var toast = document.getElementById("toast-popover")
+        toast.hidePopover();
+    }
+</script>
+
+<div id="toast-popover" class="toast-popover" name="toast-popover" popover>
+    <div class="toast-popover-header">
+        <h5 class="toast-popover-title" id="toast-popover-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" popovertarget="toast-popover" popovertargetaction="hide"></button>
+    </div>
+    <div class="toast-popover-body">
+        <p id="toast-message"></p>
+    </div>
+</div>
 </body>
 <footer id="footer" class="footer">
     <div class="footer-text" style="min-width: -webkit-fill-available" ;>
@@ -40,5 +56,60 @@
         background-color: var(--bg);
         color: var(--fg);
         font-size: medium;
+    }
+
+    .toast-popover {
+        width: 15em;
+        height: 4em;
+        padding: 10px;
+        background-color: light-dark(#242424, #808080);
+        color: light-dark(#000, #fff);
+        border: 2px solid;
+        border-color: light-dark(#111, #ddd);
+        border-radius: 7px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+
+
+    .toast-popover-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: medium;
+    }
+
+    .success {
+        color: var(--success);
+        border-color: var(--success);
+    }
+
+    .toast-popover-body {
+        font-size: medium;
+        color: light-dark(#000, #ccc);
+    }
+
+    [popover]:popover-open {
+        translate: 0 0;
+    }
+
+    [popover] {
+        transition: translate 0.7s ease-out, display 0.7s ease-out allow-discrete;
+        translate: 30rem 0;
+
+    }
+
+    @starting-style {
+        [popover]:popover-open {
+            translate: 20rem 0;
+        }
+    }
+
+    #toast-popover {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin-top: 88dvh;
+        margin-left: 75dvw;
     }
 </style>
