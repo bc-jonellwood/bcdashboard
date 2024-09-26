@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 12:05:04
+// Last modified: 2024/09/26 10:39:21
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
@@ -23,7 +23,7 @@ include "./components/header.php"
                     </div>
                     <div id="placeholder" class="dash-card narrow">
                         <span class="component-header">Narrow Card</span>
-
+                        <my-element></my-element>
                     </div>
                 </div>
             </div>

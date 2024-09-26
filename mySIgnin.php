@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/09/25 10:06:54
+// Last modified: 2024/09/26 09:39:13
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
     <div class="login-container">
         <div class="login-main">
             <div class="login-header">
-                <h1>Sign In</h1>
+                <h1>Pheonix Nova</h1>
             </div>
             <form>
                 <div class="form-group">
@@ -71,7 +71,7 @@
         background-color: var(--blue);
         color: #dee0e3;
         margin: 0;
-        background-image: url("images/dash_login_2.jpg");
+        background-image: url("images/dash_login_3.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         min-height: 100dvh;
@@ -108,7 +108,7 @@
         display: flex;
         /* background-color: #30a9de; */
         /* background-color: #7074a5; */
-        background-color: #0088e2;
+        /* background-color: #0088e2; */
         height: 20dvh;
         justify-content: space-between;
         align-items: center;
@@ -124,12 +124,26 @@
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 0 10px rgba(100, 180, 255, 0.2);
         /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); */
         /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); */
+        background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        animation: radiant 10s ease infinite;
 
         h1 {
             font-size: 2.5rem;
             text-align: center;
             width: 100%;
 
+        }
+    }
+
+    @keyframes radiant {
+        0% {
+            background-position: 0% 100%;
+        }
+
+        100% {
+            background-position: 0% 0%;
         }
     }
 
@@ -148,9 +162,14 @@
     }
 
 
+    a.btn,
     button {
         margin-top: 20px !important;
         margin-bottom: 20px !important;
+        background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000);
+        background-size: 100% 300px;
+        background-position: 0% 100%;
+        animation: radiant 10s ease infinite;
 
     }
 
