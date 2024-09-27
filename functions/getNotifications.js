@@ -3,7 +3,8 @@ async function getNotifications() {
   try {
     const response = await fetch("./API/getNotifications.php");
     const data = await response.json();
-    renderCalendar(data);
+    // renderCalendar(data);
+    renderAgenda(data);
     // var i = 0;
     // html += `<table class="table">
     //         <tr>

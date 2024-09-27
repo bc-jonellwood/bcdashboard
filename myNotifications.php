@@ -1,10 +1,13 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/26 16:02:06
+// Last modified: 2024/09/27 11:22:40
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
-<script src="./functions/renderNotificationCalendar.js"></script>
+</ /script src="./functions/renderNotificationCalendar.js">
+</script>
+<script src="./functions/renderNotificationsAgenda.js"></script>
+<script src="./functions/parseDateAndTime.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/web-component@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
@@ -99,21 +102,12 @@ include "./components/header.php"
             </form>
         </div>
         <div class="content">
-            <!-- <p>The idea would be to display here a calendar of existing alerts. And maybe somehow use that data for validation in the form against overlapping alerts</p>
-            <p>But for now, lets just get the form working.</p> -->
-            <div id="recentNotificationsContent">
+            <div id="recentNotificationsContent" class="recentNotificationsContent">
                 <div id="calendar"></div>
             </div>
             <div class="calendar-holder">
 
-                <full-calendar shadow options='{
-                    "headerToolbar": {
-                        "left": "prev,next today",
-                        "center": "title",
-                        "right": "dayGridMonth,dayGridWeek,dayGridDay"
-                        }
-                        
-                        }' />
+
             </div>
         </div>
         <script>
@@ -162,6 +156,9 @@ include "./components/header.php"
     </div>
     </div>
 </body>
+<?php include "./components/footer.php" ?>
+
+</html>
 <style>
     .main {
         overflow: auto;
@@ -211,102 +208,82 @@ include "./components/header.php"
         background-color: var(--accent);
     }
 
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
+    .recentNotificationsContent {
+        height: 100vh;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        padding-right: 20px;
+    }
+
+    .notification-badge {
+        color: transparent;
+        border-radius: 50%;
+        /* translate: -10px -10px; */
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: -2.5em;
+
+    }
+
+    /* .notification-badge:after {
+        content: "P";
+    } */
+
+    .month-title {
         background-color: var(--accent);
         color: var(--bg);
-        font-weight: bold;
-        padding: 10px;
-
-        button {
-            color: var(--bg);
-        }
+        padding: 5px;
+        border-radius: 7px;
+        padding-left: 1em;
     }
 
-    .calendar-table {
-        width: 100%;
+    .entry {
+        padding-left: 15px;
+        font-size: medium;
+        margin-top: 1em;
     }
 
-    .event {
-        margin: 0;
-        padding: 0;
-
-
-        ul {
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        li {
-            list-style-type: none;
-            font-size: small;
-            margin-left: 0;
-            padding-left: 0;
-            background-color: yellow;
-            color: black;
-
-
-        }
+    .notification-top-bar {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
     }
 
-    .calendar-body {
-        width: 100%;
-
-        thead {
-            width: 100%;
-        }
-
-        tr {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        th {
-            width: 100%;
-            justify-content: space-between;
-            background-color: var(--accent);
-            color: var(--bg);
-            font-weight: bold;
-            padding: 10px;
-            font-size: medium;
-            border-top: 1px solid;
-            border-bottom: 1px solid;
-            border-color: dark-light(var(--bg), var(--accent));
-        }
-
-        td {
-
-            border: 1px solid var(--accent);
-            border-style: inset;
-            width: calc(100% / 7);
-            max-width: calc(100% / 7);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+    .notification-type {
+        font-size: medium;
+        text-transform: capitalize;
     }
 
-    #recentNotificationsContent {
-        display: none;
-        ;
+    .notification-text {
+        font-size: medium;
+        font-family: monospace;
+        padding: 20px;
+        border-top: 1px solid var(--accent);
+        border-bottom: 1px solid var(--accent);
     }
 
-    .fc-button {
-        /* background-color: var(--accent) !important; */
-        background-color: hotpink !important;
-        color: var(--bg) !important;
-        font-size: small !important;
+    .form-check {
+        font-size: medium !important;
+        margin-bottom: 1em !important;
     }
 
-    .fc-button-group {
-        margin-bottom: 20px !important;
-        padding-bottom: 20px !important;
+    .n-alert {
+        background-color: red;
+        color: red;
     }
 
-    .calendar-holder {
-        width: 90%;
-        overflow: hidden;
+    .n-information {
+        background-color: blue;
+        color: blue;
+    }
+
+    .n-warning {
+        background-color: orange;
+        color: orange;
+    }
+
+    .n-other {
+        background-color: green;
+        color: green;
     }
 </style>

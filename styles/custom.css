@@ -65,7 +65,7 @@ body {
 .nav-link {
   color: var(--fg) !important;
 }
-.sidenav {
+.sidenav-popover {
   /* height: 96%; */
   background-color: var(--bg);
   /* color: #dee0e3; */
@@ -78,8 +78,9 @@ body {
   margin-left: 6px;
   width: 320px;
   border: 2px solid transparent;
+  height: 99vh;
 }
-.sidenav:hover {
+.sidenav-popover:hover {
   filter: brightness(1.25);
   border: 2px solid;
   border: 10px solid;

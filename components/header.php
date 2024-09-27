@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 11:27:44
+// Last modified: 2024/09/27 12:42:06
 session_start();
 
 
@@ -21,6 +21,8 @@ session_start();
 
     <script src="./functions/utils.js"></script>
     <script src="./functions/randomAlert.js"></script>
+    <script src="./classes/Notification.js"></script>
+    <!-- <script src="./functions/renderNotificationText.js"></script> -->
     <!-- <link rel=" stylesheet" href="styles/patternfly.css ">
         < link rel = "stylesheet"
         href = "styles/patternfly-addons.css " > -- >
@@ -170,7 +172,7 @@ session_start();
 
     </div>
     <span class="notification-bar">
-        <div class="notification">
+        <div class="notification" id="notification">
             <p class="alert-text" id="alert-text">Alert Alert Alert</p>
         </div>
         <div class="notification-icons">
@@ -244,8 +246,19 @@ session_start();
 </div>
 <script>
     function setAlert() {
-        document.getElementById('alert-text').innerText = getRandomAlertMessage();
-    }
+        const notification = new Notification();
+
+        notification.renderNotifcationText().then((data) => {
+            if (!data) {
+                return;
+            }
+            //console.log('This is the setAlert function')
+            //console.log(data);
+            document.getElementById('alert-text').innerText = data.text;
+            document.getElementById('notification').classList.add(data.type);
+        });
+    };
+
 
     document.addEventListener('DOMContentLoaded', setAlert);
 </script>
@@ -406,5 +419,22 @@ session_start();
 
     .menu {
         color: var(--accent)
+    }
+
+    .alert {
+        background-color: red;
+    }
+
+    .warning {
+        background-color: orange;
+    }
+
+    .information {
+        background-color: blue;
+        color: var(--fg)
+    }
+
+    .other {
+        background-color: green;
     }
 </style>

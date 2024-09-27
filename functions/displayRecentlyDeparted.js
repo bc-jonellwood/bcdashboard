@@ -7,11 +7,11 @@
 // }
 
 async function theDeparted() {
-	await fetch('./API/getSeparatedEmps.php')
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data);
-			let html = `<table class="table">
+  await fetch("./API/getSeparatedEmps.php")
+    .then((response) => response.json())
+    .then((data) => {
+      //console.log(data);
+      let html = `<table class="table">
                         <tr>
                             <th>Name</th>
                             <th>Department</th>
@@ -19,8 +19,8 @@ async function theDeparted() {
                             <th>Updated</th>
                         </tr>
             `;
-			for (var i = 0; i < data.length; i++) {
-				html += `
+      for (var i = 0; i < data.length; i++) {
+        html += `
                 <tr class="emp-card">
 			        <td class="name">${data[i].empName.toLowerCase()}</td>
 			        <td class="name">${data[i].deptName.toLowerCase()}</td>
@@ -28,12 +28,12 @@ async function theDeparted() {
 			        <td>${formatDate(data[i].updated)}</td>
 			    </tr>
 			`;
-			}
+      }
 
-			html += '</table>';
-			document.getElementById('recentSeparationsContent').innerHTML = html;
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+      html += "</table>";
+      document.getElementById("recentSeparationsContent").innerHTML = html;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
