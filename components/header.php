@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 13:44:34
+// Last modified: 2024/09/27 14:08:50
 session_start();
 
 
@@ -51,7 +51,7 @@ session_start();
         // }
         // get the current mode from local storage versus directly passed in
         function swapBodyClass() {
-            console.log('Swapping Body Class')
+            // console.log('Swapping Body Class')
             const body = document.body;
             const classes = body.className.split(' ');
 

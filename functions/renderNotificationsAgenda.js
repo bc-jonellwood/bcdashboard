@@ -7,7 +7,7 @@
 
 function renderAgenda(data) {
   const months = [];
-  console.log(data);
+  // console.log(data);
   for (var i = 0; i < data.length; i++) {
     const date = new Date(data[i].dtStartDate);
     const month = date.getMonth();
@@ -21,7 +21,7 @@ function renderAgenda(data) {
   for (var i = 0; i < months.length; i++) {
     const month = months[i];
     const monthName = getMonthName(month);
-    console.log(monthName);
+    // console.log(monthName);
     renderMonth(monthName, data, month);
   }
 

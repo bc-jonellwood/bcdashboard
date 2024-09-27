@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 11:22:40
+// Last modified: 2024/09/27 15:45:58
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -8,9 +8,9 @@ include "./components/header.php"
 </script>
 <script src="./functions/renderNotificationsAgenda.js"></script>
 <script src="./functions/parseDateAndTime.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/web-component@6.1.15/index.global.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script> -->
 
 </script>
 
@@ -55,21 +55,40 @@ include "./components/header.php"
                     <div class="col-md-2 mb-3 datepickers">
                         <label for="dtStartDate">Start Date
                             <div class="input-group">
-                                <input type="datetime-local" class="form-control" id="dtStartDate" name="dtStartDate" required>
+                                <input type="date" class="form-control" id="dtStartDate" name="dtStartDate" required value="{{ new Date().toISOString().replace('Z', '') }}">
                                 <div class="invalid-feedback">
                                     Please do better.
                                 </div>
                             </div>
+                        </label>
+                        <label for="dtStartTime">Start Time
+                            <div class="input-group">
+                                <input type="time" class="form-control" id="dtStartTime" name="dtStartTime" step="900" value="00:00" required>
+                                <div class="invalid-feedback">
+                                    Please do better.
+                                </div>
+                            </div>
+                            <span class="validity"></span>
                         </label>
                         <label for="dtEndDate">End Date
                             <div class="input-group">
-                                <input type="datetime-local" class="form-control" id="dtEndDate" name="dtEndDate" required>
+                                <input type="date" class="form-control" id="dtEndDate" name="dtEndDate" required>
                                 <div class="invalid-feedback">
-                                    Please do better.
+                                    Time Slots are allowed only in 15 min increments.
                                 </div>
                             </div>
                         </label>
+                        <label for="dtEndTime">End Time
+                            <div class="input-group">
+                                <input type="time" class="form-control" id="dtEndTime" name="dtEndTime" step="900" value="00:00" required>
+                                <div class="invalid-feedback">
+                                    ime Slots are allowed only in 15 min increments.
+                                </div>
+                            </div>
+                        </label>
+                        <span class="validity"></span>
                     </div>
+                    <div id="dateError" class="invalid-date-feedback"></div>
                 </div>
                 <div class="form-row">
                     <div class="mb-3">
@@ -79,7 +98,7 @@ include "./components/header.php"
                             <option value="inactive">Inactive</option>
                         </select>
                         <div class="invalid-feedback">
-                            Please provide a valid city.
+                            Please provide a valid status.
                         </div>
                         <small id="sNotificationTextHelpBlock" class="form-text text-muted help-text">
                             Select "Inactive" if want to create the Alert but are not ready to commit to it being displayed. It will have to be updated to Active before it will be displayed.
@@ -92,13 +111,14 @@ include "./components/header.php"
                         <label class="form-check-label" for="invalidCheck">
                             I understand the consequences of this action
                         </label>
-                        <div class="invalid-feedback">
-                            You must agree before submitting.
-                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
                     </div>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit form</button>
                 <button class="btn btn-danger" type="reset" onclick="clearAlert()">Reset</button>
+                <button class="btn btn-info" type="button" onclick="validateForm()">Magic</button>
             </form>
         </div>
         <div class="content">
@@ -106,8 +126,6 @@ include "./components/header.php"
                 <div id="calendar"></div>
             </div>
             <div class="calendar-holder">
-
-
             </div>
         </div>
         <script>
@@ -131,9 +149,39 @@ include "./components/header.php"
             })();
         </script>
         <script>
+            document.querySelectorAll('input[type="time"]').forEach(input => {
+                input.addEventListener('change', () => {
+                    // console.log(input.validity.valid);
+                    if (input.validity.valid) {
+                        input.classList.remove('is-invalid');
+                        input.classList.add('is-valid');
+                    } else {
+                        input.classList.remove('is-valid');
+                        input.classList.add('is-invalid');
+                    }
+                })
+            })
+        </script>
+        <script>
+            function setDateDefault(id) {
+                const dateInput = document.getElementById(id);
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                const day = now.getDate().toString().padStart(2, '0');
+                // const hour = now.getHours().toString().padStart(2, '0');
+                // const minute = now.getMinutes().toString().padStart(2, '0');
+                // const second = now.getSeconds().toString().padStart(2, '0');
+                dateInput.value = `${year}-${month}-${day}`;
+            }
+        </script>
+        <script>
             function clearAlert() {
                 document.getElementById('alert-text').innerText = '';
                 document.getElementById('alert-text').parentElement.classList.remove('alert', 'warning', 'information', 'other');
+                document.getElementById('dateError').innerText = '';
+                setDateDefault('dtStartDate');
+                setDateDefault('dtEndDate');
             }
 
             document.addEventListener('DOMContentLoaded', clearAlert);
@@ -151,6 +199,47 @@ include "./components/header.php"
                 alertHolder.classList.remove('alert', 'warning', 'information', 'other');
                 alertBox.innerText = alert;
                 alertHolder.classList.add(alertType);
+            }
+        </script>
+        <script>
+            // function to validate form data before submitting 
+            // we will check that the starting date is before the ending date
+            // we will make sure the start date is a day in the future
+            // we will we make an array of the dates already being used for notifications from a fetch request and then make sure the start date is not in that array
+            // we are already getting the data from the fetch request in the getNotifications function on load. maybe we can use the data to populate the array?
+
+            async function validateForm() {
+                //console.log('Here comes the magic')
+                const notificationDates = await getNotifications();
+                const errorTextHolder = document.getElementById('dateError')
+                errorTextHolder.innerText = '';
+                // notificationDates.forEach(dates => {
+                //     console.log(dates);
+                // })
+
+                var startDate = document.getElementById('dtStartDate').value;
+                // console.log(startDate);
+                var endDate = document.getElementById('dtEndDate').value;
+                const startDateIso = startDate.split('T')[0];
+                const endDateIso = endDate.split('T')[0];
+
+                if (startDateIso > endDateIso || startDateIso == endDateIso) {
+                    console.log('Start Date is equal to or after End Date');
+                    return false;
+                }
+                console.log("Start Date is before End Date");
+                // return true;
+                if (notificationDates.flat().includes(startDateIso)) {
+                    console.log("Date in array");
+                    var errorText = "There is an existing notification for this date. Please choose a different date.";
+                    errorTextHolder.innerText = errorText;
+                    return false;
+                } else {
+                    console.log("Date not in array");
+                    // return true;
+                }
+
+
             }
         </script>
     </div>
@@ -286,4 +375,38 @@ include "./components/header.php"
         background-color: green;
         color: green;
     }
+
+    .invalid-date-feedback {
+        width: 100%;
+        font-size: medium;
+        color: light-dark(red, #c70000);
+    }
+
+    .is-valid {
+        border: green 1px solid;
+    }
+
+    .is-invalid {
+        border: red 1px solid;
+    }
+
+    /* input[type="number"] {
+        width: 100px;
+    } */
+
+    /* input+span {
+        padding-right: 30px;
+    }
+
+    input:invalid+span::after {
+        position: absolute;
+        content: "✖";
+        padding-left: 5px;
+    }
+
+    input:valid+span::after {
+        position: absolute;
+        content: "✓";
+        padding-left: 5px;
+    } */
 </style>

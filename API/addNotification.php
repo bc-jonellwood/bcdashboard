@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/26 14:29:19
+// Last modified: 2024/09/27 15:55:02
 // if (session_status() !== PHP_SESSION_ACTIVE) {
 //   session_start();
 // }
@@ -38,12 +38,22 @@ $sNotificationType = strip_tags($_POST['sNotificationType']);
 $sNotificationText = strip_tags($_POST['sNotificationText']);
 
 $dtStartDate = strip_tags($_POST['dtStartDate']);
-$dtStartDate = convertToSqlDateTime($dtStartDate);
+print_r($dtStartDate);
+$dtStartTime = strip_tags($_POST['dtStartTime']);
+print_r($dtStartTime);
+// $dtStartDate = convertToSqlDateTime($dtStartDate + " " . $dtStartTime);
+// print_r($dtStartDate);
 $dtEndDate = strip_tags($_POST['dtEndDate']);
-$dtEndDate = convertToSqlDateTime($dtEndDate);
+print_r($dtEndDate);
+$dtEndTime = strip_tags($_POST['dtEndTime']);
+print_r($dtEndTime);
+// $dtEndDate = convertToSqlDateTime($dtEndDate + " " . $dtEndTime);
+// print_r($dtEndDate);
 $sStatus = strip_tags($_POST['sStatus']);
 
 $iCreatedBy = $userID;
+$dtCreatedDate = time();
+print_r($dtCreatedDate);
 
 $sql = "INSERT INTO app_notifications
     (
@@ -53,10 +63,11 @@ $sql = "INSERT INTO app_notifications
       ,dtStartDate
       ,dtEndDate
       ,sStatus
-      ,iCreatedBy
+      ,iCreatedBy,
+      dtCreatedDate
     )
     VALUES
-    (?,?,?,?,?,?,?)";
+    (?,?,?,?,?,?,?,?)";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(1, $GUID);
 $stmt->bindParam(2, $sNotificationType);
@@ -65,10 +76,9 @@ $stmt->bindParam(4, $dtStartDate);
 $stmt->bindParam(5, $dtEndDate);
 $stmt->bindParam(6, $sStatus);
 $stmt->bindParam(7, $iCreatedBy);
+$stmt->bindParam(8, $dtCreatedDate);
 
-$stmt->execute();
-if ($stmt) {
-  header("Location: ../success.php");
-} else {
-  // echo "Fail";
-}
+// $stmt->execute();
+// if ($stmt) {
+//   header("Location: ../success.php");
+// } 

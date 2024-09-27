@@ -6,7 +6,7 @@ class Notification {
   }
 
   async fetchNotification() {
-    console.log("Fetching Notification from Database");
+    // console.log("Fetching Notification from Database");
     const response = await fetch("./API/getCurrentNotification.php");
     const data = await response.json();
     return data;
@@ -27,7 +27,7 @@ class Notification {
 
   async getFromLocalStorage() {
     const storedData = localStorage.getItem(this.storageKey);
-    console.log("Stored Data:", storedData);
+    // console.log("Stored Data:", storedData);
     if (storedData) {
       const data = JSON.parse(storedData);
       const now = new Date().getTime();
@@ -37,7 +37,7 @@ class Notification {
         localStorage.removeItem(this.storageKey);
         return null;
       }
-      console.log("Returning Stored Data:", data);
+      // console.log("Returning Stored Data:", data);
       return data;
     }
 
