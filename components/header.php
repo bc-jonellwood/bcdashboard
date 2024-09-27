@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 12:42:06
+// Last modified: 2024/09/27 13:44:34
 session_start();
 
 
@@ -245,10 +245,10 @@ session_start();
 
 </div>
 <script>
-    function setAlert() {
+    async function setAlert() {
         const notification = new Notification();
 
-        notification.renderNotifcationText().then((data) => {
+        const data = await notification.renderNotifcationText().then((data) => {
             if (!data) {
                 return;
             }
@@ -260,7 +260,7 @@ session_start();
     };
 
 
-    document.addEventListener('DOMContentLoaded', setAlert);
+    document.addEventListener('DOMContentLoaded', setAlert());
 </script>
 <style>
     .settings-popover-menu[popover] {
@@ -417,24 +417,46 @@ session_start();
         font-weight: bold;
     }
 
-    .menu {
-        color: var(--accent)
-    }
-
     .alert {
-        background-color: red;
+        background-color: light-dark(#AB1212, #7A0000);
+        color: light-dark(#fff, #dddddd);
     }
 
     .warning {
-        background-color: orange;
+        background-color: light-dark(orange, #805300);
+        color: light-dark(#000, #fff);
     }
 
     .information {
-        background-color: blue;
-        color: var(--fg)
+        background-color: light-dark(blue, #0000A3);
+        color: light-dark(#F1FFF0, #dee0e3)
     }
 
     .other {
         background-color: green;
+    }
+
+    @keyframes button-glow {
+        0% {
+            box-shadow: 0px 0px 36px -10px var(--button-glow-dark);
+        }
+
+        50% {
+            box-shadow: 0px 0px 36px -10px var(--button-glow-light);
+        }
+
+        100% {
+            box-shadow: 0px 0px 36px -10px var(--button-glow-dark);
+        }
+    }
+
+
+    .menu {
+        color: var(--accent)
+    }
+
+    .menu:hover {
+        animation: button-glow 2s infinite !important;
+        border-radius: 0px !important;
     }
 </style>

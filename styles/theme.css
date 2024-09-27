@@ -54,7 +54,8 @@
 
   --line-height: calc(2px + 2ex + 2px);
   color-scheme: light dark;
-
+  --button-glow-light: #7480ff;
+  --button-glow-dark: #7480ff33;
   --dark-glow: #00ffff33;
   --light-glow: #00ffff;
   --dark-fire: #ff000033;

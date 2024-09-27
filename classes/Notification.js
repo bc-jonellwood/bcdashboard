@@ -22,6 +22,7 @@ class Notification {
       expires: expires,
     };
     localStorage.setItem(this.storageKey, JSON.stringify(notificationData));
+    setAlert();
   }
 
   async getFromLocalStorage() {

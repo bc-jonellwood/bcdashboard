@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 15:49:36
+// Last modified: 2024/09/27 13:24:22
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -251,6 +251,11 @@ include "./components/header.php"
         overflow: hidden;
         text-overflow: ellipsis;
         text-transform: capitalize;
+    }
+
+    .list {
+        height: 99vh;
+        overflow-y: auto;
     }
 
     .team-list:hover {
