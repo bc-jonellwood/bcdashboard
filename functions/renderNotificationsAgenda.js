@@ -54,6 +54,8 @@ function renderAgenda(data) {
       if (date.getMonth() === month) {
         const entry = document.createElement("div");
         entry.classList.add("entry");
+        entry.classList.add(data[i].sStatus);
+        entry.id = data[i].id;
         entry.innerHTML = `
         <span class="notification-top-bar">
         <p class="notification-badge n-${data[i].sNotificationType}">-</p>
@@ -61,27 +63,47 @@ function renderAgenda(data) {
               data[i].sNotificationType
             }</p>
             <p class="notification-date"><b>Start: </b> ${
-              data[i].dtStartDate
-            }</p>
-            
+              parseDateAndTime(data[i].dtStartDate).date
+            } <b>@ </b> ${parseDateAndTime(data[i].dtStartDate).time}
+            </p>
+            <p></p>
             <p class="notification-date"><b>End: </b> ${
-              data[i].dtEndDate
-            }</p>         
+              parseDateAndTime(data[i].dtEndDate).date
+            } <b>@ </b> ${parseDateAndTime(data[i].dtEndDate).time}
+            </p>         
         </span>
         <span class="notification-top-bar"> 
             <p class="notification-created-by"><b>Created By: </b> ${
               data[i].iCreatedBy
             }</p>
-            <p class="notification-time"><b>Time: </b> ${parseTime(
-              data[i].dtStartTime
-            )}</p>
-            <p class="notification-time"><b>Time: </b> ${parseTime(
-              data[i].dtEndTime
-            )}</p>
+            <p class="notification-created-by"><b>Status: </b> ${
+              data[i].sStatus
+            }</p>
         </span>
         <p class="notification-text corner-only">${
           data[i].sNotificationText
         }</p>
+        <div class="notification-buttons-holder">
+        
+        
+        <button class="btn btn-secondary btn-sm" type="button" onclick="editNotification('${
+          data[i].id
+        }')" >Edit</button>
+        
+        
+        
+       <button class="btn btn-danger btn-sm" type="button" 
+          onclick="${
+            data[i].sStatus === "active"
+              ? "deleteNotification"
+              : "recoverNotification"
+          }('${data[i].id}')"
+          id="button-${data[i].id}"
+          >
+          ${data[i].sStatus === "active" ? "Delete" : "Recover"}
+        </button>
+        </div>
+
         `;
         monthDiv.appendChild(entry);
       }

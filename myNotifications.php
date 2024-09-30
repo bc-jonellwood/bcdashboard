@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 10:28:25
+// Last modified: 2024/09/30 13:59:08
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -9,6 +9,8 @@ include "./components/header.php"
 <script src="./functions/renderNotificationsAgenda.js"></script>
 <script src="./functions/parseDateAndTime.js"></script>
 <script src="./functions/parseTime.js"></script>
+<script src="./functions/deleteNotification.js"></script>
+<script src="./functions/recoverNotification.js"></script>
 <!-- <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/web-component@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script> -->
@@ -19,7 +21,7 @@ include "./components/header.php"
     <div class="main">
         <?php include "./components/sidenav.php" ?>
         <div class="content">
-            <form class="needs-validation" novalidate action="./API/addNotification.php" method="POST">
+            <form class="needs-validation" novalidate action="./API/addNotification.php" method="POST" id="notificationForm">
                 <div class="form-row">
                     <div class="mb-3">
                         <label for="sNotificationType">Notification Type</label>
@@ -56,13 +58,13 @@ include "./components/header.php"
                     <div class="col-md-2 mb-3 datepickers">
                         <label for="dtStartDate">Start Date
                             <div class="input-group">
-                                <input type="date" class="form-control" id="dtStartDate" name="dtStartDate" required value="{{ new Date().getFullYear() }}-{{ new Date().getMonth() + 1 }}-{{ new Date().getDate() }}">
+                                <input type="datetime-local" class="form-control" id="dtStartDate" name="dtStartDate" required value="{{ new Date().getFullYear() }}-{{ new Date().getMonth() + 1 }}-{{ new Date().getDate() }}">
                                 <div class=" invalid-feedback">
                                     Please do better.
                                 </div>
                             </div>
                         </label>
-                        <label for="dtStartTime">Start Time
+                        <!-- <label for="dtStartTime">Start Time
                             <div class="input-group">
                                 <input type="time" class="form-control" id="dtStartTime" name="dtStartTime" step="900" value="00:00" required>
                                 <div class="invalid-feedback">
@@ -70,24 +72,24 @@ include "./components/header.php"
                                 </div>
                             </div>
                             <span class="validity"></span>
-                        </label>
+                        </label> -->
                         <label for="dtEndDate">End Date
                             <div class="input-group">
-                                <input type="date" class="form-control" id="dtEndDate" name="dtEndDate" required>
+                                <input type="datetime-local" class="form-control" id="dtEndDate" name="dtEndDate" required>
                                 <div class="invalid-feedback">
                                     Time Slots are allowed only in 15 min increments.
                                 </div>
                             </div>
                         </label>
-                        <label for="dtEndTime">End Time
+                        <!-- <label for="dtEndTime">End Time
                             <div class="input-group">
                                 <input type="time" class="form-control" id="dtEndTime" name="dtEndTime" step="900" value="00:00" required>
                                 <div class="invalid-feedback">
                                     ime Slots are allowed only in 15 min increments.
                                 </div>
                             </div>
-                        </label>
-                        <span class="validity"></span>
+                            <span class="validity"></span>
+                        </label> -->
                     </div>
                     <div id="dateError" class="invalid-date-feedback"></div>
                 </div>
@@ -117,9 +119,9 @@ include "./components/header.php"
                         You must agree before submitting.
                     </div>
                 </div>
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="button" onclick="validateForm()">Submit</button>
                 <button class="btn btn-danger" type="reset" onclick="clearAlert()">Reset</button>
-                <button class="btn btn-info" type="button" onclick="validateForm()">Magic</button>
+                <!-- <button class="btn btn-info" type="button" onclick="validateForm()">Magic</button> -->
             </form>
         </div>
         <div class="content">
@@ -170,10 +172,10 @@ include "./components/header.php"
                 const year = now.getFullYear();
                 const month = (now.getMonth() + 1).toString().padStart(2, '0');
                 const day = now.getDate().toString().padStart(2, '0');
-                // const hour = now.getHours().toString().padStart(2, '0');
-                // const minute = now.getMinutes().toString().padStart(2, '0');
-                // const second = now.getSeconds().toString().padStart(2, '0');
-                dateInput.value = `${year}-${month}-${day}`;
+                const hour = now.getHours().toString().padStart(2, '0');
+                const minute = now.getMinutes().toString().padStart(2, '0');
+                const second = now.getSeconds().toString().padStart(2, '0');
+                dateInput.value = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
             }
         </script>
         <script>
@@ -210,59 +212,57 @@ include "./components/header.php"
             // we are already getting the data from the fetch request in the getNotifications function on load. maybe we can use the data to populate the array?
 
             async function validateForm() {
-                //console.log('Here comes the magic')
-                const ranges = await getNotifications();
+                const form = document.getElementById('notificationForm');
+                // const ranges = await getNotifications();
+                const ranges = await getNotificationDataNoRender();
                 const errorTextHolder = document.getElementById('dateError')
                 errorTextHolder.innerText = '';
-                // notificationDates.forEach(dates => {
-                //     console.log(dates);
-                // })
 
                 var dtStartDate = document.getElementById('dtStartDate').value;
-                var dtStartTime = document.getElementById('dtStartTime').value;
-                // console.log(startDate);
                 var dtEndDate = document.getElementById('dtEndDate').value;
-                var dtEndTime = document.getElementById('dtEndTime').value;
-                // const startDateIso = startDate.split('T')[0];
-                // const endDateIso = endDate.split('T')[0];
-                const newRange = createRange(dtStartDate, dtStartTime, dtEndDate, dtEndTime);
-                console.log('---------NEW RANGE-------------------*******')
-                console.log(newRange);
-                console.log('&%&%&%&%&%&-RANGES-%&%&%&%&%&%&%&%')
-                console.log(ranges);
+                if (!dtStartDate || !dtEndDate) {
+                    errorTextHolder.innerText = "Please enter a start and end date";
+                    return false;
+                }
+
+                if (new Date(dtStartDate) < new Date()) {
+                    errorTextHolder.innerText = "Start date must be in the future";
+                    return false;
+                }
+                if (new Date(dtEndDate) < new Date()) {
+                    errorTextHolder.innerText = "End date must be in the future";
+                    return false;
+                }
+
+                if (new Date(dtEndDate) < new Date(dtStartDate)) {
+                    errorTextHolder.innerText = "End date must be after start date";
+                    return false;
+                }
+
+                const newRange = createRange(dtStartDate, dtEndDate);
                 const hasOverlaps = checkForOverlap(ranges, newRange)
-                console.log('*!*!*!*!* Overlaps ?*!*!*!*!*!*!')
-                console.log(hasOverlaps)
                 if (hasOverlaps) {
-                    var errorText = "No Overlaps allowed clown"
+                    var errorText = "Your selection overlaps with an existing notification. Please choose a different time period."
                     errorTextHolder.innerText = errorText;
                     return false;
                 } else {
-                    return true;
+                    form.submit();
+                    // return true;
                 }
-                // if (startDateIso > endDateIso || startDateIso == endDateIso) {
-                //     console.log('Start Date is equal to or after End Date');
-                //     return false;
-                // }
-                // console.log("Start Date is before End Date");
-                // return true;
-                // if (notificationDates.flat().includes(startDateIso)) {
-                //     console.log("Date in array");
-                //     var errorText = "There is an existing notification for this date. Please choose a different date.";
-                //     errorTextHolder.innerText = errorText;
-                //     return false;
-                // } else {
-                //     console.log("Date not in array");
-                //     // return true;
-                // }
-
-
             }
         </script>
     </div>
     </div>
 </body>
 <?php include "./components/footer.php" ?>
+<script>
+    function updateButtonText(id, status) {
+        const button = document.getElementById(`button-${id}`);
+        button.textContent = status === 'active' ? 'Delete' : 'Recover';
+        button.setAttribute('onclick', status === 'active' ? `deleteNotification('${id}')` : `recoverNotification('${id}')`);
+
+    }
+</script>
 
 </html>
 <style>
@@ -331,6 +331,19 @@ include "./components/header.php"
 
     }
 
+    .corner-only {
+        --s: 25px;
+        /* size of the corners */
+        border: 5px solid #005677;
+        padding: 6px;
+        /* height: 250px; */
+        /* width: 300px; */
+        /* background: #f2f2f2 content-box; */
+        mask:
+            conic-gradient(#000 0 0) content-box,
+            conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s));
+    }
+
     /* .notification-badge:after {
         content: "P";
     } */
@@ -349,6 +362,10 @@ include "./components/header.php"
         margin-top: 1em;
     }
 
+    .inactive {
+        opacity: 0.25;
+    }
+
     .notification-top-bar {
         display: flex;
         justify-content: space-between;
@@ -364,8 +381,9 @@ include "./components/header.php"
         font-size: medium;
         font-family: monospace;
         padding: 20px;
-        border-top: 1px solid var(--accent);
-        border-bottom: 1px solid var(--accent);
+        /* border-top: 1px solid var(--accent);
+        border-bottom: 1px solid var(--accent); */
+        columns: var(--accent);
     }
 
     .form-check {
@@ -407,35 +425,14 @@ include "./components/header.php"
         border: red 1px solid;
     }
 
-    /* input[type="number"] {
-        width: 100px;
-    } */
-
-    /* input+span {
-        padding-right: 30px;
-    }
-
-    input:invalid+span::after {
-        position: absolute;
-        content: "✖";
-        padding-left: 5px;
-    }
-
-    input:valid+span::after {
-        position: absolute;
-        content: "✓";
-        padding-left: 5px;
-    } */
-    .corner-only {
-        --s: 25px;
-        /* size of the corners */
-        border: 5px solid #005677;
-        padding: 6px;
-        /* height: 250px; */
-        /* width: 300px; */
-        background: #f2f2f2 content-box;
-        mask:
-            conic-gradient(#000 0 0) content-box,
-            conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s));
+    .notification-buttons-holder {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 10px;
+        /* padding: 10px; */
+        padding-top: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--fg);
     }
 </style>
