@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 13:59:08
+// Last modified: 2024/09/30 14:02:22
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -434,5 +434,9 @@ include "./components/header.php"
         padding-top: 10px;
         padding-bottom: 15px;
         border-bottom: 2px solid var(--fg);
+    }
+
+    details {
+        margin-bottom: 1em;
     }
 </style>

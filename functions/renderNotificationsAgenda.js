@@ -45,9 +45,9 @@ function renderAgenda(data) {
 
   function renderMonth(monthName, data, month) {
     const calendar = document.getElementById("calendar");
-    const monthDiv = document.createElement("div");
+    const monthDiv = document.createElement("details");
     monthDiv.classList.add("month");
-    monthDiv.innerHTML = `<div class="month-title"> ${monthName}</div>`;
+    monthDiv.innerHTML = `<summary class="month-title"> ${monthName}</div>`;
     calendar.appendChild(monthDiv);
     for (var i = 0; i < data.length; i++) {
       const date = new Date(data[i].dtStartDate);
