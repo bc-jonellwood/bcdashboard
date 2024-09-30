@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 11:49:25
+// Last modified: 2024/09/30 15:19:05
 // if (session_status() !== PHP_SESSION_ACTIVE) {
 //   session_start();
 // }
@@ -35,16 +35,14 @@ $userID = '4438'; // for now - it will be SESSION variable later
 $GUID = generateGUID();
 $sNotificationType = strip_tags($_POST['sNotificationType']);
 $sNotificationText = strip_tags($_POST['sNotificationText']);
+
+
 $dtStartDate = strip_tags($_POST['dtStartDate']);
-// $dtStartTime = strip_tags($_POST['dtStartTime']);
-// $startTimeStamp = strtotime($dtStartDate . " " . $dtStartTime);
 $startTimeStamp = strtotime($dtStartDate);
 $sqlStartDate = date('Y-m-d H:i:s', $startTimeStamp);
 
 
 $dtEndDate = strip_tags($_POST['dtEndDate']);
-// $dtEndTime = strip_tags($_POST['dtEndTime']);
-// $endTimeStamp = strtotime($dtEndDate . " " . $dtEndTime);
 $endTimeStamp = strtotime($dtEndDate);
 $sqlEndDate = date('Y-m-d H:i:s', $endTimeStamp);
 

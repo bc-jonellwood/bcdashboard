@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 13:33:00
+// Last modified: 2024/09/30 15:23:21
 // if (session_status() !== PHP_SESSION_ACTIVE) {
 //   session_start();
 // }
@@ -23,7 +23,7 @@ try {
 
 
 // $data = [];
-$sql = "SELECT * FROM app_notifications where dtStartDate > GETDATE()";
+$sql = "SELECT * FROM app_notifications where dtStartDate > GETDATE()  ORDER BY dtStartDate ASC";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();
