@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 08:52:52
+// Last modified: 2024/09/30 10:28:25
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -211,34 +211,50 @@ include "./components/header.php"
 
             async function validateForm() {
                 //console.log('Here comes the magic')
-                const notificationDates = await getNotifications();
+                const ranges = await getNotifications();
                 const errorTextHolder = document.getElementById('dateError')
                 errorTextHolder.innerText = '';
                 // notificationDates.forEach(dates => {
                 //     console.log(dates);
                 // })
 
-                var startDate = document.getElementById('dtStartDate').value;
+                var dtStartDate = document.getElementById('dtStartDate').value;
+                var dtStartTime = document.getElementById('dtStartTime').value;
                 // console.log(startDate);
-                var endDate = document.getElementById('dtEndDate').value;
-                const startDateIso = startDate.split('T')[0];
-                const endDateIso = endDate.split('T')[0];
-
-                if (startDateIso > endDateIso || startDateIso == endDateIso) {
-                    console.log('Start Date is equal to or after End Date');
-                    return false;
-                }
-                console.log("Start Date is before End Date");
-                // return true;
-                if (notificationDates.flat().includes(startDateIso)) {
-                    console.log("Date in array");
-                    var errorText = "There is an existing notification for this date. Please choose a different date.";
+                var dtEndDate = document.getElementById('dtEndDate').value;
+                var dtEndTime = document.getElementById('dtEndTime').value;
+                // const startDateIso = startDate.split('T')[0];
+                // const endDateIso = endDate.split('T')[0];
+                const newRange = createRange(dtStartDate, dtStartTime, dtEndDate, dtEndTime);
+                console.log('---------NEW RANGE-------------------*******')
+                console.log(newRange);
+                console.log('&%&%&%&%&%&-RANGES-%&%&%&%&%&%&%&%')
+                console.log(ranges);
+                const hasOverlaps = checkForOverlap(ranges, newRange)
+                console.log('*!*!*!*!* Overlaps ?*!*!*!*!*!*!')
+                console.log(hasOverlaps)
+                if (hasOverlaps) {
+                    var errorText = "No Overlaps allowed clown"
                     errorTextHolder.innerText = errorText;
                     return false;
                 } else {
-                    console.log("Date not in array");
-                    // return true;
+                    return true;
                 }
+                // if (startDateIso > endDateIso || startDateIso == endDateIso) {
+                //     console.log('Start Date is equal to or after End Date');
+                //     return false;
+                // }
+                // console.log("Start Date is before End Date");
+                // return true;
+                // if (notificationDates.flat().includes(startDateIso)) {
+                //     console.log("Date in array");
+                //     var errorText = "There is an existing notification for this date. Please choose a different date.";
+                //     errorTextHolder.innerText = errorText;
+                //     return false;
+                // } else {
+                //     console.log("Date not in array");
+                //     // return true;
+                // }
 
 
             }
