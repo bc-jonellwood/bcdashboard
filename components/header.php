@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 14:08:50
+// Last modified: 2024/09/30 09:15:54
 session_start();
 
 
@@ -22,6 +22,7 @@ session_start();
     <script src="./functions/utils.js"></script>
     <script src="./functions/randomAlert.js"></script>
     <script src="./classes/Notification.js"></script>
+    <script src="./functions/loader.js"></script>
     <!-- <script src="./functions/renderNotificationText.js"></script> -->
     <!-- <link rel=" stylesheet" href="styles/patternfly.css ">
         < link rel = "stylesheet"
@@ -164,6 +165,7 @@ session_start();
         document.addEventListener('DOMContentLoaded', setClassAndModeOnLoad);
     </script>
 </head>
+
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu">
@@ -243,6 +245,14 @@ session_start();
         </section>
     </div>
 
+</div>
+<div class="loader-container-overlay hidden" id="loader-container-overlay">
+    <div class="loader loader1"></div>
+    <div class="loader loader2"></div>
+    <div class="loader loader3"></div>
+    <div class="loader loader4"></div>
+    <div class="loader loader5"></div>
+    <div class="loader loader6"></div>
 </div>
 <script>
     async function setAlert() {

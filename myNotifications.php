@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 15:45:58
+// Last modified: 2024/09/30 08:52:52
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -8,6 +8,7 @@ include "./components/header.php"
 </script>
 <script src="./functions/renderNotificationsAgenda.js"></script>
 <script src="./functions/parseDateAndTime.js"></script>
+<script src="./functions/parseTime.js"></script>
 <!-- <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/web-component@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script> -->
@@ -55,8 +56,8 @@ include "./components/header.php"
                     <div class="col-md-2 mb-3 datepickers">
                         <label for="dtStartDate">Start Date
                             <div class="input-group">
-                                <input type="date" class="form-control" id="dtStartDate" name="dtStartDate" required value="{{ new Date().toISOString().replace('Z', '') }}">
-                                <div class="invalid-feedback">
+                                <input type="date" class="form-control" id="dtStartDate" name="dtStartDate" required value="{{ new Date().getFullYear() }}-{{ new Date().getMonth() + 1 }}-{{ new Date().getDate() }}">
+                                <div class=" invalid-feedback">
                                     Please do better.
                                 </div>
                             </div>
@@ -409,4 +410,16 @@ include "./components/header.php"
         content: "✓";
         padding-left: 5px;
     } */
+    .corner-only {
+        --s: 25px;
+        /* size of the corners */
+        border: 5px solid #005677;
+        padding: 6px;
+        /* height: 250px; */
+        /* width: 300px; */
+        background: #f2f2f2 content-box;
+        mask:
+            conic-gradient(#000 0 0) content-box,
+            conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s));
+    }
 </style>

@@ -1,8 +1,13 @@
 <?php include "./components/header.php" ?>
 <script src="./functions/makeLinkCard.js"></script>
 
-
-
+<script>
+    function fakeLoader() {
+        showLoader();
+        setTimeout(hideLoader, 500);
+    }
+    fakeLoader()
+</script>
 <!-- <body class="mode-dark theme-base"> -->
 
 <body>

@@ -4,6 +4,7 @@ async function getNotifications() {
   try {
     const response = await fetch("./API/getNotifications.php");
     const data = await response.json();
+    console.log(data);
     renderAgenda(data);
     // Create an array of dates for each object
     const notificationDates = data.map((item) => {
@@ -12,7 +13,7 @@ async function getNotifications() {
       const dates = [];
 
       while (startDate <= endDate) {
-        dates.push(startDate.toISOString().split("T")[0]);
+        dates.push(startDate.toISOString());
         startDate.setDate(startDate.getDate() + 1);
       }
 
