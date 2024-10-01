@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/01 13:02:29
+// Last modified: 2024/10/01 15:57:43
 include "./components/header.php";
 ?>
 <div class="main">
@@ -128,6 +128,10 @@ include "./components/header.php";
         </div>
         `;
     }
+</script>
+<script src="./functions/renderEventsAgenda.js"></script>
+<script>
+    // write this function in the morning to get the events list and render that b 
 </script>
 
 <style>
