@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 15:50:17
+// Last modified: 2024/10/01 13:02:29
 include "./components/header.php";
 ?>
 <div class="main">
@@ -53,9 +53,9 @@ include "./components/header.php";
 
         </div>
 
-        <div class="form-group">
+        <div class="form-group hidden">
             <label for="sEventLocation">Event Location</label>
-            <input type="text" class="form-control" id="sEventLocation" name="sEventLocation" required>
+            <input type="text" class="form-control" id="sEventLocation" name="sEventLocation">
             <div class="invalid-feedback">
                 Please provide a valid location.
             </div>
@@ -102,9 +102,7 @@ include "./components/header.php";
         const data = await response.json();
 
         if (data.success) {
-            alert("Event added successfully");
-            console.log(data.eventID);
-            displayEvent(data);
+            window.location.href = `eventDetails.php?eventID=${data.eventID}`;
         } else {
             alert("Event addition failed");
         }
@@ -122,6 +120,10 @@ include "./components/header.php";
                 <p class="card-text">Event Start Date: ${data.eventStartDate}</p>
                 <p class="card-text">Event End Date: ${data.eventEndDate}</p>
                 <p class="card-text">Event Status: ${data.eventStatus}</p>
+            </div>
+            <div class="options-card">
+                <input type="checkbox" id="cbActive" name="cbActive" ${data.eventStatus == "active" ? "checked" : ""}>
+                <label for="cbActive">Active</label>
             </div>
         </div>
         `;
@@ -150,3 +152,5 @@ include "./components/header.php";
         /* color: var(--fg); */
     }
 </style>
+<!-- 
+http://localhost/bcdashboard/eventDetails.php?eventID=E7880440-69A6-8846-A754-E5E94F1FA7FA -->

@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 15:42:57
+// Last modified: 2024/10/01 08:23:36
 
 include_once "../data/appConfig.php";
 
@@ -61,7 +61,7 @@ $stmt->bindParam(8, $iCreatedBy);
 
 $stmt->execute();
 if ($stmt) {
-    echo json_encode(['success' => true, 'eventID' => $GUID, 'eventTitle' => $sEventName, 'eventDescription' => $sEventDescription, 'eventLocation' => $sEventLocation, 'eventStartDate' => $sqlStartDate, 'eventEndDate' => $sqlEndDate, 'eventStatus' => $sStatus]);
+    echo json_encode(['success' => true, 'eventID' => $GUID]);
 } else {
     echo json_encode(['success' => false]);
 }
