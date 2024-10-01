@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/01 13:48:52
+// Last modified: 2024/10/01 15:04:42
 include "./components/header.php";
 
 $sEventID = $_GET['eventID'];
@@ -59,6 +59,7 @@ $sEventID = $_GET['eventID'];
 
     var html = "";
     var settingsHtml = '';
+    var formHtml = '';
     fetch(`./API/getSingleEvent.php?eventID=<?php echo $sEventID; ?>`)
         .then(response => response.json())
         .then(data => {
@@ -101,7 +102,7 @@ $sEventID = $_GET['eventID'];
                     </div>
                     </div>
                     <div id="eventAllDayOptions"></div>
-                    <div id="eventSessionDetails"></div>
+                    
                 </div>
                 <p class="event-card-id" ><b>Event ID:</b> ${data[0].event_id}</p>
             </div>
@@ -115,8 +116,12 @@ $sEventID = $_GET['eventID'];
                 <p data-duration="${duration}" id="duration-hours">Event Duration: ${duration} hours</p>
                 <p data-time="${sTime}" value="${sTime}" id="event-start-time">Starting at: ${sTime}</p>
             `
+            formHtml += `
+                <input type="hidden" name="eventID" id="eventID" value="${data[0].event_id}" />
+            `
             document.getElementById("eventDetails").innerHTML = html;
             document.getElementById("eventDuration").innerHTML = settingsHtml;
+            document.getElementById("eventIDInput").innerHTML = formHtml;
         });
 </script>
 <div class="main">
@@ -127,7 +132,16 @@ $sEventID = $_GET['eventID'];
         <div id="eventDuration"></div>
         <div id="eventMaxAttendees"></div>
         <div id="eventSessions"></div>
-        </ /div id="eventSessionDetails">
+        <div id="sessionsForm">Event Form
+            <form id="sessionForm" action="./API/addSessions.php" method="POST">
+                <div id="eventIDInput"></div>
+                <input type="hidden" id="maxSessionAttendeesInput" name="maxSessionAttendeesInput" value="">
+                <div id="eventSessionInputs"></div>
+                <div id="eventSessionDetails"></div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+
     </div>
 </div>
 </div>
@@ -138,9 +152,12 @@ $sEventID = $_GET['eventID'];
     function renderMaxAttendees() {
         var maxAttendeesEl = document.getElementById("eventMaxAttendees").style.display = 'block';
         var maxAttendees = document.getElementById("maxAttendees").value;
+        var maxSessionAttendeesInput = document.getElementById("maxSessionAttendeesInput");
+        maxSessionAttendeesInput.value = maxAttendees;
         document.getElementById("eventMaxAttendees").innerHTML = `
         <p>Max Attendees: ${maxAttendees}</p>
         `
+        resetSessionLength();
     }
 
 
@@ -161,7 +178,11 @@ $sEventID = $_GET['eventID'];
         <p class="hidden">Start Time: ${eventStartTime}</p>
         <p class="hidden">Sessions Length: ${sessions} minutes</p>
         <p class="hidden">Max Attendees: ${maxAttendees}</p>
-        
+        `
+        document.getElementById("eventSessionInputs").innerHTML = `
+        <input type="hidden" name="eventDurationHours" id="eventDurationHours" value="${eventHours}" />
+        <input type="hidden" name="eventStartTime" id="eventStartTime" value="${eventStartTime}" />
+        <input type="hidden" name="eventSessionLengthMinutes" id="eventSessionLengthMinutes" value="${sessions}" minutes />
         `
         var sessions = createSessions(eventStartTime, sessions, maxAttendees, eventHours);
         for (let i = 0; i < sessions.length; i++) {
@@ -169,10 +190,12 @@ $sEventID = $_GET['eventID'];
             console.log(sessions[i]);
             document.getElementById("eventSessionDetails").innerHTML += `
             <div class="session-card">
+                <input type="hidden" name="slot_id-${i}" value="${sessions[i].slot_id}" />
+                <input type="hidden" name="slot_start_time-${i}" data-slot-id="${sessions[i].slot_id}" value="${sessions[i].startTime}" />
                 <p>Session start: ${sessions[i].startTime}</p>
                 <p>Attendees Allowed: ${sessions[i].maxAttendees}</p>
                 <p>Location: 
-                    <select class="form-control required" data-slot-id="${sessions[i].slot_id}" name="slotLocation" onchange="changeAllLocations(this.value)">
+                    <select class="form-control required" data-slot-id="${sessions[i].slot_id}" name="slotLocation-${i}" onchange="changeAllLocations(this.value)">
                         <option value="" selected disabled>Choose...</option>
                         <option value="4">Assembly Room</option>
                         <option value="23">BCWS Engineering Conference Room</option>
@@ -209,13 +232,12 @@ $sEventID = $_GET['eventID'];
                 <p class="event-card-id">Slot ID: ${sessions[i].slot_id}</p>
             </div>
             `
-
         }
     }
 
     function changeAllLocations(location) {
         var singleLocationCheck = document.getElementById("singleLocation").checked;
-        var slots = document.querySelectorAll('[data-slot-id]');
+        var slots = document.querySelectorAll('select[data-slot-id]');
         if (singleLocationCheck) {
             for (let i = 0; i < slots.length; i++) {
                 slots[i].value = location;
@@ -230,6 +252,11 @@ $sEventID = $_GET['eventID'];
         for (let i = 0; i < slots.length; i++) {
             slots[i].value = "";
         }
+    }
+
+    function resetSessionLength() {
+        document.getElementById("dataList").value = "";
+        document.getElementById("eventSessionDetails").innerHTML = '';
     }
 </script>
 <style>
@@ -260,8 +287,8 @@ $sEventID = $_GET['eventID'];
     }
 
     .eventSetting {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        /* display: grid;
+        grid-template-columns: 1fr 1fr; */
     }
 
     #dataList option {
