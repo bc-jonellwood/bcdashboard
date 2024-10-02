@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 14:38:43
+// Last modified: 2024/10/02 08:10:08
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -351,13 +351,13 @@ include "./components/header.php"
         content: "P";
     } */
 
-    .month-title {
+    /* .month-title {
         background-color: var(--accent);
         color: var(--bg);
         padding: 5px;
         border-radius: 7px;
         padding-left: 1em;
-    }
+    } */
 
     .entry {
         padding-left: 15px;

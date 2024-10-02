@@ -44,7 +44,7 @@ function renderAgenda(data) {
   }
 
   function renderMonth(monthName, data, month) {
-    const calendar = document.getElementById("calendar");
+    const calendar = document.getElementById("eventsAgenda");
     const monthDiv = document.createElement("details");
     monthDiv.classList.add("month");
     monthDiv.innerHTML = `<summary class="month-title"> ${monthName}</div>`;
@@ -55,40 +55,46 @@ function renderAgenda(data) {
         const entry = document.createElement("div");
         entry.classList.add("entry");
         entry.classList.add(data[i].sStatus);
-        entry.id = data[i].id;
+        entry.id = data[i].event_id;
         entry.innerHTML = `
-        <span class="notification-top-bar">
-        <p class="notification-badge n-${data[i].sNotificationType}">-</p>
-            <p class="notification-type"><b>Type: </b>${
-              data[i].sNotificationType
-            }</p>
-            <p class="notification-date"><b>Start: </b> ${
-              parseDateAndTime(data[i].dtStartDate).date
-            } <b>@ </b> ${parseDateAndTime(data[i].dtStartDate).time}
-            </p>
-            <p></p>
-            <p class="notification-date"><b>End: </b> ${
-              parseDateAndTime(data[i].dtEndDate).date
-            } <b>@ </b> ${parseDateAndTime(data[i].dtEndDate).time}
-            </p>         
-        </span>
-        <span class="notification-top-bar"> 
-            <p class="notification-created-by"><b>Created By: </b> ${
-              data[i].iCreatedBy
-            }</p>
-            <p class="notification-created-by"><b>Status: </b> ${
-              data[i].sStatus
-            }</p>
-        </span>
-        <p class="notification-text corner-only">${
-          data[i].sNotificationText
+        <p class="event-title col-span-2">${data[i].sTitle}</p>
+        
+        <div class="event-shifted">
+            <p>Start:</p>
+            <p> ${parseDateAndTime(data[i].dtStartDate).date} <b>@ </b> ${
+          parseDateAndTime(data[i].dtStartDate).time
         }</p>
+        </div>
+
+        <div class="event-shifted">
+            <p>End: </p>
+            <p>${parseDateAndTime(data[i].dtEndDate).date} <b>@ </b> ${
+          parseDateAndTime(data[i].dtEndDate).time
+        }</p>
+        </div>         
+        
+        <div class="event-shifted"> 
+            <p>Created By:</p>
+            <p>${data[i].iCreatedBy}</p>
+        </div>
+
+        <div class="event-shifted">
+            <p>Status: </p>
+            <p>${data[i].sStatus}</p>
+        </div>
+        
+        <div class="event-shifted ">
+            <p>Description: </p>
+            <p></p> 
+            </div>
+        <p class="col-span-2">${data[i].sDescription}</p>
+        
         <div class="notification-buttons-holder">
         
         
-        <button class="btn btn-secondary btn-sm" type="button" onclick="editNotification('${
-          data[i].id
-        }')" >Edit</button>
+        <a class="btn btn-secondary btn-sm" href="editEventDetails.php?eventID=${
+          data[i].event_id
+        }">Edit</a>
         
         
         

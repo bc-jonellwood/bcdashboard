@@ -330,3 +330,13 @@ h6 {
 .hidden {
   display: none;
 }
+.month-title {
+  background-color: var(--accent);
+  color: var(--bg);
+  padding: 5px;
+  border-radius: 7px;
+  padding-left: 1em;
+}
+@view-transition {
+  navigation: auto;
+}

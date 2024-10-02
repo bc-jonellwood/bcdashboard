@@ -1,90 +1,97 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/01 15:57:43
+// Last modified: 2024/10/02 09:18:29
 include "./components/header.php";
 ?>
 <div class="main">
     <?php include "./components/sidenav.php" ?>
-    <form action="./API/addEvent.php" method="POST" id="eventForm">
-        <div class="form-group">
-            <label for="sEventName">Event Title</label>
-            <input type="text" class="form-control" id="sEventName" name="sEventName" required>
-            <div class="invalid-feedback">
-                Please provide a valid title.
-            </div>
-            <small id="eventTitleHelpBlock" class="form-text text-muted help-text">
-                Enter the title of the event.
-            </small>
-        </div>
+    <div class="content">
 
-        <div class="form-group">
-            <label for="sEventDescription">Event Description</label>
-            <textarea class="form-control" id="sEventDescription" name="sEventDescription" placeholder="Event Description" required rows="3" maxlength="255"></textarea>
-            <div class="invalid-feedback">
-                Please provide a valid description.
-            </div>
-            <small id="eventDescriptionHelpBlock" class="form-text text-muted help-text">
-                Enter the description of the event. It is limited to 255 characters.
-            </small>
-        </div>
 
-        <div class="gap-3 form-row col-lg-6 d-flex justify-content-between">
-            <div class="mb-3">
-                <label for="dtStartDate">Start Date
+        <form action="./API/addEvent.php" method="POST" id="eventForm">
+            <div class="form-group">
+                <label for="sEventName">Event Title</label>
+                <input type="text" class="form-control" id="sEventName" name="sEventName" required>
+                <div class="invalid-feedback">
+                    Please provide a valid title.
+                </div>
+                <small id="eventTitleHelpBlock" class="form-text text-muted help-text">
+                    Enter the title of the event.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="sEventDescription">Event Description</label>
+                <textarea class="form-control" id="sEventDescription" name="sEventDescription" placeholder="Event Description" required rows="3" maxlength="255"></textarea>
+                <div class="invalid-feedback">
+                    Please provide a valid description.
+                </div>
+                <small id="eventDescriptionHelpBlock" class="form-text text-muted help-text">
+                    Enter the description of the event. It is limited to 255 characters.
+                </small>
+            </div>
+
+            <div class="gap-3 form-row col-lg-6 d-flex justify-content-between">
+                <div class="mb-3">
+                    <label for="dtStartDate">Start Date
+                        <div class="input-group">
+                            <input type="datetime-local" class="form-control" id="dtStartDate" name="dtStartDate" required>
+                            <div class=" invalid-feedback">
+                                Please do better.
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="dtEndDate">Event End Date</label>
                     <div class="input-group">
-                        <input type="datetime-local" class="form-control" id="dtStartDate" name="dtStartDate" required>
-                        <div class=" invalid-feedback">
+                        <input type="datetime-local" class="form-control" id="dtEndDate" name="dtEndDate" required>
+                        <div class="invalid-feedback">
                             Please do better.
                         </div>
                     </div>
-                </label>
-            </div>
-
-
-            <div class="mb-3">
-                <label for="dtEndDate">Event End Date</label>
-                <div class="input-group">
-                    <input type="datetime-local" class="form-control" id="dtEndDate" name="dtEndDate" required>
-                    <div class="invalid-feedback">
-                        Please do better.
-                    </div>
                 </div>
+
             </div>
 
-        </div>
-
-        <div class="form-group hidden">
-            <label for="sEventLocation">Event Location</label>
-            <input type="text" class="form-control" id="sEventLocation" name="sEventLocation">
-            <div class="invalid-feedback">
-                Please provide a valid location.
+            <div class="form-group hidden">
+                <label for="sEventLocation">Event Location</label>
+                <input type="text" class="form-control" id="sEventLocation" name="sEventLocation">
+                <div class="invalid-feedback">
+                    Please provide a valid location.
+                </div>
+                <small id="eventLocationHelpBlock" class="form-text text-muted help-text">
+                    Enter the location of the event.
+                </small>
             </div>
-            <small id="eventLocationHelpBlock" class="form-text text-muted help-text">
-                Enter the location of the event.
-            </small>
-        </div>
 
-        <div class="form-group">
-            <label for="sStatus">Event Status</label>
-            <select class="form-control" id="sStatus" name="sStatus" required>
-                <option selected value="active">Active</option>
-                <option value="inactive">Inactive</option>
-            </select>
-            <div class="invalid-feedback">
-                Please provide a valid status.
+            <div class="form-group">
+                <label for="sStatus">Event Status</label>
+                <select class="form-control" id="sStatus" name="sStatus" required>
+                    <option selected value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please provide a valid status.
+                </div>
+                <small id="eventStatusHelpBlock" class="form-text text-muted help-text">
+                    Select "Inactive" if want to create the Event but are not ready to commit to it being displayed. It will have to be updated to Active before it will be displayed.
+                </small>
             </div>
-            <small id="eventStatusHelpBlock" class="form-text text-muted help-text">
-                Select "Inactive" if want to create the Event but are not ready to commit to it being displayed. It will have to be updated to Active before it will be displayed.
-            </small>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="validate(event)">Submit</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="content">
+        <div id="recentEventsContent" class="recentEventsContent">
+            <div id="eventsAgenda"></div>
         </div>
-
-        <div class="form-group">
-            <button type="button" class="btn btn-primary" onclick="validate(event)">Submit</button>
-        </div>
-
-    </form>
-
-    <div id="eventDetails"></div>
+    </div>
 </div>
 
 <?php include "./components/footer.php" ?>
@@ -130,8 +137,16 @@ include "./components/header.php";
     }
 </script>
 <script src="./functions/renderEventsAgenda.js"></script>
+<script src="./functions/parseDateAndTime.js"></script>
 <script>
     // write this function in the morning to get the events list and render that b 
+    async function getEvents() {
+        const response = await fetch("./API/getAllEvents.php");
+        const data = await response.json();
+        console.log(data);
+        renderAgenda(data);
+    }
+    getEvents();
 </script>
 
 <style>
@@ -155,6 +170,100 @@ include "./components/header.php";
         background-color: var(--bg);
         /* color: var(--fg); */
     }
+
+    .content {
+        padding: 20px;
+        background-color: var(--bg);
+    }
+
+    details {
+        margin-bottom: 1em;
+    }
+
+    .recentEventsContent {
+        height: 100vh;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        padding-right: 20px;
+    }
+
+    .entry {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: var(--bg);
+        background-clip: border-box;
+        border: 1px solid var(--accent);
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin: 1rem;
+        font-size: medium;
+    }
+
+    /* .event-description {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    } */
+
+    .event-title {
+        border-bottom: 1px dashed var(--accent);
+        padding-bottom: 10px;
+    }
+
+    .event-title:first-child {
+        font-weight: bold;
+    }
+
+    .event-title:hover {
+        border-bottom: 1px solid var(--accent);
+    }
+
+    .event-shifted {
+        display: flex;
+        gap: 10px;
+        text-transform: capitalize;
+    }
+
+    .event-shifted p:first-child {
+        font-weight: bold;
+        margin-top: -6%;
+        color: var(--accent);
+        padding-bottom: 2%;
+        margin-bottom: 2%;
+    }
+
+    .event-shifted p:last-child {
+        font-weight: bold;
+        margin-left: -8%;
+        color: var(--fg)
+    }
+
+    .col-span-2 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+
+
+    /* .event-created-by {
+        display: flex;
+        gap: 10px;
+        text-transform: capitalize;
+    }
+
+    .event-created-by p:first-child {
+        font-weight: bold;
+        margin-top: -4%;
+        color: var(--accent);
+    }
+
+    .event-created-by p:last-child {
+        font-weight: bold;
+        margin-left: -8%;
+        color: (--fg)
+    } */
 </style>
 <!-- 
 http://localhost/bcdashboard/eventDetails.php?eventID=E7880440-69A6-8846-A754-E5E94F1FA7FA -->
