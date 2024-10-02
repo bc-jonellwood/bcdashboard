@@ -337,6 +337,6 @@ h6 {
   border-radius: 7px;
   padding-left: 1em;
 }
-@view-transition {
+/* @view-transition {
   navigation: auto;
-}
+} */

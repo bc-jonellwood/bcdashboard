@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 12:08:56
+// Last modified: 2024/10/02 14:10:01
 include "./components/header.php";
 
 $sEventID = $_GET['eventID'];
@@ -9,6 +9,7 @@ $sEventID = $_GET['eventID'];
 <script src="./functions/parseDateAndTime.js"></script>
 <script src="./functions/getTimeBetweenDates.js"></script>
 <script src="./functions/createSessions.js"></script>
+<script src="./functions/createDeleteConfirmationPopover.js"></script>
 <script>
     function toggleAllDay() {
 
@@ -71,37 +72,14 @@ $sEventID = $_GET['eventID'];
                 <div class="event-card-body">
                     <p class="event-card-text"><b>Title:</b> ${event.sTitle}</p>
                     <p class="event-card-text"><b>Description:</b> ${event.sDescription}</p>
-                    <p class="event-card-text"><b>Location:</b> ${event.sLocation}</p>
+                    
                     <p class="event-card-text"><b>Start Date:</b> ${parseDateAndTime(event.dtStartDate).date} @ ${parseDateAndTime(event.dtStartDate).time}</p> 
                     <p class="event-card-text"><b>End Date:</b> ${parseDateAndTime(event.dtEndDate).date} @ ${parseDateAndTime(event.dtEndDate).time}</p>
                     <p class="event-card-text"><b>Status:</b> ${event.sStatus}</p>
                     <p class="event-card-text"><b>Created By:</b> ${event.iCreatedBy}</p>
                 </div>
                 <div class="flex-row gap-4 event-card-options d-flex">
-                    <div class="form-check">
-                        <label for="cbActive" class="form-label">Active
-                            <input type="checkbox" id="eventActive" name="cbActive" ${event.sStatus == "active" ? "checked" : ""} class="form-check-input">
-                        </label>
-                    </div>
-                    <div> | </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eventAllDay" id="eventAllDay1" value="1"  onchange="renderAllDayOptions(this.value)">
-                            <label class="form-check-label" for="eventAllDay1">
-                                All Day
-                            </label>
-                       </div>
-                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="eventAllDay" id="eventAllDay2" value="2" onchange="renderAllDayOptions(this.value)">
-                            <label class="form-check-label" for="eventAllDay2">
-                                Sessions
-                            </label>
-                        </div>
-                        <div> | </div>
-                        <div class="form-check">
-                        <label for="singleLocation" class="form-label hidden" id="singleLocationLabel">All same location
-                            <input type="checkbox" id="singleLocation" name="singleLocation" class="form-check-input" checked onchange="resetLocationOptions()">
-                        </label>
-                    </div>
+                    
                     </div>
                     <div id="eventAllDayOptions"></div>
                     
@@ -134,15 +112,21 @@ $sEventID = $_GET['eventID'];
         data.slots.forEach(slot => {
             // console.log(slot.slot_id);
             sessionHTML += `
-            <div class="session-card">
+            <div class="session-card" id="${slot.slot_id}">
                 <p>Session start: ${slot.slotStartTime}</p>
                 <p>Attendees Allowed: ${slot.slotMaxAttendees}</p>
-                <p>Location: ${slot.slotLocationName}</p>
+                <p class="slotLocationName">Location: ${slot.slotLocationName}</p>
+                <button class="btn btn-sm btn-danger" type="button" onclick="createDeleteConfirmationPopover('${slot.slot_id}')" popovertarget="deleteConfirmationPopover" popovertargetaction="show">Delete</button>
                </div>
             `
         })
         sessionHTML += '</div>';
         document.getElementById("eventSessions").innerHTML += sessionHTML;
+    }
+
+    function deleteSession(id) {
+        fetch(`./API/deleteSession.php?id=${id}`)
+        document.getElementById(id).remove();
     }
 </script>
 <div class="main">
@@ -166,7 +150,7 @@ $sEventID = $_GET['eventID'];
     </div>
 </div>
 </div>
-
+<div class="deleteConfirmationPopover" id="deleteConfirmationPopover" name="deleteConfirmationPopover" popover="manual" name="deleteConfirmationPopover"></div>
 <?php include "./components/footer.php"; ?>
 
 <script>
@@ -291,13 +275,15 @@ $sEventID = $_GET['eventID'];
     }
 
     .event-card {
+
         border: 1px solid #000;
         border-radius: 5px;
-        padding: 10px;
+        padding: 15px;
         margin: 10px;
         border: 1px solid;
         border-color: var(--accent);
         font-size: large;
+        box-shadow: inset 0 0 4px 1px var(--accent), 0 0 10px -5px var(--fg) !important;
     }
 
     .event-card-id {
@@ -311,7 +297,7 @@ $sEventID = $_GET['eventID'];
 
     .eventSessions {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 33% 33% 33%;
         scrollbar-gutter: stable both-edges;
         height: 90vh;
         overflow: hidden;
@@ -326,7 +312,8 @@ $sEventID = $_GET['eventID'];
         position: absolute;
         bottom: 12px;
         right: 29%;
-        background: rgba(255, 255, 255, 0.9);
+        /* background: rgba(255, 255, 255, 0.9); */
+        background: var(--bg);
         padding: 1px;
         font-size: 17px;
         text-align: center;
@@ -334,7 +321,7 @@ $sEventID = $_GET['eventID'];
         pointer-events: none;
         width: 15%;
         border-radius: 5px;
-        border: 1px solid var(--accent);
+        border: 1px solid var(--fg);
         animation: linear fadeAway 2s infinite;
         /* animation-timeline: scroll(); */
         animation-timeline: --sessionScroll;
@@ -359,12 +346,62 @@ $sEventID = $_GET['eventID'];
 
     .session-card {
         border: 1px solid var(--accent);
-        padding: 10px;
+        padding: 15px;
         margin: 10px;
         font-size: medium;
         border-radius: 5px;
         animation: linear fade-in-on-enter--fade-out-on-exit;
         animation-timeline: view();
+        box-shadow: inset 0 0 4px 1px var(--accent);
+        border-style: inset;
+    }
+
+    .session-card:hover {
+        box-shadow: inset 0 0 5px 1px var(--accent);
+        filter: brightness(1.1);
+
+    }
+
+    .deleteConfirmationPopover {
+        width: 35%;
+        height: 25%;
+        background: var(--bg);
+        color: var(--fg);
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid var(--accent);
+        animation: fadeIn 0.5s linear;
+        box-shadow: inset 0 0 4px 1px var(--accent), 0 0 10px -5px var(--fg);
+        backdrop-filter: blur(10px);
+        translate: 0, -100;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: fit-content;
+
+    }
+
+    .popover-body {
+        color: var(--accent);
+    }
+
+    .slotLocationName {
+        word-wrap: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .slotLocationName:hover {
+        overflow: visible;
+        white-space: normal;
+        word-wrap: break-word;
+
+        :first-child {
+            display: none;
+
+        }
     }
 
     /* .session-card p:first-child {
@@ -400,6 +437,16 @@ $sEventID = $_GET['eventID'];
 
         to {
             opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
         }
     }
 </style>

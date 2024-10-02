@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 10:23:35
+// Last modified: 2024/10/02 12:55:17
 
 include_once "../data/appConfig.php";
 
@@ -32,7 +32,9 @@ s.slot_id, s.dtStartTime as slotStartTime, s.dtEndTime as slotEndTime, s.iMaxAtt
 FROM app_events e
 LEFT JOIN app_events_timeSlots s ON s.fkEventId = e.event_id
 LEFT JOIN data_event_locations l ON l.iLocationId = s.sLocationId
-WHERE e.event_id = :event_id";
+WHERE e.event_id = :event_id
+ORDER BY slotStartTime ASC, dtStartDate ASC
+";
 
 try {
     $stmt = $conn->prepare($sql);
