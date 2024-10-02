@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 14:10:01
+// Last modified: 2024/10/02 14:35:51
 include "./components/header.php";
 
 $sEventID = $_GET['eventID'];
@@ -79,7 +79,7 @@ $sEventID = $_GET['eventID'];
                     <p class="event-card-text"><b>Created By:</b> ${event.iCreatedBy}</p>
                 </div>
                 <div class="flex-row gap-4 event-card-options d-flex">
-                    
+                    <button class="btn btn-sm btn-danger" type="button" onclick="createDeleteConfirmationPopover('${event.event_id}', 'deleteEvent', 'event')" popovertarget="deleteConfirmationPopover" popovertargetaction="show">Delete</button>
                     </div>
                     <div id="eventAllDayOptions"></div>
                     
@@ -116,7 +116,7 @@ $sEventID = $_GET['eventID'];
                 <p>Session start: ${slot.slotStartTime}</p>
                 <p>Attendees Allowed: ${slot.slotMaxAttendees}</p>
                 <p class="slotLocationName">Location: ${slot.slotLocationName}</p>
-                <button class="btn btn-sm btn-danger" type="button" onclick="createDeleteConfirmationPopover('${slot.slot_id}')" popovertarget="deleteConfirmationPopover" popovertargetaction="show">Delete</button>
+                <button class="btn btn-sm btn-danger" type="button" onclick="createDeleteConfirmationPopover('${slot.slot_id}', 'deleteSession', 'session')" popovertarget="deleteConfirmationPopover" popovertargetaction="show">Delete</button>
                </div>
             `
         })
@@ -127,6 +127,11 @@ $sEventID = $_GET['eventID'];
     function deleteSession(id) {
         fetch(`./API/deleteSession.php?id=${id}`)
         document.getElementById(id).remove();
+    }
+
+    function deleteEvent(id) {
+        fetch(`./API/deleteEvent.php?id=${id}`)
+        window.location.href = "./myEvents.php";
     }
 </script>
 <div class="main">
@@ -373,7 +378,7 @@ $sEventID = $_GET['eventID'];
         animation: fadeIn 0.5s linear;
         box-shadow: inset 0 0 4px 1px var(--accent), 0 0 10px -5px var(--fg);
         backdrop-filter: blur(10px);
-        translate: 0, -100;
+
         position: relative;
         margin-left: auto;
         margin-right: auto;
@@ -440,7 +445,7 @@ $sEventID = $_GET['eventID'];
         }
     }
 
-    @keyframes fadeIn {
+    /* @keyframes fadeIn {
         from {
             opacity: 0;
         }
@@ -448,5 +453,5 @@ $sEventID = $_GET['eventID'];
         to {
             opacity: 1;
         }
-    }
+    } */
 </style>

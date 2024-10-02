@@ -337,6 +337,15 @@ h6 {
   border-radius: 7px;
   padding-left: 1em;
 }
-/* @view-transition {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@view-transition {
   navigation: auto;
-} */
+}

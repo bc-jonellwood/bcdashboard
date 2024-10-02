@@ -101,10 +101,10 @@ function renderAgenda(data) {
        <button class="btn btn-danger btn-sm" type="button" 
           onclick="${
             data[i].sStatus === "active"
-              ? "deleteNotification"
-              : "recoverNotification"
-          }('${data[i].id}')"
-          id="button-${data[i].id}"
+              ? "createDeleteConfirmationPopover"
+              : "recoverEvent"
+          }('${data[i].event_id}', 'deleteEvent', 'event')"
+          id="button-${data[i].event_id}"
           >
           ${data[i].sStatus === "active" ? "Delete" : "Recover"}
         </button>

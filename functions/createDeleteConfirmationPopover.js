@@ -1,4 +1,4 @@
-function createDeleteConfirmationPopover(id) {
+function createDeleteConfirmationPopover(id, func, item) {
   var html = `
   
     <div class="popover-header">
@@ -8,10 +8,10 @@ function createDeleteConfirmationPopover(id) {
     </button>
     </div>
     <div class="popover-body">
-    <p>Are you sure you want to delete this time slot?</p>
+    <p>Are you sure you want to delete this ${item}?</p>
     </div>
     <div class="popover-footer">
-    <button type="button" class="btn btn-danger" onclick="deleteSession('${id}')" popovertarget="deleteConfirmationPopover" popovertargetaction="hide">Delete</button>
+    <button type="button" class="btn btn-danger" onclick="${func}('${id}')" popovertarget="deleteConfirmationPopover" popovertargetaction="hide">Delete</button>
     <button type="button" class="btn btn-secondary" popovertarget="deleteConfirmationPopover" popovertargetaction="hide" 
     aria-label="Close">Cancel</button>
     </div>

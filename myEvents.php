@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 09:18:29
+// Last modified: 2024/10/02 14:46:59
 include "./components/header.php";
 ?>
 <div class="main">
@@ -87,13 +87,14 @@ include "./components/header.php";
 
         </form>
     </div>
+
     <div class="content">
         <div id="recentEventsContent" class="recentEventsContent">
             <div id="eventsAgenda"></div>
         </div>
     </div>
 </div>
-
+<div class="deleteConfirmationPopover" id="deleteConfirmationPopover" name="deleteConfirmationPopover" popover="manual" name="deleteConfirmationPopover"></div>
 <?php include "./components/footer.php" ?>
 <script>
     async function validate(e) {
@@ -138,6 +139,7 @@ include "./components/header.php";
 </script>
 <script src="./functions/renderEventsAgenda.js"></script>
 <script src="./functions/parseDateAndTime.js"></script>
+<script src="./functions/createDeleteConfirmationPopover.js"></script>
 <script>
     // write this function in the morning to get the events list and render that b 
     async function getEvents() {
@@ -245,6 +247,37 @@ include "./components/header.php";
         grid-column-end: 3;
     }
 
+    .deleteConfirmationPopover {
+        width: 35%;
+        height: 25%;
+        background: var(--bg);
+        color: var(--fg);
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid var(--accent);
+        animation: fadeIn 0.5s linear;
+        box-shadow: inset 0 0 4px 1px var(--accent), 0 0 10px -5px var(--fg);
+        backdrop-filter: blur(10px);
+        /* display: block; */
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: fit-content;
+
+    }
+
+    .deleteConfirmationPopover[open] {
+        display: block;
+    }
+
+    .popover-body {
+        color: var(--accent);
+        display: inline;
+    }
+
+    [popover]:popover-open {
+        translate: 0 0;
+    }
 
 
     /* .event-created-by {
