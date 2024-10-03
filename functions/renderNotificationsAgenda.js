@@ -80,8 +80,8 @@ function renderAgenda(data) {
               data[i].sStatus
             }</p>
         </span>
-        <p class="notification-text corner-only">${
-          data[i].sNotificationText
+        <p class="notification-text n-${data[i].sNotificationType}">${
+          data[i].sNotificationType - data[i].sNotificationText
         }</p>
         <div class="notification-buttons-holder">
         

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/30 09:15:54
+// Last modified: 2024/10/03 12:11:05
 session_start();
 
 
@@ -175,7 +175,7 @@ session_start();
     </div>
     <span class="notification-bar">
         <div class="notification" id="notification">
-            <p class="alert-text" id="alert-text">Alert Alert Alert</p>
+            <p class="alert-text" id="alert-text"></p>
         </div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor">
@@ -262,8 +262,8 @@ session_start();
             if (!data) {
                 return;
             }
-            //console.log('This is the setAlert function')
-            //console.log(data);
+            console.log('This is the setAlert function')
+            console.log(data);
             document.getElementById('alert-text').innerText = data.text;
             document.getElementById('notification').classList.add(data.type);
         });

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 14:46:59
+// Last modified: 2024/10/02 15:14:09
 include "./components/header.php";
 ?>
 <div class="main">
@@ -77,7 +77,7 @@ include "./components/header.php";
                     Please provide a valid status.
                 </div>
                 <small id="eventStatusHelpBlock" class="form-text text-muted help-text">
-                    Select "Inactive" if want to create the Event but are not ready to commit to it being displayed. It will have to be updated to Active before it will be displayed.
+                    Select "Inactive" if want to create the Event but are not ready to allow sign ups. It will have to be updated to Active before it will be available to the public.
                 </small>
             </div>
 
@@ -275,8 +275,8 @@ include "./components/header.php";
         display: inline;
     }
 
-    [popover]:popover-open {
-        translate: 0 0;
+    [popover]:popover-open+.deleteConfirmationPopover {
+        display: block;
     }
 
 

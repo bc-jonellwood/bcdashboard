@@ -13,6 +13,7 @@ class Notification {
   }
 
   async saveToLocalStorage(data) {
+    console.log("data in save to local storage", data[0].dtEndDate);
     const expires = new Date(data[0].dtEndDate).getTime();
     const notificationData = {
       text: data[0].sNotificationText,
@@ -31,7 +32,7 @@ class Notification {
     if (storedData) {
       const data = JSON.parse(storedData);
       const now = new Date().getTime();
-      if (!data.expires > now) {
+      if (data.expires < now) {
         // remove expired data
         console.log("Removing expired data");
         localStorage.removeItem(this.storageKey);

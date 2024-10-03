@@ -1,29 +1,38 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/26 10:39:21
+// Last modified: 2024/10/03 13:48:25
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
 <script src="./functions/displayRecentlyDeparted.js"></script>
+<script src="./functions/renderHoliday.js"></script>
+<script src="./functions/fetchHolidays.js"></script>
 
 
-<body class="mode-dark theme-base">
+
+<body class="mode-dark theme-base" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
     <div class="main">
         <?php include "./components/sidenav.php" ?>
         <div class="content">
             <div class="dash-main">
                 <div class="cards-container">
-                    <div id="websiteStatus" class="dash-card">
+                    <div id="websiteStatus" class="dash-card" draggable="true">
                         <span class="component-header">Website Status Indicators</span>
                         <div id="urlStatus" class="card-content"></div>
                     </div>
-                    <div id="recentSeparations" class="dash-card wide">
+                    <div id="recentSeparations" class="dash-card wide" draggable="true">
                         <span class="component-header">Recent Separations</span>
                         <div id="recentSeparationsContent" class="card-content"></div>
                     </div>
-                    <div id="placeholder" class="dash-card narrow">
-                        <span class="component-header">Narrow Card</span>
-                        <my-element></my-element>
+                    <div id="placeholder" class="dash-card narrow short" draggable="true" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                        <span class="component-header">
+                            <div class="holiday" id="holiday"></div>
+                        </span>
+                    </div>
+                    <div id="placeholder" class="dash-card narrow short" draggable="true" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                        <span class="component-header">
+                            <div class="placeholder" id="placeholder"></div>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -37,7 +46,36 @@ include "./components/header.php"
 <script>
     makeWebsiteStatusCards()
     theDeparted()
+    fetchHoliday()
 </script>
+<!-- <script>
+    function dropHandler(ev) {
+        ev.preventDefault();
+        // Get the id of the target and add the moved element to the target's DOM
+        const data = ev.dataTransfer.getData(" application/my-app");
+        ev.placeholder.appendChild(document.getElementById(data));
+    }
+
+    function dragOverHandler(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move";
+    }
+
+    function dragstartHandler(ev) {
+        ev.preventDefault();
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        // Get the element by id
+        const element = document.getElementById("p1");
+
+        element.dataTransfer.dropEffect = "move";
+        // Add the ondragstart event listener
+        element.addEventListener("dragstart", dragstartHandler);
+    });
+</script> -->
 
 <style>
     .dash-main {
@@ -66,6 +104,7 @@ include "./components/header.php"
         /* margin-left: auto; */
         /* margin-right: auto; */
         /* background-color: light-dark(#5b89a1, #1b283c); */
+        padding: 1rem;
     }
 
     .card-title a {
@@ -78,12 +117,13 @@ include "./components/header.php"
         grid-row: span 2;
         /* background-color: hotpink; */
         /* background-color: light-dark(#5b89a1, #1b283c); */
-        color: light-dark(#dee0e3, #5b89a1);
+        color: var(--fg);
         border-radius: 7px;
         /* max-height: 20%; */
         border: 2px solid;
         border-color: light-dark(#000, #ffffff20);
-        background-color: light-dark(#dee0e3, #000000);
+        /* background-color: light-dark(#dee0e3, #000000); */
+        background-color: var(--bg);
         box-shadow: 0 0 #0000;
         /* --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         --tw-shadow-colored: 0 4px 6px -1px #7480ff, 0 2px 4px -2px var(--tw-shadow-color);
@@ -93,18 +133,32 @@ include "./components/header.php"
         table {
             font-size: smaller;
             box-shadow: 0 4px 6px -1px #00000010;
-            /* background-color: light-dark(#7480ff70, #7480ff40); */
-            /* background-color: var(--accent); */
-            /* color: var(--bg); */
-            /* color: #ddd; */
-            /* border-radius: 7px; */
             border: 2px solid;
             border-color: light-dark(#00000090, #7480ff);
             background-color: light-dark(#5b89a1, #1b283c);
-            color: light-dark(#dee0e3, #5b89a1);
+            /* color: light-dark(#dee0e3, #5b89a1); */
+            color: var(--fg);
+            border-radius: 5px;
+            /* background-color: var(--accent); */
         }
     }
 
+    #urlStatus,
+    .holiday {
+        border: 2px solid;
+        border-color: light-dark(#00000090, #7480ff);
+        border-radius: 5px;
+    }
+
+    .holiday {
+        padding: 5px;
+        border-radius: 5px;
+        margin: auto;
+
+        p {
+            margin: auto;
+        }
+    }
 
 
     /* .card-content {
@@ -137,5 +191,9 @@ include "./components/header.php"
 
     .narrow {
         grid-column: span 1;
+    }
+
+    .short {
+        grid-row: span 1;
     }
 </style>
