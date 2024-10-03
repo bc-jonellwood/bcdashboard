@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/03 13:48:25
+// Last modified: 2024/10/03 15:22:24
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
@@ -10,26 +10,26 @@ include "./components/header.php"
 
 
 
-<body class="mode-dark theme-base" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+<body class="mode-dark theme-base">
     <div class="main">
         <?php include "./components/sidenav.php" ?>
         <div class="content">
             <div class="dash-main">
                 <div class="cards-container">
-                    <div id="websiteStatus" class="dash-card" draggable="true">
+                    <div id="websiteStatus" class="dash-card">
                         <span class="component-header">Website Status Indicators</span>
                         <div id="urlStatus" class="card-content"></div>
                     </div>
-                    <div id="recentSeparations" class="dash-card wide" draggable="true">
+                    <div id="recentSeparations" class="dash-card wide">
                         <span class="component-header">Recent Separations</span>
                         <div id="recentSeparationsContent" class="card-content"></div>
                     </div>
-                    <div id="placeholder" class="dash-card narrow short" draggable="true" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                    <div id="placeholder" class="dash-card narrow short">
                         <span class="component-header">
                             <div class="holiday" id="holiday"></div>
                         </span>
                     </div>
-                    <div id="placeholder" class="dash-card narrow short" draggable="true" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                    <div id="placeholder" class="dash-card narrow short">
                         <span class="component-header">
                             <div class="placeholder" id="placeholder"></div>
                         </span>

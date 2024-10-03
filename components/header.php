@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/03 12:11:05
+// Last modified: 2024/10/03 15:31:27
 session_start();
 
 
@@ -23,6 +23,8 @@ session_start();
     <script src="./functions/randomAlert.js"></script>
     <script src="./classes/Notification.js"></script>
     <script src="./functions/loader.js"></script>
+    <!-- favicon -->
+    <link rel="icon" href="favicons/blue_white_favicon.ico">
     <!-- <script src="./functions/renderNotificationText.js"></script> -->
     <!-- <link rel=" stylesheet" href="styles/patternfly.css ">
         < link rel = "stylesheet"
@@ -83,6 +85,8 @@ session_start();
             writeModeToStorage(mode);
             swapBodyClass();
             displayThemeAndMode()
+            change_menu_image();
+
         }
 
         // function change_theme(theme) {
@@ -169,7 +173,7 @@ session_start();
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu">
-            MENU
+            <img src="./images/bcg_logo_brand_blue_white.png" alt="bcg logo" class="menu-image" />
         </button>
 
     </div>
@@ -271,6 +275,18 @@ session_start();
 
 
     document.addEventListener('DOMContentLoaded', setAlert());
+</script>
+<script>
+    function change_menu_image() {
+        const imgElement = document.querySelector('.menu-image');
+        const mode = localStorage.getItem('bcdash-mode');
+        if (mode === 'mode-dark') {
+            imgElement.src = './images/bcg_logo_accent_white.png';
+        } else {
+            imgElement.src = './images/bcg_logo_brand_blue_white.png';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', change_menu_image);
 </script>
 <style>
     .settings-popover-menu[popover] {
@@ -466,6 +482,18 @@ session_start();
     }
 
     .menu:hover {
+        /* animation: button-glow 2s infinite !important; */
+        border-radius: 0px !important;
+    }
+
+    .menu-image {
+        max-width: 36%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .menu-image:hover {
         animation: button-glow 2s infinite !important;
         border-radius: 0px !important;
     }

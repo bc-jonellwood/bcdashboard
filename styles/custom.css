@@ -6,6 +6,14 @@
   font-display: swap;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Pixelify";
+  src: url("../fonts/Source_Sans_3/PixelifySans-Regular.ttf") format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+  font-style: normal;
+}
 html,
 body {
   font-family: "Source Sans 3", sans-serif;
@@ -238,6 +246,7 @@ h6 {
   text-align: center;
   max-width: 95%;
   padding-left: 1rem;
+  font-family: pixelify;
 }
 .component-text {
   display: flex;
