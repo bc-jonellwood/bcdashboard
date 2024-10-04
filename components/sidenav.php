@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/03 13:10:32
+// Last modified: 2024/10/04 12:02:16
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
@@ -59,13 +59,19 @@
             <li>
                 <a href="./myDragAndDrop.php" class="nav-link d-flex align-items-center">
                     <img src="./icons/selection-drag.svg" alt="my team" class="bi me-2" width="20" height="20">
-                    myDragAndDrop
+                    MyDragAndDrop
                 </a>
             </li>
             <li>
                 <a href="./myQRCode.php" class="nav-link d-flex align-items-center">
                     <img src="./icons/qrcode.svg" alt="my team" class="bi me-2" width="20" height="20">
-                    myQRCode
+                    MyQRCode
+                </a>
+            </li>
+            <li>
+                <a href="./myOtherNumbers.php" class="nav-link d-flex align-items-center">
+                    <img src="./icons/phone-book.svg" alt="my team" class="bi me-2" width="20" height="20">
+                    MyPhoneBook
                 </a>
             </li>
         </ul>

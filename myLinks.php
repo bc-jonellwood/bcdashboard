@@ -1,4 +1,8 @@
-<?php include "./components/header.php" ?>
+<?php
+// Created: 2024/09/12 13:12:49
+// Last modified: 2024/10/04 12:03:25
+
+include "./components/header.php" ?>
 <script src="./functions/makeLinkCard.js"></script>
 
 <script>
