@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/04 13:44:37
+// Last modified: 2024/10/04 15:03:53
 
 include "./components/header.php"
 ?>
@@ -13,12 +13,12 @@ include "./components/header.php"
     // fakeLoader()
 
     function getOtherNumbers() {
-        showLoader();
+        // showLoader();
         fetch("./API/getOtherPhoneNumbers.php")
             .then(response => response.json())
             .then(data => {
                 // console.log(data);
-                hideLoader();
+                // hideLoader();
                 renderContactList(data);
                 // renderOtherNumbers(data);
             })
@@ -38,6 +38,42 @@ include "./components/header.php"
 
 </div>
 <?php include "./components/footer.php" ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const stickyHeader = document.getElementById('sticky-header');
+        const contactList = document.getElementById('contact-list');
+        // const listItems = contactList.getElementsByTagName('li');
+        const listItems = document.querySelectorAll('.first-initial');
+        console.log(listItems);
+
+        let currentInitial = '';
+
+        contactList.addEventListener('scroll', function() {
+            console.log('scrolling');
+
+            try {
+                for (let i = 0; i < listItems.length; i++) {
+                    const listItem = listItems[i];
+                    const rect = listItem.getBoundingClientRect();
+
+                    // Check if the list item is in the viewport
+                    if (rect.top >= 0 && rect.top <= window.innerHeight) {
+                        const initial = listItem.textContent.charAt(0).toUpperCase();
+                        if (initial !== currentInitial) {
+                            currentInitial = initial;
+                            stickyHeader.textContent = currentInitial;
+                        }
+                        break; // Exit loop once the first visible item is found
+                    }
+                }
+            } catch (error) {
+                console.error('An error occurred while updating the sticky header:', error);
+            }
+        });
+    });
+</script>
 
 <style>
     .main {
@@ -164,6 +200,7 @@ include "./components/header.php"
         flex-wrap: wrap;
         justify-content: center;
         align-content: center;
+        font-weight: bold;
     }
 
     .contact-card-details {
@@ -181,5 +218,46 @@ include "./components/header.php"
         height: 36px;
         width: 35px;
         filter: drop-shadow(0 0 0.15rem var(--accent));
+    }
+
+    .sticky-header {
+        position: fixed;
+        /* top: 0; */
+        left: 0;
+        /* right: 0; */
+        background-color: #f8f9fa;
+        /* background-color: transparent; */
+        padding: 10px;
+        border-radius: 7px;
+        border: 1px solid var(--bg);
+        color: var(--fg);
+        background-color: var(--accent);
+        text-align: center;
+        font-size: 24px;
+        z-index: 1000;
+        margin-left: 4.5%;
+        margin-top: -2.7%;
+        height: 60px;
+        width: 423px;
+        filter: drop-shadow(0 0 0.35rem var(--accent));
+        /* opacity: 0;
+        view-timeline-name: --sticky-header;
+        view-timeline-axis: block;
+
+        animation: linear fade-initial-in both;
+        animation-timeline: --sticky-header;
+        animation-range: entry 25% cover 50%; */
+    }
+
+    @keyframes fade-initial-in {
+        10% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+
+
     }
 </style>

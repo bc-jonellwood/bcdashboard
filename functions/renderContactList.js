@@ -28,7 +28,7 @@ function createFilteredContactList(orgName, data) {
       filteredContactList.push(element);
     }
   });
-  console.log(filteredContactList);
+  //   console.log(filteredContactList);
   var detailsHtml = "<h3 class='org-name'>" + orgName + "</h3>";
   for (var i = 0; i < filteredContactList.length; i++) {
     detailsHtml += `
@@ -51,12 +51,13 @@ function createFilteredContactList(orgName, data) {
 function renderContactList(data) {
   contactList = data;
   createContactList(data);
-  console.log(PhoneOrgList);
+  // console.log(PhoneOrgList);
   var html = `
-    <div class="d-flex w-100 justify-content-between">
+  <div class="d-flex w-100 justify-content-between">
+  <div class="sticky-header" id="sticky-header"></div>
         
     </div>
-    <ul class="list-group">`;
+    <ul class="list-group" id="contact-list">`;
   for (var i = 0; i < PhoneOrgList.length; i++) {
     html += `
     <li class="list-group-item" data-org-name="${
