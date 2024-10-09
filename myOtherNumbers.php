@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/04 15:03:53
+// Last modified: 2024/10/09 10:31:48
 
 include "./components/header.php"
 ?>
@@ -41,18 +41,28 @@ include "./components/header.php"
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-
         const stickyHeader = document.getElementById('sticky-header');
         const contactList = document.getElementById('contact-list');
-        // const listItems = contactList.getElementsByTagName('li');
         const listItems = document.querySelectorAll('.first-initial');
         console.log(listItems);
 
         let currentInitial = '';
 
-        contactList.addEventListener('scroll', function() {
-            console.log('scrolling');
+        // Debounce function to limit the frequency of the scroll event
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
 
+        // Scroll event handler
+        const handleScroll = debounce(function() {
             try {
                 for (let i = 0; i < listItems.length; i++) {
                     const listItem = listItems[i];
@@ -71,13 +81,15 @@ include "./components/header.php"
             } catch (error) {
                 console.error('An error occurred while updating the sticky header:', error);
             }
-        });
+        }, 50); // Adjust the debounce time as necessary
+
+        contactList.addEventListener('scroll', handleScroll);
     });
 </script>
 
 <style>
     .main {
-        border: 1px solid hotpink;
+        /* border: 1px solid hotpink; */
         grid-template-columns: 1fr 2fr;
     }
 
@@ -235,18 +247,15 @@ include "./components/header.php"
         text-align: center;
         font-size: 24px;
         z-index: 1000;
-        margin-left: 4.5%;
+        margin-left: 25.5%;
         margin-top: -2.7%;
-        height: 60px;
-        width: 423px;
+        height: 70px;
+        width: 70px;
         filter: drop-shadow(0 0 0.35rem var(--accent));
-        /* opacity: 0;
-        view-timeline-name: --sticky-header;
-        view-timeline-axis: block;
-
-        animation: linear fade-initial-in both;
-        animation-timeline: --sticky-header;
-        animation-range: entry 25% cover 50%; */
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
     }
 
     @keyframes fade-initial-in {

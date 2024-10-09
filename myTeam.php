@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/27 13:24:22
+// Last modified: 2024/10/09 10:17:24
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -17,8 +17,9 @@ include "./components/header.php"
         setTimeout(closeToast, 2500);
     }
 
+
     function getRandomColorName() {
-        const colorNames = ["Red", "DeepPink", "Yellow", "Green", "Blue", "Purple", "Coral", "DarkGoldenRod", "Darkorange"];
+        const colorNames = ["#fff8ac", "#fff590", "#fff374", "#ccc35d"];
         return colorNames[Math.floor(Math.random() * colorNames.length)];
     }
 
@@ -34,6 +35,12 @@ include "./components/header.php"
     function truncateEmail(email) {
         const [username] = email.split('@');
         return `${username}@berkeley...`;
+    }
+
+    function makeEmail(name) {
+        name = name.trim();
+        console.log(name);
+        return `${name}@berkeleycountsc.gov`;
     }
 
     function checkEmailOverflow(email) {
@@ -83,36 +90,38 @@ include "./components/header.php"
                 let html = "";
                 for (var i = 0; i < data.length; i++) {
                     let favColor = getRandomColorName();
-                    let initials = getInitials(data[i].empName);
-                    let email = data[i].email;
+                    let initials = getInitials(data[i].sEmployeeName);
+                    // let email = data[i].sEmail ? data[i].sEmail : 'email@example.com';
+                    let email = data[i].sEmail && data[i].sEmail.trim() !== '' ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`
                     let truncatedEmail;
                     if (email) {
-                        truncatedEmail = truncateEmail(data[i].email);
+                        truncatedEmail = truncateEmail(data[i].sEmail ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`);
                         // truncatedEmail = email;
                         setTimeout(checkEmailOverflow(email), 0);
                     }
                     html += `
-                        <div class="emp-card" data-emp-id="${data[i].empNumber}" id="${data[i].empName}">
+                        <div class="emp-card" data-emp-id="${data[i].iEmployeeNumber}" id="${data[i].sEmployeeName}">
                         <div class="emp-avatar">
-                                <p style="background-color: ${favColor};">${initials}</p>
+                                <p class="emp-initials" style="background-color: ${favColor};">${initials}</p>
                             </div>
-                            <h3 class="emp-name-headline">${data[i].empName.toLowerCase()}</h3>
-                            <a href="mailto:${data[i].email}">
-                                ${truncatedEmail}
+                            <h3 class="emp-name-headline">${data[i].sEmployeeName.toLowerCase()}</h3>
+                            <a href="mailto:${data[i].sEmail}">
+                                ${truncatedEmail.toLowerCase()}
                             </a>
-                            <button type="button" onclick="copyEmail('${email}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
+                            <button type="button" onclick="copyEmail('${makeEmail(email)}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
                             <img src="./icons/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
                             </button>
-                            <p>${getRandomPhoneNumber()}</p>
+                            <p class="phoneNumber"><img src="./icons/phone.svg" alt="Phone" style="width: 1rem; height: 1rem;"> ${data[i].SMainPhoneNumber ? data[i].SMainPhoneNumber : getRandomPhoneNumber()}</p>
                         </div>
                     `
                 }
                 let teamHtml = `
-                
-                        ${data.map(emp => `<tr><td class="name"><button class="not-btn" onclick="selectName(event,'${emp.empName}')">${emp.empName.toLowerCase()}</a></td> </tr>`).join('')}
-                
+
+                        ${data.map(emp => `<tr><td class="name"><button class="not-btn" onclick="selectName(event,'${emp.sEmployeeName}')">${emp.sEmployeeName.toLowerCase()}</a></td> </tr>`).join('')}
+
                 `
                 document.getElementById("team-card-holder").innerHTML = html;
+                // console.log(teamHtml);
                 document.getElementById("team-list-body").innerHTML = teamHtml;
             })
     }
@@ -123,21 +132,16 @@ include "./components/header.php"
 <body class="mode-dark theme-base">
     <div class="main">
         <?php include "./components/sidenav.php" ?>
+        <div class="list" id="team-list">
+            <table class="team-list-table">
+                <tbody id="team-list-body"></tbody>
+            </table>
+        </div>
         <div class="content">
             <div class="team-main">
                 <div id="team-card-holder"></div>
             </div>
 
-        </div>
-        <div class="list" id="team-list">
-            <table class="team-list-table">
-                <!-- <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead> -->
-                <tbody id="team-list-body"></tbody>
-            </table>
         </div>
     </div>
     </div>
@@ -154,13 +158,15 @@ include "./components/header.php"
         margin-left: 20px;
         margin-right: 20px;
         display: grid;
-        grid-template-columns: 5fr 1fr;
+        /* grid-template-columns: 5fr 1fr; */
+        grid-template-columns: 1fr 5fr;
     }
 
     .team-main {
         padding: 1rem !important;
         height: 100%;
         display: grid;
+        /* background-color: var(--fg); */
         /* background-color: #000; */
         /* overflow: scroll; */
     }
@@ -174,16 +180,19 @@ include "./components/header.php"
     #team-card-holder {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 20px;
+        gap: 30px;
         min-height: fit-content;
-
+        /* background-image:
+            linear-gradient(to top right, #ffafdc 0%, 10%, #ff99d8 0% 0%, 26%, #ff7bd3 0% 0%, 46%, #ff4fcf 0% 0%, 72%, #ff00ca 0% 0%); */
     }
 
     .emp-card {
         width: -webkit-fill-available;
         padding: 20px;
         /* background-color: #99bbc9; */
+
         background-color: var(--bg);
+        /* background-color: #00000080; */
         border: 2px solid;
         border-color: light-dark(#111, #ddd);
         border-radius: 7px;
@@ -195,6 +204,23 @@ include "./components/header.php"
         p {
             font-size: medium;
         }
+    }
+
+    .emp-card:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        filter: blur(5px);
+        background-clip: padding-box;
+        border-radius: 16px;
+        z-index: -1;
+        overflow: hidden;
     }
 
     .emp-card:hover {
@@ -245,6 +271,12 @@ include "./components/header.php"
         }
     }
 
+    .emp-initials {
+        color: var(--accent) !important;
+
+    }
+
+
     .emp-name-headline {
         font-size: clamp(12px, 2vw, 22px);
         white-space: nowrap;
@@ -254,17 +286,20 @@ include "./components/header.php"
     }
 
     .list {
-        height: 99vh;
-        overflow-y: auto;
+        height: 100vh;
+        /* overflow-y: auto; */
+        scrollbar-gutter: stable;
     }
 
-    .team-list:hover {
-        overflow-y: auto;
+    .list:hover {
+        overflow-y: scroll;
+        /* scrollbar-gutter: stable; */
     }
 
     .team-list-table {
-        overflow-y: auto;
-        overflow-x: auto
+        /* overflow-y: auto; */
+        /* scrollbar-gutter: stable both-edges; */
+        /* overflow-x: auto */
     }
 
     .name,
@@ -293,5 +328,12 @@ include "./components/header.php"
 
     .selected-name {
         color: var(--accent) !important;
+    }
+
+    .phoneNumber {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
     }
 </style>

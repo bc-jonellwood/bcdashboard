@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/09/25 14:17:01
+// Last modified: 2024/10/07 15:11:06
 ?>
 <script>
     function closeToast() {
@@ -62,8 +62,10 @@
         width: 15em;
         height: 4em;
         padding: 10px;
-        background-color: light-dark(#242424, #808080);
-        color: light-dark(#000, #fff);
+        /* background-color: light-dark(#242424, #808080); */
+        background-color: var(--bg);
+        /* color: light-dark(#000, #fff); */
+        color: var(--fg);
         border: 2px solid;
         border-color: light-dark(#111, #ddd);
         border-radius: 7px;
@@ -72,7 +74,6 @@
         right: 0;
     }
 
-
     .toast-popover-header {
         display: flex;
         justify-content: space-between;
@@ -80,7 +81,7 @@
     }
 
     .success {
-        color: var(--success);
+        /* color: var(--success); */
         border-color: var(--success);
     }
 

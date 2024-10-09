@@ -246,7 +246,7 @@ h6 {
   text-align: center;
   max-width: 95%;
   padding-left: 1rem;
-  font-family: pixelify;
+  /* font-family: pixelify; */
 }
 .component-text {
   display: flex;
@@ -346,6 +346,45 @@ h6 {
   border-radius: 7px;
   padding-left: 1em;
 }
+.employee-lookup-results-card {
+  max-height: 200px;
+}
+.employee-lookup-results-card {
+  overflow: hidden;
+  scrollbar-gutter: stable both-edges;
+}
+.employee-lookup-results {
+  /* overflow: hidden; */
+  max-height: 100%;
+}
+.employee-lookup-results-card:hover {
+  overflow-y: scroll;
+  filter: brightness(1.25);
+}
+.employee-card {
+  border-bottom: 1px dashed var(--accent);
+  margin-bottom: 5px;
+  padding-right: 15px;
+}
+.employee-card-body {
+  display: grid;
+  grid-template-columns: 40% 45% 25%;
+  margin-right: 10px;
+  padding: 3px;
+  padding-right: 15px;
+}
+.employee-card-body p {
+  margin: 0 !important;
+  font-size: medium;
+}
+.employee-lookup-clear-btn {
+  margin-top: 10px;
+}
+
+/* .emp-card {
+  display: flex;
+} */
+
 @keyframes fadeIn {
   from {
     opacity: 0;

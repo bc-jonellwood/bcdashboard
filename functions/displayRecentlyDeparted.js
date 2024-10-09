@@ -16,7 +16,7 @@ async function theDeparted() {
                             <th>Name</th>
                             <th>Department</th>
                             <th>Separated Date</th>
-                            <th>Updated</th>
+                    
                         </tr>
             `;
       for (var i = 0; i < data.length; i++) {
@@ -25,7 +25,7 @@ async function theDeparted() {
 			        <td class="name">${data[i].empName.toLowerCase()}</td>
 			        <td class="name">${data[i].deptName.toLowerCase()}</td>
 			        <td>${formatDate(data[i].seperation_date)}</td>
-			        <td>${formatDate(data[i].updated)}</td>
+			        
 			    </tr>
 			`;
       }

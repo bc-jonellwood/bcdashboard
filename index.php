@@ -1,12 +1,13 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/03 15:22:24
+// Last modified: 2024/10/09 12:12:41
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
 <script src="./functions/displayRecentlyDeparted.js"></script>
 <script src="./functions/renderHoliday.js"></script>
 <script src="./functions/fetchHolidays.js"></script>
+<script src="./functions/renderEmployeeLookup.js"></script>
 
 
 
@@ -16,7 +17,7 @@ include "./components/header.php"
         <div class="content">
             <div class="dash-main">
                 <div class="cards-container">
-                    <div id="websiteStatus" class="dash-card">
+                    <div id="websiteStatus" class="dash-card narrow">
                         <span class="component-header">Website Status Indicators</span>
                         <div id="urlStatus" class="card-content"></div>
                     </div>
@@ -24,14 +25,14 @@ include "./components/header.php"
                         <span class="component-header">Recent Separations</span>
                         <div id="recentSeparationsContent" class="card-content"></div>
                     </div>
-                    <div id="placeholder" class="dash-card narrow short">
+                    <div id="employeeSearchComponent" class="dash-card">
                         <span class="component-header">
-                            <div class="holiday" id="holiday"></div>
+                            <div class="employeeSearch" id="employeeSearch"></div>
                         </span>
                     </div>
-                    <div id="placeholder" class="dash-card narrow short">
+                    <div id="holidayComponent" class="dash-card narrow short">
                         <span class="component-header">
-                            <div class="placeholder" id="placeholder"></div>
+                            <div class="holiday" id="holiday"></div>
                         </span>
                     </div>
                 </div>
@@ -47,6 +48,7 @@ include "./components/header.php"
     makeWebsiteStatusCards()
     theDeparted()
     fetchHoliday()
+    renderEmployeeLookup()
 </script>
 <!-- <script>
     function dropHandler(ev) {
@@ -144,11 +146,11 @@ include "./components/header.php"
     }
 
     #urlStatus,
-    .holiday {
+    /* .holiday {
         border: 2px solid;
         border-color: light-dark(#00000090, #7480ff);
         border-radius: 5px;
-    }
+    } */
 
     .holiday {
         padding: 5px;
