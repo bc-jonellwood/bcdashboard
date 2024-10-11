@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/09 10:31:48
+// Last modified: 2024/10/11 08:53:13
 
 include "./components/header.php"
 ?>
@@ -44,7 +44,7 @@ include "./components/header.php"
         const stickyHeader = document.getElementById('sticky-header');
         const contactList = document.getElementById('contact-list');
         const listItems = document.querySelectorAll('.first-initial');
-        console.log(listItems);
+        //(listItems);
 
         let currentInitial = '';
 

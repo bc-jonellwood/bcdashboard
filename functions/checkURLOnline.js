@@ -1,7 +1,7 @@
 async function isSiteOnline(url) {
   try {
     const response = await fetch(url, { mode: "no-cors" });
-    console.log("Fetching", url, "with status", response.status);
+    //console.log("Fetching", url, "with status", response.status);
     return response.status === 200 || response.status === 0;
   } catch (error) {
     console.error("Error fetching", url, ":", error);

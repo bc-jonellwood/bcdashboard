@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 14:35:51
+// Last modified: 2024/10/11 08:53:13
 include "./components/header.php";
 
 $sEventID = $_GET['eventID'];
@@ -14,7 +14,7 @@ $sEventID = $_GET['eventID'];
     function toggleAllDay() {
 
         let eventAllDay = document.getElementById("eventAllDay").checked;
-        console.log(eventAllDay);
+        // console.log(eventAllDay);
     }
 
     function renderAllDayOptions(val) {
@@ -106,8 +106,8 @@ $sEventID = $_GET['eventID'];
         });
 
     function renderSessions(data) {
-        console.log('Data from sessions func')
-        console.log(data)
+        //console.log('Data from sessions func')
+        //console.log(data)
         var sessionHTML = '<div counter-reset-"index" class="eventSessions">';
         data.slots.forEach(slot => {
             // console.log(slot.slot_id);

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/09 10:44:51
-// Last modified: 2024/10/09 12:53:56
+// Last modified: 2024/10/09 15:29:05
 
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;

@@ -4,9 +4,14 @@ function renderHoliday(data) {
   const holidayDate = data.date;
   const daysUntilHoliday = data.daysUntil;
 
+  // holiday.innerHTML = `
+  //   <p class="days-until-holiday">${daysUntilHoliday} days left</p>
+  //   <p class="holiday-name"> until ${holidayName}</p>
+  //   <p class="holiday-date"> on ${holidayDate}</p>
+  //   `;
   holiday.innerHTML = `
-    <p class="days-until-holiday">${daysUntilHoliday} days left</p>
-    <p class="holiday-name"> until ${holidayName}</p>
-    <p class="holiday-date"> on ${holidayDate}</p>  
+    <p class="days-until-holiday">${daysUntilHoliday} days left
+    until ${holidayName}</br>
+     on ${holidayDate}</p>  
     `;
 }

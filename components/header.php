@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/09 14:30:38
+// Last modified: 2024/10/11 11:22:00
 session_start();
 
 
@@ -15,6 +15,7 @@ session_start();
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://unpkg.com/imask"></script>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/theme.css">
@@ -24,6 +25,9 @@ session_start();
     <script src="./functions/randomAlert.js"></script>
     <script src="./classes/Notification.js"></script>
     <script src="./functions/loader.js"></script>
+    <script src="./functions/renderEmployeeLookup.js"></script>
+    <script src="./functions/renderDepartmentLookup.js"></script>
+    <script src="./functions/renderPhoneLookup.js"></script>
     <!-- favicon -->
     <link rel="icon" href="favicons/blue_white_favicon.ico">
     <!-- <script src="./functions/renderNotificationText.js"></script> -->
@@ -86,7 +90,7 @@ session_start();
             writeModeToStorage(mode);
             swapBodyClass();
             displayThemeAndMode()
-            change_menu_image();
+            // change_menu_image();
 
         }
 
@@ -100,8 +104,8 @@ session_start();
 
         function recolorIcons() {
             const icons = document.querySelectorAll('img[src$=".svg"]');
-            console.log('ICONS');
-            console.log(icons);
+            //console.log('ICONS');
+            //console.log(icons);
             icons.forEach(icon => {
                 //icon.classList.add('recolor');
                 icon.style.fill = '#ffffff';
@@ -147,8 +151,8 @@ session_start();
 
         function updateSVGFill() {
             const svgElements = document.querySelectorAll('.recolor');
-            console.log("Here are the SVG Elements")
-            console.log(svgElements);
+            //console.log("Here are the SVG Elements")
+            //console.log(svgElements);
 
             svgElements.forEach((element) => {
                 const svgContent = element.outerHTML;
@@ -169,12 +173,14 @@ session_start();
 
         document.addEventListener('DOMContentLoaded', setClassAndModeOnLoad);
     </script>
+
 </head>
 
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu">
-            <img src="./images/bcg_logo_brand_blue_white.png" alt="bcg logo" class="menu-image" />
+            ||MENU||
+            <!-- <img src="./images/bcg_logo_brand_blue_white.png" alt="bcg logo" class="menu-image" /> -->
         </button>
 
     </div>
@@ -215,25 +221,6 @@ session_start();
         </button>
     </div>
     <div class="popover-body">
-        <!-- <div class="theme-select">
-            <section>
-                <h4>Select Theme</h4>
-                <button class="not-btn color-picker-dot" style="background-color: black;" type="button" value="base"
-                    onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: #e7de7a;" type="button" value="yellow"
-                    onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: var(--purple);" type="button"
-                    value="purple" onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: #005677;" type="button" value="blue"
-                    onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: grey;" type="button" value="mono"
-                    onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: #182825;" type="button" value="brand"
-                    onclick="change_theme(this.value)"> </button>
-                <button class="not-btn color-picker-dot" style="background-color: var(--simple-dark-background);"
-                    type="button" value="simple" onclick="change_theme(this.value)"> </button>
-            </section>
-        </div> -->
         <section>
 
             <div class="theme-select">
@@ -249,7 +236,24 @@ session_start();
             </div>
         </section>
     </div>
-
+</div>
+<div class="employee-lookup-popover" id="employeeLookupPopover" popover="manual" name="employeeLookupPopover">
+    <div class="card-content dash-card">
+        <div class="component-header">Employee Lookup</div>
+        <div class="employeeSearch" id="employeeSearch"></div>
+    </div>
+</div>
+<div class="department-lookup-popover" id="departmentLookupPopover" popover="manual" name="departmentLookupPopover">
+    <div class="card-content dash-card">
+        <div class="component-header">Department Lookup</div>
+        <div class="departmentSearch" id="departmentSearch"></div>
+    </div>
+</div>
+<div class="phone-lookup-popover" id="phoneLookupPopover" popover="manual" name="phoneLookupPopover">
+    <div class="card-content dash-card">
+        <div class="component-header">Phone Lookup</div>
+        <div class="phoneSearch" id="phoneSearch"></div>
+    </div>
 </div>
 <div class="loader-container-overlay hidden" id="loader-container-overlay">
     <div class="loader loader1"></div>
@@ -259,6 +263,7 @@ session_start();
     <div class="loader loader5"></div>
     <div class="loader loader6"></div>
 </div>
+<?php include "./components/toolbar.php" ?>
 <script>
     async function setAlert() {
         const notification = new Notification();
@@ -267,8 +272,8 @@ session_start();
             if (!data) {
                 return;
             }
-            console.log('This is the setAlert function')
-            console.log(data);
+            //console.log('This is the setAlert function')
+            //console.log(data);
             document.getElementById('alert-text').innerText = data.text;
             document.getElementById('notification').classList.add(data.type);
         });
@@ -277,19 +282,32 @@ session_start();
 
     document.addEventListener('DOMContentLoaded', setAlert());
 </script>
+
+
 <script>
-    function change_menu_image() {
-        const imgElement = document.querySelector('.menu-image');
-        const mode = localStorage.getItem('bcdash-mode');
-        if (mode === 'mode-dark') {
-            imgElement.src = './images/bcg_logo_accent_white.png';
-        } else {
-            imgElement.src = './images/bcg_logo_brand_blue_white.png';
-        }
+    function renderLookups() {
+        renderEmployeeLookup()
+        renderDepartmentLookup()
+        renderPhoneLookup()
     }
-    document.addEventListener('DOMContentLoaded', change_menu_image);
+    document.addEventListener('DOMContentLoaded', renderLookups);
+
+    // function change_menu_image() {
+    //     const imgElement = document.querySelector('.menu-image');
+    //     const mode = localStorage.getItem('bcdash-mode');
+    //     if (mode === 'mode-dark') {
+    //         imgElement.src = './images/bcg_logo_accent_white.png';
+    //     } else {
+    //         imgElement.src = './images/bcg_logo_brand_blue_white.png';
+    //     }
+    // }
+
+    // document.addEventListener('DOMContentLoaded', change_menu_image);
 </script>
 <style>
+    .phone-lookup-popover[popover],
+    .department-lookup-popover[popover],
+    .employee-lookup-popover[popover],
     .settings-popover-menu[popover] {
         transition:
             display 0.3s allow-discrete,
@@ -316,6 +334,7 @@ session_start();
         border-radius: 7px;
         color: #000;
         cursor: pointer;
+        overflow-x: hidden;
 
         &:popover-open {
             translate: 0;
@@ -377,6 +396,15 @@ session_start();
             }
         }
     }
+
+    .phone-lookup-popover[popover],
+    .department-lookup-popover[popover],
+    .employee-lookup-popover[popover] {
+        block-size: 90vb;
+        inline-size: 30vi;
+    }
+
+
 
     .notification-bar {
         width: 100dvw;
@@ -479,7 +507,10 @@ session_start();
 
 
     .menu {
-        color: var(--accent)
+        color: var(--accent);
+        vertical-align: center;
+        height: 36px;
+
     }
 
     .menu:hover {
@@ -497,5 +528,11 @@ session_start();
     .menu-image:hover {
         animation: button-glow 2s infinite !important;
         border-radius: 0px !important;
+
     }
+
+
+
+    /* .toolbar-icon:hover {
+    } */
 </style>

@@ -1,12 +1,12 @@
 function getMode() {
   var mode = localStorage.getItem("bcdash-mode");
-  console.log("Mode is ", mode);
+  //console.log("Mode is ", mode);
   if (mode == "mode-dark") {
     mod = "dark";
   } else {
     mod = "light";
   }
-  return mod;
+  return mode;
 }
 getMode();
 

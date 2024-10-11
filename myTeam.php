@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/09 10:17:24
+// Last modified: 2024/10/11 10:49:20
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -37,11 +37,11 @@ include "./components/header.php"
         return `${username}@berkeley...`;
     }
 
-    function makeEmail(name) {
-        name = name.trim();
-        console.log(name);
-        return `${name}@berkeleycountsc.gov`;
-    }
+    // function makeEmail(name) {
+    //     name = name.trim();
+    //     //console.log(name);
+    //     return `${name}@berkeleycountsc.gov`;
+    // }
 
     function checkEmailOverflow(email) {
         if (emailElement) {
@@ -51,11 +51,11 @@ include "./components/header.php"
     }
 
     function selectName(event, name) {
-        console.log(event.target);
+        //console.log(event.target);
         var selectedNameElements = document.getElementsByClassName('border-accent');
         var selectedButtonElements = document.getElementsByClassName('selected-name');
         var buttonElement = event.target;
-        console.log(selectedNameElements);
+        //console.log(selectedNameElements);
         for (let i = 0; i < selectedNameElements.length; i++) {
             selectedNameElements[i].classList.remove('border-accent');
         }
@@ -95,8 +95,8 @@ include "./components/header.php"
                     let email = data[i].sEmail && data[i].sEmail.trim() !== '' ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`
                     let truncatedEmail;
                     if (email) {
-                        truncatedEmail = truncateEmail(data[i].sEmail ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`);
-                        // truncatedEmail = email;
+                        // truncatedEmail = truncateEmail(data[i].sEmail ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`);
+                        truncatedEmail = email;
                         setTimeout(checkEmailOverflow(email), 0);
                     }
                     html += `
@@ -108,10 +108,10 @@ include "./components/header.php"
                             <a href="mailto:${data[i].sEmail}">
                                 ${truncatedEmail.toLowerCase()}
                             </a>
-                            <button type="button" onclick="copyEmail('${makeEmail(email)}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
+                            <button type="button" onclick="copyEmail('${email}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
                             <img src="./icons/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
                             </button>
-                            <p class="phoneNumber"><img src="./icons/phone.svg" alt="Phone" style="width: 1rem; height: 1rem;"> ${data[i].SMainPhoneNumber ? data[i].SMainPhoneNumber : getRandomPhoneNumber()}</p>
+                            <p class="phoneNumber"><img src="./icons/phone.svg" alt="Phone" style="width: 1rem; height: 1rem;"> ${data[i].SMainPhoneNumber ? data[i].SMainPhoneNumber : 'None' }</p>
                         </div>
                     `
                 }
@@ -150,7 +150,6 @@ include "./components/header.php"
 </body>
 
 </html>
-
 
 <style>
     .main {

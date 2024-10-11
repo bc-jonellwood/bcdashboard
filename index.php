@@ -1,15 +1,14 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/09 12:12:41
+// Last modified: 2024/10/11 12:37:26
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
 <script src="./functions/displayRecentlyDeparted.js"></script>
+<script src="./functions/displayRecentlyHired.js"></script>
 <script src="./functions/renderHoliday.js"></script>
 <script src="./functions/fetchHolidays.js"></script>
-<script src="./functions/renderEmployeeLookup.js"></script>
-
-
+<script src="./functions/quoteOfTheDay.js"></script>
 
 <body class="mode-dark theme-base">
     <div class="main">
@@ -18,22 +17,35 @@ include "./components/header.php"
             <div class="dash-main">
                 <div class="cards-container">
                     <div id="websiteStatus" class="dash-card narrow">
-                        <span class="component-header">Website Status Indicators</span>
-                        <div id="urlStatus" class="card-content"></div>
+                        <div class="card-content">
+                            <div class="component-header">Website Status</div>
+                            <div id="urlStatus" class="card-content"></div>
+                        </div>
                     </div>
-                    <div id="recentSeparations" class="dash-card wide">
-                        <span class="component-header">Recent Separations</span>
-                        <div id="recentSeparationsContent" class="card-content"></div>
+                    <div id="recentSeparations" class="dash-card">
+                        <div class="card-content">
+                            <div class="component-header">Recent Separations</div>
+                            <div id="recentSeparationsContent" class="card-content"></div>
+                        </div>
                     </div>
-                    <div id="employeeSearchComponent" class="dash-card">
-                        <span class="component-header">
-                            <div class="employeeSearch" id="employeeSearch"></div>
-                        </span>
+                    <div id="recentHired" class="dash-card">
+                        <div class="card-content">
+                            <div class="component-header">Recent Hires</div>
+                            <div id="recentHiredContent" class="card-content"></div>
+                        </div>
                     </div>
+
                     <div id="holidayComponent" class="dash-card narrow short">
-                        <span class="component-header">
+                        <div class="card-content">
+                            <div class="component-header">Next Holiday</div>
                             <div class="holiday" id="holiday"></div>
-                        </span>
+                        </div>
+                    </div>
+                    <div class="dash-card narrow short">
+                        <div class="card-content">
+                            <div class="component-header">Did you know?</div>
+                            <div class="fact" id="fact"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,36 +60,8 @@ include "./components/header.php"
     makeWebsiteStatusCards()
     theDeparted()
     fetchHoliday()
-    renderEmployeeLookup()
+    theNewbies()
 </script>
-<!-- <script>
-    function dropHandler(ev) {
-        ev.preventDefault();
-        // Get the id of the target and add the moved element to the target's DOM
-        const data = ev.dataTransfer.getData(" application/my-app");
-        ev.placeholder.appendChild(document.getElementById(data));
-    }
-
-    function dragOverHandler(ev) {
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move";
-    }
-
-    function dragstartHandler(ev) {
-        ev.preventDefault();
-        // Add the target element's id to the data transfer object
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        // Get the element by id
-        const element = document.getElementById("p1");
-
-        element.dataTransfer.dropEffect = "move";
-        // Add the ondragstart event listener
-        element.addEventListener("dragstart", dragstartHandler);
-    });
-</script> -->
 
 <style>
     .dash-main {
@@ -103,9 +87,6 @@ include "./components/header.php"
         grid-gap: 20px;
         min-height: fit-content;
         background-color: light-dark(transparent, var(--black));
-        /* margin-left: auto; */
-        /* margin-right: auto; */
-        /* background-color: light-dark(#5b89a1, #1b283c); */
         padding: 1rem;
     }
 
@@ -117,19 +98,12 @@ include "./components/header.php"
         padding: 10px;
         grid-column: span 2;
         grid-row: span 2;
-        /* background-color: hotpink; */
-        /* background-color: light-dark(#5b89a1, #1b283c); */
         color: var(--fg);
         border-radius: 7px;
-        /* max-height: 20%; */
         border: 2px solid;
         border-color: light-dark(#000, #ffffff20);
-        /* background-color: light-dark(#dee0e3, #000000); */
         background-color: var(--bg);
         box-shadow: 0 0 #0000;
-        /* --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --tw-shadow-colored: 0 4px 6px -1px #7480ff, 0 2px 4px -2px var(--tw-shadow-color);
-        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); */
         box-shadow: 0 4px 6px -1px #7480ff, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
         table {
@@ -137,21 +111,13 @@ include "./components/header.php"
             box-shadow: 0 4px 6px -1px #00000010;
             border: 2px solid;
             border-color: light-dark(#00000090, #7480ff);
-            background-color: light-dark(#5b89a1, #1b283c);
-            /* color: light-dark(#dee0e3, #5b89a1); */
             color: var(--fg);
             border-radius: 5px;
-            /* background-color: var(--accent); */
+
         }
     }
 
     #urlStatus,
-    /* .holiday {
-        border: 2px solid;
-        border-color: light-dark(#00000090, #7480ff);
-        border-radius: 5px;
-    } */
-
     .holiday {
         padding: 5px;
         border-radius: 5px;
@@ -162,18 +128,43 @@ include "./components/header.php"
         }
     }
 
+    .days-until-holiday,
+    .holiday-name,
+    .holiday-date,
+    .fact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: medium;
+        text-align: center;
+        padding-top: 15px;
+    }
 
-    /* .card-content {
-       
-        padding: 5px;
-        background-color: var(--bg);
+    .holiday,
+    .fact {
+        border-top: 1px dashed var(--accent)
+    }
 
-    } */
+    .holiday {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: medium;
+        text-align: center;
+        padding-top: 15px;
+        white-space: nowrap;
+        word-break: keep-all;
+
+    }
+
 
     .card-content table {
-        /* color: light-dark(#000, #dee0e3); */
-        /* color: var(--fg); */
-
         tr th {
             font-size: medium;
         }

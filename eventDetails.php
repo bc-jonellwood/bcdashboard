@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/01 15:04:42
+// Last modified: 2024/10/11 08:53:13
 include "./components/header.php";
 
 $sEventID = $_GET['eventID'];
@@ -13,7 +13,7 @@ $sEventID = $_GET['eventID'];
     function toggleAllDay() {
 
         let eventAllDay = document.getElementById("eventAllDay").checked;
-        console.log(eventAllDay);
+        //console.log(eventAllDay);
     }
 
     function renderAllDayOptions(val) {
@@ -63,7 +63,7 @@ $sEventID = $_GET['eventID'];
     fetch(`./API/getSingleEvent.php?eventID=<?php echo $sEventID; ?>`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            //console.log(data);
             html += `
             <div class="shadow-sm event-card">
                 <div class="event-card-body">
@@ -187,7 +187,7 @@ $sEventID = $_GET['eventID'];
         var sessions = createSessions(eventStartTime, sessions, maxAttendees, eventHours);
         for (let i = 0; i < sessions.length; i++) {
 
-            console.log(sessions[i]);
+            //console.log(sessions[i]);
             document.getElementById("eventSessionDetails").innerHTML += `
             <div class="session-card">
                 <input type="hidden" name="slot_id-${i}" value="${sessions[i].slot_id}" />

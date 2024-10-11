@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 15:14:09
+// Last modified: 2024/10/11 08:53:13
 include "./components/header.php";
 ?>
 <div class="main">
@@ -145,7 +145,7 @@ include "./components/header.php";
     async function getEvents() {
         const response = await fetch("./API/getAllEvents.php");
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         renderAgenda(data);
     }
     getEvents();

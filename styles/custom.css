@@ -128,6 +128,9 @@ a {
   width: 300px;
   padding: 20px;
 } */
+.emp-card:hover {
+  background-color: light-dark(#5b89a1, #1b283c);
+}
 
 /* This is the lighter color of background of cards and other elements. */
 /* background-color: #5b89a1; */
@@ -246,6 +249,7 @@ h6 {
   text-align: center;
   max-width: 95%;
   padding-left: 1rem;
+  margin-bottom: 20px !important;
   /* font-family: pixelify; */
 }
 .component-text {
@@ -347,24 +351,26 @@ h6 {
   padding-left: 1em;
 }
 .employee-lookup-results-card {
-  max-height: 200px;
+  max-height: 75vi;
 }
 .employee-lookup-results-card {
   overflow: hidden;
   scrollbar-gutter: stable both-edges;
+  text-transform: capitalize;
 }
 .employee-lookup-results {
   /* overflow: hidden; */
   max-height: 100%;
 }
 .employee-lookup-results-card:hover {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   filter: brightness(1.25);
 }
 .employee-card {
   border-bottom: 1px dashed var(--accent);
   margin-bottom: 5px;
   padding-right: 15px;
+  color: var(--fg);
 }
 .employee-card-body {
   display: grid;
@@ -373,18 +379,38 @@ h6 {
   padding: 3px;
   padding-right: 15px;
 }
+.employee-card-body:hover {
+  background-color: light-dark(#5b89a1, #1b283c);
+}
 .employee-card-body p {
   margin: 0 !important;
   font-size: medium;
+  text-transform: capitalize;
 }
 .employee-lookup-clear-btn {
   margin-top: 10px;
 }
 
-/* .emp-card {
-  display: flex;
+/* .img-holder {
+  background-image: url("../icons/person-dark.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  vertical-align: middle;
 } */
-
+.holiday {
+  text-align: center;
+  /* margin-top: 20px !important; */
+}
+.popover-btn-holder {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

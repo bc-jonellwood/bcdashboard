@@ -1,0 +1,2 @@
+Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress") | Select-Object -Property EmployeeID, EmailAddress, OfficePhone 
+Export-Csv -Path "./emps.txt" -NoTypeInformation
