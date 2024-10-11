@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/04 12:02:16
+// Last modified: 2024/10/11 14:53:32
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
@@ -52,26 +52,32 @@
             </li>
             <li>
                 <a href="./success.php" class="nav-link d-flex align-items-center">
-                    <img src="./icons/party-popper.svg" alt="my team" class="bi me-2" width="20" height="20">
+                    <img src="./icons/party-popper.svg" alt="my success icon" class="bi me-2" width="20" height="20">
                     MySuccess
                 </a>
             </li>
             <li>
                 <a href="./myDragAndDrop.php" class="nav-link d-flex align-items-center">
-                    <img src="./icons/selection-drag.svg" alt="my team" class="bi me-2" width="20" height="20">
+                    <img src="./icons/selection-drag.svg" alt="drag and drop icon" class="bi me-2" width="20" height="20">
                     MyDragAndDrop
                 </a>
             </li>
             <li>
                 <a href="./myQRCode.php" class="nav-link d-flex align-items-center">
-                    <img src="./icons/qrcode.svg" alt="my team" class="bi me-2" width="20" height="20">
+                    <img src="./icons/qrcode.svg" alt="qtr code icon" class="bi me-2" width="20" height="20">
                     MyQRCode
                 </a>
             </li>
             <li>
                 <a href="./myOtherNumbers.php" class="nav-link d-flex align-items-center">
-                    <img src="./icons/phone-book.svg" alt="my team" class="bi me-2" width="20" height="20">
+                    <img src="./icons/phone-book.svg" alt="phone book icon" class="bi me-2" width="20" height="20">
                     MyPhoneBook
+                </a>
+            </li>
+            <li>
+                <a href="./myAccountRequests.php" class="nav-link d-flex align-items-center">
+                    <img src="./icons/account-box.svg" alt="my account request icon" class="bi me-2" width="20" height="20">
+                    myAccountRequests
                 </a>
             </li>
         </ul>

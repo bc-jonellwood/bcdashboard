@@ -4,7 +4,7 @@ function lookupByPhone() {
   fetch("./API/getSingleEmployeeByPhone.php?phoneNumber=" + phone)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       if (data.length > 0) {
         var html = "";
         for (var i = 0; i < data.length; i++) {

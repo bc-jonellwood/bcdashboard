@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 08:53:13
+// Last modified: 2024/10/11 13:03:31
 
 include "./components/header.php"
 ?>
@@ -40,12 +40,32 @@ include "./components/header.php"
 <?php include "./components/footer.php" ?>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function waitForStickyHeader(callback) {
         const stickyHeader = document.getElementById('sticky-header');
-        const contactList = document.getElementById('contact-list');
-        const listItems = document.querySelectorAll('.first-initial');
-        //(listItems);
 
+        if (!stickyHeader) {
+            // Sticky header not yet rendered, retry after 1 second
+            console.log('sticky-header not found, waiting...');
+            setTimeout(() => waitForStickyHeader(callback), 1000);
+        } else {
+            // sticky-header found, proceed with the callback
+            callback(stickyHeader);
+        }
+    }
+
+    function getListItems(callback) {
+        const listItems = document.querySelectorAll('.first-initial');
+        if (listItems.length === 0) {
+            console.log('No list items found, retrying in 1 second...');
+            setTimeout(() => getListItems(callback), 1000); // Retry after 1 second
+        } else {
+            //console.log(listItems); // List items are found
+            callback(listItems); // Pass the listItems to the callback function
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactList = document.getElementById('contact-list');
         let currentInitial = '';
 
         // Debounce function to limit the frequency of the scroll event
@@ -62,7 +82,7 @@ include "./components/header.php"
         }
 
         // Scroll event handler
-        const handleScroll = debounce(function() {
+        const handleScroll = debounce(function(listItems, stickyHeader) {
             try {
                 for (let i = 0; i < listItems.length; i++) {
                     const listItem = listItems[i];
@@ -73,7 +93,7 @@ include "./components/header.php"
                         const initial = listItem.textContent.charAt(0).toUpperCase();
                         if (initial !== currentInitial) {
                             currentInitial = initial;
-                            stickyHeader.textContent = currentInitial;
+                            stickyHeader.textContent = currentInitial; // Update the sticky header
                         }
                         break; // Exit loop once the first visible item is found
                     }
@@ -83,7 +103,13 @@ include "./components/header.php"
             }
         }, 50); // Adjust the debounce time as necessary
 
-        contactList.addEventListener('scroll', handleScroll);
+        // First, wait for the sticky-header to be rendered
+        waitForStickyHeader(function(stickyHeader) {
+            // Then, get the list items and set up the scroll listener
+            getListItems(function(listItems) {
+                contactList.addEventListener('scroll', () => handleScroll(listItems, stickyHeader));
+            });
+        });
     });
 </script>
 
