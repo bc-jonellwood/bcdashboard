@@ -6,7 +6,7 @@ function addBlankSelectOption() {
     `;
 }
 async function getAllEmployees() {
-  await fetch("./API/getAllCurrentEmployees.php")
+  await fetch("./API/getAllCurrentEmployeesAndUsers.php")
     .then((response) => response.json())
     .then((data) => {
       allEmployees = data;
@@ -22,8 +22,8 @@ async function renderAllEmployeesSelect() {
     for (let i = 0; i < allEmployees.length; i++) {
       const employee = allEmployees[i];
       const optionElement = document.createElement("option");
-      optionElement.value = employee.iEmployeeNumber;
-      optionElement.textContent = `${employee.sFirstName} ${employee.sLastName} (${employee.iEmployeeNumber})`;
+      optionElement.value = employee.userId;
+      optionElement.textContent = `${employee.sFirstName} ${employee.sLastName} (${employee.sEmployeeNumber})`;
       selectElement.appendChild(optionElement);
     }
   });
