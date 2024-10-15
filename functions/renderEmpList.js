@@ -45,7 +45,7 @@ async function selectUser(userId, firstName, lastName) {
   ulElement.classList.add("hidden");
   var html = `
         <div>
-            <span>Yayyyyyy you selected </span>
+            <span>Selected: </span>
            <p>${firstName} ${lastName}</p>
            <br>
            <button class="btn btn-warning" onclick="reset()">Start Over</button>
@@ -77,13 +77,15 @@ function renderCurrentPermissions(permissions) {
     // console.log("I AM SO ANGRY");
     // console.log(permission);
     html += `
-    <div class="form-check">
+    <div class="form-check input-holder permission-item">
     <input type="checkbox" value=${permission.id} id="${permission.id}">
     <label class="form-check-label capitalize" for="${permission.id}" name="${
       permission.id
     }">
         ${removeUnderScore(permission.sNameAndAccess)} 
     </label>
+    <button class="btn btn-primary btn-sm" value="${permission.id}" onclick="addPermissionToChangeList(event, '${permission.id}', 'add')">Add</button>
+    <button class="btn btn-secondary btn-sm" value="${permission.id}" onclick="addPermissionToChangeList(event, '${permission.id}', 'remove')">Remove</button>
     </div>
     `;
   }
@@ -99,30 +101,89 @@ function checkboxIfPermissionExists(permissionsData) {
 
   if (Array.isArray(currentPermissions) && currentPermissions.length > 0) {
     // check for existing
+    console.log(currentPermissions);
     permissions.forEach((permission) => {
-      //   const checkboxId = `checkbox_${permission.id}`;
-      const checkboxId = permission.id;
-      console.log(checkboxId);
-      const checkbox = document.getElementById(checkboxId);
+      // console.log(permission);
+      const checkboxId = permission.id; // get the value of the id of the checkbox so we can select that element
+      const checkbox = document.getElementById(checkboxId); // this is the checkbox we want to check if the id exists in the current permissions array
 
-      if (checkbox && currentPermissions.includes(permission.id)) {
+      if (
+        currentPermissions.some(
+          (currentPermission) =>
+            currentPermission.sFeatureAccessId === permission.id
+        )
+      ) {
         checkbox.checked = true;
       }
     });
   }
 }
 
-//  <ul id="employee-list" class="list-group list-group-flush">
-//    <li data-user-id="AE447EA8-030F-47A2-90B8-DB138DFE9052">
-//      EMILY ALBER (8414)
-//    </li>
-//    <li data-user-id="4735E527-D96C-4AAF-B850-D1269969E1CD">
-//      CATHERINE LECKIE (8396)
-//    </li>
-//    <li data-user-id="0528ED4E-5F96-425D-9156-0A237667513A">
-//      MONIQUE PETERSON (8420)
-//    </li>
-//    <li data-user-id="35E8FBAB-183F-4319-832F-6164E40A66C8">
-//      CHRISTOPHER REGINA (8405)
-//    </li>
-//  </ul>;
+var permissionsToChange = [];
+// function addPermissionToChangeList(event, permissionId, action) {
+//   event.preventDefault();  
+//   permissionsToChange.push(permissionId, action);
+//   alert("Permission" + permissionId + " being " + action + "ed");
+//   console.log(permissionsToChange);
+// }
+
+    // Array to hold the values of elements that are clicked
+    // let permissionsToChange = [];
+
+    // Function to handle the click event
+    // function handlePermissionClick(event) {
+    function addPermissionToChangeList(event, permissionId, action) {
+        const clickedElement = event.target;
+        //clickedElement.disabled = true;
+        console.log('If I fall back down...');
+        console.log(clickedElement.parentElement);
+        const clickedParent = clickedElement.parentElement;
+        const buttonsToDisable = clickedParent.querySelectorAll('.btn');
+        buttonsToDisable.forEach(button => {
+            button.disabled = true;
+        })
+        // Get the value from the clicked element (you can adjust based on your structure)
+        const permissionValue = clickedElement.value;
+        // Add the value to the permissionsToChange array
+        permissionsToChange.push({permissionValue, action});
+        // Get the parent element of the clicked element
+        // Clone the clicked element to animate
+        const clonedElement = clickedElement.parentElement.cloneNode(true);
+        // Apply the slide animation to the cloned element
+        clonedElement.classList.add('slide-element');
+        // Append the cloned element to the body so it can slide across the screen
+        document.body.appendChild(clonedElement);
+        setTimeout(() => {
+            var buttons = clonedElement.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.remove();
+            })
+            var checkbox = clonedElement.querySelector('input[type="checkbox"]');
+            checkbox.remove();
+            var label = clonedElement.querySelector('label');
+            label.insertAdjacentText('afterbegin', action + ' ');
+            var xBtn = document.createElement('button');
+            xBtn.classList.add('btn', 'btn-danger', 'btn-sm');
+            xBtn.textContent = 'X';
+            xBtn.addEventListener('click', () => {
+                var targetId = clonedElement.children[0].getAttribute('name');
+                var restoreButtonsHolder = document.getElementById(targetId).parentElement;
+                var buttonsToRestore = restoreButtonsHolder.querySelectorAll('.btn');
+                buttonsToRestore.forEach(button => {
+                  button.disabled = false;
+                })
+                clonedElement.remove();
+                // Remove the value from the permissionsToChange array
+                permissionsToChange = permissionsToChange.filter(permission => permission.permissionValue !== permissionId);
+            });
+            clonedElement.appendChild(xBtn);
+            document.getElementById('pendingChangesList').appendChild(clonedElement);
+            
+        }, 750); // Matches the animation duration (1s)
+    }
+
+    // Add the click event listener to all elements within the div
+    document.querySelectorAll('.permission-item').forEach(item => {
+        item.addEventListener('click', handlePermissionClick);
+    });
+

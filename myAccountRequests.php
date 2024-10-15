@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/10/14 14:29:21
+// Last modified: 2024/10/15 12:58:18
 include "./components/header.php";
 ?>
 <script>
@@ -64,9 +64,12 @@ include "./components/header.php";
             </div>
         </div>
     </div>
-    <div id="accessOptions" class="content">
-        <p>Access Options</p>
-        <div id="featureAccessList">
+
+    <div class="content">
+        <div id="accessOptions">
+            <p>Pending Changes</p>
+            <div id="pendingChangesList">
+            </div>
         </div>
     </div>
 </div>
@@ -90,6 +93,8 @@ include "./components/header.php";
             document.getElementById("form").submit();
         }
     }
+</script>
+
 </script>
 
 
@@ -126,6 +131,53 @@ include "./components/header.php";
 
     #empInput {
         width: 90%;
+    }
+
+    .input-holder {
+        display: grid;
+        grid-template-columns: 10% 45% 15% 15%;
+        gap: 1px;
+        justify-content: space-between;
+        margin-bottom: 0.25rem;
+        padding-left: 5px !important;
+        font-size: large;
+    }
+
+    /* Initial styles */
+    #pendingChangesList {
+        /* border: 1px solid #ccc; */
+        padding: 10px;
+        min-height: 50px;
+        width: 90%;
+        margin-top: 20px;
+        position: relative;
+
+        div {
+            grid-template-columns: 90% 10%;
+        }
+    }
+
+    /* Animation for sliding */
+    @keyframes slideToRight {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-50%);
+        }
+
+        100% {
+            transform: translateX(5%);
+        }
+    }
+
+
+
+    .slide-element {
+        animation: slideToRight .75s forwards;
+        /* position: absolute; */
+        /* Allows it to move without affecting layout */
     }
 </style>
 
