@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/10/15 12:58:18
+// Last modified: 2024/10/15 15:50:44
 include "./components/header.php";
 ?>
 <script>
@@ -19,18 +19,20 @@ include "./components/header.php";
 <script src="./functions/getFeatureAccessList.js"></script>
 <script>
     // renderAllEmployeesSelect()
-    renderAllEmployeesList();
+    // pass in the id of the select target element as a param
+    renderAllEmployeesList("employee-list");
+    renderAllEmployeesAsList("employee-as-list");
 </script>
 <script>
-    function filterFunction() {
-        const ulElement = document.getElementById("employee-list");
+    function filterFunction(inputId, listId) {
+        const ulElement = document.getElementById(listId);
         ulElement.classList.remove("hidden");
         console.log('starting filter');
         var input, filter, list, items, i;
 
-        input = document.getElementById("empInput");
+        input = document.getElementById(inputId);
         filter = input.value.toUpperCase();
-        list = document.getElementById("employee-list");
+        list = document.getElementById(listId);
         items = list.getElementsByTagName("li");
 
         for (i = 0; i < items.length; i++) {
@@ -51,10 +53,17 @@ include "./components/header.php";
     <div class="content">
         <div class="form-holder">
             <label class="form-label small">Select an employee to submit an account request for</label>
-            <input type="text" placeholder="...search" id='empInput' onkeyup='filterFunction()'>
+            <input type="text" placeholder="...search" id="empInput" onkeyup="filterFunction('empInput', 'employee-list')">
             <ul id="employee-list" class="list-group list-group-flush hidden"></ul>
         </div>
-        <div class="selected-holder" id="selected-holder">
+        <div class="form-holder">
+            <label class="form-label small">For new accounts, base access on: </label>
+            <input type="text" placeholder="...search" id="empInput-2" onkeyup="filterFunction('empInput-2', 'employee-as-list')">
+            <ul id="employee-as-list" class="list-group list-group-flush hidden"></ul>
+        </div>
+        <div>
+            <div class="selected-holder" id="selected-holder"></div>
+            <div class="selected-holder" id="selected-as-holder"></div>
         </div>
     </div>
     <div class="content">
@@ -120,7 +129,8 @@ include "./components/header.php";
         text-transform: capitalize;
     }
 
-    #employee-list {
+    #employee-list,
+    #employee-list-2 {
         list-style: none;
         font-size: smaller;
     }
@@ -129,7 +139,8 @@ include "./components/header.php";
         display: none;
     }
 
-    #empInput {
+    #empInput,
+    #empInput-2 {
         width: 90%;
     }
 
@@ -164,18 +175,22 @@ include "./components/header.php";
         }
 
         50% {
-            transform: translateX(-50%);
+            transform: translateX(-20%);
+        }
+
+        90% {
+            transform: translateX(5%);
         }
 
         100% {
-            transform: translateX(5%);
+            transform: translateX(0);
         }
     }
 
 
 
     .slide-element {
-        animation: slideToRight .75s forwards;
+        animation: slideToRight .5s forwards;
         /* position: absolute; */
         /* Allows it to move without affecting layout */
     }

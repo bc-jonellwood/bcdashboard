@@ -18,7 +18,7 @@ async function getAllEmployees() {
 async function renderAllEmployeesSelect() {
   await getAllEmployees().then(() => {
     // const selectElement = document.getElementById("employees");
-    const ulElement = document.getElementById("employee-list");
+    const ulElement = document.getElementById('employee-list');
     // ulElement.classList.remove("hidden");
     ulElement.innerHTML = "";
     // selectElement.innerHTML = "";
@@ -35,7 +35,28 @@ async function renderAllEmployeesSelect() {
     }
   });
 }
+async function renderAllEmployeesAsSelect() {
+  await getAllEmployees().then(() => {
+    // const selectElement = document.getElementById("employees");
+    const ulElement = document.getElementById('employee-as-list');
+    // ulElement.classList.remove("hidden");
+    ulElement.innerHTML = "";
+    // selectElement.innerHTML = "";
+    // addBlankSelectOption();
+    for (let i = 0; i < allEmployees.length; i++) {
+      const employee = allEmployees[i];
+      const liElement = document.createElement("li");
+      //   liElement.dataset.userId = employee.userId;
+      liElement.textContent = `${employee.sFirstName} ${employee.sLastName} (${employee.sEmployeeNumber})`;
+      liElement.addEventListener("click", () => {
+        selectUserAs(employee.userId, employee.sFirstName, employee.sLastName);
+      });
+      ulElement.appendChild(liElement);
+    }
+  });
+}
 renderAllEmployeesSelect();
+// renderAllEmployeesAsSelect();
 
 async function selectUser(userId, firstName, lastName) {
   const selectedHolder = document.getElementById("selected-holder");
@@ -53,8 +74,24 @@ async function selectUser(userId, firstName, lastName) {
   selectedHolder.innerHTML = html;
   permissions = await getCurrentPermissions(userId);
   renderCurrentPermissions(permissions);
+  renderAllEmployeesAsSelect();
   //   console.log(permissions);
 }
+async function selectUserAs(userId, firstName, lastName) {
+  const selectedAsHolder = document.getElementById("selected-as-holder");
+  var html = `
+        <div>
+            <span>Selected copy as: </span>
+           <p>${firstName} ${lastName}</p>
+           <br>
+        </div>
+    `;
+  selectedAsHolder.innerHTML = html;
+  permissions = await getCurrentPermissions(userId);
+  renderCurrentPermissions(permissions);
+  //   console.log(permissions);
+}
+
 
 function reset() {
   document.getElementById("selected-holder").innerHTML = "";
@@ -101,7 +138,7 @@ function checkboxIfPermissionExists(permissionsData) {
 
   if (Array.isArray(currentPermissions) && currentPermissions.length > 0) {
     // check for existing
-    console.log(currentPermissions);
+    // console.log(currentPermissions);
     permissions.forEach((permission) => {
       // console.log(permission);
       const checkboxId = permission.id; // get the value of the id of the checkbox so we can select that element
@@ -135,8 +172,8 @@ var permissionsToChange = [];
     function addPermissionToChangeList(event, permissionId, action) {
         const clickedElement = event.target;
         //clickedElement.disabled = true;
-        console.log('If I fall back down...');
-        console.log(clickedElement.parentElement);
+        // console.log('If I fall back down...');
+        // console.log(clickedElement.parentElement);
         const clickedParent = clickedElement.parentElement;
         const buttonsToDisable = clickedParent.querySelectorAll('.btn');
         buttonsToDisable.forEach(button => {
@@ -179,7 +216,7 @@ var permissionsToChange = [];
             clonedElement.appendChild(xBtn);
             document.getElementById('pendingChangesList').appendChild(clonedElement);
             
-        }, 750); // Matches the animation duration (1s)
+        }, 500); // Matches the animation duration (1s)
     }
 
     // Add the click event listener to all elements within the div
