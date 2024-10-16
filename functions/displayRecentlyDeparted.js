@@ -10,7 +10,7 @@ async function theDeparted() {
   await fetch("./API/getSeparatedEmps.php")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       let html = `<table class="table">
                         <tr>
                             <th>Name</th>

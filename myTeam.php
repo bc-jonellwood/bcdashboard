@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 10:49:20
+// Last modified: 2024/10/16 09:22:27
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -195,7 +195,7 @@ include "./components/header.php"
         border: 2px solid;
         border-color: light-dark(#111, #ddd);
         border-radius: 7px;
-        box-shadow: 0 0 5px 0px #808080;
+        box-shadow: 0 0 5px 0px #808080, inset 0 0 5px 3px #af8fff50;
         color: light-dark(#000, #ddd);
         /* filter: brightness(1.5); */
 
@@ -272,7 +272,7 @@ include "./components/header.php"
 
     .emp-initials {
         color: var(--accent) !important;
-
+        filter: drop-shadow(2px 4px 6px black);
     }
 
 
@@ -296,9 +296,12 @@ include "./components/header.php"
     }
 
     .team-list-table {
-        /* overflow-y: auto; */
-        /* scrollbar-gutter: stable both-edges; */
-        /* overflow-x: auto */
+        tbody {
+            tr {
+                border-bottom: 1px solid;
+                border-color: light-dark(var(--white-600), var(--white-900));
+            }
+        }
     }
 
     .name,

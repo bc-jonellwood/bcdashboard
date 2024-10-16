@@ -233,3 +233,9 @@ section {
 .recolor {
   fill: var(--accent) !important;
 }
+.btn {
+  filter: drop-shadow(1px 1px 2px black);
+}
+.btn:hover {
+  filter: drop-shadow(0px 0px 2px var(--black-800));
+}

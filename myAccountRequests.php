@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/10/15 15:50:44
+// Last modified: 2024/10/16 14:51:01
 include "./components/header.php";
 ?>
 <script>
@@ -21,7 +21,7 @@ include "./components/header.php";
     // renderAllEmployeesSelect()
     // pass in the id of the select target element as a param
     renderAllEmployeesList("employee-list");
-    renderAllEmployeesAsList("employee-as-list");
+    // renderAllEmployeesAsList("employee-as-list");
 </script>
 <script>
     function filterFunction(inputId, listId) {
@@ -55,14 +55,14 @@ include "./components/header.php";
             <label class="form-label small">Select an employee to submit an account request for</label>
             <input type="text" placeholder="...search" id="empInput" onkeyup="filterFunction('empInput', 'employee-list')">
             <ul id="employee-list" class="list-group list-group-flush hidden"></ul>
+            <div class="selected-holder" id="selected-holder"></div>
         </div>
-        <div class="form-holder">
+        <!-- <div class="form-holder">
             <label class="form-label small">For new accounts, base access on: </label>
             <input type="text" placeholder="...search" id="empInput-2" onkeyup="filterFunction('empInput-2', 'employee-as-list')">
             <ul id="employee-as-list" class="list-group list-group-flush hidden"></ul>
-        </div>
+        </div> -->
         <div>
-            <div class="selected-holder" id="selected-holder"></div>
             <div class="selected-holder" id="selected-as-holder"></div>
         </div>
     </div>
@@ -130,7 +130,7 @@ include "./components/header.php";
     }
 
     #employee-list,
-    #employee-list-2 {
+    #employee-as-list {
         list-style: none;
         font-size: smaller;
     }
@@ -142,6 +142,13 @@ include "./components/header.php";
     #empInput,
     #empInput-2 {
         width: 90%;
+    }
+
+    .selected-holder>div {
+        display: flex;
+        font-size: large;
+        text-transform: capitalize;
+        margin-bottom: 10px;
     }
 
     .input-holder {

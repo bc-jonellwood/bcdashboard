@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 12:37:26
+// Last modified: 2024/10/16 11:45:39
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
@@ -9,6 +9,7 @@ include "./components/header.php"
 <script src="./functions/renderHoliday.js"></script>
 <script src="./functions/fetchHolidays.js"></script>
 <script src="./functions/quoteOfTheDay.js"></script>
+<script src="./functions/displayAnniversaries.js"></script>
 
 <body class="mode-dark theme-base">
     <div class="main">
@@ -47,6 +48,12 @@ include "./components/header.php"
                             <div class="fact" id="fact"></div>
                         </div>
                     </div>
+                    <div id="anniversaries" class="dash-card wide">
+                        <div class="card-content">
+                            <div class="component-header">This months anniversaries</div>
+                            <div id="anniversariesContent" class="card-content"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,6 +68,7 @@ include "./components/header.php"
     theDeparted()
     fetchHoliday()
     theNewbies()
+    renderAnniversaries()
 </script>
 
 <style>

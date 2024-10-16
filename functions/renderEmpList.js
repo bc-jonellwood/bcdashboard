@@ -66,9 +66,8 @@ async function selectUser(userId, firstName, lastName) {
   ulElement.classList.add("hidden");
   var html = `
         <div>
-            <span>Selected: </span>
-           <p>${firstName} ${lastName}</p>
-           <br>
+            <span>Selected: ${firstName.toLowerCase()} ${lastName.toLowerCase()}</span>
+        </div>
            <button class="btn btn-warning" onclick="reset()">Start Over</button>
     `;
   selectedHolder.innerHTML = html;
@@ -82,13 +81,13 @@ async function selectUserAs(userId, firstName, lastName) {
   var html = `
         <div>
             <span>Selected copy as: </span>
-           <p>${firstName} ${lastName}</p>
+           <p>${firstName.toLowerCase()} ${lastName.toLowerCase()}</p>
            <br>
         </div>
     `;
   selectedAsHolder.innerHTML = html;
-  permissions = await getCurrentPermissions(userId);
-  renderCurrentPermissions(permissions);
+  // permissions = await getCurrentPermissions(userId);
+  // renderCurrentPermissions(permissions);
   //   console.log(permissions);
 }
 
