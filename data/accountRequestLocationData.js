@@ -1,6 +1,5 @@
 function requestLocationData() {
   const requestLocationData = [
-    { name: "Current Department" },
     { name: "Administrative Services" },
     { name: "Airport Services" },
     { name: "Animal Control Officer" },
@@ -116,4 +115,5 @@ function requestLocationData() {
     { name: "Water Distribution" },
     { name: "Whitesville FD" },
   ];
+  return requestLocationData;
 }
