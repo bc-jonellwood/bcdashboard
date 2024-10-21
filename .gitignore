@@ -1,3 +1,4 @@
 /data/appConfig.php
 /data/storeConfig.php
 /data/UserImport.Function.php
+/data/ldapConfig.php

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 11:22:00
+// Last modified: 2024/10/21 11:15:24
 session_start();
 
 
@@ -189,7 +189,7 @@ session_start();
             <p class="alert-text" id="alert-text"></p>
         </div>
         <div class="notification-icons">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
                 <path
                     d="M13.2 10L11 13l-1-1.4L9 13l-2.2-3C3 11 3 13 3 16.9c0 0 3 1.1 6.4 1.1h1.2c3.4-.1 6.4-1.1 6.4-1.1c0-3.9 0-5.9-3.8-6.9m-3.2.7L8.4 10l1.6 1.6l1.6-1.6zm0-8.6c-1.9 0-3 1.8-2.7 3.8S8.6 9.3 10 9.3s2.4-1.4 2.7-3.4c.3-2.1-.8-3.8-2.7-3.8" />
             </svg>
@@ -263,8 +263,17 @@ session_start();
     <div class="loader loader5"></div>
     <div class="loader loader6"></div>
 </div>
+<div id="logout-menu" class="logout-menu hidden">
+    <div>
+        <button type="button" class="btn-x" onclick="logout()">Logout</button>
+    </div>
+</div>
 <?php include "./components/toolbar.php" ?>
 <script>
+    function logout() {
+        <?php session_destroy() ?>
+        alert("logged out");
+    }
     async function setAlert() {
         const notification = new Notification();
 
@@ -292,6 +301,17 @@ session_start();
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
 
+    var accountIcon = document.getElementById('account-icon');
+    accountIcon.addEventListener('mouseenter', function() {
+        var accountMenu = document.getElementById('logout-menu');
+        accountMenu.classList.remove('hidden');
+    });
+    accountIcon.addEventListener('mouseleave', function() {
+        setTimeout(function() {
+            var accountMenu = document.getElementById('logout-menu');
+            accountMenu.classList.add('hidden');
+        }, 1000)
+    })
     // function change_menu_image() {
     //     const imgElement = document.querySelector('.menu-image');
     //     const mode = localStorage.getItem('bcdash-mode');
@@ -531,7 +551,26 @@ session_start();
 
     }
 
+    .logout-menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin-right: 140px;
+        margin-top: 60px;
+        z-index: 1000;
+        background-color: var(--bg);
+        border-radius: 7px;
+        border: 1px solid var(--accent);
+        color: var(--fg);
+        padding: 10px;
+        font-size: 18px;
 
+    }
+
+    .hidden {
+        display: none;
+    }
 
     /* .toolbar-icon:hover {
     } */

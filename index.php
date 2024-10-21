@@ -1,6 +1,17 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/16 11:45:39
+// Last modified: 2024/10/21 13:19:46
+// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+//     header("location: mySignin.php");
+//     exit;
+// }
+$_SESSION['loggedin'] = true;
+$_SESSION['username'] = 'jon.ellwood';
+
+if ((isset($_SESSION['loggedin']) == false || $_SESSION['loggedin'] != true) && str_contains(basename($_SERVER['PHP_SELF']), "logout") == false) {
+    header("Location: mySignin.php");
+}
+
 include "./components/header.php"
 ?>
 <script src="./functions/checkURLOnline.js"></script>
@@ -10,6 +21,7 @@ include "./components/header.php"
 <script src="./functions/fetchHolidays.js"></script>
 <script src="./functions/quoteOfTheDay.js"></script>
 <script src="./functions/displayAnniversaries.js"></script>
+<script src="./functions/displayBirthdays.js"></script>
 
 <body class="mode-dark theme-base">
     <div class="main">
@@ -54,6 +66,21 @@ include "./components/header.php"
                             <div id="anniversariesContent" class="card-content"></div>
                         </div>
                     </div>
+                    <div id="birthdays" class="dash-card">
+                        <div class="card-content">
+                            <div class="component-header">This months birthdays</div>
+                            <div id="birthdaysContent" class="card-content"></div>
+                        </div>
+                    </div>
+                    <!-- <div id="server_session" class="dash-card">
+                        <div class="card-content">
+                            <div class="component-header">Session Data</div>
+                            <div id="sessionData" class="card-content">
+                                <?php //print_r($_SESSION) 
+                                ?>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -69,6 +96,7 @@ include "./components/header.php"
     fetchHoliday()
     theNewbies()
     renderAnniversaries()
+    renderBirthdays()
 </script>
 
 <style>
