@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 14:20:34
+// Last modified: 2024/10/21 14:38:52
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -269,25 +269,36 @@ include "./components/header.php"
 
     .component-header-tabs {
 
-        .component-header:nth-child(1) {
+
+        /* .component-header:nth-child(1) {
             border-right: 1px solid var(--accent);
-        }
+        } */
 
         .component-header:nth-child(2) {
             margin-right: 10px;
         }
     }
 
-    .active {
+    .not-btn {
+        color: unset;
+
+    }
+
+    .component-header.active {
+        background-color: var(--accent);
+        color: light-dark(var(--bg), var(--fg));
+        border-radius: 7px;
+    }
+
+    /* .active {
         background-color: var(--accent);
         color: var(--fg);
-    }
+    } */
 
-    .not-btn {
-        color: light-dark(var(--fg), var(--fg));
-    }
 
+
+    /*
     .not-btn.active {
-        color: light-dark(var(--bg), var(--fg));
-    }
+        color: light-dark(var(--fg), var(--fg));
+    } */
 </style>
