@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 14:38:52
+// Last modified: 2024/10/21 15:51:01
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -32,44 +32,37 @@ include "./components/header.php"
         <?php include "./components/sidenav.php" ?>
         <div class="content">
             <div class="dash-main">
+                <!-- Start of cards section -->
                 <div class="cards-container">
+                    <!-- Card 1 -->
                     <div id="websiteStatus" class="dash-card narrow">
                         <div class="card-content">
                             <div class="component-header">Website Status</div>
                             <div id="urlStatus" class="card-content"></div>
                         </div>
                     </div>
-                    <div id="recentSeparations" class="dash-card">
-                        <div class="card-content">
-                            <div class="component-header">Recent Separations</div>
-                            <div id="recentSeparationsContent" class="card-content"></div>
-                        </div>
-                    </div>
-                    <div id="recentHired" class="dash-card">
-                        <div class="card-content">
-                            <div class="component-header">Recent Hires</div>
-                            <div id="recentHiredContent" class="card-content"></div>
-                        </div>
-                    </div>
-
-                    <div id="holidayComponent" class="dash-card narrow short">
-                        <div class="card-content">
-                            <div class="component-header">Next Holiday</div>
-                            <div class="holiday" id="holiday"></div>
-                        </div>
-                    </div>
+                    <!-- End Card 1 -->
+                    <!-- Card 2 SSR-->
+                    <?php include "./components/recentSeparations.php" ?>
+                    <!-- End Card 2 -->
+                    <!-- Card 3 SSR-->
+                    <?php include "./components/newEmployees.php" ?>
+                    <!-- End Card 3 -->
+                    <!-- Card 4 SSR-->
+                    <?php include "./components/nextHoliday.php" ?>
+                    <!-- End Card 4 -->
+                    <!-- Card 5 CSR {Pubic Domain API}-->
                     <div class="dash-card narrow short">
                         <div class="card-content">
                             <div class="component-header">Did you know?</div>
                             <div class="fact" id="fact"></div>
                         </div>
                     </div>
-                    <div id="anniversaries" class="dash-card wide">
-                        <div class="card-content">
-                            <div class="component-header"><?php echo date("F"); ?> anniversaries</div>
-                            <div id="anniversariesContent" class="card-content"></div>
-                        </div>
-                    </div>
+                    <!-- End Card 5 -->
+                    <!-- Card 6 SSR-->
+                    <?php include "./components/employeeAnniversaries.php" ?>
+                    <!-- End Card 6 -->
+                    <!-- Card 7 -->
                     <div id="birthdays" class="dash-card">
                         <div class="card-content">
                             <div class="component-header-tabs" id="component-header-tabs">
@@ -80,6 +73,7 @@ include "./components/header.php"
                             <div id="nextBirthdaysContent" class="card-content hidden"></div>
                         </div>
                     </div>
+                    <!-- End Card 7 -->
                 </div>
             </div>
         </div>
@@ -90,10 +84,10 @@ include "./components/header.php"
 </html>
 <script>
     makeWebsiteStatusCards()
-    theDeparted()
-    fetchHoliday()
-    theNewbies()
-    renderAnniversaries()
+    // theDeparted()
+    // fetchHoliday()
+    // theNewbies()
+    // renderAnniversaries()
     renderBirthdays()
     renderNextBirthdays()
 </script>
