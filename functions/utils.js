@@ -11,3 +11,14 @@ function removeLoDash(input) {
   var cleaned = input.replace(/_/g, " ");
   return cleaned;
 }
+
+function returnMonth() {
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  return month;
+}
+function returnDay() {
+  const date = new Date();
+  const day = date.getDate();
+  return day;
+}

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 13:19:46
+// Last modified: 2024/10/21 14:20:34
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -22,6 +22,10 @@ include "./components/header.php"
 <script src="./functions/quoteOfTheDay.js"></script>
 <script src="./functions/displayAnniversaries.js"></script>
 <script src="./functions/displayBirthdays.js"></script>
+<script src="./functions/displayNextBirthdays.js"></script>
+<script>
+    var currentMonth = new Date().getMonth();
+</script>
 
 <body class="mode-dark theme-base">
     <div class="main">
@@ -62,30 +66,24 @@ include "./components/header.php"
                     </div>
                     <div id="anniversaries" class="dash-card wide">
                         <div class="card-content">
-                            <div class="component-header">This months anniversaries</div>
+                            <div class="component-header"><?php echo date("F"); ?> anniversaries</div>
                             <div id="anniversariesContent" class="card-content"></div>
                         </div>
                     </div>
                     <div id="birthdays" class="dash-card">
                         <div class="card-content">
-                            <div class="component-header">This months birthdays</div>
+                            <div class="component-header-tabs" id="component-header-tabs">
+                                <div class="component-header active" id="birthdayTabOne"><button class="not-btn" onclick='swapTabs("birthdayTab1")'><?php echo date("F"); ?> birthdays </button></div>
+                                <div class="component-header" id="birthdayTabTwo"><button class="not-btn" onclick='swapTabs("birthdayTab2")'><?php echo date("F", strtotime("+1 month")); ?> birthdays</button></div>
+                            </div>
                             <div id="birthdaysContent" class="card-content"></div>
+                            <div id="nextBirthdaysContent" class="card-content hidden"></div>
                         </div>
                     </div>
-                    <!-- <div id="server_session" class="dash-card">
-                        <div class="card-content">
-                            <div class="component-header">Session Data</div>
-                            <div id="sessionData" class="card-content">
-                                <?php //print_r($_SESSION) 
-                                ?>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
-
     <?php include "./components/footer.php" ?>
 </body>
 
@@ -97,7 +95,35 @@ include "./components/header.php"
     theNewbies()
     renderAnniversaries()
     renderBirthdays()
+    renderNextBirthdays()
 </script>
+
+<script>
+    function swapTabs(tab) {
+        var currentMonthTab = document.getElementById('birthdayTabOne')
+        var currentMonthBirthdays = document.getElementById('birthdaysContent')
+        var nextMonthTab = document.getElementById('birthdayTabTwo')
+        var nextMonthBirthdays = document.getElementById('nextBirthdaysContent')
+        if (tab === 'birthdayTab1') {
+            currentMonthTab.classList.add('active')
+            // currentMonthTab.classList.remove('hidden')
+            nextMonthTab.classList.remove('active')
+            // nextMonthTab.classList.add('hidden')
+            currentMonthBirthdays.classList.remove('hidden')
+            nextMonthBirthdays.classList.add('hidden')
+        } else if (tab === 'birthdayTab2') {
+            // currentMonthTab.classList.add('hidden')
+            currentMonthTab.classList.remove('active')
+            nextMonthTab.classList.add('active')
+            // nextMonthTab.classList.remove('hidden')
+
+            currentMonthBirthdays.classList.add('hidden')
+            nextMonthBirthdays.classList.remove('hidden')
+        }
+    }
+</script>
+
+
 
 <style>
     .dash-main {
@@ -224,5 +250,44 @@ include "./components/header.php"
 
     .short {
         grid-row: span 1;
+    }
+
+    .component-header-tabs {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        /* font-size: medium; */
+        text-align: center;
+        padding-top: 15px;
+    }
+
+    .component-header {
+        width: 100%;
+    }
+
+    .component-header-tabs {
+
+        .component-header:nth-child(1) {
+            border-right: 1px solid var(--accent);
+        }
+
+        .component-header:nth-child(2) {
+            margin-right: 10px;
+        }
+    }
+
+    .active {
+        background-color: var(--accent);
+        color: var(--fg);
+    }
+
+    .not-btn {
+        color: light-dark(var(--fg), var(--fg));
+    }
+
+    .not-btn.active {
+        color: light-dark(var(--bg), var(--fg));
     }
 </style>
