@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 15:50:19
+// Last modified: 2024/10/22 12:19:10
 
 include_once "./data/appConfig.php";
 
@@ -128,9 +128,9 @@ try {
     // echo json_encode($data);
 
     $groupedEmployees = processEmployees($data);
-    $html = '<div id="anniversaries" class="dash-card wide">
+    $html = '<div id="7e705475-5743-4477-a1c7-9165ecf62ddb" class="dash-card wide">
                         <div class="card-content">
-                            <div class="component-header"><' . date("F") . 'anniversaries</div>
+                            <div class="component-header">' . date("F") . ' Anniversaries <button class="not-btn" onclick="minimizeCard(\'7e705475-5743-4477-a1c7-9165ecf62ddb\')"><img src="./icons/resize.svg" alt="resize" width="24" height="24" /></button></div>
                             <div id="anniversariesContent" class="card-content">';
     $html .= '<table class="table">
                 <tr>
@@ -158,7 +158,7 @@ try {
     }
 
     $html .= '</table>';
-    $html .= '</div></div></div></div>';
+    $html .= '</div></div></div>';
     echo $html;
 } catch (PDOException $e) {
     echo $e->getMessage();

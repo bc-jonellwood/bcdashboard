@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 11:15:24
+// Last modified: 2024/10/22 12:08:34
 session_start();
 
 
@@ -178,7 +178,7 @@ session_start();
 
 <div class="header">
     <div class="hamburger">
-        <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu">
+        <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
             ||MENU||
             <!-- <img src="./images/bcg_logo_brand_blue_white.png" alt="bcg logo" class="menu-image" /> -->
         </button>
@@ -574,4 +574,7 @@ session_start();
 
     /* .toolbar-icon:hover {
     } */
+    .menu-btn {
+        color: var(--accent) !important;
+    }
 </style>

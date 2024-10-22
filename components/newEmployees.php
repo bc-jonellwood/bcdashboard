@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 15:34:08
+// Last modified: 2024/10/22 11:49:44
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -33,9 +33,9 @@ try {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo '<div id="recentSeparations" class="dash-card">';
+    echo '<div id="a05ca0c4-c518-4692-a363-093a7a5f5af6" class="dash-card">';
     echo '<div class="card-content">
-            <div class="component-header">Recent Separations</div>
+            <div class="component-header">Recent Hires <button class="not-btn" onclick="minimizeCard(\'a05ca0c4-c518-4692-a363-093a7a5f5af6\')"><img src="./icons/resize.svg" alt="resize" width="24" height="24" /></button></div>
             <div id="recentHiredContent" class="card-content">
             ';
     echo '<table class="table"><tbody><tr><th>Name</th><th>Department</th><th>Start Date</th></tr>';

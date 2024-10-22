@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/21 15:51:01
+// Last modified: 2024/10/22 12:16:06
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -14,15 +14,18 @@ if ((isset($_SESSION['loggedin']) == false || $_SESSION['loggedin'] != true) && 
 
 include "./components/header.php"
 ?>
-<script src="./functions/checkURLOnline.js"></script>
-<script src="./functions/displayRecentlyDeparted.js"></script>
-<script src="./functions/displayRecentlyHired.js"></script>
-<script src="./functions/renderHoliday.js"></script>
-<script src="./functions/fetchHolidays.js"></script>
-<script src="./functions/quoteOfTheDay.js"></script>
-<script src="./functions/displayAnniversaries.js"></script>
-<script src="./functions/displayBirthdays.js"></script>
-<script src="./functions/displayNextBirthdays.js"></script>
+<script>
+    function minimizeCard(id) {
+        console.log(id)
+        var card = document.getElementById(id);
+        console.log(card)
+        if (card.classList.contains('minimized-dash-card')) {
+            card.classList.remove('minimized-dash-card')
+        } else {
+            card.classList.add('minimized-dash-card')
+        }
+    }
+</script>
 <script>
     var currentMonth = new Date().getMonth();
 </script>
@@ -34,46 +37,12 @@ include "./components/header.php"
             <div class="dash-main">
                 <!-- Start of cards section -->
                 <div class="cards-container">
-                    <!-- Card 1 -->
-                    <div id="websiteStatus" class="dash-card narrow">
-                        <div class="card-content">
-                            <div class="component-header">Website Status</div>
-                            <div id="urlStatus" class="card-content"></div>
-                        </div>
-                    </div>
-                    <!-- End Card 1 -->
-                    <!-- Card 2 SSR-->
-                    <?php include "./components/recentSeparations.php" ?>
-                    <!-- End Card 2 -->
-                    <!-- Card 3 SSR-->
                     <?php include "./components/newEmployees.php" ?>
-                    <!-- End Card 3 -->
-                    <!-- Card 4 SSR-->
+                    <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
-                    <!-- End Card 4 -->
-                    <!-- Card 5 CSR {Pubic Domain API}-->
-                    <div class="dash-card narrow short">
-                        <div class="card-content">
-                            <div class="component-header">Did you know?</div>
-                            <div class="fact" id="fact"></div>
-                        </div>
-                    </div>
-                    <!-- End Card 5 -->
-                    <!-- Card 6 SSR-->
-                    <?php include "./components/employeeAnniversaries.php" ?>
-                    <!-- End Card 6 -->
-                    <!-- Card 7 -->
-                    <div id="birthdays" class="dash-card">
-                        <div class="card-content">
-                            <div class="component-header-tabs" id="component-header-tabs">
-                                <div class="component-header active" id="birthdayTabOne"><button class="not-btn" onclick='swapTabs("birthdayTab1")'><?php echo date("F"); ?> birthdays </button></div>
-                                <div class="component-header" id="birthdayTabTwo"><button class="not-btn" onclick='swapTabs("birthdayTab2")'><?php echo date("F", strtotime("+1 month")); ?> birthdays</button></div>
-                            </div>
-                            <div id="birthdaysContent" class="card-content"></div>
-                            <div id="nextBirthdaysContent" class="card-content hidden"></div>
-                        </div>
-                    </div>
-                    <!-- End Card 7 -->
+                    <?php include "./components/quoteOfTheDay.php" ?>
+                    <?php include "./components/employeeAnniversaries.php"; ?>
+                    <?php include "./components/employeeBirthdays.php" ?>
                 </div>
             </div>
         </div>
@@ -82,15 +51,6 @@ include "./components/header.php"
 </body>
 
 </html>
-<script>
-    makeWebsiteStatusCards()
-    // theDeparted()
-    // fetchHoliday()
-    // theNewbies()
-    // renderAnniversaries()
-    renderBirthdays()
-    renderNextBirthdays()
-</script>
 
 <script>
     function swapTabs(tab) {
@@ -100,17 +60,12 @@ include "./components/header.php"
         var nextMonthBirthdays = document.getElementById('nextBirthdaysContent')
         if (tab === 'birthdayTab1') {
             currentMonthTab.classList.add('active')
-            // currentMonthTab.classList.remove('hidden')
             nextMonthTab.classList.remove('active')
-            // nextMonthTab.classList.add('hidden')
             currentMonthBirthdays.classList.remove('hidden')
             nextMonthBirthdays.classList.add('hidden')
         } else if (tab === 'birthdayTab2') {
-            // currentMonthTab.classList.add('hidden')
             currentMonthTab.classList.remove('active')
             nextMonthTab.classList.add('active')
-            // nextMonthTab.classList.remove('hidden')
-
             currentMonthBirthdays.classList.add('hidden')
             nextMonthBirthdays.classList.remove('hidden')
         }
@@ -259,14 +214,11 @@ include "./components/header.php"
 
     .component-header {
         width: 100%;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .component-header-tabs {
-
-
-        /* .component-header:nth-child(1) {
-            border-right: 1px solid var(--accent);
-        } */
 
         .component-header:nth-child(2) {
             margin-right: 10px;
@@ -275,24 +227,29 @@ include "./components/header.php"
 
     .not-btn {
         color: unset;
-
     }
+
 
     .component-header.active {
         background-color: var(--accent);
         color: light-dark(var(--bg), var(--fg));
         border-radius: 7px;
+
+
     }
 
-    /* .active {
-        background-color: var(--accent);
-        color: var(--fg);
-    } */
+    .minimized-dash-card {
+        grid-column: span 1;
+        grid-row: span 1;
+        max-width: 100%;
+        max-height: 50px;
+        overflow: hidden;
+        font-size: medium;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 
-
-
-    /*
-    .not-btn.active {
-        color: light-dark(var(--fg), var(--fg));
-    } */
+    .minimized-dash-card:hover {
+        overflow-y: hidden !important;
+    }
 </style>
