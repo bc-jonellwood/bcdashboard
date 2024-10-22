@@ -39,7 +39,7 @@ function fetchFact()
         $html = '<div id="8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c" class="dash-card narrow short">
                         <div class="card-content">
                             <div class="component-header">Did you know? <button class="not-btn" onclick="minimizeCard(\'8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c\')"><img src="./icons/resize.svg" alt="resize" width="24" height="24" /></button></div>';
-        $html .= "<p>Fact: " . htmlspecialchars($data['text']);
+        $html .= "<p class='daily-quote'>Fact: " . htmlspecialchars($data['text']);
         $html .= '</p></div>
                     </div>';
         echo $html;

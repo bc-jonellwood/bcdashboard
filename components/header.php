@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 12:08:34
+// Last modified: 2024/10/22 14:03:33
 session_start();
 
 
@@ -240,7 +240,33 @@ session_start();
 <div class="employee-lookup-popover" id="employeeLookupPopover" popover="manual" name="employeeLookupPopover">
     <div class="card-content dash-card">
         <div class="component-header">Employee Lookup</div>
-        <div class="employeeSearch" id="employeeSearch"></div>
+        <div class="employeeSearch" id="employeeSearch">
+            <div class="employee-lookup">
+                <div class="employee-lookup-body">
+                    <div class="employee-lookup-card">
+                        <div class="employee-lookup-card-body">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control employee-lookup-input" id="employee-lookup-first-name" placeholder="First Name">
+                                <input type="text" class="form-control employee-lookup-input" id="employee-lookup-last-name" placeholder="Last Name">
+                                <button class="btn btn-outline-success" type="button" id="button-addon2" onclick="lookupEmployee()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="employee-lookup-results-card">
+                        <div class="employee-lookup-results-card-body">
+                            <div id="employee-lookup-results" class="employee-lookup-results">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-btn-holder">
+                        <button class="btn btn-secondary btn-small employee-lookup-clear-btn" type="button" onclick="clearEmployeeLookup()">Clear</button>
+                        <button class="btn btn-danger btn-small employee-lookup-clear-btn" type="button" popovertarget="employeeLookupPopover" popovertargetaction="hide">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <//?php include "employeeLookupByName.php"; ?> -->
+        </div>
     </div>
 </div>
 <div class="department-lookup-popover" id="departmentLookupPopover" popover="manual" name="departmentLookupPopover">

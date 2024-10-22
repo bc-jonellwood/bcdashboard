@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 12:16:06
+// Last modified: 2024/10/22 15:22:33
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -15,8 +15,11 @@ if ((isset($_SESSION['loggedin']) == false || $_SESSION['loggedin'] != true) && 
 include "./components/header.php"
 ?>
 <script>
+    let cardIDs = [];
+
     function minimizeCard(id) {
         console.log(id)
+        cardIDToFromArray(id);
         var card = document.getElementById(id);
         console.log(card)
         if (card.classList.contains('minimized-dash-card')) {
@@ -25,6 +28,45 @@ include "./components/header.php"
             card.classList.add('minimized-dash-card')
         }
     }
+
+    function cardIDToFromArray(id) {
+        // if (!cardIDs) {
+        //     console.log('cardIDs is null')
+        // }
+        // console.log('cardIDs')
+        // console.log(cardIDs)
+        if (cardIDs.includes(id)) {
+            cardIDs.splice(cardIDs.indexOf(id), 1);
+            localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+            console.log(cardIDs)
+        } else {
+            cardIDs.push(id);
+            localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+            console.log(cardIDs)
+        }
+    }
+
+    function applyClassOnLoad() {
+        cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
+        console.log('cardIDs from local storage')
+        console.log(cardIDs)
+        if (cardIDs) {
+            for (let i = 0; i < cardIDs.length; i++) {
+                console.log(i);
+                let target = document.getElementById(cardIDs[i])
+                console.log(target)
+                // target.classList.add('minimized-dash-card')
+            }
+        }
+    }
+    // applyClassOnLoad()
+</script>
+<script>
+    function fakeLoader() {
+        showLoader();
+        setTimeout(hideLoader, 1200);
+    }
+    fakeLoader()
 </script>
 <script>
     var currentMonth = new Date().getMonth();
@@ -251,5 +293,9 @@ include "./components/header.php"
 
     .minimized-dash-card:hover {
         overflow-y: hidden !important;
+    }
+
+    .daily-quote {
+        font-size: large !important;
     }
 </style>
