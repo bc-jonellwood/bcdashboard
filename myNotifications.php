@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/02 08:10:08
+// Last modified: 2024/10/23 08:11:24
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -131,6 +131,11 @@ include "./components/header.php"
         <div class="calendar-holder">
         </div>
     </div>
+    <script>
+        function editNotification(id) {
+            alert("Edit Notification " + id);
+        }
+    </script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
@@ -396,22 +401,22 @@ include "./components/header.php"
 
     .n-alert {
         background-color: red;
-        color: red;
+        color: var(--fg);
     }
 
     .n-information {
         background-color: blue;
-        color: blue;
+        color: var(--white);
     }
 
     .n-warning {
         background-color: orange;
-        color: orange;
+        color: var(--black);
     }
 
     .n-other {
         background-color: green;
-        color: green;
+        color: var(--fg);
     }
 
     .invalid-date-feedback {

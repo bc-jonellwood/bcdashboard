@@ -46,7 +46,7 @@ function renderPhoneLookup() {
                 <div class="phone-lookup-card-body">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control phone-lookup-input" id="phone" placeholder="Phone Number">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2" onclick="lookupByPhone()">Search</button>
+                        <button class="btn btn-success" type="button" id="button-addon2" onclick="lookupByPhone()">Search</button>
                     </div>
                 </div>
             </div>

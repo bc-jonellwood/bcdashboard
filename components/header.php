@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 14:03:33
+// Last modified: 2024/10/23 08:49:17
 session_start();
 
 
@@ -248,7 +248,7 @@ session_start();
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control employee-lookup-input" id="employee-lookup-first-name" placeholder="First Name">
                                 <input type="text" class="form-control employee-lookup-input" id="employee-lookup-last-name" placeholder="Last Name">
-                                <button class="btn btn-outline-success" type="button" id="button-addon2" onclick="lookupEmployee()">Search</button>
+                                <button class="btn btn-success" type="button" id="button-addon2" onclick="lookupEmployee()">Search</button>
                             </div>
                         </div>
                     </div>

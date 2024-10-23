@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 15:22:33
+// Last modified: 2024/10/23 08:58:01
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -183,7 +183,10 @@ include "./components/header.php"
 
     .days-until-holiday,
     .holiday-name,
-    .holiday-date,
+    .holiday-date {
+        text-align: center;
+    }
+
     .fact {
         display: flex;
         flex-direction: column;
@@ -194,6 +197,7 @@ include "./components/header.php"
         font-size: medium;
         text-align: center;
         padding-top: 15px;
+        margin-bottom: auto;
     }
 
     .holiday,
@@ -208,7 +212,7 @@ include "./components/header.php"
         align-items: center;
         width: 100%;
         height: 100%;
-        font-size: medium;
+        /* font-size: large !important; */
         text-align: center;
         padding-top: 15px;
         white-space: nowrap;

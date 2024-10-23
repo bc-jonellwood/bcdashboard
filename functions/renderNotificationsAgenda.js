@@ -58,7 +58,7 @@ function renderAgenda(data) {
         entry.id = data[i].id;
         entry.innerHTML = `
         <span class="notification-top-bar">
-        <p class="notification-badge n-${data[i].sNotificationType}">-</p>
+        <p class="notification-badge n-${data[i].sNotificationType}"></p>
             <p class="notification-type"><b>Type: </b>${
               data[i].sNotificationType
             }</p>
@@ -81,7 +81,7 @@ function renderAgenda(data) {
             }</p>
         </span>
         <p class="notification-text n-${data[i].sNotificationType}">${
-          data[i].sNotificationType - data[i].sNotificationText
+          data[i].sNotificationText
         }</p>
         <div class="notification-buttons-holder">
         

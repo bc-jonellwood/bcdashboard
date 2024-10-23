@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 12:01:21
+// Last modified: 2024/10/23 08:54:15
 /**
  * Function to find the next upcoming holiday from a list of holidays.
  *
@@ -67,7 +67,8 @@ echo "<div id='988846bf-c1bf-4867-8399-e0dd5000458d' class='dash-card narrow sho
                         <div class='card-content'>
                             <div class='component-header'>Next Holiday <button class='not-btn' onclick='minimizeCard(\"988846bf-c1bf-4867-8399-e0dd5000458d\")'><img src='./icons/resize.svg' alt='resize' width='24' height='24' /></button></div>
                             <div class='holiday' id='holiday'>";
-echo "<p class='days-unitl-holiday'>" . $result['daysUntil'] . " days until " . $result['name'] . "</p>";
+echo "<p class='days-unitl-holiday'>" . $result['daysUntil'] . " days until </p>";
+echo "<p class='holiday-name'>" . $result['name'] . "</p>";
 echo "<p> on " . $result['date'] . "</p>";
 echo "</div></div></div>";
 

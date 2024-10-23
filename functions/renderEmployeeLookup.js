@@ -53,7 +53,7 @@ function renderEmployeeLookup() {
                     <div class="input-group mb-3">
                         <input type="text" class="form-control employee-lookup-input" id="employee-lookup-first-name" placeholder="First Name">
                         <input type="text" class="form-control employee-lookup-input" id="employee-lookup-last-name" placeholder="Last Name">
-                         <button class="btn btn-outline-success" type="button" id="button-addon2" onclick="lookupEmployee()">Search</button>
+                         <button class="btn btn-success" type="button" id="button-addon2" onclick="lookupEmployee()">Search</button>
                     </div>
                 </div>
             </div>
