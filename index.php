@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/23 08:58:01
+// Last modified: 2024/10/23 13:58:41
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -80,11 +80,11 @@ include "./components/header.php"
                 <!-- Start of cards section -->
                 <div class="cards-container">
                     <?php include "./components/newEmployees.php" ?>
-                    <?php include "./components/recentSeparations.php" ?>
-                    <?php include "./components/nextHoliday.php" ?>
-                    <?php include "./components/quoteOfTheDay.php" ?>
                     <?php include "./components/employeeAnniversaries.php"; ?>
+                    <?php include "./components/nextHoliday.php" ?>
+                    <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/employeeBirthdays.php" ?>
+                    <?php include "./components/quoteOfTheDay.php" ?>
                 </div>
             </div>
         </div>
@@ -157,7 +157,8 @@ include "./components/header.php"
         border-color: light-dark(#000, #ffffff20);
         background-color: var(--bg);
         box-shadow: 0 0 #0000;
-        box-shadow: 0 4px 6px -1px #7480ff, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        /* box-shadow: 0 4px 6px -1px #7480ff, 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); */
+        box-shadow: 0 4px 6px -1px var(--accent), 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
         table {
             font-size: smaller;
@@ -278,7 +279,8 @@ include "./components/header.php"
 
     .component-header.active {
         background-color: var(--accent);
-        color: light-dark(var(--bg), var(--fg));
+        /* color: light-dark(var(--bg), var(--fg)); */
+        color: light-dark(var(--fg), var(--bg));
         border-radius: 7px;
 
 

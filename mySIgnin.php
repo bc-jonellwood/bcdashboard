@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/10/21 12:54:44
+// Last modified: 2024/10/24 09:47:13
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -113,6 +113,7 @@ if (isset($_POST['sUserName'])) {
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/theme.css">
+    <link rel="icon" href="favicons/favicon-32x32.png">
 
 </head>
 
@@ -120,7 +121,9 @@ if (isset($_POST['sUserName'])) {
     <div class="login-container">
         <div class="login-main">
             <div class="login-header">
-                <h1>Pheonix Nova</h1>
+                <!-- <h1>myBerkeley</h1> -->
+                <!-- <img src="./images/myBerkeleyNoWords-nobg.png" alt="my berkeley logo" class="login-logo"> -->
+                <img src="./images/myBerkeley1-white.png" alt="my berkeley logo" class="login-logo">
             </div>
             <form method="post">
                 <div class="form-group">
@@ -134,6 +137,7 @@ if (isset($_POST['sUserName'])) {
                 <button type="submit" class="btn btn-primary">Sign In</button>
             </form>
             <!-- <a href="index.php" class="btn btn-primary">Sign In</a> -->
+            <!-- <img src="./images/myBerkeley1.png" alt="my berkeley logo" class="mb-logo"> -->
             <p class="login-form-footer">Don't have an account? <a href="mailto:dashboard@berkeleycountysc.gov">Request One</a></p>
             <div id="errorMessage" class="errorMessage">
 
@@ -145,12 +149,12 @@ if (isset($_POST['sUserName'])) {
     </div>
 
     <?php
-    print_r($_SESSION);
+    // print_r($_SESSION);
     // echo "login failure = " . $loginfailure;
     // print_r($GLOBALS)
-    if (isset($_SESSION['loggedin'])) {
-        echo $_SESSION['loggedin'];
-    }
+    // if (isset($_SESSION['loggedin'])) {
+    //     echo $_SESSION['loggedin'];
+    // }
     ?>
 
     <footer class="login-footer">
@@ -184,7 +188,8 @@ if (isset($_POST['sUserName'])) {
         background-color: var(--blue);
         color: #dee0e3;
         margin: 0;
-        background-image: url("images/dash_login_3.jpg");
+        /* background-image: url("images/dash_login_3.jpg"); */
+        background-image: url("images/bc-swamp.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         max-height: 100dvh;
@@ -196,7 +201,6 @@ if (isset($_POST['sUserName'])) {
         margin-top: 5%;
         margin-bottom: 10%;
         max-height: 100dvh;
-
     }
 
     .login-main {
@@ -237,7 +241,8 @@ if (isset($_POST['sUserName'])) {
         box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 0 10px rgba(100, 180, 255, 0.2);
         /* box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); */
         /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); */
-        background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000);
+        /* background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000); */
+        background-image: linear-gradient(to top, #0033ff, #0066ff, #0099ff, #00ccff);
         background-size: 100% 300px;
         background-position: 0% 100%;
         animation: radiant 10s ease infinite;
@@ -248,6 +253,10 @@ if (isset($_POST['sUserName'])) {
             width: 100%;
 
         }
+    }
+
+    .login-logo {
+        margin-top: 20px;
     }
 
     @keyframes radiant {
@@ -287,7 +296,8 @@ if (isset($_POST['sUserName'])) {
     button {
         margin-top: 20px !important;
         margin-bottom: 20px !important;
-        background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000);
+        /* background-image: linear-gradient(to top, #ff9900, #ff6600, #ff3300, #ff0000); */
+        background-image: linear-gradient(to top, #0033ff, #0066ff, #0099ff, #00ccff);
         background-size: 100% 300px;
         background-position: 0% 100%;
         animation: radiant 10s ease infinite;

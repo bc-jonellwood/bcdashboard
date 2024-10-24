@@ -69,14 +69,16 @@ async function selectAsNewUser(
         <div class="selected-holder">
         <input type="hidden" name="newUserId" id="newUserId" value="${userId}">
             <span class="d-flex justify-content-start flex-row">Selected: ${
-              firstName.toLowerCase() ? firstName.toLowerCase() : " "
-            } ${middleName.toLowerCase() ? middleName.toLowerCase() : " "}  ${
-    lastName.toLowerCase() ? lastName.toLowerCase() : " "
+              firstName.toLowerCase() ? firstName.toLowerCase().trim() : " "
+            } ${
+    middleName.toLowerCase() ? middleName.toLowerCase().trim() : " "
+  }  ${
+    lastName.toLowerCase() ? lastName.toLowerCase().trim() : " "
   } - <p id="newUserRequestEmployeeNumber">${
     employeeNumber ? employeeNumber : ""
   } </p></span>
             <span class="d-flex justify-content-start flex-row">Preferred Name: ${
-              preferredName ? preferredName.toLowerCase() : ""
+              preferredName ? preferredName.toLowerCase().trim() : ""
             }</span>
             <span class="d-flex justify-content-start flex-row">Department: ${
               departmentName ? departmentName : ""

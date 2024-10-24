@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 13:16:07
+// Last modified: 2024/10/23 14:10:57
 
 include_once "./data/appConfig.php";
 
@@ -132,8 +132,8 @@ try {
     $html .= '</div>
                 </div>
             </div>
-        </div>
-    </div>';
+        
+    ';
 
     echo $html;
 } catch (PDOException $e) {

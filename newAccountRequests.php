@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/16 13:47:11
-// Last Modified: 2024/10/18 13:42:28
+// Last Modified: 2024/10/24 12:55:32
 
 include "./components/header.php";
 
@@ -50,18 +50,24 @@ include "./components/header.php";
                     <label for="leaveApprover">Leave Approver</label>
                     <select name="newUserLeaveApprover" id="1024" class="form-control" required></select>
                     <label for="setupEquivalent">Setup Equivalent</label>
-                    <select type="text" name="newUserRequestSetupEquivalent" id="setupEquivalent" class="form-control" required></select>
+                    <select type="text" name="newUserRequestSetupEquivalent" id="setupEquivalent" class="form-control" required></script>"></select>
                 </div>
                 <div class="form-group">
-                    <label for="computerAssetNumber">Computer Asset Number</label>
-                    <input type="text" name="newUserRequestComputerAssetNumber" id="computerAssetNumber" class="form-control">
+                    <!-- <label for="computerAssetNumber">Computer Asset Number</label>
+                    <input type="text" name="newUserRequestComputerAssetNumber" id="computerAssetNumber" class="form-control"> -->
                     <label for="deskPhone">Desk Phone</label>
                     <input type="phone" name="newUserRequestDeskPhone" id="deskPhone" placeholder="123-456-7890" class="form-control">
-                    <label for="emailType">Email Type</label>
+                    <label for="emailType">Email Account</label>
                     <select name="newUserRequestEmailType" id="emailType" class="form-control" required>
-                        <option value="et0">None</option>
-                        <option value="etg1">G1</option>
-                        <option value="etg3">G3</option>
+                        <option value="et0">No</option>
+                        <option value="etg1">Yes</option>
+                        <!-- <option value="etg3">G3</option> -->
+                    </select>
+                    <label for="emailType">Office Application Type</label>
+                    <select name="newUserRequestEmailType" id="emailType" class="form-control" required>
+                        <option value="et0">Web Only</option>
+                        <option value="etg1">Desktop</option>
+                        <!-- <option value="etg3">G3</option> -->
                     </select>
                     <!-- <label for="monitorOneAssetNumber">Monitor One Asset Number</label>
                     <input type="text" name="newUserRequestMonitorOneAssetNumber" id="monitorOneAssetNumber" class="form-control">
@@ -70,15 +76,18 @@ include "./components/header.php";
                     <label for="printerAssetNumber">Printer Asset Number</label>
                     <input type="text" name="newUserRequestPrinterAssetNumber" id="printerAssetNumber" class="form-control"> -->
                 </div>
-                <div class="form-group">
+                <div class="form-group newUserRequestComments">
+                    <textarea class="newUserRequestComments form-control" cols="40" id="newUserRequestComments" name="newUserRequestComments" placeholder="Put additional comments here, such as info for specific accounts or additional people to notify upon creation." rows="13" title="Additional Comments"></textarea>
+                </div>
+                <div class="form-group employeeAccessRightsHolder">
                     <label for="employeeAccessRights">Employee Access Rights</label>
                     <div id="employeeAccessRights" class="employeeAccessRights">
                         <!-- rendered dynamically by renderEmpAccessChecklist.js -->
                     </div>
                 </div>
-                <div class="form-group newUserRequestComments">
+                <!-- <div class="form-group newUserRequestComments">
                     <textarea class="newUserRequestComments form-control" cols="40" id="newUserRequestComments" name="newUserRequestComments" placeholder="Put additional comments here, such as info for specific accounts or additional people to notify upon creation." rows="5" title="Additional Comments"></textarea>
-                </div>
+                </div> -->
 
                 <div class="form-group dress-right">
                     <button type="button" class="btn btn-primary" id="newUserRequestSubmit" onclick="submitNewAccountRequest()">Submit</button>
@@ -275,5 +284,10 @@ include "./components/header.php";
         border: 1px solid var(--light-fire);
         background-color: var(--dark-fire);
         color: var(--light-fire);
+    }
+
+    .employeeAccessRightsHolder {
+        /* background-color: hotpink; */
+        margin-top: -242px;
     }
 </style>

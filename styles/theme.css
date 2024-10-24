@@ -94,7 +94,9 @@ input {
   /* color: var(--fg); */
   --fg: #dee0e3;
   --bg: var(--black-700);
-  --accent: #7480ff;
+  /* --accent: #7480ff; */
+  /* --accent: #005677; */
+  --accent: #58c9e8;
   --bright: 0.75;
   --highlight: var(--black-400);
 }
@@ -107,6 +109,7 @@ input {
   --bg: var(--white-500);
   --fg: #1b283c;
   --accent: #005677;
+
   --bright: 2;
   --highlight: var(--white-100);
 }
