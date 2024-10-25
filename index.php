@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/23 13:58:41
+// Last modified: 2024/10/25 14:26:31
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -18,10 +18,10 @@ include "./components/header.php"
     let cardIDs = [];
 
     function minimizeCard(id) {
-        console.log(id)
+        // console.log(id)
         cardIDToFromArray(id);
         var card = document.getElementById(id);
-        console.log(card)
+        // console.log(card)
         if (card.classList.contains('minimized-dash-card')) {
             card.classList.remove('minimized-dash-card')
         } else {
@@ -38,23 +38,23 @@ include "./components/header.php"
         if (cardIDs.includes(id)) {
             cardIDs.splice(cardIDs.indexOf(id), 1);
             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-            console.log(cardIDs)
+            // console.log(cardIDs)
         } else {
             cardIDs.push(id);
             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-            console.log(cardIDs)
+            // console.log(cardIDs)
         }
     }
 
     function applyClassOnLoad() {
         cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
-        console.log('cardIDs from local storage')
-        console.log(cardIDs)
+        // console.log('cardIDs from local storage')
+        // console.log(cardIDs)
         if (cardIDs) {
             for (let i = 0; i < cardIDs.length; i++) {
-                console.log(i);
+                // console.log(i);
                 let target = document.getElementById(cardIDs[i])
-                console.log(target)
+                // console.log(target)
                 // target.classList.add('minimized-dash-card')
             }
         }

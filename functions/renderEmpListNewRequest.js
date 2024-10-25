@@ -101,7 +101,7 @@ function reset() {
   document.getElementById("employee-list").classList.add("hidden");
   document.getElementById("newUserRequestForm").classList.add("hidden");
   document.getElementById("disclaimer").classList.remove("hidden");
-  console.log(document.getElementById("disclaimer"));
+  //console.log(document.getElementById("disclaimer"));
   document
     .getElementById("newUserRequestForm")
     .classList.remove("newUserRequestFormShow");

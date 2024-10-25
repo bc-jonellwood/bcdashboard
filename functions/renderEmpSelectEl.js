@@ -10,7 +10,7 @@ async function getAllEmployees() {
     .then((response) => response.json())
     .then((data) => {
       allEmployees = data;
-      console.log(data);
+      // console.log(data);
     });
 }
 

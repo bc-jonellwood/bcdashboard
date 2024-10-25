@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/16 13:47:11
-// Last Modified: 2024/10/25 13:29:20
+// Last Modified: 2024/10/25 14:59:41
 
 include "./components/header.php";
 
@@ -33,7 +33,7 @@ include "./components/header.php";
     </div>
 
     <div class="content">
-        <div id="newUser" class="tabContent" style="display: none;">
+        <form id="newUser" class="tabContent" style="display: none;" action="./API/addNewAccountRequestToDatabase.php" method="post">
             <!-- <h2>New User</h2> -->
             <div class="form-group">
                 <p class="disclaimer" id="disclaimer">An employee must be in this list to submit an account request. If they are not, please check with HR. If they were "just" entered, the data might be syncing across all our systems. Please try again in a 15-20 minutes.</p>
@@ -67,7 +67,7 @@ include "./components/header.php";
                         <option value="oa1">Web Only</option>
                         <option value="oa2">Desktop</option>
                     </select>
-                    <div id="officeApplicationTypeInfo" class="info hidden">
+                    <div id="officeApplicationTypeInfo" class="info">
                         <p>An email account is required for access to the office applications.</p>
                         <p>Select Web Only for users who only need access to the web versions of Office. Select Desktop for users who need installed versions of Office.</p>
                     </div>
@@ -88,7 +88,8 @@ include "./components/header.php";
             </div>
             <div class="errorMessage" id="errorMessage">
             </div>
-        </div>
+            <input type="hidden" name="requestedPermissions" id="requestedPermissions">
+        </form>
 
         <div id="returningUser" class="tabContent" style="display: none;">Please use the "New User" tab as all the information requried is the same. Thanks</div>
         <div id="changeUser" class="tabContent" style="display: none;">Content for Change User</div>
@@ -109,15 +110,15 @@ include "./components/header.php";
             .then(data => {
                 // console.log(data);
                 var current_permissions = data[1].current_permissions;
-                console.log('current_permissions');
-                console.log(current_permissions);
+                //console.log('current_permissions');
+                //console.log(current_permissions);
                 current_permissions.forEach(permission => {
-                    console.log('permission');
-                    console.log(permission);
+                    // console.log('permission');
+                    // console.log(permission);
                     const checkboxId = document.getElementById(permission.sFeatureAccessId);
 
-                    console.log('checkboxId');
-                    console.log(checkboxId);
+                    // console.log('checkboxId');
+                    // console.log(checkboxId);
                     // const checkbox = document.getElementById(checkboxId);
                     checkboxId.checked = true;
                     // checkbox.checked = true;
@@ -187,13 +188,17 @@ include "./components/header.php";
             // get svg inside the officeAppInfoLabel
             var officeAppInfoSvg = officeAppInfoLabel.querySelector('svg');
             var officeApplicationTypeInfo = document.getElementById('officeApplicationTypeInfo');
+
+            var hideTimeout;
+
             officeAppInfoSvg.addEventListener('mouseenter', function() {
-                officeApplicationTypeInfo.classList.remove('hidden');
+                clearTimeout(hideTimeout);
+                officeApplicationTypeInfo.classList.add('show');
             })
             officeAppInfoSvg.addEventListener('mouseleave', function() {
-                setTimeout(function() {
-                    officeApplicationTypeInfo.classList.add('hidden');
-                }, 1000);
+                hideTimeout = setTimeout(function() {
+                    officeApplicationTypeInfo.classList.remove('show');
+                }, 750);
             });
         } catch (error) {
             console.error("An error occurred during initialization: ", error);
@@ -212,9 +217,60 @@ include "./components/header.php";
 </script>
 <script>
     generateAccessChecklist("employeeAccessRights")
-    renderTimeApproverSelectElement('1023');
-    renderTimeApproverSelectElement('1024');
+    renderTimeApproverSelectElement('newUserTimeApprover');
+    renderTimeApproverSelectElement('newUserLeaveApprover');
     renderSetupEqSelect();
+</script>
+
+<script>
+    function validateAndSubmitForm() {
+        let readyToSubmit = true;
+        var errorMessageHolder = document.getElementById('errorMessage');
+        errorMessageHolder.innerHTML = '';
+        var newUserRequestedPermissions = [];
+        const form = document.getElementById("newUser");
+        var employeeAccessRights = document.getElementById('employeeAccessRights');
+        var checkboxes = employeeAccessRights.querySelectorAll('input[type="checkbox"]');
+
+        var timeApprover = document.getElementById('newUserTimeApprover');
+        if (timeApprover.value === '') {
+            errorMessageHolder.innerHTML += "<p>Please select a time approver</p>";
+            readyToSubmit = false;
+        }
+        var leaveApprover = document.getElementById('newUserLeaveApprover');
+        if (leaveApprover.value === '') {
+            errorMessageHolder.innerHTML += "<p>Please select a leave approver</p>";
+            readyToSubmit = false;
+        }
+        var setupEq = document.getElementById('setupEquivalent');
+        if (setupEq.value === '') {
+            errorMessageHolder.innerHTML += "<p>Please select a setup equivalent</p>";
+            readyToSubmit = false;
+        }
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                newUserRequestedPermissions.push(checkbox.value);
+            }
+        });
+        console.log(requestedPermissions);
+        document.getElementById('requestedPermissions').value = JSON.stringify(newUserRequestedPermissions);
+        // const employeeID = document.getElementById("employees").value;
+        // const hiddenInput = document.createElement("input");
+        // hiddenInput.type = "hidden";
+        // hiddenInput.name = "employeeID";
+        // hiddenInput.value = employeeID;
+        // form.appendChild(hiddenInput);
+        // if (employeeID === "") {
+        //     alert("Please select an employee");
+        // }
+
+        if (readyToSubmit === true) {
+            form.submit();
+        } else {
+            errorMessageHolder.innerHTML += "<p>Please do better. I know you can. I believe in you.</p>";
+        }
+    }
 </script>
 <style>
     .main {

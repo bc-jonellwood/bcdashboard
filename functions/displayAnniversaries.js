@@ -66,7 +66,7 @@ async function renderAnniversaries() {
     .then((response) => response.json())
     .then((data) => {
       const groupedEmployees = processEmployees(data);
-      console.log(groupedEmployees);
+      // console.log(groupedEmployees);
       let html = `<table class="table">
                         <tr>
                             <th>Name</th>

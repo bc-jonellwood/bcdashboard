@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/10/16 14:51:01
+// Last modified: 2024/10/25 14:26:31
 include "./components/header.php";
 ?>
 <script>
@@ -27,7 +27,7 @@ include "./components/header.php";
     function filterFunction(inputId, listId) {
         const ulElement = document.getElementById(listId);
         ulElement.classList.remove("hidden");
-        console.log('starting filter');
+        // console.log('starting filter');
         var input, filter, list, items, i;
 
         input = document.getElementById(inputId);

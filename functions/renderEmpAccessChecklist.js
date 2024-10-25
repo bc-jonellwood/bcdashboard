@@ -4,11 +4,11 @@ function generateAccessChecklist(id) {
   fetch("./API/getFeaturesAccessList.php")
     .then((response) => response.json())
     .then((data) => {
-      console.log("features access list");
-      console.log(data);
+      // console.log("features access list");
+      // console.log(data);
       var internal = data[0].internal;
-      console.log("internal");
-      console.log(internal);
+      // console.log("internal");
+      // console.log(internal);
       var external = data[1].external;
       var html = `
       <span>My Berkeley Applications</span>
@@ -93,7 +93,7 @@ function resetChecklist() {
       checkbox.checked = false;
     });
 
-    console.log("All checkboxes have been unchecked successfully.");
+    // console.log("All checkboxes have been unchecked successfully.");
   } catch (error) {
     console.error(
       "An error occurred while unchecking checkboxes:",

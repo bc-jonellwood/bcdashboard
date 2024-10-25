@@ -6,7 +6,7 @@ function getFeatureAccessList() {
   fetch("./API/getFeaturesAccessList.php")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       var html = "";
       html += `
         <form action="" method="POST" id="featureAccessForm">

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/18 14:23:21
-// Last modified: 2024/10/18 15:31:20
+// Last modified: 2024/10/25 15:14:21
 include_once "../data/appConfig.php";
 
 $dbconf = new appConfig;
@@ -22,14 +22,21 @@ $data = json_decode(file_get_contents('php://input'), true);
 $newRequestEmpNumber = $data[0]['newRequestEmpNumber'];
 $timeApprover = $data[1]['timeApprover'];
 $leaveApprover = $data[2]['leaveApprover'];
-$compAssetNumber = $data[3]['compAssetNumber'];
-$deskPhone = $data[4]['deskPhone'];
-$emailType = $data[5]['emailType'];
+// $compAssetNumber = $data[3]['compAssetNumber'];
+$deskPhone = $data[3]['deskPhone'];
+$emailType = $data[4]['emailType'];
+$officeApplicationType = $data[5]['officeApplicationType'];
 $accessRights = $data[6]['accessRightsList'];
 $requestComments = $data[7]['requestComments'];
 $requestType = $data[8]['requestType'];
 $userId = $data[9]['newRequestUserId'];
 
+
+// we need to first remove the old access rights and then write the new ones
+$sql = "DELETE FROM data_features_access_users WHERE sUserId = '$userId'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+// noew we can write the new ones to the database
 foreach ($accessRights as $access) {
     foreach ($access as $key => $value) {
         $sql = "INSERT into data_features_access_users (sUserId, sFeatureAccessId) VALUES ('$userId', '$key')";
@@ -42,12 +49,12 @@ foreach ($accessRights as $access) {
 
 
 
-// echo $newRequestEmpNumber;
-// echo $leaveApprover;
-// echo $timeApprover;
-// echo $deskPhone;
-// echo $compAssetNumber;
-// echo $requestComments;
-// echo $emailType;
-// echo $requestType;
+echo $newRequestEmpNumber;
+echo $leaveApprover;
+echo $timeApprover;
+echo $deskPhone;
+echo $requestComments;
+echo $emailType;
+echo $officeApplicationType;
+echo $requestType;
 // echo $accessRights;

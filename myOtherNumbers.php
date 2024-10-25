@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 13:03:31
+// Last modified: 2024/10/25 14:26:31
 
 include "./components/header.php"
 ?>
@@ -45,7 +45,7 @@ include "./components/header.php"
 
         if (!stickyHeader) {
             // Sticky header not yet rendered, retry after 1 second
-            console.log('sticky-header not found, waiting...');
+            // console.log('sticky-header not found, waiting...');
             setTimeout(() => waitForStickyHeader(callback), 1000);
         } else {
             // sticky-header found, proceed with the callback
@@ -56,7 +56,7 @@ include "./components/header.php"
     function getListItems(callback) {
         const listItems = document.querySelectorAll('.first-initial');
         if (listItems.length === 0) {
-            console.log('No list items found, retrying in 1 second...');
+            // console.log('No list items found, retrying in 1 second...');
             setTimeout(() => getListItems(callback), 1000); // Retry after 1 second
         } else {
             //console.log(listItems); // List items are found

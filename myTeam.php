@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/16 09:22:27
+// Last modified: 2024/10/25 14:26:31
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -86,7 +86,7 @@ include "./components/header.php"
         await fetch('./API/getTeam.php')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 let html = "";
                 for (var i = 0; i < data.length; i++) {
                     let favColor = getRandomColorName();

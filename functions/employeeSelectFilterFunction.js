@@ -1,7 +1,7 @@
 function filterFunction(inputId, listId) {
   const ulElement = document.getElementById(listId);
   ulElement.classList.remove("hidden");
-  console.log("starting filter");
+  // console.log("starting filter");
   var input, filter, list, items, i;
 
   input = document.getElementById(inputId);

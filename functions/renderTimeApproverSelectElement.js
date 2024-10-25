@@ -1,5 +1,10 @@
 function renderTimeApproverSelectElement(id) {
-  fetch("./API/getTimeApprovers.php?sFeatureAccessId=" + id)
+  if (id == "newUserTimeApprover") {
+    aid = "1023";
+  } else if (id == "newUserLeaveApprover") {
+    aid = "1024";
+  }
+  fetch("./API/getTimeApprovers.php?sFeatureAccessId=" + aid)
     .then((response) => response.json())
     .then((data) => {
       var html = "<option value=''>Select Approver</option>";
