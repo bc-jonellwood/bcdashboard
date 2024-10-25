@@ -437,6 +437,34 @@ h6 {
   text-transform: capitalize;
   font-size: xx-large;
 }
+
+.hasInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  anchor-name: --info;
+}
+.info {
+  position: absolute;
+  position-anchor: --info;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: medium;
+  width: 35em;
+  top: anchor(right);
+  background-color: var(--fg);
+  color: var(--bg);
+  margin-top: -2em;
+  padding: 10px;
+  border-radius: 7px;
+  box-shadow: 0 4px 6px -1px var(--accent), 0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
 #anniversariesContent {
   --yr1: #fbbb04;
   --yr2: #c42021;

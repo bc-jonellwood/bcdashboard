@@ -4,7 +4,8 @@ function generateAccessChecklist(id) {
   fetch("./API/getFeaturesAccessList.php")
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
+      console.log("features access list");
+      console.log(data);
       var internal = data[0].internal;
       console.log("internal");
       console.log(internal);
@@ -28,17 +29,17 @@ function generateAccessChecklist(id) {
       html +=
         "<ul class='access-rights-checklist' id='external-access-rights-checklist'>";
 
-      for (var i = 0; i < external.length; i++) {
+      for (var j = 0; j < external.length; j++) {
         html += `<li> 
-        <label for="${external[i].id}"> 
-          <input type="checkbox" name="${external[i].sNameAndAccess}" id="${
-          external[i].id
-        }" value="${external[i].id}" /> ${removeLoDash(
-          external[i].sNameAndAccess
+        <label for="${external[j].id}"> 
+          <input type="checkbox" name="${external[j].sNameAndAccess}" id="${
+          external[j].id
+        }" value="${external[j].id}" /> ${removeLoDash(
+          external[j].sNameAndAccess
         )}</label>
         </li>`;
       }
-      html += `<br/><button type="button" class="btn btn-warning btn-sm" onclick="resetChecklist()">Reset Checklist</button>`;
+      html += `</ul><button type="button" class="btn btn-warning btn-sm" onclick="resetChecklist()">Reset Checklist</button>`;
       document.getElementById(id).innerHTML = html;
     });
 }

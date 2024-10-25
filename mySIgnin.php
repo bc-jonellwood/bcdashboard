@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/10/24 09:47:13
+// Last modified: 2024/10/25 09:17:59
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -114,6 +114,7 @@ if (isset($_POST['sUserName'])) {
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/theme.css">
     <link rel="icon" href="favicons/favicon-32x32.png">
+    <!-- <link rel="icon" href="favicons/favicon.ico"> -->
 
 </head>
 

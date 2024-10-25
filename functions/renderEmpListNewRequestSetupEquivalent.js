@@ -1,11 +1,12 @@
 let allEqEmployees = [];
 
+// fetches list of users that have access rights to at least one feature. This keeps the list of employees as small as possible.
 async function getAllEmployees() {
-  await fetch("./API/getAllCurrentEmployeesAndUsers.php")
+  await fetch("./API/getAllCurrentEmployeesAndUsersWithAccess.php")
     .then((response) => response.json())
     .then((data) => {
       allEqEmployees = data;
-      // console.log(data);
+      console.log(data);
     });
 }
 
@@ -16,8 +17,8 @@ async function getAllEmployees() {
  */
 function sortEmployeesByLastName(employees) {
   return employees.sort((a, b) => {
-    const lastNameA = a.sLastName.toLowerCase();
-    const lastNameB = b.sLastName.toLowerCase();
+    const lastNameA = a.sFirstName.toLowerCase();
+    const lastNameB = b.sFirstName.toLowerCase();
 
     if (lastNameA < lastNameB) {
       return -1;
