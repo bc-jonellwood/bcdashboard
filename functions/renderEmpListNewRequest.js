@@ -66,8 +66,9 @@ async function selectAsNewUser(
   newUserRequestForm.classList.add("newUserRequestFormShow");
   var html = `
    <button class="btn btn-warning" onclick="reset()">Start Over</button>
-        <div class="selected-holder">
-        <input type="hidden" name="newUserId" id="newUserId" value="${userId}">
+      <div class="selected-holder">
+        <input type="hidden" name="newUserEmployeeNumber" id="newUserEmployeeNumber" value="${employeeNumber}">
+        <input type="hidden" name="newRequestUserId" id="newRequestUserId" value="${userId}">
             <span class="d-flex justify-content-start flex-row">Selected: ${
               firstName.toLowerCase() ? firstName.toLowerCase().trim() : " "
             } ${

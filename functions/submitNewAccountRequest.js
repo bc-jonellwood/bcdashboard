@@ -37,20 +37,27 @@ function getCheckedAccessRights() {
   return accessRights;
 }
 
-function submitNewAccountRequest() {
+function submitNewAccountRequest(url) {
   // init empty array to hold the values we gonna send that backend
   var formData = [];
+  // formData.push({
+  //   url: url,
+  // });
   // reset the error message if present
   const errorHolder = document.getElementById("errorMessage");
   errorHolder.innerHTML = "";
   errorHolder.classList.remove("activeError");
-  const newRequestEmpNumber = document.getElementById(
-    "newUserRequestEmployeeNumber"
-  ).textContent;
-  const userId = document.getElementById("newUserId").value;
+  // const newRequestEmpNumber = document.getElementById(
+  //   "newUserRequestEmployeeNumber"
+  // ).textContent;
+  const newUserEmployeeNumber = document.getElementById(
+    "newUserEmployeeNumber"
+  ).value;
+  const newRequestUserId = document.getElementById("newRequestUserId").value;
   const timeApprover = document.getElementById("newUserTimeApprover").value;
   const leaveApprover = document.getElementById("newUserLeaveApprover").value;
-  const setupEq = document.getElementById("setupEquivalent").value;
+  const newUserRequestSetupEquivalent =
+    document.getElementById("setupEquivalent").value;
   // const compAssetNumber = document.getElementById("computerAssetNumber").value;
   const deskPhone = document.getElementById("deskPhone").value;
   const emailType = document.getElementById("emailType").value;
@@ -66,41 +73,49 @@ function submitNewAccountRequest() {
   if (timeApprover == "" || leaveApprover == "") {
     errormessage += "<p>Please select an approver.<p/>";
   }
-  if (!setupEq) {
+  if (!newUserRequestSetupEquivalent) {
     errormessage += "<p>Please select a setup equivalent</p>";
   }
 
   if (errormessage == "") {
     // console.log("No errors");
-    newRequestEmpNumber
-      ? formData.push({ newRequestEmpNumber: newRequestEmpNumber })
+    newUserEmployeeNumber
+      ? formData.push({ newUserEmployeeNumber: newUserEmployeeNumber })
       : "";
-    timeApprover ? formData.push({ timeApprover: timeApprover }) : "";
-    leaveApprover ? formData.push({ leaveApprover: leaveApprover }) : "";
-    // compAssetNumber
-    //   ? formData.push({ compAssetNumber: compAssetNumber })
-    //   : formData.push({ compAssetNumber: "None" });
+    newRequestUserId
+      ? formData.push({ newRequestUserId: newRequestUserId })
+      : "";
+    timeApprover ? formData.push({ newUserTimeApprover: timeApprover }) : "";
+    leaveApprover ? formData.push({ newUserLeaveApprover: leaveApprover }) : "";
+    newUserRequestSetupEquivalent
+      ? formData.push({
+          newUserRequestSetupEquivalent: newUserRequestSetupEquivalent,
+        })
+      : "";
+
     deskPhone
-      ? formData.push({ deskPhone: deskPhone })
-      : formData.push({ deskPhone: "None" });
-    formData.push({ emailType: emailType });
+      ? formData.push({ newUserRequestDeskPhone: deskPhone })
+      : formData.push({ newUserRequestDeskPhone: "None" });
+    formData.push({ newUserRequestEmailType: emailType });
     formData.push({
-      officeApplicationType: officeApplicationType,
+      newUserRequestOfficeApplicationType: officeApplicationType,
     });
     if (accessRightsList.length > 0) {
-      formData.push({ accessRightsList: accessRightsList });
+      formData.push({ newUserRequestPermissions: accessRightsList });
     } else {
-      formData.push({ accessRightsList: "None" });
+      formData.push({ newUserRequestPermissions: "None" });
     }
     requestComments
-      ? formData.push({ requestComments: requestComments })
-      : formData.push({ requestComments: "None" });
-    formData.push({ requestType: "new_returning_user" });
-    userId
-      ? formData.push({ newRequestUserId: userId })
-      : formData.push({ newRequestUserId: "None" });
+      ? formData.push({ newUserRequestComments: requestComments })
+      : formData.push({ newUserRequestComments: "None" });
+    formData.push({ requestType: 500 });
+    // userId
+    //   ? formData.push({ newRequestUserId: userId })
+    //   : formData.push({ newRequestUserId: "None" });
     // document.getElementById("newUserRequestForm").submit();
-    fetch("./API/addAccountRequest.php", {
+    // fetch("./API/addAccountRequest.php", {
+    console.log(formData);
+    fetch("./" + url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +123,15 @@ function submitNewAccountRequest() {
       body: JSON.stringify(formData),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        if (data.status == "success") {
+          window.location.href = `success.php`;
+        } else {
+          errorHolder.innerHML = `<p>${data.status.error.message}</p>`;
+          errorHolder.classList.add("activeError");
+        }
+      })
       .catch((error) => console.error(error))
       .then((error) => {
         errorHolder.innerHML = `<p>${error}</p>`;

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/16 13:47:11
-// Last Modified: 2024/10/25 14:59:41
+// Last Modified: 2024/10/28 15:22:50
 
 include "./components/header.php";
 
@@ -83,7 +83,7 @@ include "./components/header.php";
                 </div>
 
                 <div class="form-group dress-right">
-                    <button type="button" class="btn btn-primary" id="newUserRequestSubmit" onclick="submitNewAccountRequest()">Submit</button>
+                    <button type="button" class="btn btn-primary" id="newUserRequestSubmit" onclick="submitNewAccountRequest('API/addNewAccountRequestToDatabase.php')">Submit</button>
                 </div>
             </div>
             <div class="errorMessage" id="errorMessage">
@@ -131,6 +131,7 @@ include "./components/header.php";
 <script>
     function setOfficeApplicationType(val) {
         // console.log(val)
+        var networkCheckbox = document.getElementById('1026');
         var officeAppTypeLabel = document.getElementById('officeApplicationTypeLabel');
         var officeAppTypeSelect = document.getElementById('officeApplicationType');
         if (val === 'et1') {
@@ -138,11 +139,13 @@ include "./components/header.php";
             officeAppTypeSelect.classList.remove('disabled');
             officeAppTypeSelect.disabled = false;
             officeAppTypeSelect.value = 'oa1';
+            networkCheckbox.checked = true;
         } else {
             officeAppTypeLabel.classList.add('disabled');
             officeAppTypeSelect.classList.add('disabled');
             officeAppTypeSelect.disabled = true;
             officeAppTypeSelect.value = 'oa0';
+            networkCheckbox.checked = false;
         }
     }
 </script>
@@ -223,54 +226,54 @@ include "./components/header.php";
 </script>
 
 <script>
-    function validateAndSubmitForm() {
-        let readyToSubmit = true;
-        var errorMessageHolder = document.getElementById('errorMessage');
-        errorMessageHolder.innerHTML = '';
-        var newUserRequestedPermissions = [];
-        const form = document.getElementById("newUser");
-        var employeeAccessRights = document.getElementById('employeeAccessRights');
-        var checkboxes = employeeAccessRights.querySelectorAll('input[type="checkbox"]');
+    // function validateAndSubmitForm() {
+    //     let readyToSubmit = true;
+    //     var errorMessageHolder = document.getElementById('errorMessage');
+    //     errorMessageHolder.innerHTML = '';
+    //     var newUserRequestedPermissions = [];
+    //     const form = document.getElementById("newUser");
+    //     var employeeAccessRights = document.getElementById('employeeAccessRights');
+    //     var checkboxes = employeeAccessRights.querySelectorAll('input[type="checkbox"]');
 
-        var timeApprover = document.getElementById('newUserTimeApprover');
-        if (timeApprover.value === '') {
-            errorMessageHolder.innerHTML += "<p>Please select a time approver</p>";
-            readyToSubmit = false;
-        }
-        var leaveApprover = document.getElementById('newUserLeaveApprover');
-        if (leaveApprover.value === '') {
-            errorMessageHolder.innerHTML += "<p>Please select a leave approver</p>";
-            readyToSubmit = false;
-        }
-        var setupEq = document.getElementById('setupEquivalent');
-        if (setupEq.value === '') {
-            errorMessageHolder.innerHTML += "<p>Please select a setup equivalent</p>";
-            readyToSubmit = false;
-        }
+    //     var timeApprover = document.getElementById('newUserTimeApprover');
+    //     if (timeApprover.value === '') {
+    //         errorMessageHolder.innerHTML += "<p>Please select a time approver</p>";
+    //         readyToSubmit = false;
+    //     }
+    //     var leaveApprover = document.getElementById('newUserLeaveApprover');
+    //     if (leaveApprover.value === '') {
+    //         errorMessageHolder.innerHTML += "<p>Please select a leave approver</p>";
+    //         readyToSubmit = false;
+    //     }
+    //     var setupEq = document.getElementById('setupEquivalent');
+    //     if (setupEq.value === '') {
+    //         errorMessageHolder.innerHTML += "<p>Please select a setup equivalent</p>";
+    //         readyToSubmit = false;
+    //     }
 
-        checkboxes.forEach(function(checkbox) {
-            if (checkbox.checked) {
-                newUserRequestedPermissions.push(checkbox.value);
-            }
-        });
-        console.log(requestedPermissions);
-        document.getElementById('requestedPermissions').value = JSON.stringify(newUserRequestedPermissions);
-        // const employeeID = document.getElementById("employees").value;
-        // const hiddenInput = document.createElement("input");
-        // hiddenInput.type = "hidden";
-        // hiddenInput.name = "employeeID";
-        // hiddenInput.value = employeeID;
-        // form.appendChild(hiddenInput);
-        // if (employeeID === "") {
-        //     alert("Please select an employee");
-        // }
+    //     checkboxes.forEach(function(checkbox) {
+    //         if (checkbox.checked) {
+    //             newUserRequestedPermissions.push(checkbox.value);
+    //         }
+    //     });
+    //     console.log(requestedPermissions);
+    //     document.getElementById('requestedPermissions').value = JSON.stringify(newUserRequestedPermissions);
+    //     // const employeeID = document.getElementById("employees").value;
+    //     // const hiddenInput = document.createElement("input");
+    //     // hiddenInput.type = "hidden";
+    //     // hiddenInput.name = "employeeID";
+    //     // hiddenInput.value = employeeID;
+    //     // form.appendChild(hiddenInput);
+    //     // if (employeeID === "") {
+    //     //     alert("Please select an employee");
+    //     // }
 
-        if (readyToSubmit === true) {
-            form.submit();
-        } else {
-            errorMessageHolder.innerHTML += "<p>Please do better. I know you can. I believe in you.</p>";
-        }
-    }
+    //     if (readyToSubmit === true) {
+    //         form.submit();
+    //     } else {
+    //         errorMessageHolder.innerHTML += "<p>Please do better. I know you can. I believe in you.</p>";
+    //     }
+    // }
 </script>
 <style>
     .main {

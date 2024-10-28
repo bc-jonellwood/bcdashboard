@@ -1,6 +1,6 @@
 <?php
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/10/14 14:31:54
+// Last modified: 2024/10/28 14:58:34
 
 include_once "../data/appConfig.php";
 
@@ -23,7 +23,7 @@ $sUserId = $_GET['userId'];
 // echo $sUserId;
 $data = [];
 
-$sql = "SELECT id, sNameAndAccess from data_features_and_access";
+$sql = "SELECT id, sNameAndAccess from data_features_and_access where bIsActive = 1";
 
 try {
     $stmt = $conn->prepare($sql);
@@ -44,7 +44,7 @@ $userSql = "SELECT dfu.id
       ,dfa.sNameAndAccess 
   FROM data_features_access_users dfu
   JOIN data_features_and_access dfa on dfa.id = dfu.sFeatureAccessId
-  WHERE dfu.sUserId = '" . $sUserId . "'";
+  WHERE dfu.sUserId = '" . $sUserId . "' AND dfa.bIsActive = 1";
 
 try {
     $stmt = $conn->prepare($userSql);

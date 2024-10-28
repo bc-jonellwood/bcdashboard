@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/24 10:24:24
+// Last modified: 2024/10/28 13:54:45
 
 include_once "../data/appConfig.php";
 
@@ -21,7 +21,7 @@ try {
 $data = [];
 $internal = [];
 $external = [];
-$sql = "SELECT id, sNameAndAccess, bIsExternal from data_features_and_access";
+$sql = "SELECT id, sNameAndAccess, bIsExternal from data_features_and_access where bIsActive = 1";
 
 try {
     $stmt = $conn->prepare($sql);
