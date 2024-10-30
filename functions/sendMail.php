@@ -1,6 +1,15 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Composers Autoloader
+require 'vendor/autoload.php';
 function sendmail($to, $subject, $jsonData)
 {
+
+    $mail = new PHPMailer(true);
 
     // decode the json and make sure its good
     $data = json_decode($jsonData, true);
@@ -9,18 +18,24 @@ function sendmail($to, $subject, $jsonData)
     }
 
     // somehow figure out how to send the data we want and not the data we dont want
-    $body = "An account request has been submitted:\n\n";
-    foreach ($data as $key => $value) {
-        $body .= ucfirst($key) . ": " . htmlspecialchars($value) . "\n";
-    }
+    try {
+        $mail = new PHPMailer;
+        $mail->IsSMTP();
+        $mail->Host = "smtp.berkeleycountysc.gov";
+        $mail->Host = "10.50.10.10";
+        $mail->Port = 25;
+        $mail->SMTPAuth = false;
+        $mail->SMTPAutoTLS = false;
 
-    $headers = "From: dashboard@berkekeleycountysc.gov\r\n" .
-        "Reply-To: no-reply@berkeleycountysc.gov\r\n" .
-        "X-Mailer: PHP/" . phpversion();
-
-    // Attempt to send the mail
-    if (!mail($to, $subject, $body, $headers)) {
-        throw new Exception('Email could be sent');
+        $mail->setFrom('noreply@berkeleycountysc.gov', 'myBerkeley');
+        $mail->addAddress($to);
+        $mail->Subject = $subject;
+        $mail->Body = '';
+        foreach ($data as $key => $value) {
+            $mail->Body .= $value;
+        }
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-    echo "Email was sent to $to with subject: $subject";
 }

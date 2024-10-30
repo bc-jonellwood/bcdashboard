@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Elected Officials Table Documentation</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="icon" href="../favicons/favicon.ico">
+</head>
+
+<body>
+    <h1>Table: <code>data_elected_officials</code></h1>
+    <p>This table stores detailed information about elected officials within the Berkeley County and surrounding areas.
+        Each field is defined below, along with the suggested queryable values for specific fields.</p>
+
+    <h2>Columns</h2>
+    <ol>
+        <li><strong>id</strong> (uniqueidentifier, NOT NULL)
+            <ul>
+                <li>Unique identifier for each elected official.</li>
+            </ul>
+        </li>
+
+        <li><strong>sFullName</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>Full name of the elected official.</li>
+                <li>Example: "Jane Doe"</li>
+            </ul>
+        </li>
+
+        <li><strong>dtElectedDate</strong> (date, NULL)
+            <ul>
+                <li>Date the official was elected.</li>
+                <li>Example: "2023-11-05"</li>
+            </ul>
+        </li>
+
+        <li><strong>dtTermEnds</strong> (date, NULL)
+            <ul>
+                <li>Date the current term ends.</li>
+                <li>Example: "2027-11-04"</li>
+            </ul>
+        </li>
+
+        <li><strong>sWebsiteLink</strong> (nvarchar(max), NULL)
+            <ul>
+                <li>Link to the official's website, if available.</li>
+                <li>Example: <a
+                        href="https://www.example.com/official-profile">https://www.example.com/official-profile</a>
+                </li>
+            </ul>
+        </li>
+
+        <li><strong>sEmailAddress</strong> (nvarchar(255), NULL)
+            <ul>
+                <li>Official's contact email address.</li>
+                <li>Example: <a href="mailto:official@example.com">official@example.com</a></li>
+            </ul>
+        </li>
+
+        <li><strong>sPhoneNumber</strong> (nvarchar(50), NULL)
+            <ul>
+                <li>Official's phone number.</li>
+                <li>Example: "843-123-4567"</li>
+            </ul>
+        </li>
+
+        <li><strong>sPosition</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>Position or title held by the official.</li>
+                <li>Queryable Values Examples: "Mayor", "City Council Member", "County Supervisor", "Coroner", "State
+                    Senator", "US Representative"</li>
+            </ul>
+        </li>
+
+        <li><strong>sOfficeType</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>General type of office or government level.</li>
+                <li>Queryable Values Examples: "Municipal", "County", "State"</li>
+            </ul>
+        </li>
+
+        <li><strong>sOfficeLocation</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>Physical location or office where the official works.</li>
+                <li>Example: "District 1, City of North Charleston"</li>
+            </ul>
+        </li>
+
+        <li><strong>sMunicipality</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>Municipality (e.g., city or town) that the official represents or serves.</li>
+                <li>Example: "City of Goose Creek"</li>
+            </ul>
+        </li>
+
+        <li><strong>sCounty</strong> (nvarchar(125), NULL)
+            <ul>
+                <li>County where the official’s jurisdiction lies.</li>
+                <li>Example: "Berkeley, Charleston"</li>
+            </ul>
+        </li>
+
+        <li><strong>bIsActive</strong> (tinyint, NULL)
+            <ul>
+                <li>Indicates if the official is currently active (1 = Active, 0 = Inactive).</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Querying Tips</h2>
+    <ul>
+        <li><strong>Query by Position</strong>: Use the <code>sPosition</code> field to find officials with specific
+            roles, such as "Mayor" or "County Supervisor."</li>
+        <li><strong>Query by Office Type</strong>: Use <code>sOfficeType</code> to find officials based on government
+            level, like "County Government" or "State Government."</li>
+        <li><strong>Query by Location</strong>: To find officials by city or county, use the <code>sMunicipality</code>
+            and <code>sCounty</code> fields respectively.</li>
+        <li><strong>Filter by Active Status</strong>: Use <code>bIsActive</code> to filter for officials who are
+            currently active (<code>bIsActive = 1</code>).</li>
+    </ul>
+</body>
+
+</html>
+

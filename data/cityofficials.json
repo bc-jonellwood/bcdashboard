@@ -1,0 +1,310 @@
+{
+	"Bonneau": {
+		"Councilmember": [
+			{
+				"name": "Joseph R. Brunson II",
+				"url": "http://www.townofbonneau.com/"
+			},
+			{
+				"name": "Allen E. June",
+				"url": "http://www.townofbonneau.com/"
+			},
+			{
+				"name": "Deborah Thomas",
+				"url": "http://www.townofbonneau.com/"
+			},
+			{
+				"name": "James M. Ward",
+				"url": "http://www.townofbonneau.com/"
+			}
+		],
+		"Mayor": {
+			"name": "Rembert Wrenn",
+			"url": "http://www.townofbonneau.com/"
+		}
+	},
+	"Charleston": {
+		"Councilmember": [
+			{
+				"name": "Boyd Gregg",
+				"url": "https://charleston-sc.gov/471/District-One-Councilmember"
+			},
+			{
+				"name": "Kevin Shealy",
+				"url": "https://charleston-sc.gov/1129/District-Two-Councilmember"
+			},
+			{
+				"name": "Jim McBride",
+				"url": "https://charleston-sc.gov/473/District-Three-Councilmember"
+			},
+			{
+				"name": "Robert M. Mitchell",
+				"url": "https://charleston-sc.gov/474/District-Four-Councilmember"
+			},
+			{
+				"name": "Karl L. Brady, Jr.",
+				"url": "https://charleston-sc.gov/475/District-Five-Councilmember"
+			},
+			{
+				"name": "William Dudley Gregorie",
+				"url": "https://charleston-sc.gov/476/District-Six-Councilmember"
+			},
+			{
+				"name": "Perry K. Waring",
+				"url": "https://charleston-sc.gov/477/District-Seven-Councilmember"
+			},
+			{
+				"name": "Michael S. Seekings",
+				"url": "https://charleston-sc.gov/478/District-Eight-Councilmember"
+			},
+			{
+				"name": "William Tinkler",
+				"url": "https://charleston-sc.gov/479/District-Nine-Councilmember"
+			},
+			{
+				"name": "Stephen Bowden",
+				"url": "https://charleston-sc.gov/480/District-Ten-Councilmember"
+			},
+			{
+				"name": "Ross A.Appel",
+				"url": "https://charleston-sc.gov/481/District-Eleven-Councilmember"
+			},
+			{
+				"name": "Caroline Parker",
+				"url": "https://charleston-sc.gov/482/District-Twelve-Councilmember"
+			}
+		],
+		"Mayor": {
+			"name": "William Scott Cogswell Jr.",
+			"url": "https://charleston-sc.gov/400/Mayor"
+		}
+	},
+	"Goose Creek": {
+		"Councilmember": [
+			{
+				"name": "Hannah Cox",
+				"url": "https://www.cityofgoosecreek.com/staff/hannah-cox"
+			},
+			{
+				"name": "Melissa Enos",
+				"url": "https://www.cityofgoosecreek.com/staff/melissa-enos-sims"
+			},
+			{
+				"name": "Debra Green-Fletcher",
+				"url": "https://www.cityofgoosecreek.com/staff/debra-green-fletcher"
+			},
+			{
+				"name": "Christopher Lynn Harmon",
+				"url": "https://www.cityofgoosecreek.com/staff/christopher-harmon"
+			},
+			{
+				"name": "Gayla McSwain",
+				"url": "https://www.cityofgoosecreek.com/staff/gayla-mcswain"
+			},
+			{
+				"name": "Jerry Tekac",
+				"url": "https://www.cityofgoosecreek.com/staff/jerry-tekac"
+			}
+		],
+		"Mayor": {
+			"name": "Greg S. Habib",
+			"url": "https://www.cityofgoosecreek.com/staff/gregory-habib"
+		}
+	},
+	"Hanahan": {
+		"Councilmember": [
+			{
+				"name": "Ken Boggs",
+				"url": "https://www.cityofhanahan.com/directory-listing/ken-boggs"
+			},
+			{
+				"name": "Jeff C Chandler",
+				"url": "https://www.cityofhanahan.com/directory-listing/jeff-chandler"
+			},
+			{
+				"name": "Mike Dyson",
+				"url": "https://www.cityofhanahan.com/directory-listing/mike-dyson"
+			},
+			{
+				"name": "Keven Hedgpeth",
+				"url": "https://www.cityofhanahan.com/directory-listing/kevin-hedgpeth"
+			},
+			{
+				"name": "Michael Sally",
+				"url": "https://www.cityofhanahan.com/directory-listing/michael-sally"
+			},
+			{
+				"name": "Adam Spurlock",
+				"url": "https://www.cityofhanahan.com/directory-listing/adam-spurlock"
+			}
+		],
+		"Mayor": {
+			"name": "Christie Rainwater",
+			"url": "https://www.cityofhanahan.com/directory-listing/christie-rainwater"
+		}
+	},
+	"Jamestown": {
+		"Councilmember": [
+			{
+				"name": "Jimmie Callum",
+				"url": "https://www.masc.sc/municipality/jamestown"
+			},
+			{
+				"name": "John Madray",
+				"url": "https://www.masc.sc/municipality/jamestown"
+			},
+			{
+				"name": "Patsy Litchfield",
+				"url": "https://www.masc.sc/municipality/jamestown"
+			}
+		],
+		"Mayor": {
+			"name": "Roy P. Pipkin",
+			"url": "https://www.masc.sc/municipality/jamestown"
+		}
+	},
+	"Moncks Corner": {
+		"Councilmember": [
+			{
+				"name": "David A. Dennis Jr.",
+				"url": "https://monckscornersc.gov/elected/david-a-dennis"
+			},
+			{
+				"name": "DeWayne G. Kitts",
+				"url": "https://monckscornersc.gov/elected/dewayne-kitts"
+			},
+			{
+				"name": "James N. Law Jr.",
+				"url": "https://monckscornersc.gov/elected/james-n-law"
+			},
+			{
+				"name": "Latorie S. Lloyd",
+				"url": "https://monckscornersc.gov/elected/latorie-s-lloyd"
+			},
+			{
+				"name": "Chadwick D. Sweatman",
+				"url": "https://monckscornersc.gov/elected/chad-sweatman"
+			},
+			{
+				"name": "James Bryan Ware III",
+				"url": "https://monckscornersc.gov/elected/james-bryan-ware-iii"
+			}
+		],
+		"Mayor": {
+			"name": "Thomas Hamilton Jr.",
+			"url": "https://monckscornersc.gov/elected/thomas-hamilton-jr"
+		}
+	},
+	"North Charleston": {
+		"Councilmember": [
+			{
+				"name": "Nefertiti Brown",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Michael Antonio Brown",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Michael Brown",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Brandon Hudson",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Jerome Heyward",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Sandino S. Moses",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Rhonda Jerome",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Charmaine Palmer-Roberts",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			},
+			{
+				"name": "Kenneth L. Skipper",
+				"url": "https://www.northcharleston.org/government/city-council/city-council-members-and-districts/"
+			}
+		],
+		"Mayor": {
+			"name": "Reggie Burgess",
+			"url": "https://www.northcharleston.org/government/office-of-the-mayor/"
+		}
+	},
+	"St Stephen": {
+		"Councilmember": [
+			{
+				"name": "Robbie Ballentine",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			},
+			{
+				"name": "Louis Brown",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			},
+			{
+				"name": "Byron Norris McKelvey",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			},
+			{
+				"name": "Roderick Sumpter",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			},
+			{
+				"name": "Stanley Tucker",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			},
+			{
+				"name": "Winston D. Williams",
+				"url": "https://www.ststephensc.gov/elected-officials"
+			}
+		],
+		"Mayor": {
+			"name": "John W. Rivers",
+			"url": "https://www.ststephensc.gov/elected-officials"
+		}
+	},
+	"Summerville": {
+		"Councilmember": [
+			{
+				"name": "Aaron Brown",
+				"url": "https://summervillesc.gov/268/Council-District-1---Aaron-Brown"
+			},
+			{
+				"name": "Kima Garten-Schmidt",
+				"url": "https://summervillesc.gov/272/Council-District-5---Kima-Garten-Schmidt"
+			},
+			{
+				"name": "Robert J. Jackson",
+				"url": "https://summervillesc.gov/273/Council-District-6---Bob-Jackson"
+			},
+			{
+				"name": "Terry Jenkins",
+				"url": "https://summervillesc.gov/253/Elected-Officials"
+			},
+			{
+				"name": "Tiffany Johnson-Wilson",
+				"url": "https://summervillesc.gov/593/Council-District-2---Tiffany-Johnson-Wil"
+			},
+			{
+				"name": "Richard George Waring IV",
+				"url": "https://summervillesc.gov/271/Council-District-4---Richard-G-Waring-IV"
+			},
+			{
+				"name": "Matt Halter",
+				"url": "https://summervillesc.gov/621/Council-District-3---Matt-Halter"
+			}
+		],
+		"Mayor": {
+			"name": "Russ Touchberry",
+			"url": "https://summervillesc.gov/270/Mayor---Russ-Touchberry"
+		}
+	}
+}

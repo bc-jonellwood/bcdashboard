@@ -1,0 +1,39 @@
+{
+	"Bonneau":{
+		"Mayor": "Rembert Wrenn",
+		"Councilmember": ["Joseph R. Brunson II","Allen E. June","Deborah Thomas","James M. Ward"]
+	},
+	"Charleston":{
+		"Mayor": "John Joseph Tecklenburg",
+		"Councilmember": ["Ross A. Appel","Karl L. Brady Jr.","Marie J. Delcioppo","William Dudley Gregorie","Harry Griffin","Carol A. Jackson","* Robert Mitchell","Jason Sakran","Michael S. Seekings","Peter A. Shahid","Kevin Shealy","Perry K. Waring"]
+	},
+	"Goose Creek":{
+		"Mayor": "Greg S. Habib",
+		"Councilmember": ["Kevin M. Condon","Debra Green-Fletcher","Christopher Lynn Harmon","Corey D. McClary","Gayla McSwain","Jerry Tekac"]
+	},
+	"Hanahan":{
+		"Mayor": "Christie Rainwater",
+		"Councilmember": ["Jeff C. Chandler","Mike Dyson","Kevin Hedgpeth","Joel E. Hodges","Michael Sally"]
+	},	
+	"Jamestown":{
+		"Mayor": "Roy P. Pipkin",
+		"Councilmember": ["Jimmie Callum","Douglas Boyd Guerry","Jean D. Guerry","Ruth Thomas"]
+	},
+	"Moncks Corner":{
+		"Mayor": "Michael A. Lockliear",
+		"Councilmember": ["Charlotte A. Cruppenink","David A. Dennis Jr.","DeWayne G. Kitts","James N. Law Jr.","Chadwick D. Sweatman","James Bryan Ware III"]
+	},
+	"North Charleston":{
+		"Mayor": "R. Keith Summey",
+		"Councilmember": ["Ron Brinson","Michael Antonio Brown","Michael Brown","Samuel L. Hart","Jerome Heyward","Virginia White Jamison","Rhonda Jerome","Robert E. King","Kenneth L. Skipper","Dorothy K. Williams"]
+	},		
+	"St Stephen":{
+		"Mayor": "John W. Rivers",
+		"Councilmember": ["Robbie Ballentine","Louis Brown","Jerry Thrower","William Truesdale","Stanley Tucker","Winston D. Williams"]
+	},
+	"Summerville":{
+		"Mayor": "Ricky Waring",
+		"Councilmember": ["Walter Bailey","Aaron A. Brown","Kima Garten-Schmidt","Robert J. Jackson","Terry Jenkins","William E. McIntosh III"]
+	}
+}
+
