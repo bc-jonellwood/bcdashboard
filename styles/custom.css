@@ -473,6 +473,26 @@ h6 {
   transform: scale(1);
   z-index: 1;
 }
+/* .userManagementMain {
+  font-size: medium;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.userManagementcontent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.userMangementTable {
+  border-collapse: collapse;
+  width: 90%;
+  tr td {
+    text-transform: capitalize;
+    padding: 5px;
+    border-bottom: 1px solid var(--accent);
+  }
+} */
 
 #anniversariesContent {
   --yr1: #fbbb04;

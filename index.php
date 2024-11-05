@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/25 14:26:31
+// Last modified: 2024/10/31 11:21:53
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mySignin.php");
 //     exit;
@@ -79,11 +79,11 @@ include "./components/header.php"
             <div class="dash-main">
                 <!-- Start of cards section -->
                 <div class="cards-container">
-                    <?php include "./components/newEmployees.php" ?>
                     <?php include "./components/employeeAnniversaries.php"; ?>
-                    <?php include "./components/nextHoliday.php" ?>
-                    <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/employeeBirthdays.php" ?>
+                    <?php include "./components/newEmployees.php" ?>
+                    <?php include "./components/recentSeparations.php" ?>
+                    <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
                 </div>
             </div>

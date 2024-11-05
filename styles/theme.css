@@ -79,8 +79,8 @@ body {
 }
 
 ::selection {
-  background: light-dark(var(--accent), var(--fg));
-  color: light-dark(var(--black), var(--accent));
+  background: light-dark(var(--bg), var(--fg));
+  color: light-dark(var(--accent), var(--accent));
 }
 
 input {

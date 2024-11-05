@@ -1,7 +1,27 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/23 14:33:17
-session_start();
+// Last modified: 2024/10/31 11:19:04
+function startSession()
+{
+    try {
+        // Check if the session is already started
+        if (session_status() === PHP_SESSION_NONE) {
+            // Start the session
+            session_start();
+            // echo "Session started successfully.";
+        } else {
+            return;
+            // echo "Session is already active.";
+        }
+    } catch (Exception $e) {
+        // Handle any exceptions that occur during session start
+        error_log("Session start failed: " . $e->getMessage());
+        echo "An error occurred while starting the session.";
+    }
+}
+
+// Call the function to manage session
+startSession();
 
 
 ?>
@@ -188,6 +208,7 @@ session_start();
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
         </div>
+        <div class="notification-date"><?php include "./components/dateAndTimeDisplay.php" ?></div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
                 <path
@@ -609,5 +630,16 @@ session_start();
     } */
     .menu-btn {
         color: var(--accent) !important;
+    }
+
+    .notification-date {
+        font-size: small;
+        color: var(--accent);
+        text-align: right;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-content: center;
+        width: 4%;
     }
 </style>

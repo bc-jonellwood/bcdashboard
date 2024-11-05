@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/28 13:22:17
+// Last modified: 2024/11/05 10:13:44
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
@@ -147,6 +147,18 @@
                 <a href="./newAccountRequests.php" class="nav-link d-flex align-items-center">
                     <img src="./icons/account-box.svg" alt="my account request icon" class="bi me-2" width="20" height="20">
                     newAccountRequests
+                </a>
+            </li>
+            <li>
+                <a href="./userManagement.php" class="nav-link d-flex align-items-center">
+                    <img src="./icons/profile.svg" alt="user management request icon" class="bi me-2" width="20" height="20">
+                    userManagement
+                </a>
+            </li>
+            <li>
+                <a href="./userManagementEmailLayout.php" class="nav-link d-flex align-items-center">
+                    <img src="./icons/mail.svg" alt="user management request icon" class="bi me-2" width="20" height="20">
+                    userManagement
                 </a>
             </li>
         </ul>
