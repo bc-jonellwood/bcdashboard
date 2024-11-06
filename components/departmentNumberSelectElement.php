@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/31 14:15:37
-// Last modified: 2024/10/31 14:32:07
+// Last modified: 2024/11/06 11:24:31
 require_once './data/appConfig.php';
 function departmentNumberSelectElement($id, $name, $current = null)
 {
@@ -11,7 +11,7 @@ function departmentNumberSelectElement($id, $name, $current = null)
     $pwd = $dbconf->pwd;
 
     try {
-        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "SELECT iDepartmentNumber, sDepartmentName FROM data_departments";

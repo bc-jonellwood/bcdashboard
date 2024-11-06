@@ -1,22 +1,19 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/10/28 13:47:58
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Last modified: 2024/11/06 15:49:23
+// if (session_status() == PHP_SESSION_NONE) {
+//     session_start();
+// }
+session_start();
 include("./data/ldapConfig.php");
-
-
 $loginfailure = false;
-$GLOBALS['ldapServer'] = '10.11.20.43';
+$GLOBALS['ldap_server'] = '10.11.20.43';
 $GLOBALS['ldapDomain'] = '@berkeleycounty.int';
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-    // echo "Already logged in";
     header("location: index.php");
     exit;
 };
-
 
 function checkUser($username)
 {
@@ -28,10 +25,10 @@ function checkUser($username)
     $pwd = $db->pwd;
 
     try {
-        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT * FROM app_users WHERE sUserName = :username";
+        $sql = "SELECT * FROM app_users WHERE sUserName = :username AND bIsActive = 1";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
@@ -41,6 +38,14 @@ function checkUser($username)
         if ($row) {
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
+            $_SESSION['employeeID'] = $row['sEmployeeNumber'] ? $row['sEmployeeNumber'] : '007';
+            $_SESSION['userID'] = $row['id'] ? $row['id'] : 0;
+            $_SESSION['FirstName'] = $row['sFirstName'] ? $row['sFirstName'] : 'First Name Confidential';
+            $_SESSION['LastName'] = $row['sLastName'] ? $row['sLastName'] : 'Last Name Redacted';
+            $_SESSION['PreferredName'] = $row['sPreferredName'] ? $row['sPreferredName'] : $row['sFirstName'];
+            $_SESSION['DepartmentNumber'] = $row['iDepartmentNumber'] ? $row['iDepartmentNumber'] : 'Department is TOP SECRET';
+            $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
+            $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
             return true;
         } else {
             $loginfailure = true;
@@ -48,7 +53,7 @@ function checkUser($username)
         }
     } catch (PDOException $e) {
         error_log("Error in checkUser function: " . $e->getMessage());
-        header("Location: mySignin.php");
+        header("Location: mysignin.php");
         exit;
     } finally {
         if ($conn) {
@@ -56,45 +61,26 @@ function checkUser($username)
         }
     }
 }
-$_SESSION['ldapSuccess'] = 'grape-nuts';
-function validateCredentials($username, $password)
-{
-    if (trim($password) == "") return false;
-    $ldapHost = $GLOBALS['ldapServer'];
-    $ldapDomain = $GLOBALS['ldapDomain'];
-
-    putenv('LDAPTLS_REQCERT=never');
-
-    $ldapConn = ldap_connect($ldapHost) or die("Could not connect to LDAP");
-    ldap_set_option($ldapConn, LDAP_OPT_PROTOCOL_VERSION, 3);
-
-    if (@ldap_bind($ldapConn, $username . $ldapDomain, $password)) {
-        $_SESSION['ldapSuccess'] = 'true';
-        return true;
-    } else {
-        $_SESSION['ldapSuccess'] = 'false';
-        return false;
-    }
-}
-$_SESSION['sUserName'] = 'un';
-$_SESSION['password'] = 'pw';
+// $_SESSION['ldapSuccess'] = 'grape-nuts';
+include("func.php");
 
 if (isset($_POST['sUserName'])) {
-    $_SESSION['sUserName'] = $_POST['sUserName'];
-    $_SESSION['password'] = $_POST['password'];
-    if (validateCredentials($_POST['sUserName'] . $GLOBALS['ldapDomain'], $_POST['password'])) {
+    if (validateCredentials($_POST['sUserName'] . $GLOBALS['ldap_domain'], $_POST['password'])) {
+        echo "success";
         $_SESSION['loggedin'] = true;
         $_SESSION['loggedinuser'] = $_POST['sUserName'];
-
+        // header("Location: index.php");
         if (checkUser($_SESSION['loggedinuser'])) {
-            header("Location: ./index.php");
+            // logEvent($_SESSION['userID'], 'Logged In');
+            header("Location: index.php");
         } else {
             $loginfailure = true;
             $_SESSION['loggedin'] = false;
             unset($_SESSION['loggedinuser']);
-            header("Location: mySignin.php");
+            header("Location: 401.html");
         }
     } else {
+        echo "failure";
         $loginfailure = true;
     }
 }
@@ -150,19 +136,21 @@ if (isset($_POST['sUserName'])) {
     </div>
 
     <?php
-    //print_r($_SESSION);
-    //echo "login failure = " . $loginfailure;
+    // print_r($_SESSION);
+    //    print_r($_POST);
+    print_r($loginfailure);
+    // echo "login failure = " . $loginfailure;
     // print_r($GLOBALS);
-    // if (isset($_SESSION['loggedin'])) {
-    //     echo $_SESSION['loggedin'];
-    // }
+    if (isset($_SESSION['loggedin'])) {
+        echo $_SESSION['loggedin'];
+    }
     ?>
 
     <footer class="login-footer">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
             <path fill="#E3E3E3" d="M10 .4A9.6 9.6 0 0 0 .4 10a9.6 9.6 0 1 0 19.2-.001C19.6 4.698 15.301.4 10 .4m-.151 15.199h-.051c-.782-.023-1.334-.6-1.311-1.371c.022-.758.587-1.309 1.343-1.309l.046.002c.804.023 1.35.594 1.327 1.387c-.023.76-.578 1.291-1.354 1.291m3.291-6.531c-.184.26-.588.586-1.098.983l-.562.387q-.46.358-.563.688c-.056.174-.082.221-.087.576v.09H8.685l.006-.182c.027-.744.045-1.184.354-1.547c.485-.568 1.555-1.258 1.6-1.287a1.7 1.7 0 0 0 .379-.387c.225-.311.324-.555.324-.793c0-.334-.098-.643-.293-.916c-.188-.266-.545-.398-1.061-.398c-.512 0-.863.162-1.072.496c-.216.341-.325.7-.325 1.067v.092H6.386l.004-.096c.057-1.353.541-2.328 1.435-2.897c.563-.361 1.264-.544 2.081-.544c1.068 0 1.972.26 2.682.772c.721.519 1.086 1.297 1.086 2.311c-.001.567-.18 1.1-.534 1.585" class="contrast" />
         </svg>
-        <div id='add-year'>Copyright &copy; Berkeley County Government </div>
+        <div id='add-year'> &copy; Berkeley County Government </div>
         <div>App Version: 0.0.0</div>
         <!-- <a href='/changelogView.php' target='_blank'>App Version: -->
         <!-- <//?php echo $_SESSION['appVersion'] ?></a> -->

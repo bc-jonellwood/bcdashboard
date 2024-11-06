@@ -1,15 +1,15 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/31 11:21:53
+// Last modified: 2024/11/06 15:41:38
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-//     header("location: mySignin.php");
+//     header("location: mysignin.php");
 //     exit;
 // }
 $_SESSION['loggedin'] = true;
-$_SESSION['username'] = 'jon.ellwood';
+$_SESSION['username'] = 'boobs.mcgee';
 
 if ((isset($_SESSION['loggedin']) == false || $_SESSION['loggedin'] != true) && str_contains(basename($_SERVER['PHP_SELF']), "logout") == false) {
-    header("Location: mySignin.php");
+    header("Location: mysignin.php");
 }
 
 include "./components/header.php"
@@ -85,6 +85,7 @@ include "./components/header.php"
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
+                    <?php include "./components/show_session.php" ?>
                 </div>
             </div>
         </div>

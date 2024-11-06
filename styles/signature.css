@@ -1,0 +1,102 @@
+.hide_after_choosing {
+  width: 700px;
+}
+
+.user_email_signature {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  font-family: Calibri, "Times New Roman", Helvetica, sans-serif;
+}
+
+.user_email_signature .copy_logo {
+  display: flex;
+  align-items: center;
+}
+
+.user_email_signature #copy_signature {
+  width: 550px;
+}
+
+.user_email_signature .copy_options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4rem;
+}
+.user_email_signature .copy_options button {
+  margin-top: 1rem;
+}
+
+.user_email_signature .signature_badge {
+  vertical-align: middle;
+}
+
+.user_email_signature .outlook_button {
+  background-color: #08c;
+  background-image: none;
+}
+
+.user_email_signature a {
+  color: rgb(0, 0, 255);
+}
+
+.user_email_signature .social_links a {
+  margin-right: 4pt;
+}
+
+@media only screen and (max-width: 1080px) {
+  .user_email_signature {
+    flex-direction: column;
+  }
+  .user_email_signature #copy_signature {
+    width: auto;
+  }
+  .user_email_signature .copy_options {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .user_email_signature {
+    margin: 0;
+  }
+  .user_email_signature .copy_options {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 930px) {
+  .user_email_signature {
+    padding: 0;
+  }
+  .user_email_signature #copy_signature {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .user_email_signature .copy_logo {
+    margin: auto;
+  }
+  .user_email_signature .signature_badge {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .user_email_signature #copy_signature {
+    width: 322px;
+  }
+  .user_email_signature .signature_badge {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .user_email_signature .signature_badge {
+    display: none;
+  }
+  .user_email_signature .copy_options button {
+    margin-top: 0;
+  }
+  .user_email_signature #copy_signature {
+    width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/22 12:19:10
+// Last modified: 2024/11/06 13:48:38
 
 include_once "./data/appConfig.php";
 
@@ -12,7 +12,7 @@ $pwd = $dbconf->pwd;
 
 
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // echo "Connected successfully";
 } catch (PDOException $e) {
@@ -130,7 +130,9 @@ try {
     $groupedEmployees = processEmployees($data);
     $html = '<div id="7e705475-5743-4477-a1c7-9165ecf62ddb" class="dash-card wide">
                         <div class="card-content">
-                            <div class="component-header">' . date("F") . ' Anniversaries <button class="not-btn" onclick="minimizeCard(\'7e705475-5743-4477-a1c7-9165ecf62ddb\')"><img src="./icons/resize.svg" alt="resize" width="24" height="24" /></button></div>
+                            <div class="component-header">' . date("F") . ' Anniversaries <button class="not-btn" onclick="minimizeCard(\'7e705475-5743-4477-a1c7-9165ecf62ddb\')"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="recolor" width="24" height="24"><path d="M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z" /></svg>
+                            </button></div>
                             <div id="anniversariesContent" class="card-content">';
     $html .= '<table class="table">
                 <tr>

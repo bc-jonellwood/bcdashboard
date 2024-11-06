@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/31 11:23:38
-// Last modified: 2024/11/05 16:34:17
+// Last modified: 2024/11/06 11:24:31
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -19,9 +19,14 @@ include_once "./components/sidenav.php";
 echo "<div class='main'>";
 // echo $_SESSION['showAll'];
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    // $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true;", $uid, $pwd);
+    // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = new PDO(
+        "sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true;TrustServerCertificate=true",
+        $uid,
+        $pwd
+    );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $limit = 100;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $start = ($page - 1) * $limit;

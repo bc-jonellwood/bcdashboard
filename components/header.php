@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/31 11:19:04
+// Last modified: 2024/11/06 15:46:06
 function startSession()
 {
     try {
@@ -208,6 +208,7 @@ startSession();
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
         </div>
+        <div class="notification-date"><?php echo $_SESSION['loggedinuser'] ?></div>
         <div class="notification-date"><?php include "./components/dateAndTimeDisplay.php" ?></div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
@@ -325,8 +326,9 @@ startSession();
 <?php include "./components/toolbar.php" ?>
 <script>
     function logout() {
-        <?php session_destroy() ?>
-        alert("logged out");
+        <?php session_destroy();
+        header("Location: mysignin.php");
+        ?>
     }
     async function setAlert() {
         const notification = new Notification();

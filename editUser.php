@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/31 11:23:38
-// Last modified: 2024/11/05 12:24:58
+// Last modified: 2024/11/06 11:24:31
 
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
@@ -15,7 +15,7 @@ $userID = $_GET["id"];
 echo "<div class='main'>";
 include_once "./components/sidenav.php";
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql =
         "SELECT au.id,

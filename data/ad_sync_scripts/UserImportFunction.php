@@ -67,7 +67,7 @@ $hittingCount = 0;
 $missingCount = 0;
 $problemChild = null;
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($conn === false) {
@@ -115,7 +115,7 @@ $servername = "192.168.182.210\\INTWWW";
 $dbuser = "bcg_intranet";
 $dbpass = '*0*JsK&Ax7kdAYciyf7JbYP7ZF';
 $dbname = "bcg_intranet";
-$conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+$conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // $check = "SELECT sEmployeeNumber FROM app_users";

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/23 14:10:57
+// Last modified: 2024/11/06 13:49:01
 
 include_once "./data/appConfig.php";
 
@@ -12,7 +12,7 @@ $pwd = $dbconf->pwd;
 
 
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // echo "Connected successfully";
 } catch (PDOException $e) {
@@ -88,7 +88,7 @@ try {
     // echo json_encode($data);
     $html = '<div id="a315fae2-3716-49f8-a076-95ddef2313b4" class="dash-card wide">
                 <div class="card-content">
-                    <div class="component-header">Employee Birthdays <button class="not-btn" onclick="minimizeCard(\'a315fae2-3716-49f8-a076-95ddef2313b4\')"><img src="./icons/resize.svg" alt="resize" width="24" height="24" /></button></div>
+                    <div class="component-header">Employee Birthdays <button class="not-btn" onclick="minimizeCard(\'a315fae2-3716-49f8-a076-95ddef2313b4\')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="recolor" width="24" height="24"><path d="M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z" /></svg></button></div>
                     <div class="component-header-tabs" id="component-header-tabs">
                         <div class="component-header active" id="birthdayTabOne"><button class="not-btn" onclick="swapTabs(\'birthdayTab1\')">' . date("F") . ' birthdays </button></div>
                         <div class="component-header" id="birthdayTabTwo"><button class="not-btn" onclick="swapTabs(\'birthdayTab2\')">' . date("F", strtotime("+1 month")) . ' birthdays</button>

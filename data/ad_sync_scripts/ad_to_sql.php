@@ -1,7 +1,7 @@
 
 <?php
 // Created: 2024/11/04 15:59:29
-// Last Modified: 2024/11/05 08:10:15
+// Last Modified: 2024/11/06 11:24:31
 
 class newUser
 {
@@ -74,7 +74,7 @@ $uid = $dbconf->uid;
 $pwd = $dbconf->pwd;
 
 try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/03 12:17:58
+// Last modified: 2024/11/06 11:24:31
 
 // query the database for notifications where the current date and time is between the start and end dates of the notification. Return the results as an array.
 
@@ -16,7 +16,7 @@ $pwd = $dbconf->pwd;
 
 try {
     // Establishing the database connection
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0", $uid, $pwd);
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Prepare the SQL query
