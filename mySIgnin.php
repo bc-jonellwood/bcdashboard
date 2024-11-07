@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/11/06 15:49:23
+// Last modified: 2024/11/07 12:59:57
 // if (session_status() == PHP_SESSION_NONE) {
 //     session_start();
 // }
@@ -138,7 +138,7 @@ if (isset($_POST['sUserName'])) {
     <?php
     // print_r($_SESSION);
     //    print_r($_POST);
-    print_r($loginfailure);
+    // print_r($loginfailure);
     // echo "login failure = " . $loginfailure;
     // print_r($GLOBALS);
     if (isset($_SESSION['loggedin'])) {

@@ -50,16 +50,17 @@ function renderPhoneLookup() {
                     </div>
                 </div>
             </div>
+             <div class="popover-btn-holder">
+                <button class="btn btn-secondary btn-small phone-lookup-clear-btn" type="button" onclick="clearPhoneLookup()">Clear</button>
+                <button class="btn btn-danger btn-small phone-lookup-clear-btn" type="button" popovertarget="phoneLookupPopover" popovertargetaction="hide">Close</button>
+            </div>
             <div class="phone-lookup-results-card">
                 <div class="phone-lookup-results-card-body">
                     <div id="phone-lookup-results" class="phone-lookup-results">
                     </div>
                 </div>
             </div>
-            <div class="popover-btn-holder">
-                <button class="btn btn-secondary btn-small phone-lookup-clear-btn" type="button" onclick="clearPhoneLookup()">Clear</button>
-                <button class="btn btn-danger btn-small phone-lookup-clear-btn" type="button" popovertarget="phoneLookupPopover" popovertargetaction="hide">Close</button>
-            </div>
+           
         </div>
     </div>
     `;

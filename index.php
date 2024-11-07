@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 15:41:38
+// Last modified: 2024/11/07 13:07:31
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 //     header("location: mysignin.php");
 //     exit;
@@ -85,7 +85,7 @@ include "./components/header.php"
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
-                    <?php include "./components/show_session.php" ?>
+                    <!-- </?php include "./components/show_session.php" ?> -->
                 </div>
             </div>
         </div>

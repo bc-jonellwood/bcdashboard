@@ -57,18 +57,21 @@ function renderEmployeeLookup() {
                     </div>
                 </div>
             </div>
+            <div class="popover-btn-holder">
+            <button class="btn btn-secondary btn-small employee-lookup-clear-btn" type="button" onclick="clearEmployeeLookup()">Clear</button>
+            <button class="btn btn-danger btn-small employee-lookup-clear-btn" type="button" popovertarget="employeeLookupPopover" popovertargetaction="hide">Close</button>
+          </div>
             <div class="employee-lookup-results-card"> 
                 <div class="employee-lookup-results-card-body">
                     <div id="employee-lookup-results" class="employee-lookup-results">
                     </div>
                 </div>
-            </div>
-          <div class="popover-btn-holder">
-            <button class="btn btn-secondary btn-small employee-lookup-clear-btn" type="button" onclick="clearEmployeeLookup()">Clear</button>
-            <button class="btn btn-danger btn-small employee-lookup-clear-btn" type="button" popovertarget="employeeLookupPopover" popovertargetaction="hide">Close</button>
-            </div>
+              </div>
+                
+          
         </div>
-    </div>
+      </div>
+    
     `;
   // console.log(html);
   document.getElementById("employeeSearch").innerHTML = html;
