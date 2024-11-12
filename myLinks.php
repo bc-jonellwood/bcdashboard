@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/04 12:03:25
+// Last modified: 2024/11/07 14:04:03
 
 include "./components/header.php" ?>
 <script src="./functions/makeLinkCard.js"></script>
@@ -117,15 +117,16 @@ include "./components/header.php" ?>
     function createLinks() {
         var edata = employeeLinkItems();
         for (var i = 0; i < edata.length; i++) {
-            createLinkCard(edata[i].href, edata[i].icon, edata[i].text, 'emp', i);
+            console.log(edata[i]);
+            createLinkCard(edata[i].id, edata[i].href, edata[i].icon, edata[i].text, 'emp', i);
         }
         var cdata = commsLinkItems();
         for (var i = 0; i < cdata.length; i++) {
-            createLinkCard(cdata[i].href, cdata[i].icon, cdata[i].text, 'com', i);
+            createLinkCard(cdata[i].id, cdata[i].href, cdata[i].icon, cdata[i].text, 'com', i);
         }
         var adata = appLinkItems();
         for (var i = 0; i < adata.length; i++) {
-            createLinkCard(adata[i].href, adata[i].icon, adata[i].text, 'app', i);
+            createLinkCard(adata[i].id, adata[i].href, adata[i].icon, adata[i].text, 'app', i);
         }
     }
     createLinks();

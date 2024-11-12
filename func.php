@@ -2,7 +2,6 @@
 
 function validateCredentials($username, $password)
 {
-    if (trim($password) == "") return false;
     $ldapHost = $GLOBALS['ldapServer'];
     $ldapDomain = $GLOBALS['ldapDomain'];
 

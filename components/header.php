@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 15:46:06
+// Last modified: 2024/11/08 09:52:11
 function startSession()
 {
     try {
@@ -48,49 +48,20 @@ startSession();
     <script src="./functions/renderEmployeeLookup.js"></script>
     <script src="./functions/renderDepartmentLookup.js"></script>
     <script src="./functions/renderPhoneLookup.js"></script>
+    <script src="./functions/renderQuickLinks.js"></script>
     <!-- favicon -->
     <link rel="icon" href="favicons/favicon.ico">
-    <!-- <script src="./functions/renderNotificationText.js"></script> -->
-    <!-- <link rel=" stylesheet" href="styles/patternfly.css ">
-        < link rel = "stylesheet"
-        href = "styles/patternfly-addons.css " > -- >
-            <
-            !-- < script src = "../functions/displayThemeAndMode.js" >
-    </script> -->
     <title>BC Dashboard</title>
 
     <script>
-        // function swapBodyClass(newMode, prefix = 'mode-') {
-        // function swapBodyClass(newMode, prefix) {
-        //   console.log('Swapping Body Class')
-        //   console.log('New Mode:', newMode)
-        //   console.log('Prefix:', prefix)
-        //   const body = document.body;
-        //   const classes = body.className.split(' ');
-
-        //   // remove any existing classes based on the secret prefix codewords
-        //   const filteredClasses = classes.filter((cls) => !cls.startsWith(prefix));
-
-        //   // add new class with the secret prefix
-        //   filteredClasses.push(`${prefix}${newMode}`);
-
-        //   // set the new class list on the body
-        //   body.className = filteredClasses.join(' ');
-        // }
-        // get the current mode from local storage versus directly passed in
         function swapBodyClass() {
-            // console.log('Swapping Body Class')
             const body = document.body;
             const classes = body.className.split(' ');
 
             const newMode = localStorage.getItem('bcdash-mode');
-            // const newTheme = localStorage.getItem('bcdash-theme');
-            // remove any existing classes based on the secret prefix codewords
-            // const filteredClasses = classes.filter((cls) => !cls.startsWith('mode') && !cls.startsWith('theme'));
             const filteredClasses = classes.filter((cls) => !cls.startsWith('mode'));
 
             // add new class with the secret prefix
-            // filteredClasses.push(`${newMode} ${newTheme}`);
             filteredClasses.push(`${newMode}`);
 
             // set the new class list on the body
@@ -98,54 +69,23 @@ startSession();
         }
 
         function displayThemeAndMode() {
-            // var theme = localStorage.getItem('bcdash-theme');
             var mode = localStorage.getItem('bcdash-mode');
-            // console.log('theme and mode', theme, mode);
-            // document.getElementById('theme').innerText = theme;
             document.getElementById('mode').innerText = mode;
         }
 
         function change_mode(mode) {
-            // console.log('mode', mode)
             writeModeToStorage(mode);
             swapBodyClass();
             displayThemeAndMode()
-            // change_menu_image();
-
         }
 
-        // function change_theme(theme) {
-        //     // console.log('theme', theme)
-        //     writeThemeToStorage(theme);
-        //     swapBodyClass();
-        //     //recolorIcons();
-        //     displayThemeAndMode()
-        // }
 
         function recolorIcons() {
             const icons = document.querySelectorAll('img[src$=".svg"]');
-            //console.log('ICONS');
-            //console.log(icons);
             icons.forEach(icon => {
-                //icon.classList.add('recolor');
                 icon.style.fill = '#ffffff';
-
             });
-            // updateSVGFill();
         }
-
-
-        // function to check if there is a theme in local storage and if not set a default value
-        // function getThemeFromStorage() {
-        //     const theme = localStorage.getItem('bcdash-theme');
-        //     if (theme) {
-        //         swapBodyClass(theme);
-        //     } else {
-        //         writeThemeToStorage('yellow');
-        //         swapBodyClass('yellow');
-        //     }
-        // }
-
 
         // function to check if there is a mode in local storage and if not set a default value
         function getModeFromStorage() {
@@ -158,12 +98,6 @@ startSession();
             }
         }
 
-        // getThemeFromStorage();
-        // getModeFromStorage();
-        // function to write new theme or mode to local storage
-        // function writeThemeToStorage(theme) {
-        //     localStorage.setItem('bcdash-theme', 'theme-' + theme);
-        // }
         // function to write new theme to local storage
         function writeModeToStorage(mode) {
             localStorage.setItem('bcdash-mode', 'mode-' + mode);
@@ -171,23 +105,16 @@ startSession();
 
         function updateSVGFill() {
             const svgElements = document.querySelectorAll('.recolor');
-            //console.log("Here are the SVG Elements")
-            //console.log(svgElements);
 
             svgElements.forEach((element) => {
                 const svgContent = element.outerHTML;
-                // console.log('SVG Content', svgContent);
                 const newContent = svgContent.replace(/fill=".*?"/, `fill="-var(--accent)"`);
                 element.outerHTML = newContent;
             });
         }
 
-
         function setClassAndModeOnLoad() {
-            // getThemeFromStorage();
             getModeFromStorage();
-            //recolorIcons();
-            //updateSVGFill();
         }
 
 
@@ -200,7 +127,6 @@ startSession();
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
             ||MENU||
-            <!-- <img src="./images/bcg_logo_brand_blue_white.png" alt="bcg logo" class="menu-image" /> -->
         </button>
 
     </div>
@@ -241,6 +167,7 @@ startSession();
         <button type="button" class="btn-x" popovertarget="settings-popover-menu" popovertargetaction="hide"
             aria-label="Close">X
         </button>
+
     </div>
     <div class="popover-body">
         <section>
@@ -310,6 +237,15 @@ startSession();
         <div class="phoneSearch" id="phoneSearch"></div>
     </div>
 </div>
+<div class="quick-links-popover" id="quickLinksPopover" popover="manual" name="quickLinksPopover">
+    <div class="card-content dash-card quickLinks">
+        <div class="component-header">Quick Links</div>
+        <button type="button" class="btn-x" popovertarget="quickLinksPopover" popovertargetaction="hide"
+            aria-label="Close">X
+        </button>
+        <div class="quickLinksMenu" id="quickLinksMenu"></div>
+    </div>
+</div>
 <div class="loader-container-overlay hidden" id="loader-container-overlay">
     <div class="loader loader1"></div>
     <div class="loader loader2"></div>
@@ -326,9 +262,8 @@ startSession();
 <?php include "./components/toolbar.php" ?>
 <script>
     function logout() {
-        <?php session_destroy();
-        header("Location: mysignin.php");
-        ?>
+        <?php session_destroy(); ?>
+        window.location.href = "./mysignin.php";
     }
     async function setAlert() {
         const notification = new Notification();
@@ -337,8 +272,6 @@ startSession();
             if (!data) {
                 return;
             }
-            //console.log('This is the setAlert function')
-            //console.log(data);
             document.getElementById('alert-text').innerText = data.text;
             document.getElementById('notification').classList.add(data.type);
         });
@@ -354,6 +287,7 @@ startSession();
         renderEmployeeLookup()
         renderDepartmentLookup()
         renderPhoneLookup()
+        loadLinks()
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
 
@@ -368,19 +302,9 @@ startSession();
             accountMenu.classList.add('hidden');
         }, 1000)
     })
-    // function change_menu_image() {
-    //     const imgElement = document.querySelector('.menu-image');
-    //     const mode = localStorage.getItem('bcdash-mode');
-    //     if (mode === 'mode-dark') {
-    //         imgElement.src = './images/bcg_logo_accent_white.png';
-    //     } else {
-    //         imgElement.src = './images/bcg_logo_brand_blue_white.png';
-    //     }
-    // }
-
-    // document.addEventListener('DOMContentLoaded', change_menu_image);
 </script>
 <style>
+    .quick-links-popover[popover],
     .phone-lookup-popover[popover],
     .department-lookup-popover[popover],
     .employee-lookup-popover[popover],
@@ -403,7 +327,6 @@ startSession();
         padding: 8px;
         border-radius: 8px;
 
-        /* background-color: var(--bg); */
         background-color: light-dark(#ddd, #000);
         border: 2px solid;
         border-color: light-dark(#111, #ddd);
@@ -431,6 +354,24 @@ startSession();
                 translate: 100%
             }
         }
+    }
+
+    .quick-links-popover[popover] {
+        inline-size: 15vi !important;
+        block-size: 90vh !important;
+    }
+
+    .quickLinks {
+        max-height: 90vh;
+    }
+
+    #quickLinks ui {
+        list-style-type: none !important;
+        font-size: smaller !important;
+        padding: 0;
+        margin: 0;
+        color: var(--fg);
+        background-color: var(--bg);
     }
 
     .sidenav-popover[popover] {
@@ -473,6 +414,7 @@ startSession();
         }
     }
 
+    .quick-links-popover[popover],
     .phone-lookup-popover[popover],
     .department-lookup-popover[popover],
     .employee-lookup-popover[popover] {

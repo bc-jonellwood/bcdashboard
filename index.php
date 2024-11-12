@@ -1,17 +1,13 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/07 13:07:31
-// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-//     header("location: mysignin.php");
-//     exit;
-// }
-$_SESSION['loggedin'] = true;
-$_SESSION['username'] = 'boobs.mcgee';
+// Last modified: 2024/11/08 12:28:11
 
-if ((isset($_SESSION['loggedin']) == false || $_SESSION['loggedin'] != true) && str_contains(basename($_SERVER['PHP_SELF']), "logout") == false) {
+if ((isset($_SESSION['loggedin']) == false)) {
     header("Location: mysignin.php");
 }
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include "./components/header.php"
 ?>
 <script>
@@ -30,36 +26,23 @@ include "./components/header.php"
     }
 
     function cardIDToFromArray(id) {
-        // if (!cardIDs) {
-        //     console.log('cardIDs is null')
-        // }
-        // console.log('cardIDs')
-        // console.log(cardIDs)
         if (cardIDs.includes(id)) {
             cardIDs.splice(cardIDs.indexOf(id), 1);
             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-            // console.log(cardIDs)
         } else {
             cardIDs.push(id);
             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-            // console.log(cardIDs)
         }
     }
 
     function applyClassOnLoad() {
         cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
-        // console.log('cardIDs from local storage')
-        // console.log(cardIDs)
         if (cardIDs) {
             for (let i = 0; i < cardIDs.length; i++) {
-                // console.log(i);
                 let target = document.getElementById(cardIDs[i])
-                // console.log(target)
-                // target.classList.add('minimized-dash-card')
             }
         }
     }
-    // applyClassOnLoad()
 </script>
 <script>
     function fakeLoader() {

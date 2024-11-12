@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/11/07 12:59:57
+// Last modified: 2024/11/08 10:36:58
 // if (session_status() == PHP_SESSION_NONE) {
 //     session_start();
 // }
@@ -8,7 +8,7 @@ session_start();
 include("./data/ldapConfig.php");
 $loginfailure = false;
 $GLOBALS['ldap_server'] = '10.11.20.43';
-$GLOBALS['ldapDomain'] = '@berkeleycounty.int';
+// $GLOBALS['ldap_domain'] = '@berkeleycounty.int';
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
     header("location: index.php");
@@ -53,7 +53,8 @@ function checkUser($username)
         }
     } catch (PDOException $e) {
         error_log("Error in checkUser function: " . $e->getMessage());
-        header("Location: mysignin.php");
+        // header("Location: mysignin.php");
+        header("Location: myfailure.php");
         exit;
     } finally {
         if ($conn) {
@@ -66,22 +67,21 @@ include("func.php");
 
 if (isset($_POST['sUserName'])) {
     if (validateCredentials($_POST['sUserName'] . $GLOBALS['ldap_domain'], $_POST['password'])) {
-        echo "success";
         $_SESSION['loggedin'] = true;
         $_SESSION['loggedinuser'] = $_POST['sUserName'];
-        // header("Location: index.php");
-        if (checkUser($_SESSION['loggedinuser'])) {
-            // logEvent($_SESSION['userID'], 'Logged In');
-            header("Location: index.php");
-        } else {
-            $loginfailure = true;
-            $_SESSION['loggedin'] = false;
-            unset($_SESSION['loggedinuser']);
-            header("Location: 401.html");
-        }
+        header("Location: index.php");
+
+        // if (checkUser($_SESSION['loggedinuser'])) {
+        //     header("Location: index.php");
+        // } else {
+        //     $loginfailure = true;
+        //     $_SESSION['loggedin'] = false;
+        //     unset($_SESSION['loggedinuser']);
+        //     header("Location: 401.html");
+        // }
     } else {
-        echo "failure";
         $loginfailure = true;
+        header("Location: myfailure.php");
     }
 }
 
@@ -107,6 +107,7 @@ if (isset($_POST['sUserName'])) {
 <body>
     <div class="login-container">
         <div class="login-main">
+            <?php print_r($_SESSION); ?>
             <div class="login-header">
                 <!-- <h1>myBerkeley</h1> -->
                 <!-- <img src="./images/myBerkeleyNoWords-nobg.png" alt="my berkeley logo" class="login-logo"> -->
@@ -138,7 +139,7 @@ if (isset($_POST['sUserName'])) {
     <?php
     // print_r($_SESSION);
     //    print_r($_POST);
-    // print_r($loginfailure);
+    print_r($loginfailure);
     // echo "login failure = " . $loginfailure;
     // print_r($GLOBALS);
     if (isset($_SESSION['loggedin'])) {
