@@ -33,10 +33,14 @@ function createFilteredContactList(orgName, data) {
   for (var i = 0; i < filteredContactList.length; i++) {
     detailsHtml += `
         <div class ="contact-card">
-            <p class="contact-card-contact-name">${filteredContactList[i].sPhoneName}</p>
+            <p class="contact-card-contact-name">${
+              filteredContactList[i].sPhoneName
+            }</p>
             <div class="contact-card-details">
                 <p class="mb-1 d-flex">
-                    <img class="type-icon" src="./icons/${filteredContactList[i].sPhoneType}.svg" alt="icon" />
+                    <img class="type-icon" src="./images/${filteredContactList[
+                      i
+                    ].sPhoneType.toLowerCase()}.svg" alt="icon" />
                     ${filteredContactList[i].sPhoneType}
                 </p>
                 <p class="mb-1">${filteredContactList[i].sPhoneNumber}</p>

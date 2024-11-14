@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 09:44:13
+// Last modified: 2024/11/14 11:32:04
 
 if (!isset($_SESSION)) {
     session_start();
@@ -284,17 +284,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
 
-    var accountIcon = document.getElementById('account-icon');
-    accountIcon.addEventListener('mouseenter', function() {
-        var accountMenu = document.getElementById('logout-menu');
-        accountMenu.classList.remove('hidden');
-    });
-    accountIcon.addEventListener('mouseleave', function() {
-        setTimeout(function() {
-            var accountMenu = document.getElementById('logout-menu');
-            accountMenu.classList.add('hidden');
-        }, 1000)
-    })
+    // var accountIcon = document.getElementById('account-icon');
+    // accountIcon.addEventListener('mouseenter', function() {
+    //     var accountMenu = document.getElementById('logout-menu');
+    //     accountMenu.classList.remove('hidden');
+    // });
+    // accountIcon.addEventListener('mouseleave', function() {
+    //     setTimeout(function() {
+    //         var accountMenu = document.getElementById('logout-menu');
+    //         accountMenu.classList.add('hidden');
+    //     }, 1000)
+    // })
 </script>
 <style>
     .quick-links-popover[popover],
