@@ -46,7 +46,7 @@ function createLinkCard(id, href, icon, text, type, count) {
   //   toggleFavorite(id);
   // });
   const favoriteCheckbox = document.getElementById(id);
-  console.log("fav checkbox", favoriteCheckbox);
+  // console.log("fav checkbox", favoriteCheckbox);
   favoriteCheckbox.addEventListener("change", () => {
     toggleFavorite(id);
   });
@@ -59,7 +59,7 @@ function createLinkCard(id, href, icon, text, type, count) {
 // when removing on item the entire array is wiped out in local storage, not just the one link that was removed
 
 function toggleFavorite(id) {
-  console.log("toggling favorite for ", id);
+  // console.log("toggling favorite for ", id);
   const favLinks = JSON.parse(localStorage.getItem("bc-quicklinks")) || [];
   // const favoriteStar = document.getElementById(id);
 
