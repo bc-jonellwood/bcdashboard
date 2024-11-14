@@ -25,6 +25,5 @@ function commsLinkItems() {
       id: "cea3c2ac-a460-401f-a763-3a64664e440e",
     },
   ];
-
   return comsLinkItems;
 }

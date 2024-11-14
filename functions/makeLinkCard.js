@@ -15,31 +15,31 @@ function createLinkCard(id, href, icon, text, type, count) {
   const isFavorite = favLinks.includes(id);
   var html = `
           <div class="link-card" id=${id}>
-          <div class="d-flex items-center">
-            <div class="cursor-pointer mr-3 favorite-star" data-href="${href}">
-        ${
-          isFavorite
-            ? '<img src="./icons/star-filled.svg" alt="Favorited" width="24px" />'
-            : '<img src="./icons/star-outline.svg" alt="Not Favorited" width="24px" />'
-        }
+            <div class="d-flex items-center justify-between">
+              <div class="cursor-pointer mr-3 favorite-star d-flex items-center" data-href="${href}">
+                  ${
+                    isFavorite
+                      ? '<img src="images/star-filled.svg" alt="Favorited" width="24px" />'
+                      : '<img src="images/star-outline.svg" alt="Not Favorited" width="24px" />'
+                  }
+              </div>
+              <a href="${href}" target="_blank" referrerpolicy="no-referrer" class="left w-100">
+                  <div class="left">
+                      <img src="images/${icon}-${mod}.svg" alt="${icon} icon" width="32px" />
+                      <p>${text}</p>
+                    </div>
+                    
+                    <div div class="right">
+                    <img src="images/arrow-right-${mod}.svg" alt="right arrrow" width="32px" />
+                    </div>
+                    </a>
+                    </div>
+                    
       </div>
-            <a href="${href}" target="_blank" referrerpolicy="no-referrer">
-              <div class="left">
-            
-
-                  <img src="./icons/${icon}-${mod}.svg" alt="${icon} icon" width="32px" />
-                  <p>${text}</p>
-              </div>
-              <div div class="right">
-              <img src="./icons/arrow-right-${mod}.svg" alt="right arrrow" width="32px" />
-              </div>
-              </div>
-            </a>
-          </div>
-      
   `;
   document.getElementById(type + String(count)).innerHTML = html;
-
+  //
+  //
   const favoriteStar = document.querySelector(
     `#${type}${count} .favorite-star`
   );
@@ -53,8 +53,8 @@ function createLinkCard(id, href, icon, text, type, count) {
     //     '<img src="./icons/star-outline.svg" alt="Not Favorited" width="24px" />';
     // }
     favoriteStar.innerHTML = isFavorite
-      ? '<img src="./icons/star-outline.svg" alt="Not Favorited" width="24px" />'
-      : '<img src="./icons/star-filled.svg" alt="Favorited" width="24px" />';
+      ? '<img src="./images/star-outline.svg" alt="Not Favorited" width="24px" />'
+      : '<img src="./images/star-filled.svg" alt="Favorited" width="24px" />';
   });
 }
 

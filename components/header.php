@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 09:39:59
+// Last modified: 2024/11/14 09:44:13
 
 if (!isset($_SESSION)) {
     session_start();
@@ -258,10 +258,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 </div>
 <?php include "./components/toolbar.php" ?>
 <script>
-    // function logout() {
-    //     </?php session_destroy(); ?>
-    //     window.location.href = "./mysignin.php";
-    // }
     async function setAlert() {
         const notification = new Notification();
 
