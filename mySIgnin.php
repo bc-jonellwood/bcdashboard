@@ -1,10 +1,13 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/11/08 10:36:58
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
+// Last modified: 2024/11/13 15:27:40
+
 session_start();
+// echo session_status();
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("Location: index.php");
+    exit;
+}
 include("./data/ldapConfig.php");
 $loginfailure = false;
 $GLOBALS['ldap_server'] = '10.11.20.43';
@@ -46,6 +49,8 @@ function checkUser($username)
             $_SESSION['DepartmentNumber'] = $row['iDepartmentNumber'] ? $row['iDepartmentNumber'] : 'Department is TOP SECRET';
             $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
             $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
+            // $expire_time = time() + (48 * 60 * 60);
+            // setcookie("user_logged_in", "yes", $expire_time, "/");
             return true;
         } else {
             $loginfailure = true;
@@ -69,23 +74,23 @@ if (isset($_POST['sUserName'])) {
     if (validateCredentials($_POST['sUserName'] . $GLOBALS['ldap_domain'], $_POST['password'])) {
         $_SESSION['loggedin'] = true;
         $_SESSION['loggedinuser'] = $_POST['sUserName'];
-        header("Location: index.php");
+        // header("Location: index.php");
 
-        // if (checkUser($_SESSION['loggedinuser'])) {
-        //     header("Location: index.php");
-        // } else {
-        //     $loginfailure = true;
-        //     $_SESSION['loggedin'] = false;
-        //     unset($_SESSION['loggedinuser']);
-        //     header("Location: 401.html");
-        // }
+        if (checkUser($_SESSION['loggedinuser'])) {
+            header("Location: index.php");
+        } else {
+            $loginfailure = true;
+            $_SESSION['loggedin'] = false;
+            unset($_SESSION['loggedinuser']);
+            header("Location: 401.html");
+        }
     } else {
         $loginfailure = true;
-        header("Location: myfailure.php");
+        header("Location: myfailuretwo.php");
     }
 }
 
-
+/// comment
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +112,6 @@ if (isset($_POST['sUserName'])) {
 <body>
     <div class="login-container">
         <div class="login-main">
-            <?php print_r($_SESSION); ?>
             <div class="login-header">
                 <!-- <h1>myBerkeley</h1> -->
                 <!-- <img src="./images/myBerkeleyNoWords-nobg.png" alt="my berkeley logo" class="login-logo"> -->
@@ -137,7 +141,7 @@ if (isset($_POST['sUserName'])) {
     </div>
 
     <?php
-    // print_r($_SESSION);
+    print_r($_SESSION);
     //    print_r($_POST);
     print_r($loginfailure);
     // echo "login failure = " . $loginfailure;

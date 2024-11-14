@@ -1,10 +1,16 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/08 12:28:11
+// Last modified: 2024/11/14 09:19:03
 
-if ((isset($_SESSION['loggedin']) == false)) {
-    header("Location: mysignin.php");
-}
+// echo session_status();
+// if (session_status() == PHP_SESSION_NONE) {
+//     session_start();
+//     // session has just been started, don't check $_SESSION['loggedin'] yet
+// } else {
+//     if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
+//         header("Location: mysignin.php");
+//     }
+// }
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -68,7 +74,7 @@ include "./components/header.php"
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
-                    <!-- </?php include "./components/show_session.php" ?> -->
+                    <?php include "./components/show_session.php" ?>
                 </div>
             </div>
         </div>

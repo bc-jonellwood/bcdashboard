@@ -29,7 +29,7 @@ function renderLinks(data) {
   console.log(data);
   var html = `
       <div id="quickLinks">
-        <ul>`;
+        <ul class="list-group list-group-flush no-list-style small">`;
   for (var i = 0; i < data.length; i++) {
     html += `<li>${data[i].sText}</li>`;
   }

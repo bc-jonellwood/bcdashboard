@@ -1,27 +1,22 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/08 09:52:11
-function startSession()
-{
-    try {
-        // Check if the session is already started
-        if (session_status() === PHP_SESSION_NONE) {
-            // Start the session
-            session_start();
-            // echo "Session started successfully.";
-        } else {
-            return;
-            // echo "Session is already active.";
-        }
-    } catch (Exception $e) {
-        // Handle any exceptions that occur during session start
-        error_log("Session start failed: " . $e->getMessage());
-        echo "An error occurred while starting the session.";
-    }
-}
+// Last modified: 2024/11/14 09:39:59
 
-// Call the function to manage session
-startSession();
+if (!isset($_SESSION)) {
+    session_start();
+};
+// if (session_status() == PHP_SESSION_NONE) {
+// session_start();
+// session has just been started, don't check $_SESSION['loggedin'] yet
+// }
+
+// if (session_status() == PHP_SESSION_NONE) {
+//     // session has just been started, don't check $_SESSION['loggedin'] yet
+// } else {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
+    header("Location: mysignin.php");
+}
+// }
 
 
 ?>
@@ -128,13 +123,14 @@ startSession();
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
             ||MENU||
         </button>
-
     </div>
     <span class="notification-bar">
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
         </div>
-        <div class="notification-date"><?php echo $_SESSION['loggedinuser'] ?></div>
+        <div class="notification-date">
+            <?php echo $_SESSION['loggedinuser'] ?>
+        </div>
         <div class="notification-date"><?php include "./components/dateAndTimeDisplay.php" ?></div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
@@ -215,13 +211,13 @@ startSession();
                             </div>
                         </div>
                     </div>
-                    <div class="popover-btn-holder">
-                        <button class="btn btn-secondary btn-small employee-lookup-clear-btn" type="button" onclick="clearEmployeeLookup()">Clear</button>
-                        <button class="btn btn-danger btn-small employee-lookup-clear-btn" type="button" popovertarget="employeeLookupPopover" popovertargetaction="hide">Close</button>
-                    </div>
+
                 </div>
             </div>
-            <!-- <//?php include "employeeLookupByName.php"; ?> -->
+            <div class="popover-btn-holder">
+                <button class="btn btn-danger btn-small employee-lookup-clear-btn" type="button" popovertarget="employeeLookupPopover" popovertargetaction="hide">Make</button>
+                <button class="btn btn-secondary btn-small employee-lookup-clear-btn" type="button" onclick="clearEmployeeLookup()">Hate</button>
+            </div>
         </div>
     </div>
 </div>
@@ -239,10 +235,11 @@ startSession();
 </div>
 <div class="quick-links-popover" id="quickLinksPopover" popover="manual" name="quickLinksPopover">
     <div class="card-content dash-card quickLinks">
-        <div class="component-header">Quick Links</div>
-        <button type="button" class="btn-x" popovertarget="quickLinksPopover" popovertargetaction="hide"
-            aria-label="Close">X
-        </button>
+        <div class="component-header">
+            <button type="button" class="btn btn-danger btn-small" popovertarget="quickLinksPopover" popovertargetaction="hide"
+                aria-label="Close">Close
+            </button>
+        </div>
         <div class="quickLinksMenu" id="quickLinksMenu"></div>
     </div>
 </div>
@@ -261,10 +258,10 @@ startSession();
 </div>
 <?php include "./components/toolbar.php" ?>
 <script>
-    function logout() {
-        <?php session_destroy(); ?>
-        window.location.href = "./mysignin.php";
-    }
+    // function logout() {
+    //     </?php session_destroy(); ?>
+    //     window.location.href = "./mysignin.php";
+    // }
     async function setAlert() {
         const notification = new Notification();
 
@@ -356,6 +353,10 @@ startSession();
         }
     }
 
+    .employee-lookup-popover .dash-card {
+        max-height: fit-content !important;
+    }
+
     .quick-links-popover[popover] {
         inline-size: 15vi !important;
         block-size: 90vh !important;
@@ -365,7 +366,11 @@ startSession();
         max-height: 90vh;
     }
 
-    #quickLinks ui {
+    #quickLinksPopover>div {
+        max-height: 90vh !important;
+    }
+
+    #quickLinks ul ui {
         list-style-type: none !important;
         font-size: smaller !important;
         padding: 0;
@@ -425,7 +430,7 @@ startSession();
 
 
     .notification-bar {
-        width: 100dvw;
+        width: 90dvw;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -584,6 +589,11 @@ startSession();
         flex-wrap: wrap;
         justify-content: flex-end;
         align-content: center;
-        width: 4%;
+        width: 5%;
+        /* width: fit-content; */
+    }
+
+    .popover-btn-holder {
+        margin-bottom: 10px;
     }
 </style>
