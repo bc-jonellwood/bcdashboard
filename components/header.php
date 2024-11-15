@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 11:32:04
+// Last modified: 2024/11/15 08:27:41
 
 if (!isset($_SESSION)) {
     session_start();
@@ -366,13 +366,21 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         max-height: 90vh !important;
     }
 
-    #quickLinks ul ui {
+    #quickLinks ul li {
         list-style-type: none !important;
         font-size: smaller !important;
         padding: 0;
         margin: 0;
         color: var(--fg);
-        background-color: var(--bg);
+        padding: 2px;
+        /* background-color: var(--bg); */
+    }
+
+    #quickLinks ul li:hover {
+        background-color: var(--accent);
+        color: var(--bg);
+        border-radius: 2px;
+        padding: 3px;
     }
 
     .sidenav-popover[popover] {

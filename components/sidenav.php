@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 12:06:39
+// Last modified: 2024/11/15 09:28:55
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="./mysignin.php" class="nav-link d-flex align-items-center">
+                <a href="./signout.php" class="nav-link d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z" />
                     </svg>

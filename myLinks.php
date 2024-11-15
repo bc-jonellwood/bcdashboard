@@ -1,6 +1,6 @@
 <?php
 // Crated: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 14:47:48
+// Last modified: 2024/11/15 10:16:00
 
 include "./components/header.php"
 
@@ -54,27 +54,27 @@ include "./components/header.php"
     <?php include "./components/footer.php" ?>
 </div>
 
+<script src="./functions/renderQuickLinks.js"></script>
 
-<script src="./data/empLinkData.js"></script>
-<script src="./data/comLinkData.js"></script>
-<script src="./data/appLinkData.js"></script>
 <script>
-    function createLinks() {
-        var edata = employeeLinkItems();
-        for (var i = 0; i < edata.length; i++) {
-            console.log(edata[i]);
-            createLinkCard(edata[i].id, edata[i].href, edata[i].icon, edata[i].text, 'emp', i);
-        }
-        var cdata = commsLinkItems();
-        for (var i = 0; i < cdata.length; i++) {
-            createLinkCard(cdata[i].id, cdata[i].href, cdata[i].icon, cdata[i].text, 'com', i);
-        }
-        var adata = appLinkItems();
-        for (var i = 0; i < adata.length; i++) {
-            createLinkCard(adata[i].id, adata[i].href, adata[i].icon, adata[i].text, 'app', i);
-        }
+    function loadLinksForPage(type) {
+        console.log('type', type);
+        const cachedData = JSON.parse(localStorage.getItem(cacheKey));
+        console.log('cachedData');
+        console.log(cachedData);
+        cachedData.links.forEach(link => {
+            if (link.sClass === type) {
+                console.log('***link***');
+                console.log(link);
+                let i;
+                createLinkCard(link.sLinkId, link.sHref, link.sIcon, link.sText, type, i);
+                i++;
+            }
+        });
     }
-    createLinks();
+    loadLinksForPage('emp');
+    loadLinksForPage('com');
+    loadLinksForPage('app');
 </script>
 
 <style>
