@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/14 09:19:03
+// Last modified: 2024/11/15 14:09:45
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -53,7 +53,7 @@ include "./components/header.php"
 <script>
     function fakeLoader() {
         showLoader();
-        setTimeout(hideLoader, 1200);
+        setTimeout(hideLoader, 200);
     }
     fakeLoader()
 </script>
@@ -74,7 +74,7 @@ include "./components/header.php"
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
-                    <?php include "./components/show_session.php" ?>
+                    <!-- </?php include "./components/show_session.php" ?> -->
                 </div>
             </div>
         </div>

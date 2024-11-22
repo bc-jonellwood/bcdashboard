@@ -1,10 +1,10 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/15 09:28:55
+// Last modified: 2024/11/15 14:05:14
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
-        style="width: 280px;min-width: -webkit-fill-available;">
+        style="width: 20rem;min-width: -webkit-fill-available;">
         <div class="d-flex w-100 gap-4 align-items-center justify-content-evenly">
             <a href="./index.php" class="d-flex align-items-center text-white text-decoration-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
@@ -51,6 +51,14 @@
                 </a>
             </li>
             <li>
+                <a href="./mysignature.php" class="nav-link d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                        <path d="M22,22H2V20H22V22M2.26,16.83L5.09,14L2.26,11.17L3.67,9.76L6.5,12.59L9.33,9.76L10.74,11.17L7.91,14L10.74,16.83L9.33,18.24L6.5,15.41L3.67,18.24L2.26,16.83Z" />
+                    </svg>
+                    My Signature
+                </a>
+            </li>
+            <li>
                 <a href="./mynotifications.php" class="nav-link d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21M19.75,3.19L18.33,4.61C20.04,6.3 21,8.6 21,11H23C23,8.07 21.84,5.25 19.75,3.19M1,11H3C3,8.6 3.96,6.3 5.67,4.61L4.25,3.19C2.16,5.25 1,8.07 1,11Z" />
@@ -66,11 +74,27 @@
                     Events
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="./success.php" class="nav-link d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M14.53 1.45L13.45 2.53L15.05 4.13C15.27 4.38 15.38 4.67 15.38 5S15.27 5.64 15.05 5.86L11.5 9.47L12.5 10.55L16.13 6.94C16.66 6.35 16.92 5.7 16.92 5C16.92 4.3 16.66 3.64 16.13 3.05L14.53 1.45M10.55 3.47L9.47 4.55L10.08 5.11C10.3 5.33 10.41 5.63 10.41 6S10.3 6.67 10.08 6.89L9.47 7.45L10.55 8.53L11.11 7.92C11.64 7.33 11.91 6.69 11.91 6C11.91 5.28 11.64 4.63 11.11 4.03L10.55 3.47M21 5.06C20.31 5.06 19.67 5.33 19.08 5.86L13.45 11.5L14.53 12.5L20.11 6.94C20.36 6.69 20.66 6.56 21 6.56S21.64 6.69 21.89 6.94L22.5 7.55L23.53 6.47L22.97 5.86C22.38 5.33 21.72 5.06 21 5.06M7 8L2 22L16 17L7 8M19 11.06C18.3 11.06 17.66 11.33 17.06 11.86L15.47 13.45L16.55 14.53L18.14 12.94C18.39 12.69 18.67 12.56 19 12.56C19.33 12.56 19.63 12.69 19.88 12.94L21.5 14.53L22.55 13.5L20.95 11.86C20.36 11.33 19.7 11.06 19 11.06Z" />
                     </svg> Success
+                </a>
+            </li> -->
+            <li>
+                <a href="./facilitiesrequestsubmit.php" class="nav-link d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                        <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z" />
+                    </svg>
+                    New Facilities Request
+                </a>
+            </li>
+            <li>
+                <a href="./facilitiesrequestview.php" class="nav-link d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                        <path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
+                    </svg>
+                    View Facilities Requests
                 </a>
             </li>
             <li>
@@ -155,6 +179,7 @@
         height: 100%;
         background-color: var(--accent);
         backdrop-filter: blur(5px);
+        font-size: smaller;
     }
 
     .sideNavTitle {

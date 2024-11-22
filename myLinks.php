@@ -1,6 +1,6 @@
 <?php
 // Crated: 2024/09/12 13:12:49
-// Last modified: 2024/11/15 10:16:00
+// Last modified: 2024/11/15 10:19:58
 
 include "./components/header.php"
 
@@ -58,14 +58,14 @@ include "./components/header.php"
 
 <script>
     function loadLinksForPage(type) {
-        console.log('type', type);
+        // console.log('type', type);
         const cachedData = JSON.parse(localStorage.getItem(cacheKey));
-        console.log('cachedData');
-        console.log(cachedData);
+        // console.log('cachedData');
+        // console.log(cachedData);
         cachedData.links.forEach(link => {
             if (link.sClass === type) {
-                console.log('***link***');
-                console.log(link);
+                // console.log('***link***');
+                // console.log(link);
                 let i;
                 createLinkCard(link.sLinkId, link.sHref, link.sIcon, link.sText, type, i);
                 i++;

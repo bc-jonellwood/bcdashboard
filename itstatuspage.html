@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Team Status Page</title>
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <!-- <link rel="stylesheet" href="styles/theme.css"> -->
+
+    <script>
+
+        function redirect() {
+            window.location.href = "./itstatusview.html";
+        }
+
+         function fixChris() {
+                var list = document.querySelectorAll('.card-front')
+                
+                list.forEach(name => {
+                    var nameHolder = name.firstElementChild.textContent;
+                    console.log(nameHolder);
+                    // check if nameholder contains the string 'christoper' return the string 'chris'
+                    if (nameHolder === 'christopher heironimus') {
+                        name.firstElementChild.textContent = 'chris heironimus';
+                    }
+
+                });
+            }
+        function getTeamStatus() {
+            fetch("./API/getTeamStatus.php")
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                    var html = "";
+                    for (var i = 0; i < data.length; i++){
+                        html += `
+                            <div class="team-card status-${data[i].iStatus}" id="${data[i].sEmployeeNumber}" onclick="selectEmployee(this.id)">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <h3>${data[i].sPreferredName ? `${data[i].sPreferredName} ${data[i].sLastName}`.toLowerCase() : `${data[i].sFirstName} ${data[i].sLastName}`.toLowerCase()}</h3>
+                                        <p><span id="empCount">${data[i].sStatusName}</span> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    }
+                    var target = document.getElementById('dashboard')
+                    target.innerHTML = html;
+                })
+                setTimeout(fixChris, 250);
+        }
+        getTeamStatus();
+         
+        function makeChangeForm() {
+                fetch("./API/getTeamStatus.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data);
+                        var Ehtml = "";
+                        Ehtml += "<label for='employee' class='form-label'>Select Employee</label>";
+                        Ehtml += "<select id='employee_id' class='form-select'>";
+                        for (var i = 0; i < data.length; i++) {
+                            Ehtml += `
+                            <option value="${data[i].sEmployeeNumber}">
+                                ${data[i].sPreferredName ? `${data[i].sPreferredName} ${data[i].sLastName}`.toLowerCase() : `${data[i].sFirstName} ${data[i].sLastName}`.toLowerCase()}
+                            </option>
+                        `
+                        }
+                        Ehtml += "</select>";
+                        var empSelectTarget = document.getElementById('employee')
+                        empSelectTarget.innerHTML = Ehtml;
+                    })
+                fetch("./API/getStatusList.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        var Shtml = "";
+                        // Shtml += "<label for='status' class='form-label'>Select Status</label>";
+                        for (var j = 0; j < data.length; j++) {
+                            Shtml += `<button class="btn btn-small status-${data[j].id}" type="button" onclick="updateStatus(this.value)" value="${data[j].id}">${data[j].sStatusName}</button>`
+                        }
+                        // Shtml += "</select>";
+                        var statusSelectTarget = document.getElementById('status')
+                        statusSelectTarget.innerHTML = Shtml;
+                    })
+            }
+            makeChangeForm();
+    </script>
+</head>
+
+<body onload="redirect()">
+    <div class="team-header">
+        <h1 class="team-name">Where's Carla ?</h1>
+        <img src="images/heresCarla.jpeg" alt="Carla" width="100px" class="carla-avatar">
+    </div>
+    <div class="dashboard" id="dashboard">
+        
+    </div>
+    <div class="update-form-holder dashboard">
+        <div class="employee" id="employee"></div>
+        <label for='status' class='form-label status-label'>Select Status</label>
+        <div class="status" id="status"></div>
+        <!-- <button class="btn btn-sm" type="button" onclick="updateStatus()">Update Status</button> -->
+    </div>
+</body>
+
+</html>
+<script>
+    function updateStatus(status) {
+            var employee = document.getElementById('employee_id').value;
+            // var status = document.getElementById('status_id').value;
+            fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
+                // .then(alert('Status Updated!'))
+                .then(getTeamStatus);
+            }
+    function selectEmployee(id) {
+        var empSelect = document.getElementById('employee_id');
+        empSelect.value = id;
+    }
+</script>
+
+<style>
+    @font-face {
+        font-family: "TimesSans";
+        src: url('./fonts/TimesSans.ttf');
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        /* background-color: #f4f4f9; */
+        background-color: #f09d0910;
+        color: #333;
+        /* background: linear-gradient(135deg, #d5cea6 0%, #c6b96b 95%, #b7ad70 100%); */
+    }
+
+    .dashboard {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .team-header {
+        background-image: url("./images/wheresCarla.jpg");
+        background-position: center;
+        color: #333;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .team-name {
+        font-family: TimesSans;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        color: #000000;
+        font-size: 3em;
+        background-color: #ffffff99;
+        margin: 0 !important;
+        padding: 1rem;
+        text-transform: uppercase;
+    }
+
+    .team-card {
+        width: 150px;
+        height: 100px;
+        border-radius: 8px;
+        h3{
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+    }
+
+    .card-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        border-radius: 8px;
+        box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-front,
+    .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border-radius: 8px; */
+        font-size: smaller;
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 1); */
+    }
+
+
+    .card-back {
+        /* background-color: #333; */
+        background-color: #4372f6;
+        color: #fff;
+        transform: rotateY(180deg);
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-right: 50px;
+
+        img {
+            position: relative;
+            border-radius: 50%;
+            /* z-index: -1; */
+        }
+    }
+    .status-0 {
+        background-color: green;
+        color: #ffffff !important;
+        border: 1px solid darkgreen;
+    }
+
+    .menu-item-status-0 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: green;
+    }
+
+    .status-1 {
+        background-color: #ff0a0a;
+        color: #111111 !important;
+    }
+
+    .status-2 {
+        background-color: purple;
+        color: #eee !important;
+        border: 1px solid darkred;
+    }
+
+    .status-3 {
+        background-color: yellow;
+        color: #000 !important;
+        border: 1px solid darkgoldenrod;
+    }
+
+    .status-4 {
+        background-color: yellowgreen;
+        color: #000 !important;
+        border: 1px solid darkgreen;
+    }
+
+    .status-5 {
+        background-color: darkgreen;
+        color: #eee !important;
+        border: 1px solid limegreen;
+    }
+    
+    .status-6 {
+        background-color: #8b0000;
+        color: #eee !important;
+        border: 1px solid red;
+    }
+
+    .status-7 {
+        background-color: darkgray;
+        color: #333 !important;
+        border: 1px solid #000
+    }
+    .update-form-holder{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 1rem;
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+    .employee{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    .status{
+        display: flex;
+        gap: 1rem;
+    }
+    .status-label{
+        width: 100%;
+        text-align: center;
+    }
+
+    select,
+    option{
+        text-transform: capitalize;
+        width: 250px;
+    }
+    label{
+        color: #eee;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+        width: 250px;
+    }
+    .carla-avatar{
+        position: relative;
+        border-radius: 50%;
+        background-color: #ffffff99;
+    }
+    @media screen and (max-width: 666px) {
+      .update-form-holder{
+        margin-left: 1%;
+        margin-right: 1%;
+      }
+      .status{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .25;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+    @media screen and (max-width: 900px) {
+      .update-form-holder{
+        margin-left: 2%;
+        margin-right: 2%;
+      }
+      .status{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: .25;
+      }
+    }
+    
+</style>

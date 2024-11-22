@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/11/19 13:20:58
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -21,24 +21,34 @@ $emp_id = '4438';
 // $sql = "SELECT * from curr_emp_ref where deptNumber = (
 //     SELECT deptNumber from curr_emp_ref where empNumber = '$emp_id'
 // )";
-$sql = "SELECT id,
-      sFirstName
-      ,sLastName,
-      CONCAT(sFirstName,  ' ', sLastName) as sEmployeeName
-      ,iEmployeeNumber
-      ,sEmail
-      ,SMainPhoneNumber
-      ,sMainPhoneNumberLabel
-      ,sSecondaryPhoneNumber
-      ,sSecondaryPhoneNumberLabel
-      ,iDepartmentNumber
-      ,dtStartDate
-      ,dtSeparationDate
-      ,bActive
-  FROM bcg_intranet.dbo.data_employees
-  where iDepartmentNumber = (
+$sql = "SELECT 
+  de.id,
+  de.sFirstName,
+  de.sLastName,
+  CONCAT(de.sFirstName,  ' ', de.sLastName) as sEmployeeName,
+  de.iEmployeeNumber,
+  de.sEmail,
+  de.SMainPhoneNumber,
+  de.sMainPhoneNumberLabel,
+  de.sSecondaryPhoneNumber,
+  de.sSecondaryPhoneNumberLabel,
+  de.iDepartmentNumber,
+  de.dtStartDate,
+  de.dtSeparationDate,
+  de.bActive,
+  aust.sStatusName,
+  au.iStatus
+FROM 
+  bcg_intranet.dbo.data_employees de
+  INNER JOIN app_users au ON de.iEmployeeNumber = au.sEmployeeNumber
+  INNER JOIN app_user_status_types aust ON au.iStatus = aust.id
+WHERE 
+  de.iDepartmentNumber = (
     SELECT iDepartmentNumber from bcg_intranet.dbo.data_employees where iEmployeeNumber = '$emp_id'
-  ) and dtSeparationDate is null order by sLastName ASC;";
+  ) 
+  AND de.dtSeparationDate is null
+ORDER BY 
+  de.sLastName ASC";
 
 
 $data = array();

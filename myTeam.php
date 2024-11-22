@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/25 14:26:31
+// Last modified: 2024/11/22 14:48:59
 include "./components/header.php"
 ?>
 <script src="./functions/toast.js"></script>
@@ -90,6 +90,7 @@ include "./components/header.php"
                 let html = "";
                 for (var i = 0; i < data.length; i++) {
                     let favColor = getRandomColorName();
+                    let statusNumber = data[i].iStatus ? data[i].iStatus : 0;
                     let initials = getInitials(data[i].sEmployeeName);
                     // let email = data[i].sEmail ? data[i].sEmail : 'email@example.com';
                     let email = data[i].sEmail && data[i].sEmail.trim() !== '' ? data[i].sEmail : `${data[i].sFirstName}.${data[i].sLastName}`
@@ -102,16 +103,16 @@ include "./components/header.php"
                     html += `
                         <div class="emp-card" data-emp-id="${data[i].iEmployeeNumber}" id="${data[i].sEmployeeName}">
                         <div class="emp-avatar">
-                                <p class="emp-initials" style="background-color: ${favColor};">${initials}</p>
+                                <p class="emp-initials">${initials}</p>
                             </div>
                             <h3 class="emp-name-headline">${data[i].sEmployeeName.toLowerCase()}</h3>
                             <a href="mailto:${data[i].sEmail}">
                                 ${truncatedEmail.toLowerCase()}
                             </a>
                             <button type="button" onclick="copyEmail('${email}')" popovertarget="toast-popover" popovertargetaction="show" class="not-btn">
-                            <img src="./icons/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
+                            <img src="./images/content-copy.svg" alt="Copy Email" style="width: 1rem; height: 1rem;">
                             </button>
-                            <p class="phoneNumber"><img src="./icons/phone.svg" alt="Phone" style="width: 1rem; height: 1rem;"> ${data[i].SMainPhoneNumber ? data[i].SMainPhoneNumber : 'None' }</p>
+                            <p class="phoneNumber"><img src="./images/phone.svg" alt="Phone" style="width: 1rem; height: 1rem;"> ${data[i].SMainPhoneNumber ? data[i].SMainPhoneNumber : 'None' }</p>
                         </div>
                     `
                 }
@@ -266,7 +267,7 @@ include "./components/header.php"
             justify-content: center;
             border: 1px solid;
             border-color: dark-light(var(--fg), var(--bg));
-
+            background-color: var(--bg);
         }
     }
 
@@ -314,6 +315,8 @@ include "./components/header.php"
     .team-list-table tr td {
         padding-top: 10px;
         padding-left: 10px;
+        display: flex;
+        align-items: baseline;
     }
 
     .border-accent {
@@ -337,5 +340,104 @@ include "./components/header.php"
         align-items: center;
         justify-content: flex-start;
         gap: 10px;
+    }
+
+    .status-0 {
+        background-color: green;
+        color: #ffffff !important;
+    }
+
+    .menu-item-status-0 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: green;
+    }
+
+    .status-1 {
+        background-color: red;
+        color: #000 !important;
+    }
+
+    .menu-item-status-1 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: red;
+    }
+
+    .status-2 {
+        background-color: purple;
+    }
+
+    .menu-item-status-2 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: purple;
+    }
+
+    .status-3 {
+        background-color: yellow;
+        color: #000 !important;
+    }
+
+    .menu-item-status-3 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: yellow;
+    }
+
+    .status-4 {
+        background-color: yellowgreen;
+    }
+
+    .menu-item-status-4 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: yellowgreen;
+    }
+
+    .status-5 {
+        background-color: darkgreen;
+    }
+
+    .menu-item-status-5 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: darkgreen;
+    }
+
+    .status-6 {
+        background-color: darkred;
+    }
+
+    .menu-item-status-6 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: darkred;
+    }
+
+    .status-7 {
+        background-color: white;
+    }
+
+    .menu-item-status-7 {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: white;
     }
 </style>
