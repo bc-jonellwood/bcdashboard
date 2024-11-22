@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/20 10:29:33
+// Last modified: 2024/11/22 15:05:21
 
 if (!isset($_SESSION)) {
     session_start();
@@ -117,7 +117,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 
         document.addEventListener('DOMContentLoaded', setClassAndModeOnLoad);
     </script>
-
+    <script>
+        function updateStatusFromDash(status) {
+            var employee = <?php echo $_SESSION['employeeID'] ?>;
+            var status = status;
+            fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
+                .then(alert('Status Updated'));
+        }
+    </script>
 </head>
 
 <div class="header">
@@ -191,16 +198,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         </section>
         <section>
             <label for="status-select" class="status-select">Update Status:</label>
-            <select name="status-select" id="status-select">
+            <select name="status-select" id="status-select" onchange="updateStatusFromDash(this.value)">
                 <option value="0">Available</option>
                 <option value="1">Not in the office</option>
-                <option value="2">Personal Leave</option>
-                <option value="3">Lunch</option>
+                <option value="2">On Leave</option>
+                <option value="3">At Lunch</option>
                 <option value="4">On the Floor Call cell</option>
                 <option value="5">At another building</option>
                 <option value="6">Offsite Coverage</option>
+                <option value="7">Working Remote</option>
+                <option value="6">Unavailable</option>
             </select>
-            <p>TODO: Make the users current status be the selected option.</p>
         </section>
     </div>
 </div>

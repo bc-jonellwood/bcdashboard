@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/15 14:09:45
+// Last modified: 2024/11/22 15:47:33
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -60,6 +60,35 @@ include "./components/header.php"
 <script>
     var currentMonth = new Date().getMonth();
 </script>
+<script>
+    function abbreviateName(name) {
+        // var parts = name.split(' ');
+        return name.charAt(0);
+    }
+
+    function getItTeamStatus() {
+        fetch("./API/getTeamStatusForView.php")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var html = `<div id='9f8a4rbt-c1bf-4867-8399-e0dd5000458d'>
+                <div class='card-content'>
+                <div class='component-header'>IT Team Status <button class='not-btn' onclick='minimizeCard(\"9f8a4rbt-c1bf-4867-8399-e0dd5000458d\")'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='recolor' width='24' height='24'><path d='M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z' /></svg>`
+                html += `</button></div>
+                <div id='itTeamStatusContent' class='card-content'>`
+                for (let i = 0; i < data.length; i++) {
+                    html += `<ul class='itTeamStatusItem'>
+                                <li class='itTeamStatusName'>${data[i].sPreferredName ? `${data[i].sPreferredName } ${abbreviateName(data[i].sLastName)}`  : `${data[i].sFirstName} ${abbreviateName(data[i].sLastName)}`} - ${data[i].sStatusName}</ul>
+                                </ul>`
+                }
+                // <div class='itTeamStatusTime'>${data[i].LatestLogTime}</div>
+                html += `</div></div></div>`;
+                document.getElementById('itTeamStatus').innerHTML = html;
+            })
+    }
+    getItTeamStatus();
+</script>
 
 <body class="mode-dark theme-base">
     <div class="main">
@@ -74,6 +103,8 @@ include "./components/header.php"
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
+                    <div id="itTeamStatus" class="dash-card"></div>
+                    <!-- </?php include "./components/itTeamStatus.php" ?> -->
                     <!-- </?php include "./components/show_session.php" ?> -->
                 </div>
             </div>
