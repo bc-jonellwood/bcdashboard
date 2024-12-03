@@ -114,7 +114,7 @@ try {
     // To render the employee list
     echo $employeeManager->renderAllEmployeesSelect();
 
-    // To handle the selection of a new user (this would be in your AJAX handler)
+    // To handle the selection of a new user
     if (isset($_POST['action']) && $_POST['action'] === 'selectNewUser') {
         $userData = [
             'userId' => $_POST['userId'],

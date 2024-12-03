@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/25 14:04:32
-// Last modified: 2024/11/15 15:42:59
+// Last modified: 2024/12/02 13:55:11
 
 include_once '../data/appConfig.php';
 $dbconf = new appConfig;
@@ -84,7 +84,14 @@ try {
         throw new Exception("Desired response is required");
     }
 
-    $sql = "INSERT INTO app_facilities_requests (sIssueTitle, sIssueDescription, iIssueType, sIssueLocation, sIssueSubLocation, sRequestorName, sRequestorUserID, sPrimaryContact, sPhoneNumber, iDesiredResponse) VALUES (:issueTitle, :issueDescription, :issueType, :issueLocation, :issueSubLocation,  :requestorName, :requestorUserID, :primaryContact, :phoneNumber, :desiredResponse)";
+    if (isset($_POST['additionalContacts']) && is_array($_POST['additionalContacts'])) {
+        $additionalContacts = implode(',', array_map('strip_tags', $_POST['additionalContacts']));
+    } else {
+        $additionalContacts = "";
+    }
+    // echo $additionalContacts;
+
+    $sql = "INSERT INTO app_facilities_requests (sIssueTitle, sIssueDescription, iIssueType, sIssueLocation, sIssueSubLocation, sRequestorName, sRequestorUserID, sPrimaryContact, sPhoneNumber, iDesiredResponse, sAdditionalContacts) VALUES (:issueTitle, :issueDescription, :issueType, :issueLocation, :issueSubLocation, :requestorName, :requestorUserID, :primaryContact, :phoneNumber, :desiredResponse, :additionalContacts)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':issueTitle', $issueTitle);
     $stmt->bindParam(':issueDescription', $issueDescription);
@@ -97,6 +104,7 @@ try {
     $stmt->bindParam(':primaryContact', $primaryContact);
     $stmt->bindParam(':phoneNumber', $phoneNumber);
     $stmt->bindParam(':desiredResponse', $desiredResponse);
+    $stmt->bindParam(':additionalContacts', $additionalContacts);
 
     if ($stmt->execute()) {
         http_response_code(200);

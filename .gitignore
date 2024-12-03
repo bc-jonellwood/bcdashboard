@@ -9,3 +9,6 @@ node_modules
 /emailSigWC.js
 /expandableList.js
 /webcomp.html
+node_modules
+
+/.env

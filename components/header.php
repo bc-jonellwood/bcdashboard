@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/22 15:05:21
+// Last modified: 2024/12/03 10:19:52
 
 if (!isset($_SESSION)) {
     session_start();
@@ -36,8 +36,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/theme.css">
+    <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
     <!-- <link rel="stylesheet" href="styles/teams.css"> -->
-
+    <!-- <script type="module" defer>
+        const snow = document.createElement('snow-fall');
+        document.body.prepend(snow)
+    </script> -->
     <script src="./functions/utils.js"></script>
     <script src="./functions/randomAlert.js"></script>
     <script src="./classes/Notification.js"></script>
@@ -118,15 +122,31 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         document.addEventListener('DOMContentLoaded', setClassAndModeOnLoad);
     </script>
     <script>
+        async function getUserCurrentStatus() {
+            var statusHolder = document.getElementById('current-status');
+            var statusHolderDot = document.getElementById('current-status-dot');
+            console.log(statusHolder);
+            await fetch("./API/getSingleUserStatus.php")
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+                    statusHolder.innerText = data[0].sStatusName;
+                    statusHolderDot.classList.add('gap-3 status-dot-' + data[0].iStatus);
+                    // statusHolderDot.classList.add('gap-3');
+                })
+        }
+
+
         function updateStatusFromDash(status) {
             var employee = <?php echo $_SESSION['employeeID'] ?>;
             var status = status;
             fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
-                .then(alert('Status Updated'));
+                .then(alert('Status Updated'))
+                .then(getUserCurrentStatus())
         }
     </script>
 </head>
-
+<snow-fall></snow-fall>
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
@@ -136,6 +156,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <span class="notification-bar">
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
+        </div>
+        <div class="notification-date gap-1 align-items-center">
+            <p class="no-margin" id="current-status-dot"></p>
+            <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
         </div>
         <div class="notification-date">
             <?php echo $_SESSION['loggedinuser'] ?>
@@ -199,6 +223,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         <section>
             <label for="status-select" class="status-select">Update Status:</label>
             <select name="status-select" id="status-select" onchange="updateStatusFromDash(this.value)">
+                <option value="">Select Status</option>
                 <option value="0">Available</option>
                 <option value="1">Not in the office</option>
                 <option value="2">On Leave</option>
@@ -304,6 +329,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         renderDepartmentLookup()
         renderPhoneLookup()
         loadLinks()
+        getUserCurrentStatus();
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
 
@@ -628,5 +654,89 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         color: var(--fg);
         font-size: 1.5rem;
         margin-left: 10px;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .status-dot-0 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: green !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-1 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: red !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-2 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: purple !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-3 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: yellow !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-4 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: yellowgreen !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-5 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: darkgreen !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-6 {
+        display: flex !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: darkred !important;
+        color: var(--bg) !important;
+    }
+
+    .status-dot-7 {
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 100% !important;
+        background-color: white !important;
+        color: var(--bg) !important;
     }
 </style>

@@ -1,7 +1,9 @@
 <?php
 // Created: 2024/11/15 11:22:08
-// Last Modified: 2024/11/15 13:02:32
+// Last Modified: 2024/12/02 14:00:11
+
 include "./components/header.php";
+
 ?>
 
 
@@ -10,21 +12,21 @@ include "./components/header.php";
     <div class="content">
         <form id="newFacilitiesRequestForm" method="post" action="API/addNewFacilitiesRequestToDatabase.php">
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
-                <label for="issueTitle">Issue/Request</label>
+                <label for="issueTitle">Tell us briefly what your request is</label>
                 <input name="issueTitle" id="issueTitle" class="form-control" rows="3" required></textarea>
-                <label for="issueType">Issue Type</label>
-                <select name="issueType" id="issueType" class="form-control" required></select>
+                <label for="issueType" class="hidden">Issue Type</label>
+                <select name="issueType" id="issueType" class="form-control hidden" required></select>
             </div>
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
-                <label for="issueDescription">Issue/Request Description</label>
+                <label for="issueDescription">Describe the request in detail</label>
                 <textarea name="issueDescription" id="issueDescription" class="form-control" rows="3" required></textarea>
             </div>
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
-                <label for="issueLocation">Issue Location</label>
+                <label for="issueLocation">Select the area that best matches the location of your request</label>
                 <select name="issueLocation" id="issueLocation" class="form-control" required></select>
             </div>
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
-                <label for="issueSubLocation">Issue Sub Location</label>
+                <label for="issueSubLocation">Provide any additional details to help us locate you quickly.</label>
                 <input name="issueSubLocation" id="issueSubLocation" class="form-control" rows="3"></input>
             </div>
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
@@ -37,6 +39,14 @@ include "./components/header.php";
                 <input name="primaryContact" id="primaryContact" class="form-control" required>
                 <label for="phoneNumber">Phone Number</label>
                 <input name="phoneNumber" id="phoneNumber" class="form-control" type="tel" required>
+            </div>
+            <div class="d-flex flex-row justify-content-between gap-2 mt-2">
+                <div>
+                    <label for="additionalContacts">Additional Contacts to be notified and updated regarding this request</label>
+                    <p class="form-text">Hold Ctrl + Click to select multiple contacts</p>
+                </div>
+                <select name="additionalContacts[]" id="additionalContacts" class="form-control" multiple></select>
+
             </div>
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
                 <label for="desiredResponse">Desired Response</label>
@@ -53,6 +63,8 @@ include "./components/header.php";
 </div>
 
 <script>
+    // API file is currently set to only return a single value, Facility Problem, until further notice
+    // select element is set to disabled until further notice
     function renderRequestTypeSelect() {
         fetch("./API/getFacilitiesRequestTypes.php")
             .then(response => response.json())
@@ -82,8 +94,28 @@ include "./components/header.php";
                 });
             })
     }
+
+    function renderRequestAdditionContactsMultiSelect() {
+        // $dept = $_SESSION['DepartmentNumber'];
+        // $dept = '41515';
+        // fetch("./API/getAllUsersFromDepartment.php?dept=" + $dept)
+        fetch("./API/getAllUsersFromDepartment.php")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var additionalContactsSelect = document.getElementById("additionalContacts");
+                data.forEach(contact => {
+                    var option = document.createElement("option");
+                    option.value = contact.sEmail;
+                    option.textContent = contact.sFirstName + " " + contact.sLastName;
+                    additionalContactsSelect.appendChild(option);
+                });
+            })
+    }
+
     renderRequestTypeSelect();
     renderRequestLocationSelect();
+    renderRequestAdditionContactsMultiSelect();
 </script>
 <style>
     .main {
@@ -122,8 +154,22 @@ include "./components/header.php";
             }
 
 
-            /* width: 90%; */
-            /* background-color: hotpink; */
+            width: 90%;
+            background-color: var(--bg);
         }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    #additionalContacts option:checked {
+        background-color: var(--accent);
+        color: #1E242B;
+        padding-right: 5px;
+    }
+
+    #additionalContacts option:checked::after {
+        content: ' ✔';
     }
 </style>

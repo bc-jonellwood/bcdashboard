@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/15 15:21:16
+// Last modified: 2024/12/02 12:03:38
 
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
@@ -35,7 +35,26 @@ function getStatusString($value)
             throw new InvalidArgumentException("Invalid input value. Accepted values are 0, 1, or 2.");
     }
 }
+function getTicketAge($dateTimeString)
+{
+    $dateTime = new DateTime($dateTimeString);
+    $now = new DateTime();
+    $interval = $now->diff($dateTime);
 
+    if ($interval->y > 0) {
+        return $interval->y . ' year' . ($interval->y > 1 ? 's' : '');
+    } elseif ($interval->m > 0) {
+        return $interval->m . ' month' . ($interval->m > 1 ? 's' : '');
+    } elseif ($interval->d > 0) {
+        return $interval->d . ' day' . ($interval->d > 1 ? 's' : '');
+    } elseif ($interval->h > 0) {
+        return $interval->h . ' hour' . ($interval->h > 1 ? 's' : '');
+    } elseif ($interval->i > 0) {
+        return $interval->i . ' minute' . ($interval->i > 1 ? 's' : '');
+    } else {
+        return 'just now';
+    }
+}
 echo "<div class='main'>";
 try {
     $conn = new PDO(
@@ -79,32 +98,45 @@ try {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (!empty($result)) {
+        echo "<div class='sidemenu'>";
+        echo "<p>Facilities Requests</p>";
+        echo "<input type='text' placeholder='Search'>";
+        echo "<hr>";
+        echo "<button class='btn btn-primary btn-sm'>New Request</button>";
+        echo "</div>";
         echo "<div class='content'>";
+        echo "<h2>All Requests</h2>";
+        echo "<button class='btn btn-primary btn-sm'>+ Add Filter</button>";
+        echo "<hr>";
         echo "<div class='requestsList'>";
         echo "<table class='userManagementTable'>";
-        // echo "<tr>
-        //         <th>Date Submitted</th>
-        //         <th>Type</th>
-        //         <th>Title</th>
-        //         <th>Description</th>
-        //         <th>Facility</th>
-        //         <th>Response Type</th>
-        //         </tr>";
+        // <th>Facility</th>
+        echo "<tr>
+                <th>Requester</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Response Type</th>
+                <th>Ticket Age</th>
+                </tr>";
         foreach ($result as $row) {
             echo "<tr id='" . $row['id'] . "'>";
             // echo "<td>" . htmlspecialchars($row['dtRequestSubmitted']) . "</td>";
             $dateTimeString = $row['dtRequestSubmitted'];
             $dateTimeData = formatDateTime($dateTimeString);
-            echo "<td><b>Submitted: </b>" . htmlspecialchars($dateTimeData['date']) . " | " .  htmlspecialchars($dateTimeData['time']) . "</td>";
-            echo "<td><b>Type: </b> " . htmlspecialchars($row['sType']) . "</td>";
-            echo "<td><b>Title: </b> " . htmlspecialchars($row['sIssueTitle']) . "</td>";
-            echo "<td rowspan='2' class='description'><b>Description: </b> " . htmlspecialchars($row['sIssueDescription']) . "</td>";
-            echo "<td rowspan='2' class='facility'><b>Facility: </b> " . htmlspecialchars($row['sName']) . " | " . htmlspecialchars($row['sIssueSubLocation']) . "</td>";
-            echo "<td><b>Response Type: </b>" . getStatusString($row['iDesiredResponse']) . "</td>";
-            echo "</tr><tr class='bottomRow'>";
-            echo "<td><b> Submitted By:  </b>" . htmlspecialchars($row['sRequestorName']) . "</td>";
-            echo "<td><b> Primary Contact:  </b>" . htmlspecialchars($row['sPrimaryContact']) . "</td>";
-            echo "<td><b> Phone Number:  </b>" . htmlspecialchars($row['sPhoneNumber']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['sRequestorName']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['sIssueTitle']) . "</td>";
+            echo "<td><p class='badge " . getStatusString($row['iDesiredResponse']) . " '> " . getStatusString($row['iDesiredResponse']) . "</p></td>";
+            echo "<td>" . getStatusString($row['iDesiredResponse']) . "</td>";
+            // echo "<td>" . htmlspecialchars($dateTimeData['date']) . " | " .  htmlspecialchars($dateTimeData['time']) . "</td>";
+
+            echo "<td>" . htmlspecialchars(getTicketAge($row['dtRequestSubmitted'])) . "</td>";
+
+            // echo "<td><b>Type: </b> " . htmlspecialchars($row['sType']) . "</td>";
+            // echo "<td rowspan='2' class='description'><b>Description: </b> " . htmlspecialchars($row['sIssueDescription']) . "</td>";
+            // echo "<td rowspan='2' class='facility'><b>Facility: </b> " . htmlspecialchars($row['sName']) . " | " . htmlspecialchars($row['sIssueSubLocation']) . "</td>";
+            // echo "</tr><tr class='bottomRow'>";
+            // echo "<td><b> Primary Contact:  </b>" . htmlspecialchars($row['sPrimaryContact']) . "</td>";
+            // echo "<td><b> Phone Number:  </b>" . htmlspecialchars($row['sPhoneNumber']) . "</td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -144,14 +176,18 @@ try {
     .main {
         font-size: medium;
         padding: 10px;
-        /* display: grid;
-        grid-template-rows: 1fr 1fr; */
+        display: grid;
+        grid-template-columns: 15% 80%;
+        gap: 5px
+    }
+
+    .sidemenu {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     /* .content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        width: 80%;
     } */
 
     .requestsList {
@@ -234,5 +270,25 @@ try {
         vertical-align: top;
         text-align: left;
 
+    }
+
+    .badge {
+        padding: 5px;
+        border-radius: 15px;
+    }
+
+    .Emergency {
+        background-color: red;
+        color: white;
+    }
+
+    .Urgent {
+        background-color: orange;
+        color: white;
+    }
+
+    .Normal {
+        background-color: green;
+        color: white;
     }
 </style>

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="button.css">
+    <title>Button Component</title>
+</head>
+<body>
+    <div id="button-container"></div>
+    <script src="button.js"></script>
+    <script>
+        const buttonContainer = document.getElementById('button-container');
+
+        const submitButton = createButton({
+            type: 'submit',
+            onClick: () => console.log('Submit button clicked!'),
+            className: 'btn-primary',
+            text: 'Submit'
+        });
+
+        const disabledButton = createButton({
+            type: 'button',
+            onClick: () => console.log('Disabled button clicked!'),
+            className: 'btn-secondary',
+            text: 'Disabled Button',
+            disabled: true
+        });
+
+        buttonContainer.appendChild(submitButton);
+        buttonContainer.appendChild(disabledButton);
+    </script>
+</body>
+</html>

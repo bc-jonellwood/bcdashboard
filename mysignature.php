@@ -1,12 +1,31 @@
 <?php
 // Created: 2024/11/06 09:26:16
-// Last modified: 2024/11/07 12:57:29
+// Last modified: 2024/12/03 11:00:24
 
 if (!isset($_SESSION)) {
     session_start();
 }
 include "./components/header.php"
 ?>
+<script>
+    async function getInfoForSig() {
+        const deptNameHolder = document.getElementById('deptName');
+        const jobTitleHolder = document.getElementById('jobTitle');
+        const phoneNumberHolder = document.getElementById('phoneNumber');
+        const emailAddressHolder = document.getElementById('emailAddress');
+        await fetch('./API/getUserInfoForSig.php')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                deptNameHolder.innerText = data[0].sDepartmentName ? data[0].sDepartmentName : 'Tired Mongoose';
+                jobTitleHolder.innerText = data[0].sJobTitle ? data[0].sJobTitle : 'Valued Employee';
+                phoneNumberHolder.innerText = data[0].sMainPhoneNumber ? 'T : ' + data[0].sMainPhoneNumber : 'T: 843-719-4243';
+                emailAddressHolder.innerText = data[0].sEmail ? data[0].sEmail : 'info@berkeleycountysc.gov'
+                emailAddressHolder.href = data[0].sEmail ? `mailto:${data[0].sEmail}` : 'mailto:info@berkeleycountysc.gov';
+            })
+    }
+</script>
+
 <link rel="stylesheet" href="./styles/signature.css">
 <div class="main">
     <div class="content">
@@ -25,19 +44,28 @@ include "./components/header.php"
                                 <table cellpadding="0" cellspacing="0">
                                     <tbody>
                                         <tr>
-                                            <td colspan="2"><strong>Jon Ellwood </strong></td>
+                                            <td colspan="2"><strong>
+                                                    <?php if (isset($_SESSION['PreferredName'])) {
+                                                        echo $_SESSION['PreferredName'] . ' ' . $_SESSION['LastName'];
+                                                    } elseif (isset($_SESSION['FirstName'])) {
+                                                        echo $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'];
+                                                    } else {
+                                                        echo "Crazy Bird";
+                                                    }
+                                                    ?>
+                                                </strong></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                Information Technology: SOFTWARE DEVELOPER
+                                            <td colspan="2" class="d-flex gap-1">
+                                                <p id="deptName">Information Technology</p>:<p id="jobTitle">SOFTWARE DEVELOPER</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="9">T: 843-719-5132</td>
+                                            <td colspan="9" id="phoneNumber" class="d-flex gap-1">T: 843-719-5132</td>
                                         </tr>
                                         <tr>
                                             <td colspan="9">
-                                                <a href="mailto:Jon.ellwood@berkeleycountysc.gov">Jon.ellwood@berkeleycountysc.gov</a><br>
+                                                <a href="mailto:Jon.ellwood@berkeleycountysc.gov" id="emailAddress">Jon.ellwood@berkeleycountysc.gov</a><br>
                                                 <a href="https://www.berkeleycountysc.gov" target="_blank">www.berkeleycountysc.gov</a>
                                             </td>
                                         </tr>
@@ -74,7 +102,11 @@ include "./components/header.php"
         </div>
     </div>
 </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        getInfoForSig();
+    })
+</script>
 <style>
     .main {
         overflow: auto;

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Report</title>
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="styles/reset.css">
+
+    <script>
+        function loadStatusReport() {
+            fetch('./API/getItStatusReportData.php')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let table = document.createElement('table');
+                table.setAttribute('border', '1');
+                table.setAttribute('cellpadding', '10');
+                table.setAttribute('cellspacing', '0');
+                table.setAttribute('width', '100%');
+                table.setAttribute('style', 'border-collapse: collapse;');
+
+                let thead = document.createElement('thead');
+                let tr = document.createElement('tr');
+                let th = document.createElement('th');
+                th.appendChild(document.createTextNode('ID'));
+                tr.appendChild(th);
+                th = document.createElement('th');
+                th.appendChild(document.createTextNode('Name'));
+                tr.appendChild(th);
+                th = document.createElement('th');
+                th.appendChild(document.createTextNode('Status'));
+                tr.appendChild(th);
+                th = document.createElement('th');
+                th.appendChild(document.createTextNode('Date'));
+                tr.appendChild(th);
+                thead.appendChild(tr);
+                table.appendChild(thead);
+
+                let tbody = document.createElement('tbody');
+                data.forEach(element => {
+                    tr = document.createElement('tr');
+                    let td = document.createElement('td');
+                    td.appendChild(document.createTextNode(element.id));
+                    tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.appendChild(document.createTextNode(element.sUserName));
+                    tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.appendChild(document.createTextNode(element.sStatusName));
+                    tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.appendChild(document.createTextNode(element.dtLogTime));
+                    tr.appendChild(td);
+                    tbody.appendChild(tr);
+                });
+                table.appendChild(tbody);
+
+                document.body.appendChild(table);
+            });
+        }
+        loadStatusReport();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: black;
+    }
+</style>
