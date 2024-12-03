@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/03 10:19:52
+// Last modified: 2024/12/03 14:56:22
 
 if (!isset($_SESSION)) {
     session_start();
@@ -14,9 +14,9 @@ if (!isset($_SESSION)) {
 //     // session has just been started, don't check $_SESSION['loggedin'] yet
 // } else {
 ///////////////////////++++++++++++++++++++++++++
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
-    header("Location: mysignin.php");
-}
+// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
+//     header("Location: mysignin.php");
+// }
 ////////////////////////////////+++++++++++++++++
 // }
 
@@ -30,8 +30,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
     <script src="https://unpkg.com/imask"></script>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/custom.css">
@@ -150,10 +150,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
-            ||MENU||
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
+                <text x="7" y="49" font-family="Brush Script MT, cursive" font-size="70" class="recolor mysvg">my</text>
+            </svg>
         </button>
     </div>
     <span class="notification-bar">
+        <!-- <div class="top-nav">
+            <ul class="nav-list">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="myteam.php">My Team</a></li>
+                <li><a href="mylinks.php">Links</a></li>
+                <li><a href="myothernumbers.php">Phone Book</a></li>
+            </ul>
+        </div> -->
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
         </div>
@@ -162,9 +172,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
             <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
         </div>
         <div class="notification-date">
-            <?php echo $_SESSION['loggedinuser'] ?>
+            <!-- </?php echo $_SESSION['loggedinuser'] ?> -->
         </div>
-        <div class="notification-date"><?php include "./components/dateAndTimeDisplay.php" ?></div>
+        <div class="notification-date">
+            <?php include "./components/dateAndTimeDisplay.php" ?>
+        </div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
                 <path
@@ -346,6 +358,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     // })
 </script>
 <style>
+    .top-nav {
+        display: flex;
+        justify-content: space-evenly;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    .nav-list {
+        display: flex;
+        justify-content: space-evenly;
+        list-style-type: none;
+        width: 100%;
+        font-size: medium;
+    }
+
+
     .quick-links-popover[popover],
     .phone-lookup-popover[popover],
     .department-lookup-popover[popover],
@@ -489,8 +517,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         justify-content: space-between;
         border-radius: 7px;
         margin: 2px;
-        border: solid 2px;
-        border-color: light-dark(#000, #ffffff20);
+        /* border: solid 2px; */
+        /* border-color: light-dark(#000, #ffffff20); */
         background-color: var(--bg);
         /* filter: invert(1); */
         padding-right: 20px;
@@ -506,14 +534,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         /* filter: invert(.7); */
     }
 
-    .notification-bar:hover {
+    /* .notification-bar:hover {
 
         border: 10px solid;
         border-image-slice: 1;
         border-width: 2px;
-        /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
+       
         border-image-source: linear-gradient(to left, #03A9F4, #05DB6C);
-    }
+    } */
 
 
     .notification-bar svg {
