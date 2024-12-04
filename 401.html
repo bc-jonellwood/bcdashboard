@@ -8,7 +8,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>404 Error - SB Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <!-- <link href="css/styles.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/custom.css">
+    <link rel="stylesheet" href="styles/theme.css">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,10 +25,12 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center mt-4">
+                                <img class="img-fluid p-4 moving-bear" src="images/401-bear-moving.gif" alt="" />
+                                
                                 <h1 class="display-1">401</h1>
                                 <p class="lead">Unauthorized</p>
                                 <p>Access to this resource is denied.</p>
-                                <a href="login.php">
+                                <a href="mysignin.php">
                                     <i class="fas fa-arrow-left me-1"></i>
                                     Return to Login
                                 </a>
@@ -37,12 +44,12 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
+                        <div class="text-muted text-center w-100">Copyright &copy; Berkeley County IT - 2024</div>
+                        <!-- <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </footer>
@@ -54,3 +61,11 @@
 </body>
 
 </html>
+
+<style>
+    .moving-bear{
+        /* width: 500px;
+        height: 500px; */
+        border-radius: 100%;
+    }
+</style>

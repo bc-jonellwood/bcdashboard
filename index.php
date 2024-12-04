@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/04 10:10:44
+// Last modified: 2024/12/04 12:06:37
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -49,6 +49,14 @@ include "./components/header.php"
             }
         }
     }
+
+    function fixChris() {
+        var list = document.querySelectorAll('itTeamStatusName')
+        list.forEach(name => {
+            var nameHOlder = name.innerText
+            console.log(nameHOlder)
+        })
+    }
 </script>
 <script>
     function fakeLoader() {
@@ -76,9 +84,9 @@ include "./components/header.php"
                     <!-- <//?php include "./components/newEmployeesCards.php" ?> -->
                     <!-- <//?php include "./components/newEmployeesCarousel.php" ?> -->
                     <?php include "./components/recentSeparations.php" ?>
-                    <?php include "./components/nextHoliday.php" ?>
-                    <?php include "./components/quoteOfTheDay.php" ?>
+                    <!-- <//?php include "./components/quoteOfTheDay.php" ?> -->
                     <?php include "./components/itTeamStatus.php" ?>
+                    <?php include "./components/nextHoliday.php" ?>
                 </div>
             </div>
         </div>
@@ -108,7 +116,7 @@ include "./components/header.php"
     }
 </script>
 <!-- carousel  -->
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         const carouselItems = document.querySelectorAll(".carousel-item");
         const moveRightButton = document.getElementById("moveRight");
@@ -162,9 +170,14 @@ include "./components/header.php"
             console.log("prev " + prev);
         }
     });
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // applyClassOnLoad();
+        fixChris();
+    });
 </script>
-
-
 <style>
     @font-face {
         font-family: 'Galada';
@@ -368,6 +381,7 @@ include "./components/header.php"
     .itTeamStatusItem {
         /* display: flex; */
         vertical-align: middle;
+        font-size: medium;
     }
 
     .status-0 {

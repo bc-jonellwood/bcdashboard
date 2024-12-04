@@ -1,13 +1,22 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/11/13 15:27:40
+// Last modified: 2024/12/04 12:24:41
 
 session_start();
 // echo session_status();
+
+// Check if the user is already logged in via session or cookie
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     header("Location: index.php");
     exit;
+} elseif (isset($_COOKIE['rememberme'])) {
+    $cookie_data = json_decode($_COOKIE['rememberme'], true);
+    if (checkUser($cookie_data['username'])) {
+        header("Location: index.php");
+        exit;
+    }
 }
+
 include("./data/ldapConfig.php");
 $loginfailure = false;
 $GLOBALS['ldap_server'] = '10.11.20.43';
@@ -49,6 +58,12 @@ function checkUser($username)
             $_SESSION['DepartmentNumber'] = $row['iDepartmentNumber'] ? $row['iDepartmentNumber'] : 'Department is TOP SECRET';
             $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
             $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
+
+            if (isset($_POST['rememberme'])) {
+                $cookie_data = json_encode(['username' => $username]);
+                setcookie('rememberme', $cookie_data, time() + (30 * 24 * 60 * 60), "/"); // 30 days
+            }
+
             // $expire_time = time() + (48 * 60 * 60);
             // setcookie("user_logged_in", "yes", $expire_time, "/");
             return true;
@@ -59,7 +74,7 @@ function checkUser($username)
     } catch (PDOException $e) {
         error_log("Error in checkUser function: " . $e->getMessage());
         // header("Location: mysignin.php");
-        header("Location: myfailure.php");
+        header("Location: 401.html");
         exit;
     } finally {
         if ($conn) {
@@ -86,7 +101,7 @@ if (isset($_POST['sUserName'])) {
         }
     } else {
         $loginfailure = true;
-        header("Location: myfailuretwo.php");
+        header("Location: 401.html");
     }
 }
 
@@ -126,6 +141,10 @@ if (isset($_POST['sUserName'])) {
                     <!-- <label for="password">Password</label> -->
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="current-password" required>
                 </div>
+                <div class="form-check">
+                    <input type="checkbox" id="rememberme" name="rememberme" class="form-check-input">
+                    <label for="rememberme" class="form-check-label">Remember Me</label>
+                </div>
                 <button type="submit" class="btn btn-primary">Sign In</button>
             </form>
             <!-- <a href="index.php" class="btn btn-primary">Sign In</a> -->
@@ -141,14 +160,14 @@ if (isset($_POST['sUserName'])) {
     </div>
 
     <?php
-    print_r($_SESSION);
+    // print_r($_SESSION);
     //    print_r($_POST);
-    print_r($loginfailure);
+    // print_r($loginfailure);
     // echo "login failure = " . $loginfailure;
     // print_r($GLOBALS);
-    if (isset($_SESSION['loggedin'])) {
-        echo $_SESSION['loggedin'];
-    }
+    // if (isset($_SESSION['loggedin'])) {
+    //     echo $_SESSION['loggedin'];
+    // }
     ?>
 
     <footer class="login-footer">
@@ -183,7 +202,7 @@ if (isset($_POST['sUserName'])) {
         color: #dee0e3;
         margin: 0;
         /* background-image: url("images/dash_login_3.jpg"); */
-        background-image: url("images/bc-swamp.jpg");
+        background-image: url("images/hero-welcome-bg.png");
         background-size: cover;
         background-repeat: no-repeat;
         max-height: 100dvh;
@@ -285,6 +304,22 @@ if (isset($_POST['sUserName'])) {
         color: #ddd !important;
     }
 
+    .form-check-label {
+        color: #ddd !important;
+        font-size: medium;
+    }
+
+    .form-check-input {
+        border-color: #ddd !important;
+    }
+
+    .form-check-input:checked {
+        background-color: #0033ff !important;
+    }
+
+    .form-check-input:focus {
+        border-color: #0033ff !important;
+    }
 
     a.btn,
     button {

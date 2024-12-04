@@ -1,10 +1,9 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/04 08:48:27
+// Last modified: 2024/12/04 11:36:03
 
 if (!isset($_SESSION)) {
     session_start();
-    $_SESSION['employeeID'] = '4438';
 };
 // if (session_status() == PHP_SESSION_NONE) {
 // session_start();
@@ -15,9 +14,9 @@ if (!isset($_SESSION)) {
 //     // session has just been started, don't check $_SESSION['loggedin'] yet
 // } else {
 ///////////////////////++++++++++++++++++++++++++
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
-//     header("Location: mysignin.php");
-// }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
+    header("Location: mysignin.php");
+}
 ////////////////////////////////+++++++++++++++++
 // }
 
@@ -155,6 +154,7 @@ if (!isset($_SESSION)) {
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
                 <text x="7" y="49" font-family="Brush Script MT, cursive" font-size="70" class="recolor mysvg">my</text>
             </svg>
+            <p class="header-berkeley-text">Berkeley</p>
         </button>
     </div>
     <span class="notification-bar">
@@ -174,7 +174,7 @@ if (!isset($_SESSION)) {
             <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
         </div>
         <div class="notification-date">
-            <!-- </?php echo $_SESSION['loggedinuser'] ?> -->
+            <?php echo $_SESSION['loggedinuser'] ?>
         </div>
         <div class="notification-date">
             <?php include "./components/dateAndTimeDisplay.php" ?>
@@ -768,5 +768,16 @@ if (!isset($_SESSION)) {
         border-radius: 100% !important;
         background-color: white !important;
         color: var(--bg) !important;
+    }
+
+    .header-berkeley-text {
+        margin-bottom: 0 !important;
+        margin-top: -12%;
+        margin-left: 4%;
+        color: var(--accent);
+        /* filter: blur(10px); */
+        font-size: large;
+        backdrop-filter: blur(1px);
+
     }
 </style>
