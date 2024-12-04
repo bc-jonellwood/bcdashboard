@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/03 14:54:19
+// Last modified: 2024/12/04 10:10:44
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -70,13 +70,15 @@ include "./components/header.php"
             <div class="dash-main">
                 <!-- Start of cards section -->
                 <div class="cards-container">
-                    <!-- <//?php include "./components/employeeAnniversaries.php"; ?> -->
-                    <!-- <//?php include "./components/employeeBirthdays.php" ?> -->
-                    <!-- <//?php include "./components/newEmployees.php" ?> -->
-                    <!-- <//?php include "./components/recentSeparations.php" ?> -->
-                    <!-- <//?php include "./components/nextHoliday.php" ?> -->
-                    <!-- <//?php include "./components/quoteOfTheDay.php" ?> -->
-                    <!-- <//?php include "./components/itTeamStatus.php" ?> -->
+                    <?php include "./components/employeeAnniversaries.php"; ?>
+                    <?php include "./components/employeeBirthdays.php" ?>
+                    <?php include "./components/newEmployees.php" ?>
+                    <!-- <//?php include "./components/newEmployeesCards.php" ?> -->
+                    <!-- <//?php include "./components/newEmployeesCarousel.php" ?> -->
+                    <?php include "./components/recentSeparations.php" ?>
+                    <?php include "./components/nextHoliday.php" ?>
+                    <?php include "./components/quoteOfTheDay.php" ?>
+                    <?php include "./components/itTeamStatus.php" ?>
                 </div>
             </div>
         </div>
@@ -105,7 +107,62 @@ include "./components/header.php"
         }
     }
 </script>
+<!-- carousel  -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const carouselItems = document.querySelectorAll(".carousel-item");
+        const moveRightButton = document.getElementById("moveRight");
+        const moveLeftButton = document.getElementById("moveLeft");
 
+        // Set the first carousel item to active
+        if (carouselItems.length > 0) {
+            carouselItems[0].classList.add("active");
+        }
+
+        let total = carouselItems.length;
+        let current = 0;
+
+        moveRightButton.addEventListener("click", function() {
+            let next = current;
+            current = current + 1;
+            setSlide(next, current);
+        });
+
+        moveLeftButton.addEventListener("click", function() {
+            let prev = current;
+            current = current - 1;
+            setSlide(prev, current);
+        });
+
+        function setSlide(prev, next) {
+            let slide = current;
+
+            if (next > total - 1) {
+                slide = 0;
+                current = 0;
+            }
+
+            if (next < 0) {
+                slide = total - 1;
+                current = total - 1;
+            }
+
+            if (carouselItems[prev]) {
+                carouselItems[prev].classList.remove("active");
+            }
+            if (carouselItems[slide]) {
+                carouselItems[slide].classList.add("active");
+            }
+
+            setTimeout(function() {
+                // Placeholder for any delayed logic
+            }, 800);
+
+            console.log("current " + current);
+            console.log("prev " + prev);
+        }
+    });
+</script>
 
 
 <style>
@@ -418,7 +475,6 @@ include "./components/header.php"
     }
 
     .masthead {
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -429,7 +485,7 @@ include "./components/header.php"
         /* if you don't want it to take up the full screen, reduce this number */
         overflow: hidden;
         background-size: cover !important;
-        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.65) 100%), url(qijin-xu.png) no-repeat center center scroll;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.65) 100%), url(images/hero-welcome-bg.png) no-repeat center center scroll;
         position: relative;
     }
 
@@ -445,11 +501,11 @@ include "./components/header.php"
         font-family: Galada;
         font-weight: bold;
         color: #eee;
-        font-size: 11vmin;
+        font-size: 7vmin;
         letter-spacing: 0.03em;
         line-height: 1;
         text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
-        /* margin-bottom: 29px; */
+        margin-top: 20px;
         position: relative;
         z-index: 2;
     }
@@ -457,16 +513,16 @@ include "./components/header.php"
     .hero-search {
         width: 50%;
         padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #000;
-        margin-top: 20px;
-        background-color: #fff;
-        color: #000;
+        border-radius: 7px;
+        border: 1px solid var(--accent);
+        margin-top: 10px;
+        background-color: var(--bg);
+        color: var(--fg);
         /* font-size: 1.5rem; */
         font-weight: bold;
         text-align: center;
         position: relative;
         z-index: 2;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
 </style>

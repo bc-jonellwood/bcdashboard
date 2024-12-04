@@ -1,9 +1,10 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/03 14:56:22
+// Last modified: 2024/12/04 08:48:27
 
 if (!isset($_SESSION)) {
     session_start();
+    $_SESSION['employeeID'] = '4438';
 };
 // if (session_status() == PHP_SESSION_NONE) {
 // session_start();
@@ -30,12 +31,13 @@ if (!isset($_SESSION)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://unpkg.com/imask"></script>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/newEmpCard.css">
     <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
     <!-- <link rel="stylesheet" href="styles/teams.css"> -->
     <!-- <script type="module" defer>

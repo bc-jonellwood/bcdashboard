@@ -31,7 +31,7 @@
             <path d="M28.523 23.813c-.518-.51-6.795-2.938-7.934-3.396c-1.133-.45-1.585-1.697-1.585-1.697s-.51.282-.51-.51c0-.793.51.51 1.02-2.548c0 0 1.415-.397 1.134-3.68h-.34s.85-3.51 0-4.698c-.853-1.188-1.187-1.98-3.06-2.548c-1.87-.567-1.19-.454-2.548-.396c-1.36.057-2.492.793-2.492 1.188c0 0-.85.057-1.188.397c-.34.34-.906 1.924-.906 2.32s.283 3.06.566 3.624l-.337.11c-.283 3.284 1.132 3.682 1.132 3.682c.51 3.058 1.02 1.755 1.02 2.548c0 .792-.51.51-.51.51s-.453 1.246-1.585 1.697c-1.132.453-7.416 2.887-7.927 3.396c-.51.52-.453 2.896-.453 2.896h26.954s.063-2.378-.453-2.897zm-6.335 2.25h-4.562v-1.25h4.562z" />
         </svg>
         <!-- <img src="./images/employee-dark.svg" alt="Employee" class="nav-block-icon" /> -->
-        Benfits
+        Benefits
     </a>
     <a href="myteam.php" class="nav-block">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
@@ -61,6 +61,9 @@
         gap: 1rem;
         margin: 1rem 0;
         font-size: medium;
+        margin-top: -45px;
+        position: relative;
+
         /* max-width: 80dvw; */
     }
 
@@ -76,6 +79,7 @@
         height: 100px;
         width: 100px;
         color: var(--bg);
+        box-shadow: 0 0 5px 0 var(--fg);
     }
 
     .nav-block:hover {
