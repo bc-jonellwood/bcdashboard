@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/03 10:17:58
+// Last modified: 2024/12/04 10:10:44
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -65,12 +65,16 @@ include "./components/header.php"
     <div class="main">
         <?php include "./components/sidenav.php" ?>
         <div class="content">
+            <?php include "./components/welcomeUser.php" ?>
+            <?php include "./components/navBlocks.php" ?>
             <div class="dash-main">
                 <!-- Start of cards section -->
                 <div class="cards-container">
                     <?php include "./components/employeeAnniversaries.php"; ?>
                     <?php include "./components/employeeBirthdays.php" ?>
                     <?php include "./components/newEmployees.php" ?>
+                    <!-- <//?php include "./components/newEmployeesCards.php" ?> -->
+                    <!-- <//?php include "./components/newEmployeesCarousel.php" ?> -->
                     <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <?php include "./components/quoteOfTheDay.php" ?>
@@ -103,10 +107,70 @@ include "./components/header.php"
         }
     }
 </script>
+<!-- carousel  -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const carouselItems = document.querySelectorAll(".carousel-item");
+        const moveRightButton = document.getElementById("moveRight");
+        const moveLeftButton = document.getElementById("moveLeft");
 
+        // Set the first carousel item to active
+        if (carouselItems.length > 0) {
+            carouselItems[0].classList.add("active");
+        }
+
+        let total = carouselItems.length;
+        let current = 0;
+
+        moveRightButton.addEventListener("click", function() {
+            let next = current;
+            current = current + 1;
+            setSlide(next, current);
+        });
+
+        moveLeftButton.addEventListener("click", function() {
+            let prev = current;
+            current = current - 1;
+            setSlide(prev, current);
+        });
+
+        function setSlide(prev, next) {
+            let slide = current;
+
+            if (next > total - 1) {
+                slide = 0;
+                current = 0;
+            }
+
+            if (next < 0) {
+                slide = total - 1;
+                current = total - 1;
+            }
+
+            if (carouselItems[prev]) {
+                carouselItems[prev].classList.remove("active");
+            }
+            if (carouselItems[slide]) {
+                carouselItems[slide].classList.add("active");
+            }
+
+            setTimeout(function() {
+                // Placeholder for any delayed logic
+            }, 800);
+
+            console.log("current " + current);
+            console.log("prev " + prev);
+        }
+    });
+</script>
 
 
 <style>
+    @font-face {
+        font-family: 'Galada';
+        src: url('./fonts/Galada.ttf') format('truetype');
+    }
+
     .dash-main {
         padding: 1rem !important;
         height: 100%;
@@ -394,5 +458,71 @@ include "./components/header.php"
         border-radius: 100% !important;
         background-color: grey !important;
         color: var(--bg) !important;
+    }
+
+    .welcome-hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        max-height: 5em;
+
+    }
+
+    .fancy {
+        font-family: cursive;
+        font-size: x-large;
+    }
+
+    .masthead {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        height: 25vh;
+        /* if you don't want it to take up the full screen, reduce this number */
+        overflow: hidden;
+        background-size: cover !important;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.65) 100%), url(images/hero-welcome-bg.png) no-repeat center center scroll;
+        position: relative;
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .hero-header {
+        font-style: normal;
+        font-family: Galada;
+        font-weight: bold;
+        color: #eee;
+        font-size: 7vmin;
+        letter-spacing: 0.03em;
+        line-height: 1;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.8);
+        margin-top: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-search {
+        width: 50%;
+        padding: 10px;
+        border-radius: 7px;
+        border: 1px solid var(--accent);
+        margin-top: 10px;
+        background-color: var(--bg);
+        color: var(--fg);
+        /* font-size: 1.5rem; */
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 40px;
     }
 </style>
