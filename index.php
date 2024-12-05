@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/04 12:06:37
+// Last modified: 2024/12/04 15:51:07
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -23,11 +23,15 @@ include "./components/header.php"
         // console.log(id)
         cardIDToFromArray(id);
         var card = document.getElementById(id);
+        var childCard = document.getElementById(id + '-child');
+        console.log(childCard);
         // console.log(card)
         if (card.classList.contains('minimized-dash-card')) {
             card.classList.remove('minimized-dash-card')
+            childCard.classList.add('hidden')
         } else {
             card.classList.add('minimized-dash-card')
+            childCard.classList.remove('hidden')
         }
     }
 
@@ -81,16 +85,17 @@ include "./components/header.php"
                     <?php include "./components/employeeAnniversaries.php"; ?>
                     <?php include "./components/employeeBirthdays.php" ?>
                     <?php include "./components/newEmployees.php" ?>
-                    <!-- <//?php include "./components/newEmployeesCards.php" ?> -->
-                    <!-- <//?php include "./components/newEmployeesCarousel.php" ?> -->
                     <?php include "./components/recentSeparations.php" ?>
-                    <!-- <//?php include "./components/quoteOfTheDay.php" ?> -->
                     <?php include "./components/itTeamStatus.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
+                    <!-- </?php include "./components/newEmployeesCards.php" ?> -->
+                    <!-- </?php include "./components/quoteOfTheDay.php" ?> -->
+                    <!-- </?php include "./components/newEmployeesCarousel.php" ?> -->
                 </div>
             </div>
         </div>
     </div>
+    <?php include "./components/itTeamStatusTicker.php" ?>
     <?php include "./components/footer.php" ?>
 </body>
 
@@ -203,7 +208,7 @@ include "./components/header.php"
         width: -webkit-fill-available;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(6, 1fr);
+        /* grid-template-rows: repeat(6, 1fr); */
         grid-gap: 20px;
         min-height: fit-content;
         background-color: light-dark(transparent, var(--black));
@@ -216,8 +221,8 @@ include "./components/header.php"
 
     .dash-card {
         padding: 10px;
-        grid-column: span 2;
-        grid-row: span 2;
+        /* grid-column: span 2; */
+        /* grid-row: span 2; */
         color: var(--fg);
         border-radius: 7px;
         border: 2px solid;
@@ -299,8 +304,14 @@ include "./components/header.php"
         }
     }
 
+    .medWide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
     .wide {
         grid-column: span 3;
+        grid-row: span 1;
     }
 
     .tall {
@@ -308,11 +319,19 @@ include "./components/header.php"
     }
 
     .narrow {
+        /* grid-row: span 1; */
         grid-column: span 1;
     }
 
     .short {
         grid-row: span 1;
+    }
+
+    .square {
+        grid-column: span 1;
+        grid-row: span 1;
+        height: 50%;
+        overflow: hidden;
     }
 
     .component-header-tabs {
@@ -354,14 +373,25 @@ include "./components/header.php"
     }
 
     .minimized-dash-card {
-        grid-column: span 1;
-        grid-row: span 1;
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 0;
         max-width: 100%;
         max-height: 50px;
         overflow: hidden;
         font-size: medium;
         padding-left: 0 !important;
         padding-right: 0 !important;
+        z-index: 1000;
+        /* Ensure it stays on top of other elements */
+    }
+
+    .minimized-dash-card.stacked {
+        right: initial;
+        left: 0;
+        bottom: initial;
+        top: 0;
     }
 
     .minimized-dash-card:hover {
@@ -538,5 +568,9 @@ include "./components/header.php"
         position: relative;
         z-index: 2;
         margin-bottom: 40px;
+    }
+
+    .main {
+        display: unset !important;
     }
 </style>

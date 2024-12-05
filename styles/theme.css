@@ -64,6 +64,15 @@
   --dark-gradient: linear-gradient(to left, #743ad5, #d53a9d);
   /* --bg-highlight: #ffffff20; */
   /* --highlight: #d3539d; */
+
+  --shadow-elevation-high: 0px 0.5px 0.7px hsl(var(--accent) / 0.06),
+    -0.1px 5px 6.6px -0.2px hsl(var(--accent) / 0.07),
+    -0.3px 9.2px 12.2px -0.3px hsl(var(--accent) / 0.09),
+    -0.4px 14px 18.5px -0.5px hsl(var(--accent) / 0.1),
+    -0.6px 20.7px 27.3px -0.7px hsl(var(--accent) / 0.12),
+    -0.9px 30.3px 40px -0.9px hsl(var(--accent) / 0.13),
+    -1.2px 43.8px 57.8px -1px hsl(var(--accent) / 0.15),
+    -1.8px 62.3px 82.3px -1.2px hsl(var(--accent) / 0.16);
 }
 
 body {

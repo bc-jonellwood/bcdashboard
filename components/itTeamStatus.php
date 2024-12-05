@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/04 11:43:54
+// Last modified: 2024/12/04 13:56:22
 
 include_once "./data/appConfig.php";
 
@@ -63,7 +63,7 @@ try {
   }
 
 
-  $html = '<div id="9f8a4rbt-c1bf-4867-8399-e0dd5000458d" class="dash-card narrow">
+  $html = '<div id="9f8a4rbt-c1bf-4867-8399-e0dd5000458d" class="dash-card short narrow">
             <div class="card-content">
               <div class="component-header">IT Team Status
                 <button class="not-btn" onclick="minimizeCard(\'9f8a4rbt-c1bf-4867-8399-e0dd5000458d\')">

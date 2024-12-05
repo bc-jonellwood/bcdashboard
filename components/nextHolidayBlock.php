@@ -61,14 +61,10 @@ $holidays = [
 
 $result = findNextHoliday($holidays);
 // print_r($result);
-echo "<div id='988846bf-c1bf-4867-8399-e0dd5000458d' class='dash-card narrow square'>";
-echo "<div class='card-content'>";
-echo "<div class='component-header'>Next Holiday <button class='not-btn' onclick='minimizeCard(\"988846bf-c1bf-4867-8399-e0dd5000458d\")'>";
-echo "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='recolor' width='24' height='24'>";
-echo "<path d='M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z' /></svg>";
-echo "</button></div>";
-echo "<div class='holiday' id='holiday'>";
-echo "<p class='days-unitl-holiday'>" . $result['days_until'] . " days until </p>";
-echo "<p class='holiday-name'>" . $result['name']  . "</p>";
-echo "<p> on " . $result['date'] . "</p>";
-echo "</div></div></div>";
+// echo "<div id='988846bf-c1bf-4867-8399-e0dd5000458d' class='dash-card narrow short'>";
+// echo "<div class='card-content'>";
+// echo "<div class='component-header'>Next Holiday <button class='not-btn' onclick='minimizeCard(\"988846bf-c1bf-4867-8399-e0dd5000458d\")'>";
+// echo "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='recolor' width='24' height='24'>";
+// echo "<path d='M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z' /></svg>";
+// echo "</button></div>";
+echo "<a href='#' class='nav-block' id='holiday'>" . $result['days_until'] . " days until " . $result['name']  . " </a>";

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/04 11:36:03
+// Last modified: 2024/12/05 12:32:24
 
 if (!isset($_SESSION)) {
     session_start();
@@ -174,7 +174,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
             <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
         </div>
         <div class="notification-date">
-            <?php echo $_SESSION['loggedinuser'] ?>
+            <?php echo $_SESSION['username'] ?>
         </div>
         <div class="notification-date">
             <?php include "./components/dateAndTimeDisplay.php" ?>
@@ -319,6 +319,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     </div>
 </div>
 <?php include "./components/toolbar.php" ?>
+<?php include "./components/minimizedCardsPasture.php" ?>
 <script>
     async function setAlert() {
         const notification = new Notification();
@@ -334,6 +335,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 
 
     document.addEventListener('DOMContentLoaded', setAlert());
+</script>
+<script>
+    window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        const header = document.querySelector('.header');
+
+        if (scrollPercent > 2) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 </script>
 
 
@@ -360,6 +373,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     // })
 </script>
 <style>
+    .header {
+        position: sticky;
+        z-index: 5;
+        top: 0;
+    }
+
+    .scrolled {
+        border-bottom: 1px solid var(--accent);
+        border-left: 1px solid var(--accent);
+        border-right: 1px solid var(--accent);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        /* box-shadow: var(--shadow-elevation-high); */
+        box-shadow: -1px 26px 24px -3px rgba(0, 0, 0, 0.75);
+    }
+
     .top-nav {
         display: flex;
         justify-content: space-evenly;
@@ -558,7 +587,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         display: flex;
         align-items: center;
         color: var(--fg);
-        width: 90%;
+        width: 70%;
         border-radius: 7px;
         font-weight: 600;
         padding: 5px;
@@ -578,19 +607,82 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         font-weight: bold;
     }
 
-    .alert {
+    /* .alert {
         background-color: light-dark(#AB1212, #7A0000);
         color: light-dark(#fff, #dddddd);
+    } */
+    .alert {
+        /* background-color: light-dark(#AB1212, #7A0000); */
+        color: #dee0e3;
+        background-image: linear-gradient(140deg,
+                hsl(0deg 81% 37%) 0%,
+                hsl(1deg 83% 40%) 10%,
+                hsl(3deg 85% 44%) 20%,
+                hsl(4deg 87% 47%) 30%,
+                hsl(5deg 88% 50%) 40%,
+                hsl(6deg 91% 53%) 50%,
+                hsl(8deg 93% 56%) 60%,
+                hsl(9deg 94% 60%) 70%,
+                hsl(10deg 96% 63%) 80%,
+                hsl(12deg 98% 66%) 90%,
+                hsl(13deg 100% 69%) 100%);
     }
 
-    .warning {
+    /* .warning {
         background-color: light-dark(orange, #805300);
         color: light-dark(#000, #fff);
+    } */
+    .warning {
+        /* background-color: light-dark(orange, #805300); */
+        color: #dee0e3;
+        background-image: linear-gradient(140deg,
+                hsl(39deg 100% 50%) 0%,
+                hsl(55deg 100% 47%) 10%,
+                hsl(71deg 100% 45%) 20%,
+                hsl(86deg 100% 42%) 30%,
+                hsl(102deg 100% 39%) 40%,
+                hsl(118deg 100% 37%) 50%,
+                hsl(134deg 100% 34%) 60%,
+                hsl(149deg 100% 31%) 70%,
+                hsl(165deg 100% 29%) 80%,
+                hsl(181deg 100% 26%) 90%,
+                hsl(197deg 100% 23%) 100%);
     }
 
-    .information {
+    /* .information {
         background-color: light-dark(blue, #0000A3);
         color: light-dark(#F1FFF0, #dee0e3)
+    } */
+
+    /* .information {
+        color: #dee0e3;
+        background-image: linear-gradient(335deg,
+                hsl(240deg 100% 57%) 0%,
+                hsl(240deg 94% 55%) 10%,
+                hsl(240deg 89% 53%) 20%,
+                hsl(241deg 84% 51%) 30%,
+                hsl(241deg 82% 49%) 40%,
+                hsl(241deg 84% 47%) 50%,
+                hsl(241deg 86% 45%) 60%,
+                hsl(241deg 89% 43%) 70%,
+                hsl(241deg 93% 41%) 80%,
+                hsl(240deg 97% 39%) 90%,
+                hsl(240deg 100% 37%) 100%);
+    } */
+    .information {
+        color: #dee0e3;
+        background-image: linear-gradient(140deg,
+                hsl(240deg 100% 50%) 0%,
+                hsl(230deg 100% 48%) 10%,
+                hsl(220deg 100% 45%) 20%,
+                hsl(210deg 100% 43%) 30%,
+                hsl(200deg 100% 41%) 40%,
+                hsl(189deg 100% 38%) 50%,
+                hsl(179deg 100% 36%) 60%,
+                hsl(169deg 100% 34%) 70%,
+                hsl(160deg 100% 32%) 80%,
+                hsl(149deg 100% 29%) 90%,
+                hsl(139deg 100% 27%) 100%);
     }
 
     .other {

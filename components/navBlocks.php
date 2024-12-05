@@ -3,7 +3,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
             <path d="M2,6A2,2 0 0,0 0,8V16A2,2 0 0,0 2,18H22A2,2 0 0,0 24,16V8A2,2 0 0,0 22,6M2,8H22V16H2M3,9V10.5H6.25L3,15H4.75L8,10.5V9M9.25,9V10.5H10.75V9M12,9V10.5H13.5V15H15V9M17,9A1,1 0 0,0 16,10V14A1,1 0 0,0 17,15H20A1,1 0 0,0 21,14V10A1,1 0 0,0 20,9M17.5,10.5H19.5V13.5H17.5M9.25,13.5V15H10.75V13.5" />
         </svg>
-        Web Timecard
+        Timecard
     </a>
     <!-- <a href="https://timecard.berkeleycountysc.gov/login.php" class="nav-block" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
@@ -30,7 +30,7 @@
             <path d="M28.523 23.813c-.518-.51-6.795-2.938-7.934-3.396c-1.133-.45-1.585-1.697-1.585-1.697s-.51.282-.51-.51c0-.793.51.51 1.02-2.548c0 0 1.415-.397 1.134-3.68h-.34s.85-3.51 0-4.698c-.853-1.188-1.187-1.98-3.06-2.548c-1.87-.567-1.19-.454-2.548-.396c-1.36.057-2.492.793-2.492 1.188c0 0-.85.057-1.188.397c-.34.34-.906 1.924-.906 2.32s.283 3.06.566 3.624l-.337.11c-.283 3.284 1.132 3.682 1.132 3.682c.51 3.058 1.02 1.755 1.02 2.548c0 .792-.51.51-.51.51s-.453 1.246-1.585 1.697c-1.132.453-7.416 2.887-7.927 3.396c-.51.52-.453 2.896-.453 2.896h26.954s.063-2.378-.453-2.897zm-6.335 2.25h-4.562v-1.25h4.562z" />
         </svg>
         <!-- <img src="./images/employee-dark.svg" alt="Employee" class="nav-block-icon" /> -->
-        Employee Online
+        Benefits
     </a>
     <a href="myteam.php" class="nav-block">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
@@ -52,6 +52,9 @@
         </svg>
         <!-- <img src="./images/help-dark.svg" alt="Help" class="nav-block-icon recolor" /> -->
         Helpdesk</a>
+    <!-- <a href="#" class="nav-block">
+        21 days till Christmas
+    </a> -->
 </nav>
 <style>
     .nav-blocks {
