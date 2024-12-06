@@ -1,18 +1,27 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 10:37:00
+// Last modified: 2024/12/06 16:00:00
 ?>
 <div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
-    <div class="d-flex flex-column p-3 text-white h-100 sideNavMain"
+    <div class="d-flex flex-column p-1 sideNavMain"
         style="width: 20rem;min-width: -webkit-fill-available;">
         <div class="d-flex w-100 gap-4 align-items-center justify-content-evenly">
-            <a href="./index.php" class="d-flex align-items-center text-white text-decoration-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
-                    <text x="7" y="49" font-family="Brush Script MT, cursive" font-size="70" class="recolor mysvg">my</text>
-                </svg>
-                <div class="fs-4 center sideNavTitle">dashboard</div>
-            </a>
-            <button class="btn-x" popovertarget="sidenav-popover" popovertargetaction="hide">X</button>
+            <div class="sidebar-header">
+                <a href="./index.php" class="d-flex align-items-center text-white text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
+                        <text x="7" y="49" font-family="Brush Script MT, cursive" font-size="70" class="recolor mysvg">my</text>
+                    </svg>
+                    <div class="fs-4 center sideNavTitle">dashboard</div>
+                </a>
+                <button class="not-btn" popovertarget="sidenav-popover" popovertargetaction="hide" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                        <path d="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" />
+                    </svg>
+                </button>
+                <button class="not-btn pin-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24" type="button">
+                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                    </svg></button>
+            </div>
         </div>
 
         <hr>
@@ -207,5 +216,11 @@
 
     .mysvg {
         transform: rotate(-20deg);
+    }
+
+    .sidebar-header {
+        /* background-color: hotpink; */
+        display: flex;
+        flex-direction: row;
     }
 </style>

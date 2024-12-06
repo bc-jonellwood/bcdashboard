@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 15:35:08
+// Last modified: 2024/12/06 15:57:57
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -74,28 +74,6 @@ include "./components/header.php"
         localStorage.setItem('bcdash-cardIDs', JSON.stringify([...new Set(cardIDs)]));
     }
 
-    // function cardIDToFromArray(id) {
-    //     if (cardIDs.includes(id)) {
-    //         cardIDs.splice(cardIDs.indexOf(id), 1);
-    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-    //     } else {
-    //         cardIDs.push(id);
-    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-    //     }
-    // }
-
-    // function applyClassOnLoad() {
-    //     cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
-    //     if (cardIDs) {
-    //         for (let i = 0; i < cardIDs.length; i++) {
-    //             let target = document.getElementById(cardIDs[i])
-    //             // if (target) {
-    //             //     target.classList.add('minimized-dash-card')
-    //             //     target.nextElementSibling.classList.remove('hidden')
-    //             // }
-    //         }
-    //     }
-    // }
 
     function fixChris() {
         var list = document.querySelectorAll('itTeamStatusName')
@@ -229,6 +207,66 @@ include "./components/header.php"
 
     });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sidenav = document.querySelector('.sidenav-popover');
+        let isPinned = false;
+        let hoverTimeout;
+
+        function showSidenav() {
+            sidenav.classList.add('visible');
+            if (!isPinned) {
+                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+            }
+        }
+
+        function hideSidenav() {
+            if (!isPinned) {
+                sidenav.classList.remove('visible');
+                document.body.style.marginLeft = '0';
+            }
+        }
+
+        function pinSidenav() {
+            isPinned = !isPinned;
+            if (isPinned) {
+                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+            } else {
+                hideSidenav();
+            }
+        }
+
+        document.body.addEventListener('mousemove', function(event) {
+            if (event.clientX < 50) {
+                hoverTimeout = setTimeout(showSidenav, 500);
+            } else {
+                clearTimeout(hoverTimeout);
+                if (!isPinned) {
+                    hideSidenav();
+                }
+            }
+        });
+
+        sidenav.querySelector('.pin-button').addEventListener('click', pinSidenav);
+    });
+</script>
+<style>
+    .sidenav {
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+    }
+
+    .sidenav.visible {
+        transform: translateX(0);
+    }
+
+    /* .pin-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    } */
+</style>
 <style>
     @font-face {
         font-family: 'Galada';
