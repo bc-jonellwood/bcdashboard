@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 12:48:42
+// Last modified: 2024/12/06 15:35:08
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -17,42 +17,85 @@ error_reporting(E_ALL);
 include "./components/header.php"
 ?>
 <script>
-    let cardIDs = [];
-
-    function minimizeCard(id) {
-        // console.log(id)
-        cardIDToFromArray(id);
-        var card = document.getElementById(id);
-        var childCard = document.getElementById(id + '-child');
-        console.log(childCard);
-        // console.log(card)
-        if (card.classList.contains('minimized-dash-card')) {
-            card.classList.remove('minimized-dash-card')
-            childCard.classList.add('hidden')
-        } else {
-            card.classList.add('minimized-dash-card')
-            childCard.classList.remove('hidden')
-        }
-    }
-
-    function cardIDToFromArray(id) {
-        if (cardIDs.includes(id)) {
-            cardIDs.splice(cardIDs.indexOf(id), 1);
-            localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-        } else {
-            cardIDs.push(id);
-            localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-        }
-    }
-
-    function applyClassOnLoad() {
-        cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
+    // function addMinimizedIdToLocalStorage(id){
+    //     let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
+    //     if (cardIDs) {
+    //         if (cardIDs.includes(id)) {
+    //             cardIDs.splice(cardIDs.indexOf(id), 1);
+    //             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+    //         } else {
+    //             cardIDs.push(id);
+    //             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+    //         }
+    //     } else {
+    //         cardIDs = [id];
+    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+    //     }
+    // }
+    // check if minimized cards are in local storage and apply the minimized class if so
+    function minimizeOnLoad() {
+        let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
+        console.log('cardIDs')
+        console.log(cardIDs)
         if (cardIDs) {
             for (let i = 0; i < cardIDs.length; i++) {
                 let target = document.getElementById(cardIDs[i])
+                let targetChild = document.getElementById(cardIDs[i] + '-child')
+                console.log('target');
+                console.log(target);
+                if (target) {
+                    target.classList.add('minimized-dash-card')
+                    targetChild.classList.remove('hidden')
+                    // target.nextElementSibling.classList.remove('hidden')
+                }
             }
         }
     }
+
+
+    let cardIDs = [];
+
+    function minimizeCard(id) {
+        var card = document.getElementById(id);
+        var childCard = document.getElementById(id + '-child');
+        let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs')) || [];
+
+        if (card.classList.contains('minimized-dash-card')) {
+            card.classList.remove('minimized-dash-card');
+            childCard.classList.add('hidden');
+            cardIDs = cardIDs.filter(cardID => cardID !== id);
+        } else {
+            card.classList.add('minimized-dash-card');
+            childCard.classList.remove('hidden');
+            if (!cardIDs.includes(id)) {
+                cardIDs.push(id);
+            }
+        }
+        localStorage.setItem('bcdash-cardIDs', JSON.stringify([...new Set(cardIDs)]));
+    }
+
+    // function cardIDToFromArray(id) {
+    //     if (cardIDs.includes(id)) {
+    //         cardIDs.splice(cardIDs.indexOf(id), 1);
+    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+    //     } else {
+    //         cardIDs.push(id);
+    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
+    //     }
+    // }
+
+    // function applyClassOnLoad() {
+    //     cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
+    //     if (cardIDs) {
+    //         for (let i = 0; i < cardIDs.length; i++) {
+    //             let target = document.getElementById(cardIDs[i])
+    //             // if (target) {
+    //             //     target.classList.add('minimized-dash-card')
+    //             //     target.nextElementSibling.classList.remove('hidden')
+    //             // }
+    //         }
+    //     }
+    // }
 
     function fixChris() {
         var list = document.querySelectorAll('itTeamStatusName')
@@ -179,9 +222,11 @@ include "./components/header.php"
 </script> -->
 
 <script>
+    minimizeOnLoad();
     document.addEventListener("DOMContentLoaded", function() {
         // applyClassOnLoad();
         fixChris();
+
     });
 </script>
 <style>
