@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/05 12:32:24
+// Last modified: 2024/12/06 08:22:47
 
 if (!isset($_SESSION)) {
     session_start();
@@ -132,7 +132,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
                 .then(data => {
                     // console.log(data);
                     statusHolder.innerText = data[0].sStatusName;
-                    statusHolderDot.classList.add('gap-3 status-dot-' + data[0].iStatus);
+                    statusHolderDot.classList.add('status-dot-' + data[0].iStatus);
                     // statusHolderDot.classList.add('gap-3');
                 })
         }
@@ -387,6 +387,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         border-top-right-radius: 0;
         /* box-shadow: var(--shadow-elevation-high); */
         box-shadow: -1px 26px 24px -3px rgba(0, 0, 0, 0.75);
+        padding-bottom: 10px;
+        padding-top: 10px;
+        height: min-content;
     }
 
     .top-nav {
