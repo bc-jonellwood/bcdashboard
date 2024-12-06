@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/04 14:36:12
+// Last modified: 2024/12/06 11:20:09
 
 include_once "./data/appConfig.php";
 
@@ -117,7 +117,7 @@ try {
 
   .marquee-content {
     display: flex;
-    animation: marquee 40s linear infinite;
+    animation: marquee 25s linear infinite;
   }
 
   .status-holder-marquee {

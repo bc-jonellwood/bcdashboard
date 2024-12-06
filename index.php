@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/04 15:51:07
+// Last modified: 2024/12/06 12:48:42
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -85,8 +85,9 @@ include "./components/header.php"
                     <?php include "./components/employeeAnniversaries.php"; ?>
                     <?php include "./components/employeeBirthdays.php" ?>
                     <?php include "./components/newEmployees.php" ?>
-                    <?php include "./components/recentSeparations.php" ?>
+                    <?php include "./components/teamTuesday.php" ?>
                     <?php include "./components/itTeamStatus.php" ?>
+                    <?php include "./components/recentSeparations.php" ?>
                     <?php include "./components/nextHoliday.php" ?>
                     <!-- </?php include "./components/newEmployeesCards.php" ?> -->
                     <!-- </?php include "./components/quoteOfTheDay.php" ?> -->
@@ -330,8 +331,11 @@ include "./components/header.php"
     .square {
         grid-column: span 1;
         grid-row: span 1;
-        height: 50%;
+        max-height: 50%;
+        /* TODO change this to a calc function to be based on the row height span thingy   */
+        min-height: 250px;
         overflow: hidden;
+
     }
 
     .component-header-tabs {

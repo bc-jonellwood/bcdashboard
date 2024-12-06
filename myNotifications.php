@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/23 08:11:24
+// Last modified: 2024/12/06 13:38:57
 include "./components/header.php"
 ?>
 <script src="./functions/getNotifications.js"></script>
@@ -49,7 +49,7 @@ include "./components/header.php"
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        What are you a stupid face?
+                        Looks invalid, try again?
                     </div>
                     <small id="sNotificationTextHelpBlock" class="form-text text-muted help-text">
                         Enter the text you want displayed on the alart. It is limited to 255 characters.
