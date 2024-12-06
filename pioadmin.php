@@ -1,6 +1,6 @@
 <?php
 //Created: 2024/12/05 09:36:35
-//Last modified: 2024/12/06 13:45:47
+//Last modified: 2024/12/06 14:45:34
 
 // include_once "./API/dbheader.php";
 include "./components/header.php";
@@ -41,57 +41,63 @@ include "./components/sidenav.php";
                 </div> -->
             </div>
         </div>
-
         <div class="teamTuesday">
-            <p class="fs-5 text-center">Create a Team Tuesday Entry</p>
-            <form action="./API/addTeamTuesdayToDatabase.php" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" maxlength="125" placeholder="Example: Meet Joe Black" required>
-                </div>
-                <div class="mb-3">
-                    <label for="department" class="form-label">County Department / Role</label>
-                    <textarea class="form-control" id="department" name="department" rows="3" maxlength="255" placeholder="Example: Joe Black is a waffle engineer at Waffle House."></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="describeYourself" class="form-label">Describe Yourself in Two Words</label>
-                    <input type="text" class="form-control" id="describeYourself" name="describeYourself" maxlength="255" placeholder="Example: Purple Enigma."></input>
-                </div>
-                <div class="mb-3">
-                    <label for="favoriteHobby" class="form-label">Favorite Hobby</label>
-                    <input type="text" class="form-control" id="favoriteHobby" name="favoriteHobby" maxlength="125" placeholder="Example: Knitting kittens."></input>
-                </div>
-                <div class="mb-3">
-                    <label for="favoriteOutsideInterest" class="form-label">Favorite Interest Outside of Work</label>
-                    <textarea class="form-control" id="favoriteOutsideInterest" name="favoriteOutsideInterest" maxlength="255" placeholder="Example: Watching paint dry."></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="favoriteShow" class="form-label">Favorite Show to binge Watch</label>
-                    <input type="text" class="form-control" id="favoriteShow" name="favoriteShow" maxlength="125" placeholder="Example: The Office (Joe Black Edition)."></input>
-                </div>
-                <div class="mb-3">
-                    <label for="favoriteVacation" class="form-label">Favorite Vacation Spot</label>
-                    <input type="text" class="form-control" id="favoriteVacation" name="favoriteVacation" maxlength="125" placeholder="Example: The Moon."></input>
-                </div>
-                <div class="mb-3">
-                    <label for="somethingUnique" class="form-label">Something Unique About You</label>
-                    <textarea class="form-control" id="somethingUnique" name="somethingUnique" maxlength="1024" placeholder="Example: I can juggle 3 waffles at once."></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="publishDate" class="form-label">Publish Date</label>
-                    <input type="datetime-local" class="form-control" id="publishDate" name="publishDate" onchange="calculateExpirationDate(this.value)" required></input>
-                    <!-- add hidden input that is 6 days and 23 hours from publish date -->
-                    <input type="hidden" id="expirationDate" name="expirationDate" value=""></input>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required></input>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+            <div>
+                <p class="fs-5">Create a Team Tuesday Entry</p>
+                <!-- </summary> -->
+                <!-- <p class="fs-5 text-center">Create a Team Tuesday Entry</p> -->
+                <form action="./API/addTeamTuesdayToDatabase.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" maxlength="125" placeholder="Example: Meet Joe Black" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">County Department / Role</label>
+                        <textarea class="form-control" id="department" name="department" rows="3" maxlength="255" placeholder="Example: Joe Black is a waffle engineer at Waffle House."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="describeYourself" class="form-label">Describe Yourself in Two Words</label>
+                        <input type="text" class="form-control" id="describeYourself" name="describeYourself" maxlength="255" placeholder="Example: Purple Enigma."></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="favoriteHobby" class="form-label">Favorite Hobby</label>
+                        <input type="text" class="form-control" id="favoriteHobby" name="favoriteHobby" maxlength="125" placeholder="Example: Knitting kittens."></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="favoriteOutsideInterest" class="form-label">Favorite Interest Outside of Work</label>
+                        <textarea class="form-control" id="favoriteOutsideInterest" name="favoriteOutsideInterest" maxlength="255" placeholder="Example: Watching paint dry."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="favoriteShow" class="form-label">Favorite Show to binge Watch</label>
+                        <input type="text" class="form-control" id="favoriteShow" name="favoriteShow" maxlength="125" placeholder="Example: The Office (Joe Black Edition)."></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="favoriteVacation" class="form-label">Favorite Vacation Spot</label>
+                        <input type="text" class="form-control" id="favoriteVacation" name="favoriteVacation" maxlength="125" placeholder="Example: The Moon."></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="somethingUnique" class="form-label">Something Unique About You</label>
+                        <textarea class="form-control" id="somethingUnique" name="somethingUnique" maxlength="1024" placeholder="Example: I can juggle 3 waffles at once."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publishDate" class="form-label">Publish Date</label>
+                        <input type="datetime-local" class="form-control" id="publishDate" name="publishDate" onchange="calculateExpirationDate(this.value)" required></input>
+                        <!-- add hidden input that is 6 days and 23 hours from publish date -->
+                        <input type="hidden" id="expirationDate" name="expirationDate" value=""></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required></input>
+                        <p class="form-text text-muted">Image must be less than 6MB</p>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div id="teamTuesdayList"></div>
         </div>
+        <!-- </details> -->
     </div>
 </body>
 
@@ -156,28 +162,86 @@ include "./components/sidenav.php";
                     // fileActions.appendChild(fileAction);
                 });
             });
+        getExistingTeamTuesday()
     }
     document.addEventListener("DOMContentLoaded", getFileList);
 </script>
 <script>
+    function formatDate(str) {
+        const date = new Date(str);
+        const formattedDate = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+        return formattedDate;
+    }
+    let takenDates = [];
     async function getExistingTeamTuesday() {
+        var html = `<table class='table tuesday-table'><caption>Current Schedule</caption><tr>
+            <th>Title</th><th>Published Date</th> 
+            </tr>`;
         await fetch('./API/getAllTeamTuesdayDates.php')
-            .then(response)
+            .then(response => response.json())
+            .then(data => {
+                // take the value of dtStartDate and push it to the takenDates array for the next 6 days
+                for (let i = 0; i < data.length; i++) {
+                    takenDates.push({
+                        startDate: data[i].dtPublishDate,
+                        endDate: data[i].dtExpireDate
+                    });
+                }
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    html += '<tr>';
+                    html += `<td>${data[i].sTitle}</td>`;
+                    html += `<td>${formatDate(data[i].dtPublishDate)}</td>`;
+                    html += '</tr>';
+                }
+
+            });
+        html += '</table>';
+        // console.log('takenDates');
+        // console.log(takenDates);
+        document.getElementById('teamTuesdayList').innerHTML = html;
     }
 </script>
 
 <script>
     // function to calculate expiration date
     function calculateExpirationDate(publishDate) {
-        // const publishDateValue = document.getElementById('publishDate').value;
-        // const publishDate = new Date(publishDateValue);
-        const expiratinDateHolder = document.getElementById('expirationDate');
-        const expirationDate = new Date(publishDate);
-        expirationDate.setDate(expirationDate.getDate() + 6);
-        expirationDate.setHours(expirationDate.getHours() + 23);
-        expiratinDateHolder.value = expirationDate.toISOString();
-        // return expirationDate;
+        if (!checkPublishDate(publishDate)) {
+            return;
+        } else {
+            // const publishDateValue = document.getElementById('publishDate').value;
+            // const publishDate = new Date(publishDateValue);
+            const expiratinDateHolder = document.getElementById('expirationDate');
+            const expirationDate = new Date(publishDate);
+            expirationDate.setDate(expirationDate.getDate() + 6);
+            expirationDate.setHours(expirationDate.getHours() + 23);
+            expiratinDateHolder.value = expirationDate.toISOString();
+            // return expirationDate;
+        }
     }
+
+    // function to check if the publish date is in the array takenDates
+    function checkPublishDate(publishDate) {
+        const publishDateValue = new Date(publishDate);
+        for (let i = 0; i < takenDates.length; i++) {
+            const startDate = new Date(takenDates[i].startDate);
+            const endDate = new Date(takenDates[i].endDate);
+            if (publishDateValue >= startDate && publishDateValue <= endDate) {
+                alert('This date is already taken. Please choose another date.');
+                return true;
+            }
+        }
+        // alert('Date is available');
+        return false;
+    }
+    // function to check the file size of image file selcted to be uploaded. If the file size is greater than 4MB, alert the user
+    document.getElementById('image').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file.size > 6000000) {
+            alert('File size is too large. Please select a file less than 6MB');
+            this.value = '';
+        }
+    });
 </script>
 
 <style>
@@ -271,6 +335,21 @@ include "./components/sidenav.php";
     }
 
     .teamTuesday {
-        margin-right: 10%;
+        margin-right: 20px;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        gap: 10px;
+    }
+
+    .tuesday-table {
+        font-size: medium;
+        width: 100%;
+        border-collapse: collapse;
+        color: var(--fb);
+        caption-side: top;
+
+        .form-text {
+            font-size: medium !important;
+        }
     }
 </style>
