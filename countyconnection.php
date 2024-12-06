@@ -1,6 +1,6 @@
 <?php
 //Created: 2024/12/05 09:36:35
-//Last modified: 2024/12/06 10:01:37
+//Last modified: 2024/12/06 10:21:47
 
 // include_once "./API/dbheader.php";
 include "./components/header.php";
@@ -25,10 +25,17 @@ include "./components/sidenav.php";
             <button id="next-page" class="btn btn-sm btn-info">Next</button>
         </span>
         <span>Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+        <span><input name="scale" type="range" min="1" max="2.5" step=".25" value="1.5" onchange="updateScale(this.value)"></span>
+        <label for="scale" class="text-muted fs-6">Scale</label>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <script>
+    function updateScale(val) {
+        scale = val;
+        renderPage(pageNum);
+    }
+
     function formatDateToMonthYear(dateString) {
         const date = new Date(dateString);
         const options = {
