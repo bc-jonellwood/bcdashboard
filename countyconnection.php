@@ -1,6 +1,6 @@
 <?php
 //Created: 2024/12/05 09:36:35
-//Last modified: 2024/12/06 09:58:52
+//Last modified: 2024/12/06 10:01:37
 
 // include_once "./API/dbheader.php";
 include "./components/header.php";
@@ -116,6 +116,8 @@ include "./components/sidenav.php";
         const pdfContainer = document.getElementById('connection-content');
         pdfContainer.innerHTML = ''; // Clear previous content
         pdfContainer.appendChild(canvas); // Re-append canvas
+
+        pageNum = 1; // Reset page number to 1
 
         pdfjsLib.getDocument(filePath).promise.then(pdf => {
             pdfDoc = pdf;
