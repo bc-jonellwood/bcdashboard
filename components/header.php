@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 08:22:47
+// Last modified: 2024/12/09 09:39:31
 
 if (!isset($_SESSION)) {
     session_start();
@@ -56,6 +56,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <title>BC Dashboard</title>
 
     <script>
+        function showSidenaval() {
+            const sidenav = document.getElementById('sidenav-popover');
+            console.log('showing sidenaval');
+            sidenav.classList.add('visible');
+            // if (!isPinned) {
+            //     document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+            // }
+        }
+
         function swapBodyClass() {
             const body = document.body;
             const classes = body.className.split(' ');
@@ -150,7 +159,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 <snow-fall></snow-fall>
 <div class="header">
     <div class="hamburger">
-        <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn">
+        <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn" onclick="showSidenaval()" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50">
                 <text x="7" y="49" font-family="Brush Script MT, cursive" font-size="70" class="recolor mysvg">my</text>
             </svg>

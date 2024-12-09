@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 15:57:57
+// Last modified: 2024/12/09 09:42:19
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -35,8 +35,8 @@ include "./components/header.php"
     // check if minimized cards are in local storage and apply the minimized class if so
     function minimizeOnLoad() {
         let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
-        console.log('cardIDs')
-        console.log(cardIDs)
+        // console.log('cardIDs')
+        // console.log(cardIDs)
         if (cardIDs) {
             for (let i = 0; i < cardIDs.length; i++) {
                 let target = document.getElementById(cardIDs[i])
@@ -88,7 +88,7 @@ include "./components/header.php"
         showLoader();
         setTimeout(hideLoader, 200);
     }
-    fakeLoader()
+    // fakeLoader()
 </script>
 <script>
     var currentMonth = new Date().getMonth();
@@ -207,7 +207,7 @@ include "./components/header.php"
 
     });
 </script>
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         const sidenav = document.querySelector('.sidenav-popover');
         let isPinned = false;
@@ -249,16 +249,16 @@ include "./components/header.php"
 
         sidenav.querySelector('.pin-button').addEventListener('click', pinSidenav);
     });
-</script>
+</script> -->
 <style>
-    .sidenav {
+    /* .sidenav {
         transition: transform 0.3s ease;
         transform: translateX(-100%);
     }
 
     .sidenav.visible {
         transform: translateX(0);
-    }
+    } */
 
     /* .pin-button {
         position: absolute;

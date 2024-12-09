@@ -1,8 +1,9 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/06 16:00:00
+// Last modified: 2024/12/09 09:52:40
 ?>
-<div class="sidenav-popover" popover="manual" name="sidenav-popver" id="sidenav-popover">
+
+<div class="sidenav-popover sidenav" popover="manual" name="sidenav-popver" id="sidenav-popover">
     <div class="d-flex flex-column p-1 sideNavMain"
         style="width: 20rem;min-width: -webkit-fill-available;">
         <div class="d-flex w-100 gap-4 align-items-center justify-content-evenly">
@@ -13,14 +14,19 @@
                     </svg>
                     <div class="fs-4 center sideNavTitle">dashboard</div>
                 </a>
-                <button class="not-btn" popovertarget="sidenav-popover" popovertargetaction="hide" type="button">
+                <button class="not-btn" popovertarget="sidenav-popover" popovertargetaction="hide" type="button" id="sidenavCloseBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" />
                     </svg>
                 </button>
-                <button class="not-btn pin-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24" type="button">
+                <button class="not-btn pin-button" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24" id="pin">
                         <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                    </svg></button>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor hidden" width="24" height="24" id="unpin">
+                        <path d="M2,5.27L3.28,4L20,20.72L18.73,22L12.8,16.07V22H11.2V16H6V14L8,12V11.27L2,5.27M16,12L18,14V16H17.82L8,6.18V4H7V2H17V4H16V12Z" />
+                    </svg>
+                </button>
             </div>
         </div>
 
@@ -79,7 +85,7 @@
             <!-- <li>
                 <a href="./success.php" class="nav-link d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
-                        <path d="M14.53 1.45L13.45 2.53L15.05 4.13C15.27 4.38 15.38 4.67 15.38 5S15.27 5.64 15.05 5.86L11.5 9.47L12.5 10.55L16.13 6.94C16.66 6.35 16.92 5.7 16.92 5C16.92 4.3 16.66 3.64 16.13 3.05L14.53 1.45M10.55 3.47L9.47 4.55L10.08 5.11C10.3 5.33 10.41 5.63 10.41 6S10.3 6.67 10.08 6.89L9.47 7.45L10.55 8.53L11.11 7.92C11.64 7.33 11.91 6.69 11.91 6C11.91 5.28 11.64 4.63 11.11 4.03L10.55 3.47M21 5.06C20.31 5.06 19.67 5.33 19.08 5.86L13.45 11.5L14.53 12.5L20.11 6.94C20.36 6.69 20.66 6.56 21 6.56S21.64 6.69 21.89 6.94L22.5 7.55L23.53 6.47L22.97 5.86C22.38 5.33 21.72 5.06 21 5.06M7 8L2 22L16 17L7 8M19 11.06C18.3 11.06 17.66 11.33 17.06 11.86L15.47 13.45L16.55 14.53L18.14 12.94C18.39 12.69 18.67 12.56 19 12.56C19.33 12.56 19.63 12.69 19.88 12.94L21.5 14.53L22.55 13.5L20.95 11.86C20.36 11.33 19.7 11.06 19 11.06Z" />
+                        <path d="M14.53 1.45L13.45 2.53L15.05 4.13C15.27 4.38 15.38 4.67 15.38 5S15.27 5.64 15.05 5.86L11.5 9.47L12.5 10.55L16.13 6.94C16.66 6.35 16.92 5.7 16.92 5C16.92 4.3 16.66 3.64 16.13 3.05L14.53 1.45M10.55 3.47L9.47 4.55L10.08 5.11C10.3 5.33 10.41 5.63 10.41 6S10.3 6.67 10.08 6.89L9.47 7.45L10.55 8.53L11.11 7.92C11.64 7.33 11.91 6.69 11.91 6C11.91 5.28 11.64 4.63 11.11 4.03L10.55 3.47M21 5.06C20.31 5.06 19.67 5.33 19.08 5.86L13.45 11.5L14.53 12.5L20.11 6.94C20.36 6.69 20.66 6.56 21 6.56S21.64 6.69 21.89 6.94L22.5 7.55L23.53 6.47L22.97 5.86C22.38 5.33 21.72 5.06 21 5.06M7 8L2 22L16 17L7 8M19 11.06C18.3 11.06 17.66 11.33 17.06 11.86L15.47 13.45L16.55 14.53L18.14 12.94C18.39 12.69 18.67 12.56 19 12.56S19.64 12.69 19.89 12.94L21.5 14.53L22.55 13.5L20.95 11.86C20.36 11.33 19.7 11.06 19 11.06Z" />
                     </svg> Success
                 </a>
             </li> -->
@@ -192,6 +198,99 @@
         </div> -->
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sidenav = document.getElementById('sidenav-popover');
+        const pinSvg = document.getElementById('pin');
+        const unpinSvg = document.getElementById('unpin');
+        const sidenavCloseBtn = document.getElementById('sidenavCloseBtn');
+        const sidenavPopover = document.getElementById('sidenav-popover');
+        let isPinned = false;
+        let hoverTimeout;
+
+        function showSidenav() {
+            console.log('showing sidenav');
+            sidenav.classList.add('visible');
+            if (!isPinned) {
+                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+            }
+        }
+
+        function hideSidenav() {
+            if (!isPinned) {
+                sidenavPopover.hidePopover();
+                sidenav.classList.remove('visible');
+                document.body.style.marginLeft = '0';
+            }
+        }
+
+        function hideAndUnpinSidenav() {
+            // const sidenavPopover = document.getElementById('sidenav-popover');
+            sidenavPopover.hidePopover();
+            isPinned = false;
+            sidenav.classList.remove('visible');
+            document.body.style.marginLeft = '0';
+            pinSvg.classList.remove('hidden');
+            unpinSvg.classList.add('hidden');
+        }
+
+        function pinSidenav() {
+            isPinned = !isPinned;
+            if (isPinned) {
+                pinSvg.classList.add('hidden');
+                unpinSvg.classList.remove('hidden');
+                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+                localStorage.setItem('bcdash-sidnav-pinned', 'true');
+            } else {
+                pinSvg.classList.remove('hidden');
+                unpinSvg.classList.add('hidden');
+                localStorage.setItem('bcdash-sidnav-pinned', 'false');
+                hideSidenav();
+            }
+        }
+
+        function checkLocalStorageForPinned() {
+            var pinnedInLocal = localStorage.getItem('bcdash-sidnav-pinned');
+            if (pinnedInLocal) {
+                if (localStorage.getItem('bcdash-sidnav-pinned') === 'true') {
+                    pinSidenav();
+                    showSidenav();
+                } else {
+                    hideSidenav();
+                }
+            } else {
+                localStorage.setItem('bcdash-sidnav-pinned', 'false');
+            }
+        }
+        document.body.addEventListener('mousemove', function(event) {
+            if (event.clientX < 50) {
+                console.log(event.clientX);
+                hoverTimeout = setTimeout(showSidenav, 500);
+
+            } else if (!sidenav.matches(':hover')) {
+                clearTimeout(hoverTimeout);
+                if (!isPinned) {
+                    hideSidenav();
+                }
+            }
+        });
+
+        sidenav.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
+        });
+
+        sidenav.addEventListener('mouseleave', function() {
+            if (!isPinned) {
+                hideSidenav();
+            }
+        });
+
+        sidenav.querySelector('.pin-button').addEventListener('click', pinSidenav);
+        sidenavCloseBtn.addEventListener('click', hideAndUnpinSidenav);
+        checkLocalStorageForPinned();
+        // (localStorage.getItem('bcdash-sidnav-pinned') === 'true' ? pinSidenav() : hideSidenav());
+    });
+</script>
 
 <style>
     .avatar {
@@ -222,5 +321,15 @@
         /* background-color: hotpink; */
         display: flex;
         flex-direction: row;
+    }
+
+    .sidenav {
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+    }
+
+    .sidenav.visible {
+        transition: transform 0.2s ease;
+        transform: translateX(0);
     }
 </style>
