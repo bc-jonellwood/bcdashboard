@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 09:52:40
+// Last modified: 2024/12/09 10:09:50
 ?>
 
 <div class="sidenav-popover sidenav" popover="manual" name="sidenav-popver" id="sidenav-popover">
@@ -211,14 +211,24 @@
         function showSidenav() {
             console.log('showing sidenav');
             sidenav.classList.add('visible');
+            sidenav.showPopover();
             if (!isPinned) {
                 document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
             }
         }
 
+        function showAndPinSidenav() {
+            isPinned = true;
+            sidenav.classList.add('visible');
+            sidenav.showPopover();
+            pinSvg.classList.add('hidden');
+            unpinSvg.classList.remove('hidden');
+            document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
+        }
+
         function hideSidenav() {
             if (!isPinned) {
-                sidenavPopover.hidePopover();
+                sidenav.hidePopover();
                 sidenav.classList.remove('visible');
                 document.body.style.marginLeft = '0';
             }
@@ -226,7 +236,7 @@
 
         function hideAndUnpinSidenav() {
             // const sidenavPopover = document.getElementById('sidenav-popover');
-            sidenavPopover.hidePopover();
+            sidenav.hidePopover();
             isPinned = false;
             sidenav.classList.remove('visible');
             document.body.style.marginLeft = '0';
@@ -253,8 +263,9 @@
             var pinnedInLocal = localStorage.getItem('bcdash-sidnav-pinned');
             if (pinnedInLocal) {
                 if (localStorage.getItem('bcdash-sidnav-pinned') === 'true') {
-                    pinSidenav();
-                    showSidenav();
+                    // pinSidenav();
+                    // showSidenav();
+                    showAndPinSidenav();
                 } else {
                     hideSidenav();
                 }

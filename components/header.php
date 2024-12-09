@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 09:39:31
+// Last modified: 2024/12/09 10:04:40
 
 if (!isset($_SESSION)) {
     session_start();
@@ -529,6 +529,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         border-radius: 7px;
         color: var(--fg);
         cursor: pointer;
+        width: min-content;
 
         &:popover-open {
             translate: 0;
