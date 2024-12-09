@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 10:04:40
+// Last modified: 2024/12/09 13:20:11
 
 if (!isset($_SESSION)) {
     session_start();
@@ -38,6 +38,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <link rel="stylesheet" href="styles/theme.css">
     <link rel="stylesheet" href="styles/newEmpCard.css">
     <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
+
+
     <!-- <link rel="stylesheet" href="styles/teams.css"> -->
     <!-- <script type="module" defer>
         const snow = document.createElement('snow-fall');
@@ -51,6 +53,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <script src="./functions/renderDepartmentLookup.js"></script>
     <script src="./functions/renderPhoneLookup.js"></script>
     <script src="./functions/renderQuickLinks.js"></script>
+    <script src="./components/setCardOrder.js"></script>
     <!-- favicon -->
     <link rel="icon" href="favicons/favicon.ico">
     <title>BC Dashboard</title>
@@ -126,6 +129,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 
         function setClassAndModeOnLoad() {
             getModeFromStorage();
+            renderCardList();
         }
 
 
@@ -154,6 +158,35 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
                 .then(alert('Status Updated'))
                 .then(getUserCurrentStatus())
         }
+    </script>
+    <script>
+        // function to toggle the entry in local storage if the sidebar should apppear on hover or not
+        function toggleSidbarHover() {
+            const allowHoverSetting = localStorage.getItem('bcdash-sidebarHover');
+            const parentEl = document.getElementById('settings-popover-menu')
+            if (allowHoverSetting === 'true') {
+                localStorage.setItem('bcdash-sidebarHover', 'false');
+                allowHover = false;
+                parentEl.hidePopover();
+            } else {
+                localStorage.setItem('bcdash-sidebarHover', 'true');
+                allowHover = true;
+                parentEl.hidePopover();
+            }
+            updateSidebarHoverButtonText();
+        }
+
+        function updateSidebarHoverButtonText() {
+            const allowHoverSetting = localStorage.getItem('bcdash-sidebarHover');
+            const button = document.querySelector('button[onclick="toggleSidbarHover()"]');
+            if (allowHoverSetting === 'true') {
+                button.textContent = 'Disable';
+            } else {
+                button.textContent = 'Enable';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateSidebarHoverButtonText);
     </script>
 </head>
 <snow-fall></snow-fall>
@@ -223,7 +256,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     </div>
     <div class="popover-body">
         <section>
-
             <div class="theme-select">
                 <h4>Select Mode</h4>
 
@@ -257,6 +289,36 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
                 <option value="7">Working Remote</option>
                 <option value="6">Unavailable</option>
             </select>
+        </section>
+    </div>
+    <section>
+        <div class="card-order-btn-holder">
+            <label for="card-order-btn" class="sidebar-hover-btn-label">Change the order the cards are rendered.</label>
+            <button name="card-order-btn" class="btn btn-secondary" popovertarget="card-order-menu" popovertargetaction="show">Change</button>
+        </div>
+    </section>
+    <section>
+        <div class="sidebar-hover-btn-holder">
+            <label for="sidebar-hover-btn" class="sidebar-hover-btn-label">Show Sidebar on Hover?</label>
+            <button name="sidebar-hover-btn" class="btn btn-secondary" onclick="toggleSidbarHover()">Allow Hover</button>
+        </div>
+    </section>
+</div>
+<!-- Card order popover -->
+<div class="card-order-menu" name="card-order-menu" id="card-order-menu" popover="manual">
+    <div class="popover-header">
+        <h3>Card Order</h3>
+        <button type="button" class="btn-x" popovertarget="card-order-menu" popovertargetaction="hide"
+            aria-label="Close">X
+        </button>
+
+    </div>
+    <div class="popover-body">
+        <section>
+            <div class="card-order">
+                <!-- <h4>Set Card Order</h4> -->
+                <div class='cardList' id='cardList'></div>
+            </div>
         </section>
     </div>
 </div>
@@ -416,7 +478,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         font-size: medium;
     }
 
-
+    .card-order-menu[popover],
     .quick-links-popover[popover],
     .phone-lookup-popover[popover],
     .department-lookup-popover[popover],
@@ -468,6 +530,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
             }
         }
     }
+
+    .card-order-menu[popover] {
+        inline-size: 19vi;
+        box-shadow: -4px -1px 7px 0px var(--accent);
+    }
+
+
 
     .employee-lookup-popover .dash-card {
         max-height: fit-content !important;
@@ -884,5 +953,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         font-size: large;
         backdrop-filter: blur(1px);
 
+    }
+
+    .sidebar-hover-btn-holder {
+        display: flex;
+        flex-direction: column;
+
+        button {
+            max-width: max-content;
+        }
+    }
+
+    .sidebar-hover-btn-label {
+        color: var(--fg);
+        font-size: medium;
     }
 </style>

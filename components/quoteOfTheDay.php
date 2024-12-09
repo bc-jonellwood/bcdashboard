@@ -36,7 +36,7 @@ function fetchFact()
 
     // Display the fact
     if (isset($data['text'])) {
-        $html = '<div id="8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c" class="dash-card narrow short">
+        $html = '<div id="8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c" class="dash-card narrow square">
                         <div class="card-content">
                             <div class="component-header">Did you know? <button class="not-btn" onclick="minimizeCard(\'8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c\')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="recolor" width="24" height="24"><path d="M10.59,12L14.59,8H11V6H18V13H16V9.41L12,13.41V16H20V4H8V12H10.59M22,2V18H12V22H2V12H6V2H22M10,14H4V20H10V14Z" /></svg></button></div>';
         $html .= "<p class='daily-quote'>Fact: " . htmlspecialchars($data['text']);

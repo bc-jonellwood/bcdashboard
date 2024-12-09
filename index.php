@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 09:42:19
+// Last modified: 2024/12/09 11:09:57
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -16,22 +16,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include "./components/header.php"
 ?>
+<script src="./functions/fetchCardData.js"></script>
 <script>
-    // function addMinimizedIdToLocalStorage(id){
-    //     let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
-    //     if (cardIDs) {
-    //         if (cardIDs.includes(id)) {
-    //             cardIDs.splice(cardIDs.indexOf(id), 1);
-    //             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-    //         } else {
-    //             cardIDs.push(id);
-    //             localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-    //         }
-    //     } else {
-    //         cardIDs = [id];
-    //         localStorage.setItem('bcdash-cardIDs', JSON.stringify(cardIDs));
-    //     }
-    // }
     // check if minimized cards are in local storage and apply the minimized class if so
     function minimizeOnLoad() {
         let cardIDs = JSON.parse(localStorage.getItem('bcdash-cardIDs'));
@@ -89,6 +75,7 @@ include "./components/header.php"
         setTimeout(hideLoader, 200);
     }
     // fakeLoader()
+    fetchCardData();
 </script>
 <script>
     var currentMonth = new Date().getMonth();
@@ -207,66 +194,7 @@ include "./components/header.php"
 
     });
 </script>
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const sidenav = document.querySelector('.sidenav-popover');
-        let isPinned = false;
-        let hoverTimeout;
 
-        function showSidenav() {
-            sidenav.classList.add('visible');
-            if (!isPinned) {
-                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
-            }
-        }
-
-        function hideSidenav() {
-            if (!isPinned) {
-                sidenav.classList.remove('visible');
-                document.body.style.marginLeft = '0';
-            }
-        }
-
-        function pinSidenav() {
-            isPinned = !isPinned;
-            if (isPinned) {
-                document.body.style.marginLeft = `${sidenav.offsetWidth}px`;
-            } else {
-                hideSidenav();
-            }
-        }
-
-        document.body.addEventListener('mousemove', function(event) {
-            if (event.clientX < 50) {
-                hoverTimeout = setTimeout(showSidenav, 500);
-            } else {
-                clearTimeout(hoverTimeout);
-                if (!isPinned) {
-                    hideSidenav();
-                }
-            }
-        });
-
-        sidenav.querySelector('.pin-button').addEventListener('click', pinSidenav);
-    });
-</script> -->
-<style>
-    /* .sidenav {
-        transition: transform 0.3s ease;
-        transform: translateX(-100%);
-    }
-
-    .sidenav.visible {
-        transform: translateX(0);
-    } */
-
-    /* .pin-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    } */
-</style>
 <style>
     @font-face {
         font-family: 'Galada';

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 10:09:50
+// Last modified: 2024/12/09 12:49:25
 ?>
 
 <div class="sidenav-popover sidenav" popover="manual" name="sidenav-popver" id="sidenav-popover">
@@ -205,8 +205,18 @@
         const unpinSvg = document.getElementById('unpin');
         const sidenavCloseBtn = document.getElementById('sidenavCloseBtn');
         const sidenavPopover = document.getElementById('sidenav-popover');
+        let allowHover = localStorage.getItem('bcdash-sidebarHover') === 'true' ? true : false;
         let isPinned = false;
         let hoverTimeout;
+
+        // function applyAllowHover() {
+        //     var allowHoverSetting = localStorage.getItem('bcdash-sidebarHover');
+        //     if(allowHoverSetting) {
+        //         allowHover = allowHoverSetting === 'true';
+        //     } else {
+        //         localStorage.setItem('bcdash-sidebarHover', 'true');
+        //     }
+        // }
 
         function showSidenav() {
             console.log('showing sidenav');
@@ -273,15 +283,17 @@
                 localStorage.setItem('bcdash-sidnav-pinned', 'false');
             }
         }
+        // if (allowHover === true) {
         document.body.addEventListener('mousemove', function(event) {
-            if (event.clientX < 50) {
-                console.log(event.clientX);
-                hoverTimeout = setTimeout(showSidenav, 500);
-
-            } else if (!sidenav.matches(':hover')) {
-                clearTimeout(hoverTimeout);
-                if (!isPinned) {
-                    hideSidenav();
+            if (localStorage.getItem('bcdash-sidebarHover') === 'true') {
+                if (event.clientX < 50) {
+                    console.log(event.clientX);
+                    hoverTimeout = setTimeout(showSidenav, 500);
+                } else if (!sidenav.matches(':hover')) {
+                    clearTimeout(hoverTimeout);
+                    if (!isPinned) {
+                        hideSidenav();
+                    }
                 }
             }
         });
@@ -295,7 +307,7 @@
                 hideSidenav();
             }
         });
-
+        // }
         sidenav.querySelector('.pin-button').addEventListener('click', pinSidenav);
         sidenavCloseBtn.addEventListener('click', hideAndUnpinSidenav);
         checkLocalStorageForPinned();
