@@ -73,6 +73,7 @@
     -0.9px 30.3px 40px -0.9px hsl(var(--accent) / 0.13),
     -1.2px 43.8px 57.8px -1px hsl(var(--accent) / 0.15),
     -1.8px 62.3px 82.3px -1.2px hsl(var(--accent) / 0.16);
+  interpolate-size: allow-keywords;
 }
 
 body {

@@ -1,0 +1,51 @@
+/* Base accent color */
+:root {
+  --base-accent: #2c90b0;
+  --light-accent: #58c9e8;
+  --dark-accent: #005677;
+}
+
+/* Example usage */
+body {
+  background-color: var(--base-accent);
+}
+
+.light-mode {
+  background-color: var(--light-accent);
+}
+
+.dark-mode {
+  background-color: var(--dark-accent);
+}
+
+/* 
+To calculate a "base-accent" color that is in the middle of the light and dark mode accent colors, you can average the RGB values of the two hex colors. Here are the steps:
+
+1. Convert the hex values to RGB.
+2. Calculate the average of the RGB values.
+3. Convert the averaged RGB values back to a hex value.
+
+### Step-by-Step Solution
+
+1. **Convert Hex to RGB:**
+   - `#58c9e8` converts to `rgb(88, 201, 232)`
+   - `#005677` converts to `rgb(0, 86, 119)`
+
+2. **Calculate the Average RGB:**
+   - Red: `(88 + 0) / 2 = 44`
+   - Green: `(201 + 86) / 2 = 143.5` (round to 144)
+   - Blue: `(232 + 119) / 2 = 175.5` (round to 176)
+
+3. **Convert the Averaged RGB back to Hex:**
+   - `rgb(44, 144, 176)` converts to `#2c90b0`
+
+### Implementation in CSS
+
+You can then use these values in your CSS file. Here is how you can define the base, light, and dark accent colors:
+
+### [accent.css](file:///c:/xampp/htdocs/bcdashboard/styles/accent.css)
+
+```css
+
+
+

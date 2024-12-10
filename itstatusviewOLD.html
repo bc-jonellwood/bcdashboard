@@ -13,61 +13,6 @@
     <!-- <link rel="stylesheet" href="styles/theme.css"> -->
 
     <script>
-
-         function setEventListeners() {
-                var employeeCards = document.querySelectorAll('.team-card');
-                // console.log('employeeCards');
-                // console.log(employeeCards);
-                employeeCards.forEach(card => {
-                    card.addEventListener('click', function (event) {
-                        if (event.button === 0) { // Left click
-                            // var employeeId = card.getAttribute('data-employee-id');
-                            var employeeId = card.id;
-                            // console.log('employeeId', employeeId);
-                            selectEmployee(employeeId);
-                            console.log('Left-clicked on employee ID:', employeeId);
-                        }
-                    });
-                    card.addEventListener('contextmenu', function (event) {
-                        event.preventDefault();
-                        if (event.button === 2) { // Right click
-                            var popoverMenu = document.getElementById('status-popover-menu');
-                            var employee_id_hidden = document.getElementById('employeeIDHidden');
-                            var mouseX = event.clientX;
-                            var mouseY = event.clientY;
-                            popoverMenu.showPopover();
-                            popoverMenu.style.left = mouseX + 'px';
-                            popoverMenu.style.top = mouseY + 'px';
-                            // var employeeId = card.getAttribute('data-employee-id');
-                            var employeeId = card.id;
-                            employee_id_hidden.value = employeeId;
-                            // console.log('employeeId', employeeId);
-                            // Handle right-click action here
-                            highlightEmployee(employeeId);
-                            // console.log('Right-clicked on employee ID:', employeeId);
-
-                        }
-                    });
-                });
-                // getTeamStatus();
-                // getEmployees();
-            };
-            // });
-            async function markOnCall() {
-                await fetch("./API/getItOnCallForView.php")
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data[0].sEmployeeNumber);
-                        var onCallEmpNumber = data[0].sEmployeeNumber;
-                        var onCallCard = document.getElementById(onCallEmpNumber);
-                        // onCallCard.classList.add('on-call');
-                        var badge = document.createElement('div');
-                        badge.classList.add('on-call-badge');
-                        badge.innerHTML = '&#x1F4DE;'; // phone icon
-                        onCallCard.appendChild(badge);
-                    })
-                setEventListeners();
-            }
         function formatDateTime(dateTimeString) {
                 var date = new Date(dateTimeString);
                 var hours = date.getHours();
@@ -115,7 +60,7 @@
                     for (var i = 0; i < data.length; i++){
                         var empName = `${data[i].sPreferredName ? `${data[i].sPreferredName} ${data[i].sLastName}`.toLowerCase() : `${data[i].sFirstName} ${data[i].sLastName}`.toLowerCase()}`;
                         html += `
-                            <div class="team-card status-${data[i].iStatus}" id="${data[i].sEmployeeNumber}" data-employee-id="${data[i].sEmployeeNumber}">
+                            <div class="team-card status-${data[i].iStatus}" id="${data[i].sEmployeeNumber}" data-employee-id="${data[i].sEmployeeNumber}" onclick="selectEmployee(this.id)">
                                 <div class="card-inner">
                                     <div class="card-front">
                                         <h3>${abbreviateName(empName)}</h3>
@@ -181,21 +126,20 @@
             var audio = new Audio('./sounds/beep.wav');
             audio.play();
         }
-        // function markOnCall(){
-        //     fetch("./API/getItOnCallForView.php")
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             console.log(data[0].sEmployeeNumber);
-        //             var onCallEmpNumber = data[0].sEmployeeNumber;
-        //             var onCallCard = document.getElementById(onCallEmpNumber);
-        //                 // onCallCard.classList.add('on-call');
-        //             var badge = document.createElement('div');
-        //             badge.classList.add('on-call-badge');
-        //             badge.innerHTML = '&#x1F4DE;'; // phone icon
-        //             onCallCard.appendChild(badge);
-        //         })
-        //     setEventListeners();
-        // }
+        async function markOnCall(){
+            await fetch("./API/getItOnCallForView.php")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data[0].sEmployeeNumber);
+                    var onCallEmpNumber = data[0].sEmployeeNumber;
+                    var onCallCard = document.getElementById(onCallEmpNumber);
+                        // onCallCard.classList.add('on-call');
+                    var badge = document.createElement('div');
+                    badge.classList.add('on-call-badge');
+                    badge.innerHTML = '&#x1F4DE;'; // phone icon
+                    onCallCard.appendChild(badge);
+                })
+        }
 
         // document.addEventListener('DOMContentLoaded', function() {
         //     var buttons = document.querySelectorAll('button');
@@ -373,29 +317,6 @@
         <div class="status" id="status"></div>
         <!-- <button class="btn btn-sm" type="button" onclick="updateStatus()">Update Status</button> -->
     </div>
-    <div class="status-popover-menu" id="status-popover-menu" name="status-popover-menu" popover="manual">
-        <input type="hidden" name="employeeIDHidden" id="employeeIDHidden" value="">
-        <ul name="status" id="status_id" class="status-select">
-            <li>
-                <button class="btn btn-danger" type="button" popovertarget="status-popover-menu" popovertargetaction="hide" onclick="removeHighlightedClass()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="1em" height="1em">
-                        <path
-                            d="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" />
-                    </svg>
-                </button>
-            </li>
-            <li><button value="0" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">Available</button></li>
-            <li><button value="1" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">Not in the office</button></li>
-            <li><button value="2" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">On Leave</button></li>
-            <li><button value="3" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">At Lunch</button></li>
-            <li><button value="4" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">On the Floor - Call Cell</button></li>
-            <li><button value="4" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">At another building</button></li>
-            <li><button value="4" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">Offsite Coverage</button></li>
-            <li><button value="4" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">Working Remote</button></li>
-            <li><button value="4" class="btn btn-secondary btn-sm" onclick="updateRightClick(this.value)">Unavailable</button></li>
-            
-        </ul>
-    </div>
 </body>
 
 </html>
@@ -413,21 +334,6 @@
                 .then(markOnCall)
             }
         }
-    function updateRightClick(status) {
-        var employee = document.getElementById('employeeIDHidden').value;
-        var popover = document.getElementById('status-popover-menu');
-        if (employee === '') {
-            alert('Please select an employee');
-        } else {
-            fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
-            // .then(alert('Status Updated!'))
-            .then(getTeamStatus)
-            .then(markOnCall)
-            .then(popover.hidePopover());
-            employee.value = '';
-        }
-    }
-
     function selectEmployee(id) {
         var empSelect = document.getElementById('employee_id');
         empSelect.value = id;
@@ -441,20 +347,6 @@
             selectedCard.classList.add('active');
         }
     }
-    function highlightEmployee(id) {
-        var empSelect = document.getElementById('employee_id');
-        empSelect.value = id;
-        // console.log(id);
-        var cards = document.querySelectorAll('.team-card');
-        // console.log(cards);
-        cards.forEach(card => card.classList.remove('highlighted'));
-
-        var selectedCard = document.querySelector(`.team-card[data-employee-id="${id}"]`);
-        if (selectedCard) {
-            selectedCard.classList.add('highlighted');
-        }
-    }
-
     function removeActiveClass() {
         var cards = document.querySelectorAll('.team-card');
         cards.forEach(card => card.classList.remove('active'));
@@ -462,55 +354,6 @@
         employeeSelect.selectedIndex = 0;
         // employeeSelect.value = '';
     }
-    function removeHighlightedClass(){
-        var cards = document.querySelectorAll('.team-card');
-        cards.forEach(card => card.classList.remove('highlighted'));
-    }
-    // document.addEventListener('DOMContentLoaded', function () {
-    // function setEventListeners() {
-    //     var employeeCards = document.querySelectorAll('.team-card');
-    //     console.log('employeeCards');
-    //     console.log(employeeCards);
-    //     employeeCards.forEach(card => {
-    //         card.addEventListener('click', function (event) {
-    //             if (event.button === 0) { // Left click
-    //                 // var employeeId = card.getAttribute('data-employee-id');
-    //                 var employeeId = card.id;
-    //                 console.log('employeeId', employeeId);
-    //                 // selectEmployee(employeeId);
-    //                 console.log('Left-clicked on employee ID:', employeeId);
-    //             }
-    //         });
-    //         card.addEventListener('contextmenu', function (event) {
-    //             event.preventDefault();
-    //             if (event.button === 2) { // Right click
-    //                 // var employeeId = card.getAttribute('data-employee-id');
-    //                 var employeeId = card.id;
-    //                 console.log('employeeId', employeeId);
-    //                 // Handle right-click action here
-    //                 console.log('Right-clicked on employee ID:', employeeId);
-    //             }
-    //         });
-    //     });
-    //     // getTeamStatus();
-    //     // getEmployees();
-    // };
-    //     // });
-    // async function markOnCall() {
-    //     await fetch("./API/getItOnCallForView.php")
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log(data[0].sEmployeeNumber);
-    //             var onCallEmpNumber = data[0].sEmployeeNumber;
-    //             var onCallCard = document.getElementById(onCallEmpNumber);
-    //             // onCallCard.classList.add('on-call');
-    //             var badge = document.createElement('div');
-    //             badge.classList.add('on-call-badge');
-    //             badge.innerHTML = '&#x1F4DE;'; // phone icon
-    //             onCallCard.appendChild(badge);
-    //         })
-    //     setEventListeners();
-    //     }
 </script>
 
 <style>
@@ -535,39 +378,6 @@
         padding: 1rem;
         position: relative;
         top: 80px;
-    }
-    .status-popover-menu{
-        background-color: inherit;
-        /* backdrop-filter: blur(5px); */
-        border-radius: 6px;
-        box-shadow: inset 0 0 15px -5px var(--accent);
-    }
-    .status-popover-menu[popover]{
-        transition:
-            display 0.3s allow-discrete,
-            overlay 0.3s allow-discrete,
-            opacity 0.3s,
-            translate 0.3s;
-        transition-timing-function: ease-in;
-        &:popover-open {
-            translate: 0;
-            transition-timing-function: ease-out;
-        }
-    }
-    .status-select{
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-        /* position: absolute; */
-        /* top: 0; */
-        /* right: 0; */
-        /* background-color: #ffffff; */
-        background-color: #00567790;
-        backdrop-filter: blur(5px);
-        border-radius: 8px;
-        box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
     }
 
     .team-header {
@@ -756,9 +566,8 @@
         visibility: hidden;
     }
     .btn-sm{
-        border-radius: 8px;
+        border-radius: 6px;
         width: 100px;
-        min-width: max-content;
     }
     .carla-avatar{
         position: relative;
@@ -768,12 +577,6 @@
     .active{
         background-color: white !important;
         border: 3px inset red !important;
-        color: red !important;
-        
-    }
-    .highlighted{
-        background-color: darkgray !important;
-        border: 3px inset darkred !important;
         color: red !important;
         
     }

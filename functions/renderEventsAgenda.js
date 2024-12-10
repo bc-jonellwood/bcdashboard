@@ -92,7 +92,7 @@ function renderAgenda(data) {
         <div class="notification-buttons-holder">
         
         
-        <a class="btn btn-secondary btn-sm" href="editEventDetails.php?eventID=${
+        <a class="btn btn-secondary btn-sm" href="editeventdetails.php?eventID=${
           data[i].event_id
         }">Edit</a>
         

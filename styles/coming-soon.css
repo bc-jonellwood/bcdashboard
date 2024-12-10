@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--base-accent);
+  font-family: "Arial", sans-serif;
+  color: white;
+}
+
+.coming-soon-container {
+  text-align: center;
+}
+
+.holiday-decorations {
+  margin-top: 20px;
+}
+
+.holiday-decorations img {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+}

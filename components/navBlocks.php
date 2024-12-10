@@ -1,5 +1,5 @@
 <nav class="nav-blocks">
-    <a href="https://timecard.berkeleycountysc.gov/login.php" class="nav-block" target="_blank">
+    <a href="https://timecard.berkeleycountysc.gov/login.php" class="nav-block" target="_blank" data-hover-popover="timecard">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
             <path d="M2,6A2,2 0 0,0 0,8V16A2,2 0 0,0 2,18H22A2,2 0 0,0 24,16V8A2,2 0 0,0 22,6M2,8H22V16H2M3,9V10.5H6.25L3,15H4.75L8,10.5V9M9.25,9V10.5H10.75V9M12,9V10.5H13.5V15H15V9M17,9A1,1 0 0,0 16,10V14A1,1 0 0,0 17,15H20A1,1 0 0,0 21,14V10A1,1 0 0,0 20,9M17.5,10.5H19.5V13.5H17.5M9.25,13.5V15H10.75V13.5" />
         </svg>
@@ -11,26 +11,26 @@
         </svg>
         Time Off
     </a> -->
-    <a href="https://store.berkeleycountysc.gov" class="nav-block" target="_blank">
+    <a href="https://store.berkeleycountysc.gov" class="nav-block" target="_blank" data-hover-popover="store">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
             <path d="M16 21H8a1 1 0 0 1-1-1v-7.93l-1.3 1a.996.996 0 0 1-1.41 0l-2.83-2.78a.996.996 0 0 1 0-1.41L7.34 3H9c.29 1.8 1.4 3.37 3 4.25c1.6-.88 2.71-2.45 3-4.25h1.66l5.88 5.88c.39.39.39 1.02 0 1.41l-2.83 2.83c-.39.38-1.02.38-1.41 0l-1.3-1V20a1 1 0 0 1-1 1" />
         </svg>
         <!-- <img src="./images/tshirt-dark.svg" alt="Tee Shirt" class="nav-block-icon" /> -->
         Store
     </a>
-    <a href="holdiays.php" class="nav-block">
+    <a href="holdiays.php" class="nav-block" target="_blank" data-hover-popover="holidays">
         <!-- <img src="./images/calendar-blank.svg" alt="Calendar" class="nav-block-icon" /> -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-block-icon recolor">
             <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1" />
         </svg>
         Holidays
     </a>
-    <a href="https://employeeonline.berkeleycountysc.gov/Finance/Edge/Login/Login.aspx?token=1&connect=Production&ReturnUrl=/Finance/Edge" class="nav-block">
+    <a href="https://employeeonline.berkeleycountysc.gov/Finance/Edge/Login/Login.aspx?token=1&connect=Production&ReturnUrl=/Finance/Edge" class="nav-block" data-hover-popover="benefits">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 32 32" class="nav-block-icon recolor">
             <path d="M28.523 23.813c-.518-.51-6.795-2.938-7.934-3.396c-1.133-.45-1.585-1.697-1.585-1.697s-.51.282-.51-.51c0-.793.51.51 1.02-2.548c0 0 1.415-.397 1.134-3.68h-.34s.85-3.51 0-4.698c-.853-1.188-1.187-1.98-3.06-2.548c-1.87-.567-1.19-.454-2.548-.396c-1.36.057-2.492.793-2.492 1.188c0 0-.85.057-1.188.397c-.34.34-.906 1.924-.906 2.32s.283 3.06.566 3.624l-.337.11c-.283 3.284 1.132 3.682 1.132 3.682c.51 3.058 1.02 1.755 1.02 2.548c0 .792-.51.51-.51.51s-.453 1.246-1.585 1.697c-1.132.453-7.416 2.887-7.927 3.396c-.51.52-.453 2.896-.453 2.896h26.954s.063-2.378-.453-2.897zm-6.335 2.25h-4.562v-1.25h4.562z" />
         </svg>
         <!-- <img src="./images/employee-dark.svg" alt="Employee" class="nav-block-icon" /> -->
-        Benefits
+        Emp Online
     </a>
     <a href="myteam.php" class="nav-block">
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" class="nav-block-icon recolor">
@@ -51,11 +51,25 @@
             <path d="M10 .4A9.6 9.6 0 0 0 .4 10a9.6 9.6 0 1 0 19.2-.001C19.6 4.698 15.301.4 10 .4m-.151 15.199h-.051c-.782-.023-1.334-.6-1.311-1.371c.022-.758.587-1.309 1.343-1.309l.046.002c.804.023 1.35.594 1.327 1.387c-.023.76-.578 1.291-1.354 1.291m3.291-6.531c-.184.26-.588.586-1.098.983l-.562.387q-.46.358-.563.688c-.056.174-.082.221-.087.576v.09H8.685l.006-.182c.027-.744.045-1.184.354-1.547c.485-.568 1.555-1.258 1.6-1.287a1.7 1.7 0 0 0 .379-.387c.225-.311.324-.555.324-.793c0-.334-.098-.643-.293-.916c-.188-.266-.545-.398-1.061-.398c-.512 0-.863.162-1.072.496c-.216.341-.325.7-.325 1.067v.092H6.386l.004-.096c.057-1.353.541-2.328 1.435-2.897c.563-.361 1.264-.544 2.081-.544c1.068 0 1.972.26 2.682.772c.721.519 1.086 1.297 1.086 2.311c-.001.567-.18 1.1-.534 1.585" />
         </svg>
         <!-- <img src="./images/help-dark.svg" alt="Help" class="nav-block-icon recolor" /> -->
-        Helpdesk</a>
-    <!-- <a href="#" class="nav-block">
-        21 days till Christmas
-    </a> -->
+        Helpdesk
+    </a>
 </nav>
+<div class="link-meta" id="timecard-popover" popover>Opens the web time card app.</div>
+<div class="link-meta" id="store-popover" popover>Opens the county store site.</div>
+<div class="link-meta" id="holdiay-popover" popover>Opens a list of the County Holidays</div>
+<div class="link-meta" id="benefits-popover" popover>Opens Employee Online App.</div>
+
+<script>
+    document.querySelectorAll("[data-hover-popover]").forEach((anchor) => {
+        let popover = document.getElementById(
+            anchor.dataset.hoverPopover + "-popover"
+        );
+
+        anchor.onmouseenter = (event) => popover.showPopover();
+        anchor.onmouseleave = (event) => popover.hidePopover();
+    });
+</script>
+
 <style>
     .nav-blocks {
         display: flex;
@@ -82,6 +96,7 @@
         width: 100px;
         color: var(--bg);
         box-shadow: 0 0 5px 0 var(--fg);
+        font-size: small;
     }
 
     .nav-block:hover {
@@ -103,5 +118,73 @@
     a:hover {
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    /* Timecard Popover Styles */
+    [data-hover-popover="timecard"] {
+        anchor-name: --timecard;
+    }
+
+    #timecard-popover {
+        position-anchor: --timecard;
+    }
+
+    /* Store Popover Styles */
+    [data-hover-popover="store"] {
+        anchor-name: --store;
+    }
+
+    #store-popover {
+        position-anchor: --store;
+    }
+
+
+    /* Holidays Popover Styles */
+    [data-hover-popover="holidays"] {
+        anchor-name: --holidays;
+    }
+
+    #holidays-popover {
+        position-anchor: --holidays;
+    }
+
+    /* benefits Popover Styles */
+    [data-hover-popover="benefits"] {
+        anchor-name: --benefits;
+    }
+
+    #benefits-popover {
+        position-anchor: --benefits;
+    }
+
+    .link-meta {
+        inset: auto;
+        position-area: block-start;
+        position-try-fallbacks: flip-block;
+        margin-block: 0.5rem;
+        position-try-order: most-height;
+        /* font-family: mono; */
+        font-size: medium;
+        max-width: 8em;
+        background: var(--bg);
+        color: var(--fg);
+        border: 1px solid var(--accent);
+        border-radius: 0.5em;
+        padding: 10px;
+        box-shadow: 0 0 25px -1px var(--accent);
+    }
+
+    .link-meta[popover] {
+        transition:
+            display 0.1s allow-discrete,
+            overlay 0.1s allow-discrete,
+            opacity 0.1s,
+            translate 0.1s;
+        transition-timing-function: ease-in;
+
+        &:popover-open {
+            translate: 0;
+            transition-timing-function: ease-out;
+        }
     }
 </style>

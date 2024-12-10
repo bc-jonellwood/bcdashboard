@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/10/11 08:53:13
+// Last modified: 2024/12/09 15:31:25
 include "./components/header.php";
 ?>
 <div class="main">
@@ -110,7 +110,7 @@ include "./components/header.php";
         const data = await response.json();
 
         if (data.success) {
-            window.location.href = `eventDetails.php?eventID=${data.eventID}`;
+            window.location.href = `eventdetails.php?eventID=${data.eventID}`;
         } else {
             alert("Event addition failed");
         }

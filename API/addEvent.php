@@ -1,7 +1,7 @@
 <?php
 
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/09 15:42:11
 
 include_once "../data/appConfig.php";
 
@@ -21,8 +21,8 @@ try {
 
 include 'createGUID.php';
 
-// $userID = $_SESSION["userID"]; // eventually 
-$userID = '4438';
+$userID = $_SESSION["userID"]; // eventually 
+// $userID = '4438';
 
 $GUID = generateGUID();
 
