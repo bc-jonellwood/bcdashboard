@@ -280,6 +280,7 @@ h6 {
     }
   }
 }
+
 .Online {
   border: 1px solid green;
   box-shadow: inset 0 0 5px 1px darkgreen, 0 0 10px -5px limegreen;
@@ -287,6 +288,7 @@ h6 {
     box-shadow: inset 0 0 10px darkgrey, 0 0 5px lightgrey;
   }
 }
+
 .Offline {
   border: 1px solid red;
   box-shadow: inset 0 0 5px 1px darkred, 0 0 10px -5px red;
@@ -540,6 +542,11 @@ textarea {
 textarea {
   min-width: 50px;
 }
+.cardList form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .card-list {
   list-style: none;
   /* padding: 5px; */
@@ -549,11 +556,12 @@ textarea {
 }
 .card-list-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-end;
   gap: 5px;
   transition: transform 3.3s ease, opacity 3.3s ease;
-  border-bottom: none !important;
+  /* border: 1px solid var(--accent); */
+  color: var(--fg);
   p {
     margin: 0 !important;
     vertical-align: middle;
@@ -561,7 +569,17 @@ textarea {
     align-items: center;
   }
 }
-
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  /* width: 50%; */
+  /* margin: auto; */
+}
+.order-save-btn {
+  margin-top: 10px;
+}
 /* .userManagementMain {
   font-size: medium;
   padding: 10px;

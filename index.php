@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 11:09:57
+// Last modified: 2024/12/11 12:29:06
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -14,9 +14,57 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include "./components/header.php"
+include "./components/header.php";
+
+function getCardsFromDatabase()
+{
+    require_once 'data/appConfig.php';
+    $dbconf = new appConfig;
+    $serverName = $dbconf->serverName;
+    $database = $dbconf->database;
+    $uid = $dbconf->uid;
+    $pwd = $dbconf->pwd;
+
+    try {
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // echo "Connected successfully";
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+    $userID = $_SESSION["userID"];
+
+    $sql = 'SELECT dc.sCardFilePath 
+  FROM app_user_component_order uco
+  left join data_cards dc on dc.sCardId = uco.sComponentId
+  WHERE sUserId = :userID
+  ORDER BY iDisplayorder';
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->execute();
+        // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // header('Content-Type: application/json');
+        // $cards[] =  json_encode($result);
+        $cards = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $cards[] = $row;
+        }
+        foreach ($cards as $card) {
+            include "{$card['sCardFilePath']}";
+        }
+    } catch (PDOException $e) {
+        $response = $e->getMessage();
+    }
+}
+//getCardsFromDatabase();
+
+
 ?>
-<script src="./functions/fetchCardData.js"></script>
+<script src="./functions/fetchCardData.js">
+</script>
 <script>
     // check if minimized cards are in local storage and apply the minimized class if so
     function minimizeOnLoad() {
@@ -90,16 +138,7 @@ include "./components/header.php"
             <div class="dash-main">
                 <!-- Start of cards section -->
                 <div class="cards-container">
-                    <?php include "./components/employeeAnniversaries.php"; ?>
-                    <?php include "./components/employeeBirthdays.php" ?>
-                    <?php include "./components/newEmployees.php" ?>
-                    <?php include "./components/teamTuesday.php" ?>
-                    <?php include "./components/itTeamStatus.php" ?>
-                    <?php include "./components/recentSeparations.php" ?>
-                    <?php include "./components/nextHoliday.php" ?>
-                    <!-- </?php include "./components/newEmployeesCards.php" ?> -->
-                    <!-- </?php include "./components/quoteOfTheDay.php" ?> -->
-                    <!-- </?php include "./components/newEmployeesCarousel.php" ?> -->
+                    <?php getCardsFromDatabase(); ?>
                 </div>
             </div>
         </div>

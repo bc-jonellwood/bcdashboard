@@ -11,7 +11,7 @@ async function fetchCardData() {
   await fetch("./API/getCardDataFromDatabase.php")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      //console.log(data);
 
       let localStorageData =
         JSON.parse(localStorage.getItem("bcdash-cardData")) || [];

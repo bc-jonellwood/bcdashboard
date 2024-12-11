@@ -7,14 +7,14 @@
     <title>IT Team Status Page</title>
     <link rel="stylesheet" href="styles/custom.css">
     <link rel="stylesheet" href="styles/reset.css">
-    <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
+    <!-- <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script> -->
     <!-- <script src="https://alcdn.msauth.net/browser/2.14.2/js/msal-browser.min.js"></script>; -->
 
     <!-- <link rel="stylesheet" href="styles/theme.css"> -->
 
     <script>
-
          function setEventListeners() {
+            console.log('settingEventListeners');
                 var employeeCards = document.querySelectorAll('.team-card');
                 // console.log('employeeCards');
                 // console.log(employeeCards);
@@ -53,21 +53,21 @@
                 // getEmployees();
             };
             // });
-            async function markOnCall() {
-                await fetch("./API/getItOnCallForView.php")
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data[0].sEmployeeNumber);
-                        var onCallEmpNumber = data[0].sEmployeeNumber;
-                        var onCallCard = document.getElementById(onCallEmpNumber);
-                        // onCallCard.classList.add('on-call');
-                        var badge = document.createElement('div');
-                        badge.classList.add('on-call-badge');
-                        badge.innerHTML = '&#x1F4DE;'; // phone icon
-                        onCallCard.appendChild(badge);
-                    })
-                setEventListeners();
-            }
+            // async function markOnCall() {
+            //     await fetch("./API/getItOnCallForView.php")
+            //         .then(response => response.json())
+            //         .then(data => {
+            //             console.log(data[0].sEmployeeNumber);
+            //             var onCallEmpNumber = data[0].sEmployeeNumber;
+            //             var onCallCard = document.getElementById(onCallEmpNumber);
+            //             // onCallCard.classList.add('on-call');
+            //             var badge = document.createElement('div');
+            //             badge.classList.add('on-call-badge');
+            //             badge.innerHTML = '&#x1F4DE;'; // phone icon
+            //             onCallCard.appendChild(badge);
+            //         })
+            //     setEventListeners();
+            // }
         function formatDateTime(dateTimeString) {
                 var date = new Date(dateTimeString);
                 var hours = date.getHours();
@@ -128,8 +128,9 @@
                     }
                     var target = document.getElementById('dashboard')
                     target.innerHTML = html;
+                    setEventListeners();
                 })
-                markOnCall();
+                // markOnCall();
                 // removeActiveClass();
                 // setTimeout(fixChris, 250);
         }
@@ -173,7 +174,7 @@
         
         // function to run at 0600 each day and reset all statuses to 0
         function resetStatus() {
-            fetch("./API/resetAllStatuses.php")
+            fetch("API/resetAllStatuses.php")
                 .then(getTeamStatus);
         }
         function playClickSound() {
@@ -207,12 +208,12 @@
 </head>
 
 <body>
-    <snow-fall></snow-fall>
+    <!-- <snow-fall></snow-fall> -->
     <!-- <div class="team-header">
         <h1 class="team-name">Where's Carla ?</h1>
         <img src="images/heresCarla.jpeg" alt="Carla" width="100px" class="carla-avatar">
     </div> -->
-    <div>
+    <!-- <div>
         <svg id="Christmas_Lights" viewBox="0 0 612 792">
         
             <path class="light_cord"
@@ -362,14 +363,14 @@
             <path class="light_fixture"
                 d="M-611 26.9c-0.5-0.2-0.7-0.8-0.5-1.3l0 0c0.2-0.5 0.3-0.9 0.3-1.3l0 0c0-1.5-1.4-2.7-2.2-3.6l0 0c-0.5-0.6-0.7-1.5-0.8-2.4l0 0c-0.1-1.5 1-3.4 3.3-3.6l0 0 0.1 0 0.1 0c1.2 0 2.2 0.3 2.9 1l0 0c0.7 0.6 1 1.5 1 2.3l0 0c0 1.3-0.6 2.4-1.2 3.4l0 0c-0.4 0.6-0.9 1.1-1.4 1.5l0 0c0.2 0.5 0.3 1 0.3 1.5l0 0c0 0.6-0.1 1.3-0.4 2.1l0 0h0c-0.2 0.4-0.5 0.6-0.9 0.6l0 0C-610.7 27-610.9 26.9-611 26.9L-611 26.9zM-612.3 18.3c0 0.5 0.2 1.1 0.3 1.2l0 0c0.2 0.3 0.8 0.8 1.4 1.6l0 0c0.2-0.2 0.5-0.5 0.8-0.9l0 0c0.5-0.7 0.9-1.7 0.9-2.3l0 0c-0.1-0.7 0-1-1.9-1.2l0 0C-612.1 16.9-612.2 17.5-612.3 18.3L-612.3 18.3z" />
         </svg>
-    </div>
+    </div> -->
     <div class="dashboard" id="dashboard">
         
     </div>
     <div class="update-form-holder dashboard">
         <div class="employee" id="employee"></div>
-        <label for='status' class='form-label status-label'>Select Status</label>
-        <div class="legend">&#x1F4DE; indicates "on call"</div>
+        <!-- <label for='status' class='form-label status-label'>Select Status</label> -->
+        <!-- <div class="legend">&#x1F4DE; indicates "on call"</div> -->
         <div class="status" id="status"></div>
         <!-- <button class="btn btn-sm" type="button" onclick="updateStatus()">Update Status</button> -->
     </div>
@@ -416,13 +417,13 @@
     function updateRightClick(status) {
         var employee = document.getElementById('employeeIDHidden').value;
         var popover = document.getElementById('status-popover-menu');
+        console.log(popover)
         if (employee === '') {
             alert('Please select an employee');
         } else {
             fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
             // .then(alert('Status Updated!'))
             .then(getTeamStatus)
-            .then(markOnCall)
             .then(popover.hidePopover());
             employee.value = '';
         }
