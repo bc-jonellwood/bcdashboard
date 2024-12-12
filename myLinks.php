@@ -1,6 +1,6 @@
 <?php
 // Crated: 2024/09/12 13:12:49
-// Last modified: 2024/11/15 10:19:58
+// Last modified: 2024/12/11 15:19:06
 
 include "./components/header.php"
 
@@ -21,7 +21,7 @@ include "./components/header.php"
                     </div>
                     <p class="link-card-title">Employee Services</p>
                 </div>
-                <div id="emp">Placeholder</div>
+                <div id="emp"></div>
             </div>
             <div class="links-cards links-cards-2" id="links-cards-2">
                 <div class="links-card-header">
@@ -34,7 +34,7 @@ include "./components/header.php"
                     </div>
                     <p class="link-card-title">Communications</p>
                 </div>
-                <div id="com">Placeholder</div>
+                <div id="com"></div>
             </div>
             <div class="links-cards links-cards-3" id="links-cards-3">
                 <div class="links-card-header">
@@ -47,7 +47,7 @@ include "./components/header.php"
                     </div>
                     <p class="link-card-title">Applications</p>
                 </div>
-                <div id="app">Placeholder</div>
+                <div id="app"></div>
             </div>
         </div>
     </div>
