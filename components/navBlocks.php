@@ -18,7 +18,7 @@
         <!-- <img src="./images/tshirt-dark.svg" alt="Tee Shirt" class="nav-block-icon" /> -->
         Store
     </a>
-    <a href="holdiays.php" class="nav-block" target="_blank" data-hover-popover="holidays">
+    <a href="holidays.php" class="nav-block" target="_blank" data-hover-popover="holidays">
         <!-- <img src="./images/calendar-blank.svg" alt="Calendar" class="nav-block-icon" /> -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-block-icon recolor">
             <path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1" />

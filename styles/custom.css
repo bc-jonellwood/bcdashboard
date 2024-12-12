@@ -116,6 +116,7 @@ body {
   border-radius: 7px;
   padding: 0px;
   /* margin-left: 0.9rem; */
+  max-height: fit-content;
 }
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
