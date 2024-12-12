@@ -26,11 +26,11 @@ function createLinkCard(id, href, icon, text, type, count) {
               </label>
               <a href="${href}" target="_blank" referrerpolicy="no-referrer" class="left w-100">
                   <div class="left">
-                    <img src="images/${icon}-dark.svg" alt="${icon} icon" width="32px" />
+                    <img src="images/${icon}-dark.svg" alt="${icon} icon" width="24px" />
                     <p>${text}</p>
                   </div>
                   <div div class="right">
-                    <img src="images/arrow-right-dark.svg" alt="right arrrow" width="32px" />
+                    <img src="images/arrow-right-dark.svg" alt="right arrrow" width="24px" />
                   </div>
               </a>
             </div>

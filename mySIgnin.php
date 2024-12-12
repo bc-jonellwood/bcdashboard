@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/04 12:24:41
+// Last modified: 2024/12/11 15:53:51
 
 session_start();
 // echo session_status();
@@ -25,6 +25,22 @@ $GLOBALS['ldap_server'] = '10.11.20.43';
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
     header("location: index.php");
     exit;
+};
+function logLogIn()
+{
+    include_once "./data/appConfig.php";
+    $db = new appConfig();
+    $serverName = $db->serverName;
+    $database = $db->database;
+    $uid = $db->uid;
+    $pwd = $db->pwd;
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // add insert statement to log user login into app_users table column dLastLogin
+    $sql = 'UPDATE app_users SET dtLastLogin = GETDATE() WHERE sUserName = $_SESSION["username"]';
+    $stmt = $conn->prepare($sql);
+    // $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->execute();
 };
 
 function checkUser($username)
@@ -63,7 +79,7 @@ function checkUser($username)
                 $cookie_data = json_encode(['username' => $username]);
                 setcookie('rememberme', $cookie_data, time() + (30 * 24 * 60 * 60), "/"); // 30 days
             }
-
+            // logLogIn();
             // $expire_time = time() + (48 * 60 * 60);
             // setcookie("user_logged_in", "yes", $expire_time, "/");
             return true;
