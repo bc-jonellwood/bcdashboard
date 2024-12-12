@@ -1,7 +1,6 @@
-
 <?php
 // Created: 2024/11/04 15:59:29
-// Last Modified: 2024/11/06 11:24:31
+// Last Modified: 2024/12/12 13:58:45
 
 class newUser
 {
@@ -35,30 +34,36 @@ class newUser
 
 $start_time = microtime(true);
 $a = 1;
-$output = shell_exec('C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File C:\xampp\htdocs\bcdashboard\data\ad_sync_scripts\echo.ps1');
+// $output = shell_exec('C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File C:\xampp\htdocs\bcdashboard\data\ad_sync_scripts\echo.ps1');
+// assign the contents of file emps.txt to $output
+$output = file_get_contents('http://myberkeley.berkeleycountysc.gov/data/ad_sync_scripts/emps.txt');
 // var_dump($output);
 $employeeArray = array();
 foreach (preg_split("/((\r?\n)|(\r\n?))/", $output, -1) as $line) {
-    $oparray = explode(" ", trim($line));
-    if (is_numeric($oparray[0]) && count($oparray) > 2) {
+    $line = trim($line, '"');
+    $oparray = explode('","', $line);
+    // print_r($line);
+    if (is_numeric($oparray[0]) && count($oparray) == 4) {
         // echo "<pre>";
+        // echo "<p>oparray yes</p>";
         // var_dump($oparray);
         // echo "</pre>";
-        $employeeArray[$oparray[0]][0] = isset($oparray[7]) ? $oparray[7] : NULL;
+        $employeeArray[$oparray[0]][0] = isset($oparray[1]) ? $oparray[1] : NULL;
         $employeeArray[$oparray[0]][1] = isset($oparray[0]) ? $oparray[0] : NULL;
-        // $phoneNumber = end($oparray);
-        $phoneNumber = array_slice($oparray, -2, 1)[0];
+        $phoneNumber = $oparray[2];
         $employeeArray[$oparray[0]][2] = preg_match('/^\d{3}-\d{3}-\d{4}$/', $phoneNumber) ? $phoneNumber : NULL;
-        $accStatus = end($oparray);
+        $accStatus = $oparray[3];
         $employeeArray[$oparray[0]][3] = $accStatus ? $accStatus : NULL;
     }
 }
 echo 'AD Complete
+
 <hr />';
-// echo "<pre>";
-// print_r($employeeArray);
-// echo "</pre>";
-// var_dump(count($employeeArray));
+echo "<pre>";
+// echo "<p>There should be data in here!</p>";
+print_r($employeeArray);
+echo "</pre>";
+var_dump(count($employeeArray));
 if (count($employeeArray) == 0) {
     echo 'AD Count ' . count($employeeArray) . '
     <hr />';

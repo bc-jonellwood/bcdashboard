@@ -1,4 +1,4 @@
-Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "userAccountControl") | 
+$users = Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "userAccountControl") | 
 Select-Object -Property EmployeeID, EmailAddress, OfficePhone, @{
     Name       = 'AccountStatus'
     Expression = {
@@ -11,9 +11,12 @@ Select-Object -Property EmployeeID, EmailAddress, OfficePhone, @{
     }
 }
 
-
-
-
+if ($users) {
+    $users | Export-Csv -Path "./emps.txt" -NoTypeInformation
+}
+else {
+    Write-Host "No users found."
+}
 
 # Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "DistinguishedName") | 
 # Select-Object -Property EmployeeID, EmailAddress, OfficePhone, @{
