@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/11 15:53:51
+// Last modified: 2024/12/12 09:51:05
 
 session_start();
 // echo session_status();
@@ -34,14 +34,61 @@ function logLogIn()
     $database = $db->database;
     $uid = $db->uid;
     $pwd = $db->pwd;
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    try {
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+    }
+    $UserId = $_SESSION['userID'];
+    $loginTime = date('Y-m-d H:i:s');
     // add insert statement to log user login into app_users table column dLastLogin
-    $sql = 'UPDATE app_users SET dtLastLogin = GETDATE() WHERE sUserName = $_SESSION["username"]';
+    $sql = "UPDATE app_users SET dtLastLogin = '$loginTime' WHERE id = '$UserId'";
     $stmt = $conn->prepare($sql);
     // $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
 };
+function checkEntryCount()
+{
+    include_once "./data/appConfig.php";
+    $db = new appConfig();
+    $serverName = $db->serverName;
+    $database = $db->database;
+    $uid = $db->uid;
+    $pwd = $db->pwd;
+    try {
+        $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        // Handle connection error
+    }
+    $UserId = $_SESSION['userID'];
+    $sql = "SELECT count(*) FROM bcg_intranet.dbo.app_user_component_order WHERE sUserId = :UserId";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    if ($count == 0) {
+        $sql = "SELECT sCardId FROM data_cards";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $displayOrder = 0;
+        foreach ($cards as $card) {
+            $sql = "INSERT INTO app_user_component_order (sUserId, sComponentId, iDisplayOrder) VALUES (:UserId, :ComponentId, :DisplayOrder)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+            $stmt->bindParam(':ComponentId', $card['sCardId'], PDO::PARAM_STR);
+            $stmt->bindParam(':DisplayOrder', $displayOrder, PDO::PARAM_INT);
+            $stmt->execute();
+            $displayOrder++;
+        }
+        exit;
+    }
+    exit;
+    // ...additional actions if needed...
+}
 
 function checkUser($username)
 {
@@ -79,7 +126,8 @@ function checkUser($username)
                 $cookie_data = json_encode(['username' => $username]);
                 setcookie('rememberme', $cookie_data, time() + (30 * 24 * 60 * 60), "/"); // 30 days
             }
-            // logLogIn();
+            logLogIn();
+            checkEntryCount();
             // $expire_time = time() + (48 * 60 * 60);
             // setcookie("user_logged_in", "yes", $expire_time, "/");
             return true;
