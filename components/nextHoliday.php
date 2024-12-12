@@ -1,5 +1,28 @@
-
 <?php
+// Created: 2024/10/21 15:29:43
+// Last modified: 2024/12/12 10:57:40
+
+require_once 'data/appConfig.php';
+$dbconf = new appConfig;
+$serverName = $dbconf->serverName;
+$database = $dbconf->database;
+$uid = $dbconf->uid;
+$pwd = $dbconf->pwd;
+
+try {
+    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$sql = "SELECT id, sName, dtDate, iGroupId FROM data_holidays order by dtDate asc";
+$result = $conn->query($sql);
+$holidays = [];
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    array_push($holidays, $row);
+}
 
 function findNextHoliday($holidays)
 {
@@ -10,12 +33,13 @@ function findNextHoliday($holidays)
     $nextHoliday = null;
     $daysUntil = null;
     $holidayName = null;
+    $holidayDates = [];
 
     // Initialize minimum difference to a large number
     $minDifference = PHP_INT_MAX;
 
-    foreach ($holidays as $name => $date) {
-        $holidayDate = new DateTime($date);
+    foreach ($holidays as $holiday) {
+        $holidayDate = new DateTime($holiday['dtDate']);
         $holidayDate->setTime(0, 0, 0);
 
         // Calculate difference in days
@@ -25,9 +49,12 @@ function findNextHoliday($holidays)
         // Only consider future holidays
         if ($daysDifference >= 0 && $daysDifference < $minDifference) {
             $minDifference = $daysDifference;
-            $nextHoliday = $holidayDate;
+            $nextHoliday = $holiday;
             $daysUntil = $daysDifference;
-            $holidayName = $name;
+            $holidayName = $holiday['sName'];
+            $holidayDates = [$holiday['dtDate']];
+        } elseif ($daysDifference == $minDifference && $holiday['iGroupId'] == $nextHoliday['iGroupId']) {
+            $holidayDates[] = $holiday['dtDate'];
         }
     }
 
@@ -40,24 +67,10 @@ function findNextHoliday($holidays)
 
     return [
         'name' => $holidayName,
-        'date' => $nextHoliday->format('Y-m-d'),
+        'dates' => $holidayDates,
         'days_until' => $daysUntil
     ];
 }
-
-// Example usage:
-$holidays = [
-    "New Year's Day" => "2024-01-01",
-    "Martin Luther King Jr. Day" => "2024-01-15",
-    "Good Friday" => "2024-03-29",
-    "Memorial Day" => "2024-05-27",
-    "Independence Day" => "2024-07-04",
-    "Labor Day" => "2024-09-02",
-    "Veterans Day" => "2024-11-11",
-    "Thanksgiving Day" => "2024-11-28",
-    "Christmas" => "2024-12-25",
-    "New Year's Day" => "2025-01-01"
-];
 
 $result = findNextHoliday($holidays);
 // print_r($result);
@@ -70,5 +83,5 @@ echo "</button></div>";
 echo "<div class='holiday' id='holiday'>";
 echo "<p class='days-unitl-holiday'>" . $result['days_until'] . " days until </p>";
 echo "<p class='holiday-name'>" . $result['name']  . "</p>";
-echo "<p> on " . $result['date'] . "</p>";
+echo "<p> on " . implode(', ', $result['dates']) . "</p>";
 echo "</div></div></div>";

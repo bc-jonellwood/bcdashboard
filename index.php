@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/11 12:29:06
+// Last modified: 2024/12/12 10:59:12
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -324,10 +324,10 @@ function getCardsFromDatabase()
         margin-bottom: auto;
     }
 
-    .holiday,
+    /* .holiday,
     .fact {
         border-top: 1px dashed var(--accent)
-    }
+    } */
 
     .holiday {
         display: flex;
