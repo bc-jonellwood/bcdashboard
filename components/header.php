@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/12 11:06:50
+// Last modified: 2024/12/12 12:36:35
 
 if (!isset($_SESSION)) {
     session_start();
@@ -254,7 +254,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         </button>
 
     </div>
-    <div class="popover-body">
+    <div class="popover-body settings-popover-body">
         <section>
             <div class="theme-select">
                 <h4>Select Mode</h4>
@@ -584,11 +584,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         inline-size: 20vi;
         inset-inline-start: 0;
         inset-inline-end: unset;
-        margin-right: 8px;
-        margin-left: 8px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        padding: 8px;
+        /* margin-right: 8px; */
+        /* margin-left: 8px; */
+        /* margin-top: 8px; */
+        /* margin-bottom: 8px; */
+        /* padding: 8px; */
         border-radius: 8px;
 
         background-color: var(--bg);
@@ -716,11 +716,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     } */
     .warning {
         /* background-color: light-dark(orange, #805300); */
-        color: #dee0e3;
+        /* color: #dee0e3; */
+        color: var(--black);
         background-image: linear-gradient(140deg,
-                hsl(39deg 100% 50%) 0%,
-                hsl(55deg 100% 47%) 10%,
-                hsl(71deg 100% 45%) 20%,
+                hsl(55deg 100% 50%) 0%,
+                hsl(71deg 100% 47%) 10%,
+                hsl(82deg 100% 45%) 20%,
                 hsl(86deg 100% 42%) 30%,
                 hsl(102deg 100% 39%) 40%,
                 hsl(118deg 100% 37%) 50%,
@@ -972,5 +973,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     .sidebar-hover-btn-label {
         color: var(--fg);
         font-size: medium;
+    }
+
+    .settings-popover-body {
+        padding: 0 !important;
     }
 </style>

@@ -102,6 +102,10 @@ function getTestJson()
             "index" => 10,
             "text" => "You can chnage the order of the components on your dashboard from the settings menu."
         ],
+        [
+            "index" => 11,
+            "text" => "The anteater once had a now extinct predator called the anteatereater."
+        ],
     ];
     return json_encode($testData);
 }

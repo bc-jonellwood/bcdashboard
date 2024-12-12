@@ -131,13 +131,13 @@ body {
   /* color: #dee0e3; */
   color: var(--fg);
   padding: 2px;
-  border-radius: 7px;
-  margin: 2px;
-  margin-top: 2px;
-  margin-right: 5px;
-  margin-left: 6px;
+  /* border-radius: 7px; */
+  /* margin: 2px; */
+  /* margin-top: 2px; */
+  /* margin-right: 5px; */
+  /* margin-left: 6px; */
   width: 320px;
-  border: 2px solid transparent;
+  /* border: 2px solid transparent; */
   height: 99vh;
 }
 .sidenav-popover:hover {
