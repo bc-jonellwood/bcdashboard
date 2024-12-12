@@ -72,7 +72,7 @@ function getTestJson()
         ],
         [
             "index" => 3,
-            "text" => "Zooery Deschanel does not appear in six episides of season five of New Girl becuase she was put on unpaid leave for showing up to work without bangs."
+            "text" => "Zooery Deschanel does not appear in six episides of New Girl becuase she was put on unpaid leave for showing up to work without bangs."
         ],
         [
             "index" => 4,
@@ -97,6 +97,10 @@ function getTestJson()
         [
             "index" => 9,
             "text" => "The first person to ever say 'I'm not a doctor, but I play one on TV' was a doctor."
+        ],
+        [
+            "index" => 10,
+            "text" => "You can chnage the order of the components on your dashboard from the settings menu."
         ],
     ];
     return json_encode($testData);

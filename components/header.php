@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/09 13:20:11
+// Last modified: 2024/12/12 11:06:50
 
 if (!isset($_SESSION)) {
     session_start();
@@ -275,9 +275,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
                 </button>
             </div>
         </section>
-        <section>
+        <section class="status-select-section">
             <label for="status-select" class="status-select">Update Status:</label>
-            <select name="status-select" id="status-select" onchange="updateStatusFromDash(this.value)">
+            <select name="status-select" id="status-select" class="status-select" onchange="updateStatusFromDash(this.value)">
                 <option value="">Select Status</option>
                 <option value="0">Available</option>
                 <option value="1">Not in the office</option>
@@ -854,9 +854,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         margin-bottom: 10px;
     }
 
+    .status-select-section {
+        display: flex;
+        flex-direction: column;
+    }
+
     .status-select {
         color: var(--fg);
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin-left: 10px;
     }
 
