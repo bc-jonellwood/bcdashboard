@@ -1,6 +1,7 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 11:24:16
+// Last modified: 2024/12/13 12:42:39
+session_start();
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
