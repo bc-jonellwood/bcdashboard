@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/31 11:23:38
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 10:47:44
 
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
@@ -23,7 +23,7 @@ try {
         au.sEmployeeNumber,
         au.sFirstName,
         au.sLastName,
-        de.sPreferredName,
+        au.sPreferredName,
         au.iDepartmentNumber,
         dd.sDepartmentName,
         au.sEmail,
@@ -36,7 +36,6 @@ try {
         au.dtLastLogin
         from app_users au
         join data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
-        join data_employees de on de.iEmployeeNumber = au.sEmployeeNumber
         where au.id = :id
         ";
     $stmt = $conn->prepare($sql);

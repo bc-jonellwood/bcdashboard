@@ -1,8 +1,8 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 13:49:01
+// Last modified: 2024/12/13 11:30:00
 
-include_once "./data/appConfig.php";
+include_once "../data/appConfig.php";
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -20,17 +20,17 @@ try {
 }
 
 $sql = "BEGIN TRY
-    SELECT de.id
-           ,de.sFirstName
-           ,de.sLastName
-           ,de.dtDateOfBirth
-           ,de.bActive
+    SELECT au.id
+           ,au.sFirstName
+           ,au.sLastName
+           ,au.dtDateOfBirth
+           ,au.bIsActive
            ,dd.sDepartmentName
-    FROM data_employees de
-    JOIN data_departments dd on dd.iDepartmentNumber = de.iDepartmentNumber
+    FROM app_users au
+    JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtDateOFBirth) = MONTH(GETDATE())
       AND dtSeparationDate IS NULL
-      AND bActive = 1
+      AND bIsActive = 1
     ORDER BY DAY(dtDateOfBirth) ASC;
 END TRY
 BEGIN CATCH
@@ -40,35 +40,29 @@ BEGIN CATCH
     DECLARE @ErrorState INT;
 
     SELECT @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY(),
-           @ErrorState = ERROR_STATE();
+           @ErrorSeverity = ERROR_SEVERITY()
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";
 $nextSql = "
 BEGIN TRY
-    SELECT de.id
-           ,de.sFirstName
-           ,de.sLastName
-           ,de.dtDateOfBirth
-           ,de.bActive
+    SELECT au.id
+           ,au.sFirstName
+           ,au.sLastName
+           ,au.dtDateOfBirth
+           ,au.bIsActive
            ,dd.sDepartmentName
-    FROM data_employees de
-    JOIN data_departments dd on dd.iDepartmentNumber = de.iDepartmentNumber
+    FROM app_users au
+    JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtDateOFBirth) = MONTH(DATEADD(MONTH, 1, GETDATE()))
       AND dtSeparationDate IS NULL
-      AND bActive = 1
+      AND bIsActive = 1
     ORDER BY DAY(dtDateOfBirth) ASC;
 END TRY
 BEGIN CATCH
     -- Handle the error that you know I made
-    DECLARE @ErrorMessage NVARCHAR(4000);
-    DECLARE @ErrorSeverity INT;
-    DECLARE @ErrorState INT;
-
-    SELECT @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY(),
-           @ErrorState = ERROR_STATE();
+    DECLARE @ErrorMessage = ERROR_MESSAGE(),
+           @ErrorSeverity = ERROR_SEVERITY()
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";

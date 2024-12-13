@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/21 15:14:49
-// Last modified: 2024/12/04 14:08:28
+// Last modified: 2024/12/13 11:05:10
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -17,8 +17,8 @@ try {
 }
 
 $data = [];
-$sql = "SELECT e.sFirstName, e.sLastName, e.sMainPhoneNumber, d.sDepartmentName, e.dtSeparationDate FROM data_employees e
-JOIN data_departments d ON e.iDepartmentNumber = d.iDepartmentNumber
+$sql = "SELECT au.sFirstName, au.sLastName, au.sMainPhoneNumber, dd.sDepartmentName, au.dtSeparationDate FROM app_users au
+JOIN data_departments dd ON au.iDepartmentNumber = dd.iDepartmentNumber
 WHERE dtSeparationDate BETWEEN DATEADD(DAY, -7, CAST(GETDATE() AS DATE))
                            AND DATEADD(DAY, 7, CAST(GETDATE() AS DATE))
 ORDER BY dtSeparationDate DESC";

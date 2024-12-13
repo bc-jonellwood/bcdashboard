@@ -1,6 +1,6 @@
 <?php
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 11:05:15
 
 include_once "../data/appConfig.php";
 
@@ -19,13 +19,12 @@ try {
     // echo "Connection failed: " . $e->getMessage();
 }
 $data = [];
-$sql = "SELECT DISTINCT au.id as userId, au.sFirstName, de.sMiddleName, au.sLastName, de.sPreferredName, au.sEmployeeNumber, au.iDepartmentNumber,  dd.sDepartmentName, de.dtStartDate
+$sql = "SELECT DISTINCT au.id as userId, au.sFirstName, au.sMiddleName, au.sLastName, au.sPreferredName, au.sEmployeeNumber, au.iDepartmentNumber, dd.sDepartmentName, au.dtStartDate
 from app_users au
-JOIN data_employees de on de.iEmployeeNumber = au.sEmployeeNumber
 JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
 JOIN data_features_access_users du on du.sUserId = au.id 
-where de.dtSeparationDate is null 
-order by de.dtStartDate DESC";
+where au.dtSeparationDate is null 
+order by au.dtStartDate DESC";
 
 try {
     $stmt = $conn->prepare($sql);

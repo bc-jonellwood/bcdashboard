@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 11:04:56
 // if (session_status() !== PHP_SESSION_ACTIVE) {
 //   session_start();
 // }
@@ -28,7 +28,7 @@ $sql = "BEGIN TRY
     FROM
     data_departments d
     WHERE
-    d.iDepartmentNumber IN (SELECT e.iDepartmentNumber FROM data_employees e);
+    d.iDepartmentNumber IN (SELECT au.iDepartmentNumber FROM app_users au);
     END TRY
     BEGIN CATCH
     -- Error handling

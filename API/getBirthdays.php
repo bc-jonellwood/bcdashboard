@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 11:18:49
 
 include_once "../data/appConfig.php";
 
@@ -20,17 +20,18 @@ try {
 }
 
 $sql = "BEGIN TRY
-    SELECT de.id
-           ,de.sFirstName
-           ,de.sLastName
-           ,de.dtDateOfBirth
-           ,de.bActive
+    SELECT au.id
+           ,au.sFirstName
+           ,au.sLastName
+           ,au.dtDateOfBirth
+           ,au.bIsActive
            ,dd.sDepartmentName
-    FROM data_employees de
-    JOIN data_departments dd on dd.iDepartmentNumber = de.iDepartmentNumber
+    FROM app_users au
+    JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtDateOFBirth) = MONTH(GETDATE())
       AND dtSeparationDate IS NULL
-      AND bActive = 1
+      AND bIsActive = 1
+      AND bHideBirthday = 0
     ORDER BY DAY(dtDateOfBirth) ASC;
 END TRY
 BEGIN CATCH
@@ -40,8 +41,7 @@ BEGIN CATCH
     DECLARE @ErrorState INT;
 
     SELECT @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY(),
-           @ErrorState = ERROR_STATE();
+           @ErrorSeverity = ERROR_SEVERITY()
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";

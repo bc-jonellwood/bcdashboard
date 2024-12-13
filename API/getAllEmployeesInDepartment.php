@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 10:59:11
 include_once "../data/appConfig.php";
 
 $dbconf = new appConfig;
@@ -23,8 +23,8 @@ $departmentID = intval($departmentID);
 $data = [];
 
 $sql = "SELECT sFirstName, sLastName, sMainPhoneNumber 
-        FROM data_employees 
-        WHERE iDepartmentNumber  = $departmentID";
+        FROM app_users 
+        WHERE iDepartmentNumber = $departmentID";
 
 try {
     $stmt = $conn->prepare($sql);

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 11:02:20
 include_once "../data/appConfig.php";
 
 $dbconf = new appConfig;
@@ -23,10 +23,10 @@ $phoneNumber = $_GET['phoneNumber'];
 $data = [];
 
 $sql =
-    "SELECT de.sFirstName, de.sLastName, de.sMainPhoneNumber, de.iDepartmentNumber, dd.sDepartmentName 
-        FROM data_employees de
-        JOIN data_departments dd on dd.iDepartmentNumber = de.iDepartmentNumber
-        WHERE de.sMainPhoneNumber LIKE '%" . $phoneNumber . "%' AND de.dtSeparationDate is null";
+    "SELECT au.sFirstName, au.sLastName, au.sMainPhoneNumber, au.iDepartmentNumber, dd.sDepartmentName 
+        FROM app_users au
+        JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
+        WHERE au.sMainPhoneNumber LIKE '%" . $phoneNumber . "%' AND au.dtSeparationDate is null";
 
 
 try {

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/12 12:36:35
+// Last modified: 2024/12/13 10:01:07
 
 if (!isset($_SESSION)) {
     session_start();
@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 // } else {
 ///////////////////////++++++++++++++++++++++++++
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
-    header("Location: mysignin.php");
+    header("Location: auth/index.php");
 }
 ////////////////////////////////+++++++++++++++++
 // }
@@ -29,7 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Enter your description here" />
+    <meta name="Description" content="My Berkeley Dashboards" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://unpkg.com/imask"></script>

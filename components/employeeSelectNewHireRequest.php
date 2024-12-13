@@ -24,12 +24,11 @@ class EmployeeManagement
         }
         try {
 
-            $sql = "SELECT au.id as userId, au.sFirstName, de.sMiddleName, au.sLastName, de.sPreferredName, au.sEmployeeNumber, au.iDepartmentNumber,  dd.sDepartmentName, de.dtStartDate
+            $sql = "SELECT au.id as userId, au.sFirstName, au.sMiddleName, au.sLastName, au.sPreferredName, au.sEmployeeNumber, au.iDepartmentNumber, dd.sDepartmentName, au.dtStartDate
 from app_users au
-JOIN data_employees de on de.iEmployeeNumber = au.sEmployeeNumber
 JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
-where de.dtSeparationDate is null 
-order by de.dtStartDate DESC";
+where au.dtSeparationDate is null 
+order by au.dtStartDate DESC";
 
             try {
                 $stmt = $conn->prepare($sql);

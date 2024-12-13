@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/21 12:22:54
+// Last modified: 2024/12/13 11:25:48
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -16,7 +16,8 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 
-$emp_id = '4438';
+// $emp_id = '4438';
+$emp_id = $_SESSION['employeeID'];
 
 // $sql = "SELECT * from curr_emp_ref where deptNumber = (
 //     SELECT deptNumber from curr_emp_ref where empNumber = '$emp_id'
@@ -32,7 +33,7 @@ FROM
   INNER JOIN app_user_status_types aust ON au.iStatus = aust.id
 WHERE 
   au.iDepartmentNumber = (
-    SELECT iDepartmentNumber from bcg_intranet.dbo.data_employees where iEmployeeNumber = '$emp_id'
+    SELECT iDepartmentNumber from bcg_intranet.dbo.app_users where sEmployeeNumber = '$emp_id'
   ) 
   AND au.bIsActive = 1
 ORDER BY 

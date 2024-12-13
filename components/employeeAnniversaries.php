@@ -1,8 +1,8 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 13:48:38
+// Last modified: 2024/12/13 11:27:05
 
-include_once "./data/appConfig.php";
+include_once "../data/appConfig.php";
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -20,18 +20,18 @@ try {
 }
 
 $sql = "BEGIN TRY
-    SELECT de.id
-           ,de.sFirstName
-           ,de.sLastName
-           ,de.dtStartDate
-           ,de.bActive
+    SELECT au.id
+           ,au.sFirstName
+           ,au.sLastName
+           ,au.dtStartDate
+           ,au.bIsActive
            ,dd.sDepartmentName
-    FROM data_employees de
-    JOIN data_departments dd on dd.iDepartmentNumber = de.iDepartmentNumber
+    FROM app_users au
+    JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtStartDate) = MONTH(GETDATE())
       AND YEAR(dtStartDate) != YEAR(GETDATE())
       AND dtSeparationDate IS NULL
-      AND bActive = 1
+      AND bIsActive = 1
     ORDER BY dtStartDate ASC;
 END TRY
 BEGIN CATCH
@@ -41,8 +41,7 @@ BEGIN CATCH
     DECLARE @ErrorState INT;
 
     SELECT @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY(),
-           @ErrorState = ERROR_STATE();
+           @ErrorSeverity = ERROR_SEVERITY()
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";

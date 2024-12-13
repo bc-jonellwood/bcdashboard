@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/10/09 10:44:51
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/13 11:02:17
 
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
@@ -46,16 +46,16 @@ $lName = $result['lName'];
 
 $data = array();
 
-$sql = "SELECT e.sFirstName, e.sLastName, e.sMainPhoneNumber, d.sDepartmentName FROM data_employees e
-JOIN data_departments d ON e.iDepartmentNumber = d.iDepartmentNumber
-WHERE e.dtSeparationDate is NULL AND e.sFirstName LIKE '%$fName%' OR e.sLastName LIKE '%$fName%'";
+$sql = "SELECT au.sFirstName, au.sLastName, au.sMainPhoneNumber, dd.sDepartmentName FROM app_users au
+JOIN data_departments dd ON au.iDepartmentNumber = dd.iDepartmentNumber
+WHERE au.dtSeparationDate is NULL AND au.sFirstName LIKE '%$fName%' OR au.sLastName LIKE '%$fName%'";
 
 try {
     $stmt = $conn->prepare($sql);
     // $stmt->bindValue(':fName', "%$fName%", PDO::PARAM_STR);
 
     if (!empty($lName)) {
-        $sql .= " OR e.sFirstName LIKE '%lName%' OR e.sLastName LIKE '%lName%'";
+        $sql .= " OR au.sFirstName LIKE '%$lName%' OR au.sLastName LIKE '%$lName%'";
         $stmt = $conn->prepare($sql);
         // $stmt->bindValue(':lName', "%$lName%", PDO::PARAM_STR);
     }
