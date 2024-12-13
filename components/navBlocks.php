@@ -56,13 +56,15 @@
 </nav>
 <div class="link-meta" id="timecard-popover" popover>Opens the web time card app.</div>
 <div class="link-meta" id="store-popover" popover>Opens the county store site.</div>
-<div class="link-meta" id="holdiay-popover" popover>Opens a list of the County Holidays</div>
+<div class="link-meta" id="holidays-popover" popover>Opens a list of the County Holidays</div>
 <div class="link-meta" id="benefits-popover" popover>Opens Employee Online App.</div>
 
 <script>
     document.querySelectorAll("[data-hover-popover]").forEach((anchor) => {
+        console.log(anchor.dataset.hoverPopover);
         let popover = document.getElementById(
             anchor.dataset.hoverPopover + "-popover"
+
         );
 
         anchor.onmouseenter = (event) => popover.showPopover();

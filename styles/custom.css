@@ -581,6 +581,11 @@ textarea {
 .order-save-btn {
   margin-top: 10px;
 }
+.vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 /* .userManagementMain {
   font-size: medium;
   padding: 10px;

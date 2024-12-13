@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 12:05:35
+// Last modified: 2024/12/13 12:30:02
 
 if (!isset($_SESSION)) {
     session_start();
@@ -211,16 +211,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         <div class="notification" id="notification">
             <p class="alert-text" id="alert-text"></p>
         </div>
-        <div class="notification-date gap-1 align-items-center">
-            <p class="no-margin" id="current-status-dot"></p>
-            <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
+        <div class="vertical-stack">
+            <div class="notification-date">
+                <?php echo $_SESSION['username'] ?>
+            </div>
+            <div class="notification-date gap-1 align-items-center">
+                <p class="no-margin" id="current-status-dot"></p>
+                <a href="http://myberkeley.berkeleycountysc.gov/itstatusview.html" target="_blank" id="current-status"></a>
+            </div>
+
         </div>
-        <div class="notification-date">
-            <?php echo $_SESSION['username'] ?>
-        </div>
-        <!-- <div class="notification-date">
-            </?php include "./components/dateAndTimeDisplay.php" ?>
-        </div> -->
+        <div class="notification-date date-display" id="notification-date"></div>
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
                 <path
@@ -392,6 +393,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 <?php include "./components/toolbar.php" ?>
 <?php include "./components/minimizedCardsPasture.php" ?>
 <script>
+    // make this function be called every 60 seconds to update the time
+
+    function displayDateAndTime() {
+        const date = new Date();
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            // second: 'numeric',
+            // timeZoneName: 'short'
+        };
+        const formattedDate = date.toLocaleDateString('en-US', options);
+        document.getElementById('notification-date').innerText = formattedDate;
+    }
+
     async function setAlert() {
         const notification = new Notification();
 
@@ -406,6 +425,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 
 
     document.addEventListener('DOMContentLoaded', setAlert());
+    document.addEventListener('DOMContentLoaded', displayDateAndTime());
+    setInterval(displayDateAndTime, 30000);
 </script>
 <script>
     window.addEventListener('scroll', () => {
@@ -426,7 +447,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         renderEmployeeLookup()
         renderDepartmentLookup()
         renderPhoneLookup()
-        loadLinks()
+        // loadLinks()
         getUserCurrentStatus();
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
@@ -842,13 +863,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     .notification-date {
         font-size: small;
         color: var(--accent);
-        text-align: right;
+        /* text-align: right; */
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-end;
-        align-content: center;
-        width: 5%;
-        /* width: fit-content; */
+        /* justify-content: flex-end; */
+        /* align-content: center; */
+        /* width: 5%; */
+        width: fit-content;
+    }
+
+    .date-display {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 10%;
     }
 
     .popover-btn-holder {
