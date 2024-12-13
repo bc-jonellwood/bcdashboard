@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2024/12/13 09:55:17
+// Last modified: 2024/12/13 11:44:43
 session_start();
 require_once 'UserAuth.php';
 // init the UserAuth class  
@@ -11,6 +11,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     exit;
 } elseif (isset($_COOKIE['rememberme'])) {
     $cookie_data = json_decode($_COOKIE['rememberme'], true);
+    logError("Cookie data: " . print_r($cookie_data, true));
     if (checkUser($cookie_data['username'])) {
         header("Location: ../index.php");
         exit;

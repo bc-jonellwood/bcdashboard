@@ -1,8 +1,8 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 11:30:00
+// Last modified: 2024/12/13 12:09:18
 
-include_once "../data/appConfig.php";
+include_once "./data/appConfig.php";
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -40,12 +40,12 @@ BEGIN CATCH
     DECLARE @ErrorState INT;
 
     SELECT @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY()
+           @ErrorSeverity = ERROR_SEVERITY(),
+           @ErrorState = ERROR_STATE();
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";
-$nextSql = "
-BEGIN TRY
+$nextSql = "BEGIN TRY
     SELECT au.id
            ,au.sFirstName
            ,au.sLastName
@@ -61,8 +61,13 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
     -- Handle the error that you know I made
-    DECLARE @ErrorMessage = ERROR_MESSAGE(),
-           @ErrorSeverity = ERROR_SEVERITY()
+    DECLARE @ErrorMessage NVARCHAR(4000);
+    DECLARE @ErrorSeverity INT;
+    DECLARE @ErrorState INT;
+
+    SELECT @ErrorMessage = ERROR_MESSAGE(),
+           @ErrorSeverity = ERROR_SEVERITY(),
+           @ErrorState = ERROR_STATE();
 
     RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;";

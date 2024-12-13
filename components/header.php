@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 10:01:07
+// Last modified: 2024/12/13 12:05:35
 
 if (!isset($_SESSION)) {
     session_start();
@@ -218,9 +218,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         <div class="notification-date">
             <?php echo $_SESSION['username'] ?>
         </div>
-        <div class="notification-date">
-            <?php include "./components/dateAndTimeDisplay.php" ?>
-        </div>
+        <!-- <div class="notification-date">
+            </?php include "./components/dateAndTimeDisplay.php" ?>
+        </div> -->
         <div class="notification-icons">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" class="recolor" id="account-icon">
                 <path
