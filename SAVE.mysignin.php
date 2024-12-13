@@ -1,13 +1,9 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/13 09:57:30
+// Last modified: 2024/12/12 15:40:01
 
 session_start();
 // echo session_status();
-// redirect to /auth/index.php anytime this page is accessed
-header("Location: /auth/index.php");
-exit;
-
 
 // Check if the user is already logged in via session or cookie
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
@@ -23,13 +19,13 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 include("./data/ldapConfig.php");
 $loginfailure = false;
-// $GLOBALS['ldap_server'] = '10.11.20.43';
+$GLOBALS['ldap_server'] = '10.11.20.43';
 // $GLOBALS['ldap_domain'] = '@berkeleycounty.int';
 
-// if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-//     header("location: index.php");
-//     exit;
-// };
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+    header("location: index.php");
+    exit;
+};
 function logLogIn()
 {
     include_once "./data/appConfig.php";
@@ -96,7 +92,7 @@ function checkEntryCount()
 
 function checkUser($username)
 {
-    include_once "data/appConfig.php";
+    include_once "./data/appConfig.php";
     $db = new appConfig();
     $serverName = $db->serverName;
     $database = $db->database;
@@ -141,8 +137,7 @@ function checkUser($username)
         }
     } catch (PDOException $e) {
         error_log("Error in checkUser function: " . $e->getMessage());
-        // header("Location: mysignin.php");
-        header("Location: 401.html");
+        // header("Location: 401.html");
         exit;
     } finally {
         if ($conn) {
@@ -154,7 +149,7 @@ function checkUser($username)
 include("func.php");
 
 if (isset($_POST['sUserName'])) {
-    if (@validateCredentials($_POST['sUserName'] . $GLOBALS['ldap_domain'], $_POST['password'])) {
+    if (validateCredentials($_POST['sUserName'] . $GLOBALS['ldap_domain'], $_POST['password'])) {
         $_SESSION['loggedin'] = true;
         $_SESSION['loggedinuser'] = $_POST['sUserName'];
         // header("Location: index.php");

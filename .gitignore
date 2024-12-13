@@ -13,3 +13,4 @@ node_modules
 
 /.env
 /scratch/bcgi_script_source
+/auth/dbconfig.php

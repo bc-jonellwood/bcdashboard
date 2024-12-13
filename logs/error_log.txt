@@ -1,0 +1,35 @@
+[2024-12-13 14:03:04] POST request received
+[2024-12-13 14:03:04] Login attempt for user: jon.ellwood
+[2024-12-13 14:05:43] POST request received
+[2024-12-13 14:05:43] Login attempt for user: jon.ellwood
+[2024-12-13 14:05:43] User ldap logged in: jon.ellwood
+[2024-12-13 14:08:28] POST request received
+[2024-12-13 14:08:28] Login attempt for user: jon.ellwood
+[2024-12-13 14:08:28] User ldap logged in: jon.ellwood
+[2024-12-13 14:20:16] POST request received
+[2024-12-13 14:20:16] Login attempt for user: jon.ellwood
+[2024-12-13 14:20:16] User ldap logged in: jon.ellwood
+[2024-12-13 14:29:24] POST request received
+[2024-12-13 14:29:24] Login attempt for user: jon.ellwood
+[2024-12-13 14:29:24] User ldap logged in: jon.ellwood
+[2024-12-13 14:29:24] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:29:24] User db is valid: jon.ellwood
+[2024-12-13 14:29:24] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:29:24] Failed to check entry count for user: jon.ellwood
+[2024-12-13 14:36:07] POST request received
+[2024-12-13 14:36:07] Login attempt for user: jon.ellwood
+[2024-12-13 14:36:07] User ldap logged in: jon.ellwood
+[2024-12-13 14:36:07] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:36:07] Count: 8
+[2024-12-13 14:36:07] User db is valid: jon.ellwood
+[2024-12-13 14:36:07] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:36:07] Count: 8
+[2024-12-13 14:36:07] Failed to check entry count for user: jon.ellwood
+[2024-12-13 14:38:23] POST request received
+[2024-12-13 14:38:23] Login attempt for user: jon.ellwood
+[2024-12-13 14:38:23] User ldap logged in: jon.ellwood
+[2024-12-13 14:38:23] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:38:23] Count: 8
+[2024-12-13 14:38:23] User db is valid: jon.ellwood
+[2024-12-13 14:38:23] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:38:23] Count: 8

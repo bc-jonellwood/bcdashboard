@@ -100,7 +100,7 @@ function getTestJson()
         ],
         [
             "index" => 10,
-            "text" => "You can chnage the order of the components on your dashboard from the settings menu."
+            "text" => "You can change the order of the components on your dashboard from the settings menu."
         ],
         [
             "index" => 11,
