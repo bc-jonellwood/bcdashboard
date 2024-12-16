@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/02 12:03:38
+// Last modified: 2024/12/13 15:07:04
 
 require_once './data/appConfig.php';
 $dbconf = new appConfig;
@@ -75,7 +75,7 @@ try {
       ,fr.iIssueType
       ,rt.sType
       ,fr.sIssueLocation
-      ,fl.sName
+      ,fl.sLocName
       ,fr.sIssueSubLocation
       ,fr.sRequestorName
       ,fr.sRequestorUserID
@@ -85,7 +85,7 @@ try {
       ,fr.sPhoneNumber
       ,fr.iDesiredResponse
   FROM bcg_intranet.dbo.app_facilities_requests fr
-  JOIN data_facilities_locations fl on fl.sUid = fr.sIssueLocation
+  JOIN data_locations fl on fl.sLocUid = fr.sIssueLocation
   JOIN data_facilities_request_types rt on rt.id = fr.iIssueType
   JOIN app_users au on au.id = fr.sRequestorUserID
   JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber 

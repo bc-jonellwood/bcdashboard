@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/11/15 11:22:08
-// Last Modified: 2024/12/02 14:00:11
+// Last Modified: 2024/12/13 14:59:44
 
 include "./components/header.php";
 
@@ -88,8 +88,8 @@ include "./components/header.php";
                 var issueLocationSelect = document.getElementById("issueLocation");
                 data.forEach(issueLocation => {
                     var option = document.createElement("option");
-                    option.value = issueLocation.sUid;
-                    option.textContent = issueLocation.sName;
+                    option.value = issueLocation.sLocUid;
+                    option.textContent = issueLocation.sLocName;
                     issueLocationSelect.appendChild(option);
                 });
             })
@@ -171,5 +171,9 @@ include "./components/header.php";
 
     #additionalContacts option:checked::after {
         content: ' ✔';
+    }
+
+    #additionalContacts {
+        field-sizing: unset;
     }
 </style>

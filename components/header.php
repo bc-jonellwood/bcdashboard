@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 12:30:02
+// Last modified: 2024/12/13 13:12:39
 
 if (!isset($_SESSION)) {
     session_start();
@@ -690,7 +690,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         display: flex;
         align-items: center;
         color: var(--fg);
-        width: 70%;
+        max-width: 70%;
         border-radius: 7px;
         font-weight: 600;
         padding: 5px;

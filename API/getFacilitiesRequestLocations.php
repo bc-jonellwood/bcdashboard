@@ -1,10 +1,10 @@
 <?php
 // Created: 2024/11/07 16:04:31
-// Last modified: 2024/11/15 12:10:05
+// Last modified: 2024/12/13 15:00:58
 include "dbheader.php";
 
 $data = [];
-$sql = "SELECT * FROM data_facilities_locations order by sName ASC";
+$sql = "SELECT sLocUid, sLocName, bIsBcws FROM data_locations where bIsFacilities = 1 order by sLocName ASC";
 try {
     $stmt = $conn->prepare($sql);
     $stmt->execute();

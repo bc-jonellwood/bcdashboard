@@ -60,7 +60,7 @@ class UserAuth
                 $_SESSION['DepartmentNumber'] = $row['iDepartmentNumber'] ? $row['iDepartmentNumber'] : 'Department is TOP SECRET';
                 $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
                 $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
-
+                logError("User data set in session: " . json_encode($_SESSION));
                 if (isset($_POST['rememberme'])) {
                     $cookie_data = json_encode(['username' => $username]);
                     setcookie('rememberme', $cookie_data, time() + (30 * 24 * 60 * 60), "/"); // 30 days

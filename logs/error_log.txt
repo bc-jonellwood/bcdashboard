@@ -33,3 +33,110 @@
 [2024-12-13 14:38:23] User db is valid: jon.ellwood
 [2024-12-13 14:38:23] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
 [2024-12-13 14:38:23] Count: 8
+[2024-12-13 14:58:08] POST request received
+[2024-12-13 14:58:08] Login attempt for user: jon.ellwood
+[2024-12-13 14:58:08] User ldap logged in: jon.ellwood
+[2024-12-13 14:58:08] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:58:08] Count: 8
+[2024-12-13 14:58:08] User db is valid: jon.ellwood
+[2024-12-13 14:58:08] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 14:58:08] Count: 8
+[2024-12-13 15:11:03] POST request received
+[2024-12-13 15:11:03] Login attempt for user: jon.ellwood
+[2024-12-13 15:11:03] User ldap logged in: jon.ellwood
+[2024-12-13 15:11:04] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 15:11:05] Count: 8
+[2024-12-13 15:11:05] User db is valid: jon.ellwood
+[2024-12-13 15:11:06] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 15:11:07] Count: 8
+[2024-12-13 15:27:27] POST request received
+[2024-12-13 15:27:27] Login attempt for user: carla.carswell
+[2024-12-13 15:27:27] User ldap logged in: carla.carswell
+[2024-12-13 15:27:27] Login time updated successfully for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA
+[2024-12-13 15:27:27] Count: 0
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 7e705475-5743-4477-a1c7-9165ecf62ddb
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: a315fae2-3716-49f8-a076-95ddef2313b4
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: a05ca0c4-c518-4692-a363-093a7a5f5af6
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 350e8ab0-a00c-4484-b42c-320670ec6d76
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 4c2fe295-7d3d-4a0f-97b6-964930142902
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 9f8a4rbt-c1bf-4867-8399-e0dd5000458d
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 988846bf-c1bf-4867-8399-e0dd5000458d
+[2024-12-13 15:27:27] Inserted component order for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA, Component ID: 8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2024-12-13 15:27:27] User db is valid: carla.carswell
+[2024-12-13 15:27:27] Login time updated successfully for user ID: 28BFA31E-C4C1-49DA-B52A-62850BAE8AAA
+[2024-12-13 15:27:27] Count: 8
+[2024-12-13 15:49:10] POST request received
+[2024-12-13 15:49:10] Login attempt for user: jon.ellwood
+[2024-12-13 15:49:10] User ldap logged in: jon.ellwood
+[2024-12-13 15:49:10] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 15:49:10] Count: 8
+[2024-12-13 15:49:10] User db is valid: jon.ellwood
+[2024-12-13 15:49:10] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 15:49:10] Count: 8
+[2024-12-13 15:59:12] POST request received
+[2024-12-13 15:59:12] Login attempt for user: jeff.hickerson
+[2024-12-13 15:59:13] User ldap logged in: jeff.hickerson
+[2024-12-13 15:59:13] Login time updated successfully for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B
+[2024-12-13 15:59:13] Count: 0
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 7e705475-5743-4477-a1c7-9165ecf62ddb
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: a315fae2-3716-49f8-a076-95ddef2313b4
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: a05ca0c4-c518-4692-a363-093a7a5f5af6
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 350e8ab0-a00c-4484-b42c-320670ec6d76
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 4c2fe295-7d3d-4a0f-97b6-964930142902
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 9f8a4rbt-c1bf-4867-8399-e0dd5000458d
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 988846bf-c1bf-4867-8399-e0dd5000458d
+[2024-12-13 15:59:13] Inserted component order for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B, Component ID: 8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2024-12-13 15:59:13] User db is valid: jeff.hickerson
+[2024-12-13 15:59:13] Login time updated successfully for user ID: DE5F12D1-15D1-4950-9B1E-716437940E8B
+[2024-12-13 15:59:13] Count: 8
+[2024-12-13 16:45:17] POST request received
+[2024-12-13 16:45:17] Login attempt for user: jon.ellwood
+[2024-12-13 16:45:17] User ldap logged in: jon.ellwood
+[2024-12-13 16:45:17] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 16:45:17] Count: 8
+[2024-12-13 16:45:17] User db is valid: jon.ellwood
+[2024-12-13 16:45:17] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 16:45:17] Count: 8
+[2024-12-13 19:44:43] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:44:46] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:44:50] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:44:59] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:45:15] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:47:43] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:47:43] Cookie username: jon.ellwood
+[2024-12-13 19:50:34] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:50:34] Cookie username: jon.ellwood
+[2024-12-13 19:52:06] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:52:06] Cookie username: jon.ellwood

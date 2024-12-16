@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/22 10:33:32
+// Last modified: 2024/12/13 13:10:41
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
@@ -43,7 +43,7 @@ FROM
   LEFT JOIN LatestStatus lst 
     ON au.sEmployeeNumber = lst.sEmployeeId
 WHERE 
-  au.bIsActive = 1
+   au.dtSeparationDate IS NULL
   AND (au.iDepartmentNumber = '41515' OR au.iDepartmentNumber = '41514') 
 ORDER BY 
   au.sFirstName ASC;";
