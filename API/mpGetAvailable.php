@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 10:05:53
-// Last modified: 2024/12/16 15:12:42
+// Last modified: 2024/12/17 08:17:47
 
 include "dbheader.php";
 // use get file contents to get the data being sent to this file
@@ -20,7 +20,7 @@ $dtEnd = $req['sqlReturnDate'];
 // $dtEnd = '2024-12-16 17:00:00';
 
 
-$sql = "SELECT TOP(1) dmv.sVehUid, dmv.sVehName, dmv.iVehMaxOccupancy, dmv.iVehOdometer, dmv.sVehUnitNum, 
+$sql = "SELECT TOP(1) dmv.sVehUid, dmv.sVehName, dmv.iVehMaxOccupancy, dmv.iVehOdometer, dmv.sVehUnitNum, dmv.iLegacyId,
 dmv.bVehCargoSpace, dl.sLocName
 FROM data_mp_vehicles dmv
 JOIN data_locations dl on dl.sLocUid = dmv.sVehLocationId
