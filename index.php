@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/12 10:59:12
+// Last modified: 2024/12/17 14:01:56
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -129,7 +129,9 @@ function getCardsFromDatabase()
     var currentMonth = new Date().getMonth();
 </script>
 
-<body class="mode-dark theme-base">
+<!-- <body class="mode-dark theme-base"> -->
+
+<body>
     <div class="main">
         <?php include "./components/sidenav.php" ?>
         <div class="content">

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 10:05:53
-// Last modified: 2024/12/17 08:17:47
+// Last modified: 2024/12/17 15:15:43
 
 include "dbheader.php";
 // use get file contents to get the data being sent to this file
@@ -25,6 +25,7 @@ dmv.bVehCargoSpace, dl.sLocName
 FROM data_mp_vehicles dmv
 JOIN data_locations dl on dl.sLocUid = dmv.sVehLocationId
 WHERE bIsRetired = 0 
+AND bIsAvailable = 1  
 AND iVehMaxOccupancy >= $iMaxOccupancy ";
 if ($bVehCargoSpace) {
     $sql .= " AND bVehCargoSpace = $bVehCargoSpace";

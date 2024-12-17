@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/17 11:38:02
+// Last modified: 2024/12/17 15:21:30
 
 include "./components/header.php";
 
@@ -191,26 +191,73 @@ include "./components/header.php";
 
         function reserveVehicle(uid) {
             stopCountDown();
-            // alert('Vehicle ' + uid + ' reserved');
+            const pickupDate = document.getElementById('mp-pickup-date').value;
+            const sqlPickupDate = formatDateTime(pickupDate);
+            const returnDate = document.getElementById('mp-return-date').value;
+            const sqlReturnDate = formatDateTime(returnDate);
+            const vehUid = uid;
+            const data = {
+                sVehUid: vehUid,
+                dtStart: sqlPickupDate,
+                dtEnd: sqlReturnDate
+            };
+            fetch('./API/mpCreateReservation.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.status === 'success') {
+                        showSuccessToast(data.message);
+                    } else {
+                        showFailToast(data.message);
+                    }
+                });
+        }
+
+        function showSuccessToast(msg) {
             Toastify({
-                text: 'Vehicle reserved',
+                text: msg,
                 duration: 3000,
                 close: true,
                 gravity: 'bottom',
                 position: 'right',
                 className: 'info-toast',
                 // backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-                style: {
-                    backgroundColor: 'linear-gradient(25 deg, #006,# 009, teal, #0f0)',
-                },
+                // style: {
+                //     backgroundColor: 'linear-gradient(25 deg, #006,# 009, teal, #0f0)',
+                // },
                 onClick: function() {
-                    location.reload();
+                    setTimeout(() => location.reload(), 3000);
                 }
             }).showToast();
         }
 
+        function showFailToast(msg) {
+            Toastify({
+                text: msg,
+                duration: 3000,
+                close: true,
+                gravity: 'bottom',
+                position: 'right',
+                className: 'fail-toast',
+                // backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                // style: {
+                //     backgroundColor: 'linear-gradient(25 deg, #a00,#a09, #ffa500)',
+                // },
+                onClick: function() {
+                    setTimeout(() => location.reload(), 3000);
+                }
+            }).showToast();
+        }
+
+
         function countDown() {
-            var seconds = 10;
+            var seconds = 60;
 
             function tick() {
                 var counter = document.getElementById("countdown");
@@ -219,8 +266,9 @@ include "./components/header.php";
                 if (seconds > 0) {
                     timerId = setTimeout(tick, 1000);
                 } else {
-                    alert("Time's up!");
-                    location.reload();
+                    //alert("Time's up!");
+                    showFailToast("Time's up!");
+                    setTimeout(() => location.reload(), 3000);
                 }
             }
             tick();
@@ -289,6 +337,9 @@ include "./components/header.php";
 
         .info-toast {
             background: linear-gradient(25 deg, #006, #009, teal, #0f0) !important;
-            /* background-color: linear-gradient(25 deg, #006, #009, teal, #0f0) !important; */
+        }
+
+        .fail-toast {
+            background: linear-gradient(25 deg, #a00, #a09, #ffa500) !important;
         }
     </style>
