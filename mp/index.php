@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/18 15:03:04
+// Last modified: 2024/12/18 15:40:00
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
@@ -18,7 +18,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                         <div class="form-group row">
                             <label for="mp-pickup-date" class="col-sm-4 col-form-label">Pickup Date:</label>
                             <div class="col-sm-8">
-                                <input type="datetime-local" id="mp-pickup-date" name="mp-pickup-date" onchange="setReturnDateValue(this.value)" required>
+                                <input type="datetime-local" id="mp-pickup-date" name="mp-pickup-date" min="<?php echo date("Y-m-d") ?>" onchange="setReturnDateValue(this.value)" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -78,6 +78,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
 
         function setReturnDateValue(val) {
             const pickupDate = new Date(val);
+            checkStartDateIsFuture(pickupDate);
             pickupDate.setHours(pickupDate.getHours() + -4);
             const formattedDate = pickupDate.toISOString().substring(0, 16);
             document.getElementById('mp-return-date').value = formattedDate;
@@ -91,6 +92,18 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                 // alert('Return date must be after pickup date');
                 errorTextHolder.innerText = 'Return date must be after pickup date';
                 document.getElementById('mp-return-date').value = pickupDate;
+                return false;
+            } else {
+                errorTextHolder.innerText = '';
+                return true;
+            }
+        }
+
+        function checkStartDateIsFuture(str) {
+            // console.log('checking if start date is in the future', str);
+            const errorTextHolder = document.getElementById('mp-error-text');
+            if (str.toISOString().substring(0, 16) < new Date().toISOString().substring(0, 16)) {
+                errorTextHolder.innerText = 'Pickup date must be in the future';
                 return false;
             } else {
                 errorTextHolder.innerText = '';
@@ -168,7 +181,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                             <img class="mp-vehicle-image" src="/images/fleet_images/${vehicle.iLegacyId}.jpg" alt="${vehicle.sVehName}">
                             <div class="mp-vehicle-buttons">
                                 <button class="btn btn-primary" onclick='reserveVehicle("${vehicle.sVehUid}")'>Reserve</button>
-                                <button class="btn btn-secondary" onclick='startOver("${vehicle.sVehUid}")'>Reest</button>
+                                <button class="btn btn-secondary" onclick='startOver("${vehicle.sVehUid}")'>Reset</button>
                                 <p id="countdown"></p>
                             </div>
 
@@ -176,7 +189,9 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                         `;
                     });
                     document.getElementById('motorpool-results').innerHTML = html;
-                    countDown();
+                    // countDown(`${vehicle.sVehUid}`);
+
+                    console.log(`${vehicle.sVehUid}`);
                     // console.log(html);
                 }
                 return;
@@ -269,7 +284,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
         }
 
 
-        function countDown() {
+        function countDown(id) {
             var seconds = 60;
 
             function tick() {
@@ -281,6 +296,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                 } else {
                     //alert("Time's up!");
                     showFailToast("Time's up!");
+                    makeVehAvailable(id);
                     setTimeout(() => location.reload(), 3000);
                 }
             }
