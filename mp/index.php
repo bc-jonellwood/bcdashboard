@@ -1,13 +1,13 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/17 15:21:30
-
-include "./components/header.php";
+// Last modified: 2024/12/18 15:03:04
+include(dirname(__FILE__) . '/../components/header.php');
+include(dirname(__FILE__) . '/../components/sidenav.php');
+include(dirname(__FILE__) . '/../mp/mpnav.php');
 
 ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <div class="main">
-    <?php include "./components/sidenav.php" ?>
     <!-- <h1>Motorpool</h1> -->
     <div class="content">
         <div id="motorpool-content" class="motorpool-content container">
@@ -77,8 +77,10 @@ include "./components/header.php";
         }
 
         function setReturnDateValue(val) {
-            const pickupDate = document.getElementById('mp-pickup-date').value;
-            document.getElementById('mp-return-date').value = pickupDate;
+            const pickupDate = new Date(val);
+            pickupDate.setHours(pickupDate.getHours() + -4);
+            const formattedDate = pickupDate.toISOString().substring(0, 16);
+            document.getElementById('mp-return-date').value = formattedDate;
         }
 
         function checkReturnIsAfterStart() {
@@ -131,7 +133,7 @@ include "./components/header.php";
                         'sqlPickupDate': sqlPickupDate,
                         'sqlReturnDate': sqlReturnDate
                     };
-                    const response = await fetch('./API/mpGetAvailable.php', {
+                    const response = await fetch('/API/mpGetAvailable.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -140,6 +142,11 @@ include "./components/header.php";
                     });
                     const vehicles = await response.json();
                     console.log(vehicles);
+                    if (vehicles.length === 0) {
+                        showFailToast("No vehicles found matching your criteria");
+                        // alert('No vehicles found');
+                        return;
+                    }
                     let html = '';
                     vehicles.map(vehicle => {
                         html += `
@@ -158,9 +165,10 @@ include "./components/header.php";
                                     <td>${vehicle.bVehCargoSpace === "1" ? 'Yes' : 'No'}</td>
                                 </tr>
                             </table>
-                            <img class="mp-vehicle-image" src="./images/fleet_images/${vehicle.iLegacyId}.jpg" alt="${vehicle.sVehName}">
-                            <div>
+                            <img class="mp-vehicle-image" src="/images/fleet_images/${vehicle.iLegacyId}.jpg" alt="${vehicle.sVehName}">
+                            <div class="mp-vehicle-buttons">
                                 <button class="btn btn-primary" onclick='reserveVehicle("${vehicle.sVehUid}")'>Reserve</button>
+                                <button class="btn btn-secondary" onclick='startOver("${vehicle.sVehUid}")'>Reest</button>
                                 <p id="countdown"></p>
                             </div>
 
@@ -201,7 +209,7 @@ include "./components/header.php";
                 dtStart: sqlPickupDate,
                 dtEnd: sqlReturnDate
             };
-            fetch('./API/mpCreateReservation.php', {
+            fetch('/API/mpCreateReservation.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -213,10 +221,15 @@ include "./components/header.php";
                     console.log(data);
                     if (data.status === 'success') {
                         showSuccessToast(data.message);
+                        makeVehAvailable(vehUid);
+                        setTimeout(() => location.reload(), 3000);
                     } else {
                         showFailToast(data.message);
+                        makeVehAvailable(vehUid);
+                        setTimeout(() => location.reload(), 3000);
                     }
                 });
+
         }
 
         function showSuccessToast(msg) {
@@ -240,7 +253,7 @@ include "./components/header.php";
         function showFailToast(msg) {
             Toastify({
                 text: msg,
-                duration: 3000,
+                duration: 30000,
                 close: true,
                 gravity: 'bottom',
                 position: 'right',
@@ -262,7 +275,7 @@ include "./components/header.php";
             function tick() {
                 var counter = document.getElementById("countdown");
                 seconds--;
-                counter.innerHTML = "You have " + String(seconds) + " seconds to decide.";
+                counter.innerHTML = "Vehicle will be held for " + String(seconds) + " seconds.";
                 if (seconds > 0) {
                     timerId = setTimeout(tick, 1000);
                 } else {
@@ -279,10 +292,29 @@ include "./components/header.php";
             clearTimeout(timerId);
             document.getElementById("countdown").innerHTML = "";
         }
+
+        async function makeVehAvailable(id) {
+            console.log('Making vehicle available:', id);
+            await fetch('/API/mpMakeVehAvailable.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sVehUid: id
+                })
+            })
+        }
+
+        function startOver(id) {
+            console.log('Starting over:', id);
+            makeVehAvailable(id);
+            setTimeout(() => location.reload(), 1000);
+        }
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <?php include './components/footer.php'; ?>
 
+    <?php include(dirname(__FILE__) . '/../components/footer.php'); ?>
     <style>
         .content {
             display: grid;
@@ -336,10 +368,15 @@ include "./components/header.php";
         }
 
         .info-toast {
-            background: linear-gradient(25 deg, #006, #009, teal, #0f0) !important;
+            background: linear-gradient(25deg, #006, #009, teal, #0f0) !important;
         }
 
         .fail-toast {
-            background: linear-gradient(25 deg, #a00, #a09, #ffa500) !important;
+            background: linear-gradient(25deg, #a00, #a09, #ffa500) !important;
+
+        }
+
+        .mp-vehicle-buttons {
+            margin-top: 10px;
         }
     </style>

@@ -17,7 +17,7 @@
       renderLinks(orderedLinks);
     } else {
       console.log("fetching data, nothing cached");
-      await fetch("./API/getLinkData.php")
+      await fetch("/API/getLinkData.php")
         .then((response) => response.json())
         .then((data) => {
           localStorage.setItem(

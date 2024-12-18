@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 13:12:39
+// Last modified: 2024/12/18 14:40:27
 
 if (!isset($_SESSION)) {
     session_start();
@@ -19,6 +19,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 }
 ////////////////////////////////+++++++++++++++++
 // }
+include_once(dirname(__FILE__) . '/../init.php');
 
 
 ?>
@@ -33,10 +34,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://unpkg.com/imask"></script>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/custom.css">
-    <link rel="stylesheet" href="styles/theme.css">
-    <link rel="stylesheet" href="styles/newEmpCard.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/custom.css">
+    <link rel="stylesheet" href="/styles/theme.css">
+    <link rel="stylesheet" href="/styles/newEmpCard.css">
     <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
 
 
@@ -45,15 +46,33 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         const snow = document.createElement('snow-fall');
         document.body.prepend(snow)
     </script> -->
-    <script src="./functions/utils.js"></script>
-    <script src="./functions/randomAlert.js"></script>
-    <script src="./classes/Notification.js"></script>
-    <script src="./functions/loader.js"></script>
-    <script src="./functions/renderEmployeeLookup.js"></script>
-    <script src="./functions/renderDepartmentLookup.js"></script>
-    <script src="./functions/renderPhoneLookup.js"></script>
-    <script src="./functions/renderQuickLinks.js"></script>
-    <script src="./components/setCardOrder.js"></script>
+    <!-- <script type="module">
+        import {
+            test,
+            other
+        } from '/functions/test.js';
+        test();
+        other();
+    </script>
+    <script type="module">
+        import {
+            showLoader,
+            hideLoader
+        } from '/functions/loader.js';
+        test();
+        other();
+    </script> -->
+    <script src="/functions/utils.js"></script>
+    <script src="/functions/randomAlert.js"></script>
+    <script src="/classes/Notification.js"></script>
+    <script src="/functions/loader.js"></script>
+    <script src="/functions/renderEmployeeLookup.js"></script>
+    <script src="/functions/renderDepartmentLookup.js"></script>
+    <script src="/functions/renderPhoneLookup.js"></script>
+    <script src="/functions/renderQuickLinks.js"></script>
+    <!-- <script src="/functions/renderQuickLinks.js"></script> -->
+    <!-- <script src="/functions/renderQuickLinks.js"></script> -->
+    <script src="/components/setCardOrder.js"></script>
     <!-- favicon -->
     <link rel="icon" href="favicons/favicon.ico">
     <title>BC Dashboard</title>
@@ -140,7 +159,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
             var statusHolder = document.getElementById('current-status');
             var statusHolderDot = document.getElementById('current-status-dot');
             console.log(statusHolder);
-            await fetch("./API/getSingleUserStatus.php")
+            await fetch("/API/getSingleUserStatus.php")
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data);
@@ -154,7 +173,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         function updateStatusFromDash(status) {
             var employee = <?php echo $_SESSION['employeeID'] ?>;
             var status = status;
-            fetch("./API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
+            fetch("/API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
                 .then(alert('Status Updated'))
                 .then(getUserCurrentStatus())
         }
@@ -390,8 +409,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
         <button type="button" class="btn-x" onclick="logout()">Logout</button>
     </div>
 </div>
-<?php include "./components/toolbar.php" ?>
-<?php include "./components/minimizedCardsPasture.php" ?>
+</?php include "./components/toolbar.php" ?>
+<?php include(dirname(__FILE__) . '/toolbar.php'); ?>
+</?php include "./components/minimizedCardsPasture.php" ?>
+<?php include(dirname(__FILE__) . '/minimizedCardsPasture.php'); ?>
 <script>
     // make this function be called every 60 seconds to update the time
 

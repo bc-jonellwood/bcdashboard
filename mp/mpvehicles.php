@@ -1,16 +1,18 @@
 <?php
 // Created: 2024/12/17 09:22:51
-// Last modified: 2024/12/17 13:28:23
-
-include "./components/header.php";
-include "./classes/Vehicle.php";
+// Last modified: 2024/12/18 12:12:35
+include(dirname(__FILE__) . '/../components/header.php');
+include(dirname(__FILE__) . '/../components/sidenav.php');
+include(dirname(__FILE__) . '/../classes/Vehicle.php');
+include(dirname(__FILE__) . '/../mp/mpnav.php');
+//include "./components/header.php";
+//include "./classes/Vehicle.php";
 $vehicle = new Vehicle();
 $vehicles = $vehicle->getVehicles();
 
 
 ?>
 <div class="main">
-    <?php include "./components/sidenav.php" ?>
     <div class="content">
         <div class="vehicle-content" id="vehicle-content"></div>
     </div>
@@ -22,7 +24,7 @@ $vehicles = $vehicle->getVehicles();
     </button>
     <div id="updatemileagepopover-content"></div>
 </div>
-<?php include "./components/footer.php" ?>
+<?php include(dirname(__FILE__) . '/../components/footer.php')  ?>
 <script src="./classes/Vehicle.js"></script>
 <script>
     let vehicles = <?php echo json_encode($vehicles); ?>;
@@ -79,7 +81,7 @@ $vehicles = $vehicle->getVehicles();
     }
 
     function updateVehicleStatus(id, field, value) {
-        fetch('./API/updateVehicle.php', {
+        fetch('/API/updateVehicle.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

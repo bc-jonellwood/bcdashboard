@@ -6,7 +6,8 @@ class Vehicle
 
     public function __construct()
     {
-        include_once "./data/appConfig.php";
+        // include_once "./data/appConfig.php";
+        include(dirname(__FILE__) . "/../data/appConfig.php");
         $this->db = new appConfig();
     }
 

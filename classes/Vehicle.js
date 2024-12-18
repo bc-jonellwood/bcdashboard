@@ -31,7 +31,7 @@ class Vehicle {
       field: field,
       value: value,
     };
-    fetch("./API/updateVehicle.php", {
+    fetch("/API/updateVehicle.php", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

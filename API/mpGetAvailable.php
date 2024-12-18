@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 10:05:53
-// Last modified: 2024/12/17 15:15:43
+// Last modified: 2024/12/18 13:58:26
 
 include "dbheader.php";
 // use get file contents to get the data being sent to this file
@@ -27,13 +27,17 @@ JOIN data_locations dl on dl.sLocUid = dmv.sVehLocationId
 WHERE bIsRetired = 0 
 AND bIsAvailable = 1  
 AND iVehMaxOccupancy >= $iMaxOccupancy ";
-if ($bVehCargoSpace) {
+if ($bVehCargoSpace === 1) {
     $sql .= " AND bVehCargoSpace = $bVehCargoSpace";
 }
 $sql .= " ORDER BY iVehOdometer DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Modify the dates in PHP before using them in the query
+$dtStartPlusOneHour = date('Y-m-d H:i:s', strtotime($dtStart . ' +1 hour'));
+$dtEndMinusOneHour = date('Y-m-d H:i:s', strtotime($dtEnd . ' -1 hour'));
 
 // take the sVehUid and query the data_mp_bookins table to see if the vehicle is reserved for the dates selected
 // if the vehicle is reserved for the dates selected remove it from the data array
@@ -43,13 +47,20 @@ foreach ($data as $key => $value) {
     $sVehUid = $value['sVehUid'];
     //echo $sVehUid;
 
-    $sql = "SELECT sVehUid FROM data_mp_vehicle_bookings WHERE sVehUid = '$sVehUid' AND dtStart <= '$dtStart' AND dtEnd >= '$dtEnd'";
+    $sql = "SELECT sVehUid FROM data_mp_vehicle_bookings 
+            WHERE sVehUid = '$sVehUid' 
+            AND dtStart <= '$dtStartPlusOneHour' 
+            AND dtEnd >= '$dtEndMinusOneHour'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $available[] = $value;
     }
+
+    $setUnavailableSql = "UPDATE data_mp_vehicles SET bIsAvailable = 0 WHERE sVehUid = '$sVehUid'";
+    $stmt = $conn->prepare($setUnavailableSql);
+    $stmt->execute();
 }
 
 header('Content-Type: application/json');

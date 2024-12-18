@@ -1,24 +1,24 @@
 <?php
 // Created: 2024/12/17 09:22:51
-// Last modified: 2024/12/17 11:14:34
+// Last modified: 2024/12/18 12:12:44
 
-include "./components/header.php";
-
+include(dirname(__FILE__) . '/../components/header.php');
+include(dirname(__FILE__) . '/../components/sidenav.php');
+include(dirname(__FILE__) . '/../mp/mpnav.php');
 ?>
 <div class="main">
-    <?php include "./components/sidenav.php" ?>
     <div class="content">
         <div class="reservations-content" id="reservations-content"></div>
     </div>
 </div>
 
 
-<?php include "./components/footer.php" ?>
+<?php include(dirname(__FILE__) . '/../components/footer.php'); ?>
 
 
 <script>
     async function getReservations() {
-        await fetch('./API/mpGetReservations.php')
+        await fetch('/API/mpGetReservations.php')
             .then(response => response.json())
             .then(data => {
                 let reservations = data;

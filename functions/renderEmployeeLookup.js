@@ -2,7 +2,7 @@ function lookupEmployee() {
   const firstName = document.getElementById("employee-lookup-first-name").value;
   const lastName = document.getElementById("employee-lookup-last-name").value;
   //   console.log(name);
-  fetch("./API/getSingleEmployee.php?name=" + firstName + " " + lastName)
+  fetch("/API/getSingleEmployee.php?name=" + firstName + " " + lastName)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);

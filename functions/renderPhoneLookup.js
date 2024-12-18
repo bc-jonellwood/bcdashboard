@@ -1,7 +1,7 @@
 function lookupByPhone() {
   var phone = document.getElementById("phone").value;
   // console.log(phone);
-  fetch("./API/getSingleEmployeeByPhone.php?phoneNumber=" + phone)
+  fetch("/API/getSingleEmployeeByPhone.php?phoneNumber=" + phone)
     .then((response) => response.json())
     .then((data) => {
       //console.log(data);

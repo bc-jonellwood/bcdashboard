@@ -1,6 +1,6 @@
 function lookupEmployees(departmentID) {
   //   console.log(name);
-  fetch("./API/getAllEmployeesInDepartment.php?departmentID=" + departmentID)
+  fetch("/API/getAllEmployeesInDepartment.php?departmentID=" + departmentID)
     .then((response) => response.json())
     .then((data) => {
       // console.log(data);
@@ -40,7 +40,7 @@ function lookupEmployees(departmentID) {
 // }
 let departments = [];
 async function getAllDepartments() {
-  await fetch("./API/getAllDepartments.php")
+  await fetch("/API/getAllDepartments.php")
     .then((response) => response.json())
     .then((data) => {
       departments = data;

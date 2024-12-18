@@ -6,7 +6,7 @@ class notification {
   }
 
   async fetchNotification() {
-    const response = await fetch("./API/getCurrentNotification.php");
+    const response = await fetch("/API/getCurrentNotification.php");
     const data = await response.json();
     return data;
   }
