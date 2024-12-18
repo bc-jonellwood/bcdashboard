@@ -1,10 +1,3 @@
-<?php
-if (!$_SESSION['employeeID'] = '4438') {
-    header('Location: /index.php');
-}
-
-?>
-
 <div class='mpnav'>
     <!-- <button class='btn btn-sm btn-info' popovertarget='mpadminmenu' popovertargetaction='show'>Admin</button>
     </button> -->

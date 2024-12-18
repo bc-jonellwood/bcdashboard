@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/18 15:40:00
+// Last modified: 2024/12/18 15:45:38
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
@@ -154,12 +154,13 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                         body: JSON.stringify(data)
                     });
                     const vehicles = await response.json();
-                    console.log(vehicles);
+                    // console.log(vehicles);
                     if (vehicles.length === 0) {
                         showFailToast("No vehicles found matching your criteria");
                         // alert('No vehicles found');
                         return;
                     }
+                    const vehUid = vehicles[0].sVehUid;
                     let html = '';
                     vehicles.map(vehicle => {
                         html += `
@@ -189,9 +190,9 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                         `;
                     });
                     document.getElementById('motorpool-results').innerHTML = html;
-                    // countDown(`${vehicle.sVehUid}`);
+                    countDown(vehUid);
 
-                    console.log(`${vehicle.sVehUid}`);
+                    // console.log('vehUid', vehUid);
                     // console.log(html);
                 }
                 return;
@@ -285,6 +286,7 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
 
 
         function countDown(id) {
+            console.log('Starting countdown:', id);
             var seconds = 60;
 
             function tick() {
