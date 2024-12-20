@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/10 11:37:28
-// Last modified: 2024/12/12 11:52:53
+// Last modified: 2024/12/20 09:02:56
 
 include "./components/header.php";
 ?>
@@ -9,6 +9,13 @@ include "./components/header.php";
         await fetch('./API/getHolidays.php')
             .then((response) => response.json())
             .then((data) => {
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                // console.log(data);
                 const holidayContent = document.getElementById('holiday-content');
                 holidayContent.innerHTML = '';
 
@@ -23,7 +30,8 @@ include "./components/header.php";
                     holidayName.textContent = holiday.sName;
 
                     const holidayDate = document.createElement('p');
-                    holidayDate.textContent = new Date(holiday.dtDate).toDateString();
+                    holidayDate.textContent = new Date(holiday.dtDate + 'T00:00:00').toLocaleDateString('en-US', options);
+
 
                     holidayDiv.appendChild(holidayName);
                     holidayDiv.appendChild(holidayDate);

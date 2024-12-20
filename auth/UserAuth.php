@@ -61,8 +61,14 @@ class UserAuth
                 $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
                 $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
                 logError("User data set in session: " . json_encode($_SESSION));
+                $user_id = json_encode([
+                    'userID' => $_SESSION['userID']
+                ]);
+                setcookie('bcdash_user', $user_id, time() + (30 * 24 * 60 * 60), "/");
                 if (isset($_POST['rememberme'])) {
-                    $cookie_data = json_encode(['username' => $username]);
+                    $cookie_data = json_encode([
+                        'username' => $username
+                    ]);
                     setcookie('rememberme', $cookie_data, time() + (30 * 24 * 60 * 60), "/"); // 30 days
                 }
                 $this->logLogIn();

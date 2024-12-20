@@ -1,6 +1,6 @@
 <div class='mpnav'>
-    <!-- <button class='btn btn-sm btn-info' popovertarget='mpadminmenu' popovertargetaction='show'>Admin</button>
-    </button> -->
+    <button class='btn btn-sm btn-info' popovertarget='mpadminmenu' popovertargetaction='show'>Admin</button>
+    </button>
     <button class='btn btn-sm btn-info' popovertarget='mp-popover' popovertargetaction='show'>Admin</button>
     </button>
     <!-- <div id='mpadminmenu' popover class='mpadminmenu-popover'>
@@ -52,10 +52,18 @@
                 <li>
                     <a href="/mp/mpvehicles.php" class="nav-link d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
-                            <title>car-wrench</title>
                             <path d="M20.96 16.45C20.97 16.3 21 16.15 21 16V16.5L20.96 16.45M11 16C11 16.71 11.15 17.39 11.42 18H6V19C6 19.55 5.55 20 5 20H4C3.45 20 3 19.55 3 19V11L5.08 5C5.28 4.42 5.84 4 6.5 4H17.5C18.16 4 18.72 4.42 18.92 5L21 11V16C21 13.24 18.76 11 16 11S11 13.24 11 16M8 13.5C8 12.67 7.33 12 6.5 12S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10L17.5 5.5H6.5L5 10H19M22.87 21.19L18.76 17.08C19.17 16.04 18.94 14.82 18.08 13.97C17.18 13.06 15.83 12.88 14.74 13.38L16.68 15.32L15.33 16.68L13.34 14.73C12.8 15.82 13.05 17.17 13.93 18.08C14.79 18.94 16 19.16 17.05 18.76L21.16 22.86C21.34 23.05 21.61 23.05 21.79 22.86L22.83 21.83C23.05 21.65 23.05 21.33 22.87 21.19Z" />
                         </svg>
                         Manage Vehicles
+                    </a>
+                </li>
+                <li>
+                    <a href="/mptest/index.html" class="nav-link d-flex align-items-center" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                            <path d="M4 2A2 2 0 0 0 2 4V12H4V8H6V12H8V4A2 2 0 0 0 6 2H4M4 4H6V6H4M22 15.5V14A2 2 0 0 0 20 12H16V22H20A2 2 0 0 0 22 20V18.5A1.54 1.54 0 0 0 20.5 17A1.54 1.54 0 0 0 22 15.5M20 20H18V18H20V20M20 16H18V14H20M5.79 21.61L4.21 20.39L18.21 2.39L19.79 3.61Z" />
+                        </svg>
+                        </svg>
+                        Drivers Test
                     </a>
                 </li>
             </ul>

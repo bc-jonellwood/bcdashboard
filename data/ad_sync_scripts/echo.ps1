@@ -1,5 +1,5 @@
-$users = Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "userAccountControl") | 
-Select-Object -Property EmployeeID, EmailAddress, OfficePhone, @{
+$users = Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "userAccountControl", "mobile") | 
+Select-Object -Property EmployeeID, EmailAddress, OfficePhone, mobile, @{
     Name       = 'AccountStatus'
     Expression = {
         if ($_.userAccountControl -band 2) {

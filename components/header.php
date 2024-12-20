@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/18 14:40:27
+// Last modified: 2024/12/19 15:35:07
 
 if (!isset($_SESSION)) {
     session_start();
@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
 // } else {
 ///////////////////////++++++++++++++++++++++++++
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
-    header("Location: auth/index.php");
+    header("Location: /auth/index.php");
 }
 ////////////////////////////////+++++++++++++++++
 // }
@@ -70,6 +70,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <script src="/functions/renderDepartmentLookup.js"></script>
     <script src="/functions/renderPhoneLookup.js"></script>
     <script src="/functions/renderQuickLinks.js"></script>
+    <script src="/functions/setUserData.js"></script>
     <!-- <script src="/functions/renderQuickLinks.js"></script> -->
     <!-- <script src="/functions/renderQuickLinks.js"></script> -->
     <script src="/components/setCardOrder.js"></script>
@@ -78,6 +79,13 @@ include_once(dirname(__FILE__) . '/../init.php');
     <title>BC Dashboard</title>
 
     <script>
+        function checkForUserData() {
+            const userData = localStorage.getItem('bcdash-userData');
+            if (!userData) {
+                setUserData();
+            }
+        }
+
         function showSidenaval() {
             const sidenav = document.getElementById('sidenav-popover');
             console.log('showing sidenaval');

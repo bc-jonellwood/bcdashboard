@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 12:09:18
+// Last modified: 2024/12/20 14:37:10
 
 include_once "./data/appConfig.php";
 
@@ -105,7 +105,7 @@ try {
         $html .= '<tr class="emp-card">
                     <td class="name">' . (isset($row['sFirstName']) ? strtolower($row['sFirstName']) : '')  . ' ' . (isset($row['sLastName']) ? strtolower($row['sLastName']) : '') . '</td> 
                     <td class="name">' . (isset($row['sDepartmentName']) ? $row['sDepartmentName'] : '') . '</td>
-                    <td>' . (isset($row['dtDateOfBirth']) ? date('m/d/Y', strtotime($row['dtDateOfBirth'])) : '') . '</td>
+                    <td>' . (isset($row['dtDateOfBirth']) ? date('m/d', strtotime($row['dtDateOfBirth'])) : '') . '</td>
                 </tr>';
     }
 
@@ -123,7 +123,7 @@ try {
         $html .= '<tr class="emp-card">
                     <td class="name">' . (isset($row['sFirstName']) ? strtolower($row['sFirstName']) : '')  . ' ' . (isset($row['sLastName']) ? strtolower($row['sLastName']) : '') . '</td> 
                     <td class="name">' . (isset($row['sDepartmentName']) ? $row['sDepartmentName'] : '') . '</td>
-                    <td>' . (isset($row['dtDateOfBirth']) ? date('m/d/Y', strtotime($row['dtDateOfBirth'])) : '') . '</td>
+                    <td>' . (isset($row['dtDateOfBirth']) ? date('m/d', strtotime($row['dtDateOfBirth'])) : '') . '</td>
                 </tr>';
     }
 

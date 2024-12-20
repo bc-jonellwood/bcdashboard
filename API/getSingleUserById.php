@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/11/05 10:31:55
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/19 12:56:20
 
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
@@ -39,9 +39,21 @@ $sql = "SELECT au.id,
             au.bIsActive,
             au.bIsLDAP,
             au.bIsAdmin,
-            au.bHideBirthday
+            au.bHideBirthday,
+            dvd.id as sDriverId,
+            dvd.sBcgiId,
+            dvd.sEmployeeNumber,
+            dvd.sUserId,
+            dvd.dtDlExpires,
+            dvd.dtFleetTestPassed,
+            dvd.dtFuelCardTestPassed,
+            dvd.dtAcknowledge,
+            dvd.dlFront,
+            dvd.dlBack,
+            dvd.sNotes
             from app_users au
             join data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
+            left join data_mp_vehicle_drivers dvd on dvd.sUserId = au.id
             where au.id = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $sUserID, PDO::PARAM_INT);
@@ -66,6 +78,17 @@ if ($user) {
     $response['bIsLDAP'] = $user['bIsLDAP'];
     $response['bIsAdmin'] = $user['bIsAdmin'];
     $response['bHideBirthday'] = $user['bHideBirthday'];
+    $response['sDriverId'] = $user['sDriverId'];
+    $response['sBcgiId'] = $user['sBcgiId'];
+    $response['sEmployeeNumber'] = $user['sEmployeeNumber'];
+    $response['sUserId'] = $user['sUserId'];
+    $response['dtDlExpires'] = $user['dtDlExpires'];
+    $response['dtFleetTestPassed'] = $user['dtFleetTestPassed'];
+    $response['dtFuelCardTestPassed'] = $user['dtFuelCardTestPassed'];
+    $response['dtAcknowledge'] = $user['dtAcknowledge'];
+    $response['dlFront'] = $user['dlFront'];
+    $response['dlBack'] = $user['dlBack'];
+    $response['sNotes'] = $user['sNotes'];
 } else {
     $response['error'] = 'User not found';
 }

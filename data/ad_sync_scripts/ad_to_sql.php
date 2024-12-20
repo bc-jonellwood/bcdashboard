@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/11/04 15:59:29
-// Last Modified: 2024/12/12 13:58:45
+// Last Modified: 2024/12/20 16:02:14
 
 class newUser
 {
@@ -16,6 +16,7 @@ class newUser
     public $dtSeparationDate;
     public $birthdayExempt;
     public $sMainPhoneNumber;
+    public $sSecondaryPhoneNumber;
     public $bIsActive;
     public $bIsLDAP;
     public $bHideBirthday;
@@ -25,10 +26,12 @@ class newUser
         $sEmployeeNumber,
         $sMainPhoneNumber,
         $sEmail,
+        $sSecondaryPhoneNumber,
     ) {
         $this->sEmail = !is_null($sEmail) ? $sEmail : NULL;
         $this->sEmployeeNumber = $sEmployeeNumber;
         $this->sMainPhoneNumber = !is_null($sMainPhoneNumber) ? trim($sMainPhoneNumber) : NULL;
+        $this->sSecondaryPhoneNumber = !is_null($sSecondaryPhoneNumber) ? trim($sSecondaryPhoneNumber) : NULL;
     }
 }
 
@@ -43,7 +46,7 @@ foreach (preg_split("/((\r?\n)|(\r\n?))/", $output, -1) as $line) {
     $line = trim($line, '"');
     $oparray = explode('","', $line);
     // print_r($line);
-    if (is_numeric($oparray[0]) && count($oparray) == 4) {
+    if (is_numeric($oparray[0]) && count($oparray) == 5) {
         // echo "<pre>";
         // echo "<p>oparray yes</p>";
         // var_dump($oparray);
@@ -52,17 +55,19 @@ foreach (preg_split("/((\r?\n)|(\r\n?))/", $output, -1) as $line) {
         $employeeArray[$oparray[0]][1] = isset($oparray[0]) ? $oparray[0] : NULL;
         $phoneNumber = $oparray[2];
         $employeeArray[$oparray[0]][2] = preg_match('/^\d{3}-\d{3}-\d{4}$/', $phoneNumber) ? $phoneNumber : NULL;
-        $accStatus = $oparray[3];
+        $accStatus = $oparray[4];
         $employeeArray[$oparray[0]][3] = $accStatus ? $accStatus : NULL;
+        $mobileNumber = $oparray[3];
+        $employeeArray[$oparray[0]][4] = preg_match('/^\d{3}-\d{3}-\d{4}$/', $mobileNumber) ? $mobileNumber : NULL;
     }
 }
 echo 'AD Complete
 
 <hr />';
-echo "<pre>";
+// echo "<pre>";
 // echo "<p>There should be data in here!</p>";
-print_r($employeeArray);
-echo "</pre>";
+// print_r($employeeArray);
+// echo "</pre>";
 var_dump(count($employeeArray));
 if (count($employeeArray) == 0) {
     echo 'AD Count ' . count($employeeArray) . '
@@ -85,44 +90,41 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 try {
-    $checkEmployeeStmt = $conn->prepare("SELECT sEmployeeNumber, sEmail, sMainPhoneNumber FROM data_ad_scripted_data  WHERE sEmployeeNumber = ?");
+    $checkEmployeeStmt = $conn->prepare("SELECT sEmployeeNumber FROM app_users  WHERE sEmployeeNumber = ?");
 
-    $updateByEmployeeStmt = $conn->prepare("
-            UPDATE data_ad_scripted_data 
-            SET sEmail = ?, sMainPhoneNumber = ?, sAccStatus = ? 
-            WHERE sEmployeeNumber = ?
-        ");
+    $updateByEmployeeStmt = $conn->prepare("UPDATE app_users SET sEmail = ?, sMainPhoneNumber = ?, sADStatus = ?, sSecondaryPhoneNumber = ? WHERE sEmployeeNumber = ?");
 
-    $insertStmt = $conn->prepare("
-            INSERT INTO data_ad_scripted_data 
-            (sEmployeeNumber, sEmail, sMainPhoneNumber, sAccStatus) 
-            VALUES (?, ?, ?, ?)
-        ");
+    $insertStmt = $conn->prepare("INSERT INTO data_ad_scripted_data (sEmployeeNumber, sEmail, sMainPhoneNumber, sAccStatus) VALUES (?, ?, ?, ?)");
     $conn->beginTransaction();
 
     foreach ($employeeArray as $sEmployeeNumber => $data) {
+        echo "<pre>";
+        print_r($data);
         $email = $data[0];
         // echo "Email : $email\n";
-        $mainPhoneNumber = $data[2];
         $sEmployeeNumber = $data[1];
+        // echo "Employee Number : $sEmployeeNumber\n";
+        $mainPhoneNumber = $data[2];
+        // echo "Phone : $mainPhoneNumber\n";
         $accStatus = $data[3];
+        // echo "Status : $accStatus\n";
+        $sSecondaryPhoneNumber = $data[4];
+        // echo "Secondary Phone : $sSecondaryPhoneNumber\n";
         $checkEmployeeStmt->execute([$sEmployeeNumber]);
         $employeeExists = $checkEmployeeStmt->fetch(PDO::FETCH_ASSOC);
 
         if ($employeeExists) {
-            $updateByEmployeeStmt->execute([$email, $mainPhoneNumber, $accStatus, $sEmployeeNumber]);
-            // echo "<pre>";
-            // echo "Updated : $sEmployeeNumber\n";
             // echo "Email : $email\n";
             // echo "Phone : $mainPhoneNumber\n";
             // echo "Status : $accStatus\n";
-            // echo "<br>";
-            // echo "</pre>";
+            // echo "Secondary Phone : $sSecondaryPhoneNumber\n";
+            $updateByEmployeeStmt->execute([$email, $mainPhoneNumber, $accStatus, $sSecondaryPhoneNumber, $sEmployeeNumber]);
         } else {
-            $insertStmt->execute([$sEmployeeNumber, $email, $mainPhoneNumber, $accStatus]);
-            echo "<pre>";
-            echo "Added : $sEmployeeNumber\n";
-            echo "</pre>";
+            echo "Ding Dong Ding Dong";
+            // $insertStmt->execute([$sEmployeeNumber, $email, $mainPhoneNumber, $accStatus]);
+            // echo "<pre>";
+            // echo "Added : $sEmployeeNumber\n";
+            // echo "</pre>";
         }
     }
     $conn->commit();

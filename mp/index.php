@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/18 15:45:38
+// Last modified: 2024/12/19 15:40:43
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
@@ -70,6 +70,20 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
     </div>
 
     <script>
+        function checkUserEligability() {
+            var userData = JSON.parse(localStorage.getItem('bcdash-userData'));
+            if (userData.dtFleetTestPassed === null) {
+                window.location.href = '/mp/forbidden.php';
+            } else if (userData.dtAcknowledge === null) {
+                window.location.href = '/mp/forbidden.php';
+            } else if (userData.dtDlExpires === null || userData.dtDlExpires < new Date().toISOString().substring(0, 10)) {
+                window.location.href = '/mp/forbidden.php';
+            }
+        }
+        checkUserEligability();
+
+
+
         function formatDateTime(dateTime) {
             let isoDate = dateTime;
             let sqlDate = isoDate.replace("T", " ");
@@ -92,6 +106,24 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
                 // alert('Return date must be after pickup date');
                 errorTextHolder.innerText = 'Return date must be after pickup date';
                 document.getElementById('mp-return-date').value = pickupDate;
+                return false;
+            } else {
+                errorTextHolder.innerText = '';
+                return true;
+            }
+        }
+
+        function checkTotalTimeIsOnlyFiveDays() {
+            const pickupDate = document.getElementById('mp-pickup-date').value;
+            const returnDate = document.getElementById('mp-return-date').value;
+            const errorTextHolder = document.getElementById('mp-error-text');
+            const pickupDateObj = new Date(pickupDate);
+            const returnDateObj = new Date(returnDate);
+            const timeDiff = Math.abs(returnDateObj - pickupDateObj);
+            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            console.log('Total days:', diffDays);
+            if (diffDays > 5) {
+                errorTextHolder.innerText = 'Total time must be 5 days or less';
                 return false;
             } else {
                 errorTextHolder.innerText = '';
@@ -128,42 +160,36 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
         async function getAvailableVehicles() {
             const pickupDate = document.getElementById('mp-pickup-date').value;
             const sqlPickupDate = formatDateTime(pickupDate);
-            // console.log(sqlPickupDate);
             const returnDate = document.getElementById('mp-return-date').value;
             const sqlReturnDate = formatDateTime(returnDate);
-            // console.log(sqlReturnDate);
             const destination = document.getElementById("mp-destination").value;
-            // console.log(destination);
             const occupancy = document.getElementById('mp-occupancy').value;
-            // console.log(occupancy);
             const cargo = document.getElementById('mp-cargo').value;
-            // console.log(cargo);
             if (checkForEmpty()) {
                 if (checkReturnIsAfterStart()) {
-                    const data = {
-                        'mp-occupancy': occupancy,
-                        'mp-cargo': cargo,
-                        'sqlPickupDate': sqlPickupDate,
-                        'sqlReturnDate': sqlReturnDate
-                    };
-                    const response = await fetch('/API/mpGetAvailable.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    const vehicles = await response.json();
-                    // console.log(vehicles);
-                    if (vehicles.length === 0) {
-                        showFailToast("No vehicles found matching your criteria");
-                        // alert('No vehicles found');
-                        return;
-                    }
-                    const vehUid = vehicles[0].sVehUid;
-                    let html = '';
-                    vehicles.map(vehicle => {
-                        html += `
+                    if (checkTotalTimeIsOnlyFiveDays()) {
+                        const data = {
+                            'mp-occupancy': occupancy,
+                            'mp-cargo': cargo,
+                            'sqlPickupDate': sqlPickupDate,
+                            'sqlReturnDate': sqlReturnDate
+                        };
+                        const response = await fetch('/API/mpGetAvailable.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        const vehicles = await response.json();
+                        if (vehicles.length === 0) {
+                            showFailToast("No vehicles found matching your criteria");
+                            return;
+                        }
+                        const vehUid = vehicles[0].sVehUid;
+                        let html = '';
+                        vehicles.map(vehicle => {
+                            html += `
                         <div class="mp-vehicle">
                             <table class="table table-sm">
                                 <tr><th>Vehicle Name</th><th>Max Occupancy</th><th>Odometer</th></tr>
@@ -188,21 +214,18 @@ include(dirname(__FILE__) . '/../mp/mpnav.php');
 
                         </div>
                         `;
-                    });
-                    document.getElementById('motorpool-results').innerHTML = html;
-                    countDown(vehUid);
-
-                    // console.log('vehUid', vehUid);
-                    // console.log(html);
+                        });
+                        document.getElementById('motorpool-results').innerHTML = html;
+                        countDown(vehUid);
+                    }
                 }
-                return;
             }
         }
 
         window.addEventListener("load", function() {
             var now = new Date();
             var offset = now.getTimezoneOffset() * 60000;
-            var adjustedDate = new Date(now.getTime() - offset);
+            var adjustedDate = new Date(now.getTime() - offset + 24 * 60 * 60 * 1000); // Add 24 hours
             var formattedDate = adjustedDate.toISOString().substring(0, 16);
             var pDatetimeField = document.getElementById("mp-pickup-date");
             var rDatetimeField = document.getElementById("mp-return-date");
