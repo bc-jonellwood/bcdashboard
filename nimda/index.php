@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/23 09:40:59
-// Last modified: 2024/12/23 13:25:09
+// Last modified: 2024/12/23 13:47:56
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../nimda/adminnav.php');
@@ -345,6 +345,7 @@ include(dirname(__FILE__) . '/../nimda/adminnav.php');
         .table {
             background-color: var(--bg);
             color: var(--fg);
+            font-size: large;
         }
 
         popover {
