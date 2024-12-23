@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/19 15:35:07
+// Last modified: 2024/12/23 09:28:30
 
 if (!isset($_SESSION)) {
     session_start();
@@ -75,7 +75,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <!-- <script src="/functions/renderQuickLinks.js"></script> -->
     <script src="/components/setCardOrder.js"></script>
     <!-- favicon -->
-    <link rel="icon" href="favicons/favicon.ico">
+    <link rel="icon" href="/favicons/favicon.ico">
     <title>BC Dashboard</title>
 
     <script>

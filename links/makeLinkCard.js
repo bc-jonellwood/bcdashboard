@@ -1,15 +1,3 @@
-function getMode() {
-  var mode = localStorage.getItem("bcdash-mode");
-  //console.log("Mode is ", mode);
-  if (mode == "mode-dark") {
-    mod = "dark";
-  } else {
-    mod = "light";
-  }
-  return mod;
-}
-// getMode();
-
 function createLinkCard(id, href, icon, text, type, count) {
   const favLinks = JSON.parse(localStorage.getItem("bc-quicklinks")) || [];
   const isFavorite = favLinks.includes(id);
@@ -30,7 +18,7 @@ function createLinkCard(id, href, icon, text, type, count) {
                     <p>${text}</p>
                   </div>
                   <div div class="right">
-                    <img src="images/arrow-right-dark.svg" alt="right arrrow" width="24px" />
+                    <img src="../images/arrow-right-dark.svg" alt="right arrrow" width="24px" />
                   </div>
               </a>
             </div>

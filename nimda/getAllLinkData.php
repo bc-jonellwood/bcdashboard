@@ -1,13 +1,13 @@
 <?php
 // Created: 2024/11/07 16:04:31
-// Last modified: 2024/12/23 09:09:22
-include "dbheader.php";
+// Last modified: 2024/12/23 10:57:29
+
+include(dirname(__FILE__) . '/../API/dbheader.php');
 
 $data = [];
 $sql = "SELECT id, sLinkId, sHref, sIcon, sText, sClass ,bIsActive
   FROM data_link
-  where bIsActive = 1
-  ORDER By sText ASC;";
+  ORDER By id ASC;";
 try {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
