@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/23 09:28:30
+// Last modified: 2024/12/30 15:35:42
 
 if (!isset($_SESSION)) {
     session_start();
@@ -38,7 +38,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <link rel="stylesheet" href="/styles/custom.css">
     <link rel="stylesheet" href="/styles/theme.css">
     <link rel="stylesheet" href="/styles/newEmpCard.css">
-    <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script>
+    <!-- <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script> -->
 
 
     <!-- <link rel="stylesheet" href="styles/teams.css"> -->
@@ -59,7 +59,7 @@ include_once(dirname(__FILE__) . '/../init.php');
             showLoader,
             hideLoader
         } from '/functions/loader.js';
-        test();
+        test(); 
         other();
     </script> -->
     <script src="/functions/utils.js"></script>
@@ -74,6 +74,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <!-- <script src="/functions/renderQuickLinks.js"></script> -->
     <!-- <script src="/functions/renderQuickLinks.js"></script> -->
     <script src="/components/setCardOrder.js"></script>
+    <script src="/components/toggleHiddenCards.js"></script>
     <!-- favicon -->
     <link rel="icon" href="/favicons/favicon.ico">
     <title>BC Dashboard</title>
@@ -157,6 +158,7 @@ include_once(dirname(__FILE__) . '/../init.php');
         function setClassAndModeOnLoad() {
             getModeFromStorage();
             renderCardList();
+            renderHideCardList();
         }
 
 
@@ -216,7 +218,7 @@ include_once(dirname(__FILE__) . '/../init.php');
         document.addEventListener('DOMContentLoaded', updateSidebarHoverButtonText);
     </script>
 </head>
-<snow-fall></snow-fall>
+<!-- <snow-fall></snow-fall> -->
 <div class="header">
     <div class="hamburger">
         <button popovertarget="sidenav-popover" popovertargetaction="show" class="not-btn menu menu-btn" onclick="showSidenaval()" type="button">
@@ -326,6 +328,12 @@ include_once(dirname(__FILE__) . '/../init.php');
         </div>
     </section>
     <section>
+        <div class="card-hide-btn-holder">
+            <label for="card-hide-btn" class="sidebar-hover-btn-label">Hide cards you do not want displayed.</label>
+            <button name="card-hide-btn" class="btn btn-secondary" popovertarget="card-hide-menu" popovertargetaction="show">Change</button>
+        </div>
+    </section>
+    <section>
         <div class="sidebar-hover-btn-holder">
             <label for="sidebar-hover-btn" class="sidebar-hover-btn-label">Show Sidebar on Hover?</label>
             <button name="sidebar-hover-btn" class="btn btn-secondary" onclick="toggleSidbarHover()">Allow Hover</button>
@@ -350,6 +358,25 @@ include_once(dirname(__FILE__) . '/../init.php');
         </section>
     </div>
 </div>
+<!-- Card hide popover -->
+<div class="card-hide-menu" name="card-hide-menu" id="card-hide-menu" popover="manual">
+    <div class="popover-header">
+        <h3>Card Visibility</h3>
+        <button type="button" class="btn-x" popovertarget="card-hide-menu" popovertargetaction="hide"
+            aria-label="Close">X
+        </button>
+
+    </div>
+    <div class="popover-body">
+        <section>
+            <div class="card-order">
+                <!-- <h4>Set Card Order</h4> -->
+                <div class='cardList' id='cardHideList'></div>
+            </div>
+        </section>
+    </div>
+</div>
+
 <div class="employee-lookup-popover" id="employeeLookupPopover" popover="manual" name="employeeLookupPopover">
     <div class="card-content dash-card">
         <div class="component-header">Employee Lookup</div>
@@ -528,6 +555,7 @@ include_once(dirname(__FILE__) . '/../init.php');
         font-size: medium;
     }
 
+    .card-hide-menu[popover],
     .card-order-menu[popover],
     .quick-links-popover[popover],
     .phone-lookup-popover[popover],
@@ -581,12 +609,18 @@ include_once(dirname(__FILE__) . '/../init.php');
         }
     }
 
+
     .card-order-menu[popover] {
         inline-size: 19vi;
         box-shadow: -4px -1px 7px 0px var(--accent);
     }
 
+    .card-hide-menu[popover] {
+        inline-size: 19vi;
+        box-shadow: -4px -1px 7px 0px var(--accent);
+        color: var(--fg) !important;
 
+    }
 
     .employee-lookup-popover .dash-card {
         max-height: fit-content !important;

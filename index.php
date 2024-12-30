@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/30 12:31:20
+// Last modified: 2024/12/30 14:24:50
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -14,8 +14,8 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include "./components/header.php";
-
+// include "./components/header.php";
+include(dirname(__FILE__) . '/components/header.php');
 function getCardsFromDatabase()
 {
     require_once 'data/appConfig.php';
@@ -38,7 +38,7 @@ function getCardsFromDatabase()
     $sql = 'SELECT dc.sCardFilePath 
   FROM app_user_component_order uco
   left join data_cards dc on dc.sCardId = uco.sComponentId
-  WHERE sUserId = :userID
+  WHERE sUserId = :userID and uco.bIsVisible = 1
   ORDER BY iDisplayorder';
 
     try {
@@ -63,8 +63,8 @@ function getCardsFromDatabase()
 
 
 ?>
-<script src="./functions/fetchCardData.js">
-</script>
+<script src="./functions/fetchCardData.js"></script>
+<script src="./functions/deleteMPReservation.js"></script>
 <script>
     // check if minimized cards are in local storage and apply the minimized class if so
     function minimizeOnLoad() {
