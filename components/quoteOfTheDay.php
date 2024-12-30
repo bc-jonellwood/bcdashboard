@@ -106,6 +106,14 @@ function getTestJson()
             "index" => 11,
             "text" => "The anteater once had a now extinct predator called the anteatereater."
         ],
+        [
+            "index" => 12,
+            "text" => "Although he was known for loving the great outdoors, Theodore Roosevelt was deathly afraid of squirrels."
+        ],
+        [
+            "index" => 13,
+            "text" => "The TSA is legally allowed to confiscate candy from your luggage and eat it in front of you."
+        ],
     ];
     return json_encode($testData);
 }

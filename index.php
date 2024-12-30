@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/17 14:01:56
+// Last modified: 2024/12/30 12:31:20
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -142,11 +142,14 @@ function getCardsFromDatabase()
                 <div class="cards-container">
                     <?php getCardsFromDatabase(); ?>
                 </div>
+                <!-- End of cards section -->
             </div>
         </div>
     </div>
-    <?php include "./components/itTeamStatusTicker.php" ?>
-    <?php include "./components/footer.php" ?>
+
+    <?php include(dirname(__FILE__) . '/components/itTeamStatusTicker.php'); ?>
+    <?php include(dirname(__FILE__) . '/components/footer.php'); ?>
+
 </body>
 
 </html>

@@ -140,3 +140,419 @@
 )
 
 [2024-12-13 19:52:06] Cookie username: jon.ellwood
+[2024-12-13 19:57:54] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-13 19:57:54] Cookie username: jon.ellwood
+[2024-12-13 19:57:54] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-13 19:57:54] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-13 19:57:54] Count: 8
+[2024-12-13 19:57:54] User logged in from cookie: jon.ellwood
+[2024-12-16 12:59:55] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-16 12:59:55] Cookie username: jon.ellwood
+[2024-12-16 12:59:55] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 12:59:55] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-16 12:59:55] Count: 8
+[2024-12-16 12:59:55] User logged in from cookie: jon.ellwood
+[2024-12-16 13:19:08] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-16 13:19:08] Cookie username: jerri.christmas
+[2024-12-16 13:19:08] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 13:19:08] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-16 13:19:08] Count: 7
+[2024-12-16 13:19:08] User logged in from cookie: jerri.christmas
+[2024-12-16 13:37:51] POST request received
+[2024-12-16 13:37:51] Login attempt for user: patrick.snow
+[2024-12-16 13:37:51] User ldap logged in: patrick.snow
+[2024-12-16 13:37:51] User data set in session: {"loggedin":true,"loggedinuser":"patrick.snow","username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 13:37:51] Login time updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2024-12-16 13:37:51] Count: 7
+[2024-12-16 13:37:51] User db is valid: patrick.snow
+[2024-12-16 13:37:51] Login time updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2024-12-16 13:37:51] Count: 7
+[2024-12-16 13:59:12] Cookie data: Array
+(
+    [username] => CHERYL.GREENWOOD
+)
+
+[2024-12-16 13:59:12] Cookie username: CHERYL.GREENWOOD
+[2024-12-16 13:59:12] User data set in session: {"loggedin":true,"username":"CHERYL.GREENWOOD","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 13:59:12] Login time updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2024-12-16 13:59:12] Count: 7
+[2024-12-16 13:59:12] User logged in from cookie: CHERYL.GREENWOOD
+[2024-12-16 15:14:41] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-16 15:14:41] Cookie username: jon.ellwood
+[2024-12-16 15:14:41] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 15:14:41] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-16 15:14:41] Count: 8
+[2024-12-16 15:14:41] User logged in from cookie: jon.ellwood
+[2024-12-16 16:28:53] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-16 16:28:53] Cookie username: jon.ellwood
+[2024-12-16 16:28:53] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 16:28:53] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-16 16:28:53] Count: 8
+[2024-12-16 16:28:53] User logged in from cookie: jon.ellwood
+[2024-12-16 18:44:37] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-16 18:44:37] Cookie username: jon.ellwood
+[2024-12-16 18:44:38] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-16 18:44:38] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-16 18:44:38] Count: 8
+[2024-12-16 18:44:38] User logged in from cookie: jon.ellwood
+[2024-12-17 12:44:58] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-17 12:44:58] Cookie username: jon.ellwood
+[2024-12-17 12:44:58] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-17 12:44:58] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-17 12:44:58] Count: 8
+[2024-12-17 12:44:58] User logged in from cookie: jon.ellwood
+[2024-12-17 13:30:08] POST request received
+[2024-12-17 13:30:08] Login attempt for user: jerri.christmas
+[2024-12-17 13:30:08] User ldap logged in: jerri.christmas
+[2024-12-17 13:30:08] User data set in session: {"loggedin":true,"loggedinuser":"jerri.christmas","username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-17 13:30:08] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-17 13:30:08] Count: 7
+[2024-12-17 13:30:08] User db is valid: jerri.christmas
+[2024-12-17 13:30:08] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-17 13:30:09] Count: 7
+[2024-12-17 19:14:03] POST request received
+[2024-12-17 19:14:03] Login attempt for user: jon.ellwood
+[2024-12-17 19:14:03] User ldap logged in: jon.ellwood
+[2024-12-17 19:14:03] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-17 19:14:03] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-17 19:14:03] Count: 8
+[2024-12-17 19:14:03] User db is valid: jon.ellwood
+[2024-12-17 19:14:04] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-17 19:14:04] Count: 8
+[2024-12-18 12:45:08] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-18 12:45:08] Cookie username: jon.ellwood
+[2024-12-18 12:45:08] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-18 12:45:08] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-18 12:45:08] Count: 8
+[2024-12-18 12:45:08] User logged in from cookie: jon.ellwood
+[2024-12-18 13:56:23] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-18 13:56:23] Cookie username: jon.ellwood
+[2024-12-18 13:56:23] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-18 13:56:23] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-18 13:56:23] Count: 8
+[2024-12-18 13:56:23] User logged in from cookie: jon.ellwood
+[2024-12-18 16:08:13] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-18 16:08:13] Cookie username: jon.ellwood
+[2024-12-18 16:08:13] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-18 16:08:13] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-18 16:08:13] Count: 8
+[2024-12-18 16:08:13] User logged in from cookie: jon.ellwood
+[2024-12-18 17:50:10] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-18 17:50:10] Cookie username: jerri.christmas
+[2024-12-18 17:50:10] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-18 17:50:10] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-18 17:50:11] Count: 7
+[2024-12-18 17:50:11] User logged in from cookie: jerri.christmas
+[2024-12-19 12:26:09] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-19 12:26:09] Cookie username: jerri.christmas
+[2024-12-19 12:26:09] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 12:26:09] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-19 12:26:09] Count: 7
+[2024-12-19 12:26:09] User logged in from cookie: jerri.christmas
+[2024-12-19 15:06:36] POST request received
+[2024-12-19 15:06:36] Login attempt for user: jon.ellwood
+[2024-12-19 15:06:36] User ldap logged in: jon.ellwood
+[2024-12-19 15:06:36] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 15:06:36] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 15:06:36] Count: 8
+[2024-12-19 15:06:36] User db is valid: jon.ellwood
+[2024-12-19 15:06:36] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 15:06:36] Count: 8
+[2024-12-19 15:30:13] POST request received
+[2024-12-19 15:30:13] Login attempt for user: jon.ellwood
+[2024-12-19 15:30:13] User ldap logged in: jon.ellwood
+[2024-12-19 15:30:13] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 15:30:13] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 15:30:13] Count: 8
+[2024-12-19 15:30:13] User db is valid: jon.ellwood
+[2024-12-19 15:30:13] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 15:30:13] Count: 8
+[2024-12-19 16:59:51] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-19 16:59:51] Cookie username: jon.ellwood
+[2024-12-19 16:59:51] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 16:59:51] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 16:59:52] Count: 8
+[2024-12-19 16:59:52] User logged in from cookie: jon.ellwood
+[2024-12-19 17:53:07] POST request received
+[2024-12-19 17:53:07] Login attempt for user: jon.ellwood
+[2024-12-19 17:53:07] User ldap logged in: jon.ellwood
+[2024-12-19 17:53:07] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 17:53:07] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 17:53:07] Count: 8
+[2024-12-19 17:53:07] User db is valid: jon.ellwood
+[2024-12-19 17:53:07] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 17:53:07] Count: 8
+[2024-12-19 19:59:12] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-19 19:59:12] Cookie username: jerri.christmas
+[2024-12-19 19:59:12] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 19:59:12] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-19 19:59:12] Count: 7
+[2024-12-19 19:59:12] User logged in from cookie: jerri.christmas
+[2024-12-19 20:35:29] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-19 20:35:29] Cookie username: jon.ellwood
+[2024-12-19 20:35:29] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 20:35:30] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-19 20:35:30] Count: 8
+[2024-12-19 20:35:30] User logged in from cookie: jon.ellwood
+[2024-12-19 20:41:06] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-19 20:41:06] Cookie username: jerri.christmas
+[2024-12-19 20:41:06] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-19 20:41:07] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-19 20:41:07] Count: 7
+[2024-12-19 20:41:07] User logged in from cookie: jerri.christmas
+[2024-12-20 14:03:03] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-20 14:03:03] Cookie username: jon.ellwood
+[2024-12-20 14:03:03] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-20 14:03:03] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-20 14:03:03] Count: 8
+[2024-12-20 14:03:03] User logged in from cookie: jon.ellwood
+[2024-12-20 19:00:48] POST request received
+[2024-12-20 19:00:48] Login attempt for user: patricia.white
+[2024-12-20 19:00:48] User ldap logged in: patricia.white
+[2024-12-20 19:00:48] User data set in session: {"loggedin":true,"loggedinuser":"patricia.white","username":"patricia.white","employeeID":"8006","userID":"E5BAFA9E-A464-4168-A6D3-854BD00DED0F","FirstName":"PATRICIA","LastName":"WHITE","PreferredName":"PATTY","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-20 19:00:48] Login time updated successfully for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F
+[2024-12-20 19:00:48] Count: 0
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 7e705475-5743-4477-a1c7-9165ecf62ddb
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: a315fae2-3716-49f8-a076-95ddef2313b4
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: a05ca0c4-c518-4692-a363-093a7a5f5af6
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 350e8ab0-a00c-4484-b42c-320670ec6d76
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 4c2fe295-7d3d-4a0f-97b6-964930142902
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 9f8a4rbt-c1bf-4867-8399-e0dd5000458d
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 988846bf-c1bf-4867-8399-e0dd5000458d
+[2024-12-20 19:00:48] Inserted component order for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F, Component ID: 8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2024-12-20 19:00:48] User db is valid: patricia.white
+[2024-12-20 19:00:48] Login time updated successfully for user ID: E5BAFA9E-A464-4168-A6D3-854BD00DED0F
+[2024-12-20 19:00:48] Count: 8
+[2024-12-20 19:36:54] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-20 19:36:54] Cookie username: jon.ellwood
+[2024-12-20 19:36:54] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-20 19:36:54] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-20 19:36:54] Count: 8
+[2024-12-20 19:36:54] User logged in from cookie: jon.ellwood
+[2024-12-20 20:17:44] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-20 20:17:44] Cookie username: jon.ellwood
+[2024-12-20 20:17:44] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-20 20:17:44] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-20 20:17:44] Count: 8
+[2024-12-20 20:17:44] User logged in from cookie: jon.ellwood
+[2024-12-23 13:56:21] POST request received
+[2024-12-23 13:56:21] Login attempt for user: jon.ellwood
+[2024-12-23 13:56:21] User ldap logged in: jon.ellwood
+[2024-12-23 13:56:21] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-23 13:56:21] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-23 13:56:21] Count: 8
+[2024-12-23 13:56:21] User db is valid: jon.ellwood
+[2024-12-23 13:56:21] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-23 13:56:21] Count: 8
+[2024-12-23 14:00:12] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2024-12-23 14:00:12] Cookie username: patrick.snow
+[2024-12-23 14:00:12] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-23 14:00:12] Login time updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2024-12-23 14:00:12] Count: 7
+[2024-12-23 14:00:12] User logged in from cookie: patrick.snow
+[2024-12-23 14:27:02] Cookie data: Array
+(
+    [username] => CHERYL.GREENWOOD
+)
+
+[2024-12-23 14:27:02] Cookie username: CHERYL.GREENWOOD
+[2024-12-23 14:27:02] User data set in session: {"loggedin":true,"username":"CHERYL.GREENWOOD","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-23 14:27:02] Login time updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2024-12-23 14:27:02] Count: 7
+[2024-12-23 14:27:02] User logged in from cookie: CHERYL.GREENWOOD
+[2024-12-23 15:01:58] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-23 15:01:58] Cookie username: jon.ellwood
+[2024-12-23 15:01:58] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-23 15:01:58] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-23 15:01:58] Count: 8
+[2024-12-23 15:01:58] User logged in from cookie: jon.ellwood
+[2024-12-23 15:05:15] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-23 15:05:15] Cookie username: jon.ellwood
+[2024-12-23 15:05:15] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-23 15:05:15] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-23 15:05:15] Count: 8
+[2024-12-23 15:05:15] User logged in from cookie: jon.ellwood
+[2024-12-27 14:02:34] Cookie data: Array
+(
+    [username] => CHERYL.GREENWOOD
+)
+
+[2024-12-27 14:02:34] Cookie username: CHERYL.GREENWOOD
+[2024-12-27 14:02:34] User data set in session: {"loggedin":true,"username":"CHERYL.GREENWOOD","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-27 14:02:34] Login time updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2024-12-27 14:02:34] Count: 7
+[2024-12-27 14:02:34] User logged in from cookie: CHERYL.GREENWOOD
+[2024-12-27 14:29:20] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-27 14:29:20] Cookie username: jon.ellwood
+[2024-12-27 14:29:20] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-27 14:29:20] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-27 14:29:20] Count: 8
+[2024-12-27 14:29:20] User logged in from cookie: jon.ellwood
+[2024-12-27 18:58:20] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-27 18:58:20] Cookie username: jon.ellwood
+[2024-12-27 18:58:20] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-27 18:58:20] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-27 18:58:20] Count: 8
+[2024-12-27 18:58:20] User logged in from cookie: jon.ellwood
+[2024-12-30 13:56:15] POST request received
+[2024-12-30 13:56:15] Login attempt for user: Jon.elwood
+[2024-12-30 13:56:15] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2024-12-30 13:56:15] Invalid credentials for user: Jon.elwood
+[2024-12-30 13:56:28] POST request received
+[2024-12-30 13:56:28] Login attempt for user: Jon.elwood
+[2024-12-30 13:56:28] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2024-12-30 13:56:28] Invalid credentials for user: Jon.elwood
+[2024-12-30 13:57:34] POST request received
+[2024-12-30 13:57:34] Login attempt for user: jon.ellwood
+[2024-12-30 13:57:34] User ldap logged in: jon.ellwood
+[2024-12-30 13:57:34] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 13:57:34] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 13:57:34] Count: 8
+[2024-12-30 13:57:34] User db is valid: jon.ellwood
+[2024-12-30 13:57:34] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 13:57:34] Count: 8
+[2024-12-30 14:02:22] Cookie data: Array
+(
+    [username] => CHERYL.GREENWOOD
+)
+
+[2024-12-30 14:02:22] Cookie username: CHERYL.GREENWOOD
+[2024-12-30 14:02:22] User data set in session: {"loggedin":true,"username":"CHERYL.GREENWOOD","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 14:02:22] Login time updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2024-12-30 14:02:22] Count: 7
+[2024-12-30 14:02:22] User logged in from cookie: CHERYL.GREENWOOD
+[2024-12-30 14:16:30] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-30 14:16:30] Cookie username: jon.ellwood
+[2024-12-30 14:16:30] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 14:16:30] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 14:16:30] Count: 8
+[2024-12-30 14:16:30] User logged in from cookie: jon.ellwood
+[2024-12-30 14:39:04] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2024-12-30 14:39:04] Cookie username: jerri.christmas
+[2024-12-30 14:39:04] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 14:39:04] Login time updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2024-12-30 14:39:04] Count: 7
+[2024-12-30 14:39:04] User logged in from cookie: jerri.christmas
+[2024-12-30 14:51:33] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2024-12-30 14:51:33] Cookie username: jon.ellwood
+[2024-12-30 14:51:33] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 14:51:33] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 14:51:33] Count: 8
+[2024-12-30 14:51:33] User logged in from cookie: jon.ellwood
+[2024-12-30 16:16:14] POST request received
+[2024-12-30 16:16:14] Login attempt for user: jon.ellwood
+[2024-12-30 16:16:15] User ldap logged in: jon.ellwood
+[2024-12-30 16:16:15] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2024-12-30 16:16:15] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 16:16:15] Count: 8
+[2024-12-30 16:16:15] User db is valid: jon.ellwood
+[2024-12-30 16:16:15] Login time updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2024-12-30 16:16:15] Count: 8

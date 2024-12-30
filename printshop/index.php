@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/27 13:55:41
-// Last modified: 2024/12/27 15:12:03
+// Last modified: 2024/12/30 09:33:49
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 ?>
@@ -62,8 +62,6 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                             <option value="Cypress Gardens">Cypress Gardens</option>
                             <option value="Delinquent Tax">Delinquent Tax</option>
                             <option value="DUI Prosecutor Grant">DUI Prosecutor Grant</option>
-                            <option value="DUI Prosecutor Grant">DUI Prosecutor Grant</option>
-                            <option value="DUI Prosecutor Grant">DUI Prosecutor Grant</option>
                             <option value="Economic Development">Economic Development</option>
                             <option value="Emergency Management">Emergency Management</option>
                             <option value="Emergency Medical Services">Emergency Medical Services</option>
@@ -80,26 +78,16 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                             <option value="Human Resources-Services">Human Resources-Services</option>
                             <option value="Information Technology">Information Technology</option>
                             <option value="JAG Grant - DOM Viol Invest">JAG Grant - DOM Viol Invest</option>
-                            <option value="JAG Grant - DOM Viol Invest">JAG Grant - DOM Viol Invest</option>
-                            <option value="JAG Grant - Elder Abuse Invest">JAG Grant - Elder Abuse Invest</option>
                             <option value="JAG Grant - Elder Abuse Invest">JAG Grant - Elder Abuse Invest</option>
                             <option value="Laboratory">Laboratory</option>
                             <option value="Legal">Legal</option>
                             <option value="Library Admin">Library Admin</option>
-                            <option value="Library Admin">Library Admin</option>
-                            <option value="Library Cane Bay">Library Cane Bay</option>
                             <option value="Library Cane Bay">Library Cane Bay</option>
                             <option value="Library Daniel Island">Library Daniel Island</option>
-                            <option value="Library Daniel Island">Library Daniel Island</option>
-                            <option value="Library Goose Creek">Library Goose Creek</option>
                             <option value="Library Goose Creek">Library Goose Creek</option>
                             <option value="Library Hanahan">Library Hanahan</option>
-                            <option value="Library Hanahan">Library Hanahan</option>
-                            <option value="Library Moncks Corner">Library Moncks Corner</option>
                             <option value="Library Moncks Corner">Library Moncks Corner</option>
                             <option value="Library Sangaree">Library Sangaree</option>
-                            <option value="Library Sangaree">Library Sangaree</option>
-                            <option value="Library St Stephen">Library St Stephen</option>
                             <option value="Library St Stephen">Library St Stephen</option>
                             <option value="Library State Aid Funds">Library State Aid Funds</option>
                             <option value="Magistrate Court">Magistrate Court</option>
@@ -108,7 +96,6 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                             <option value="Master In Equity">Master In Equity</option>
                             <option value="Mosquito Abatement">Mosquito Abatement</option>
                             <option value="One Cent Sales Tax">One Cent Sales Tax</option>
-                            <option value="ONE CENT SALES TAX">ONE CENT SALES TAX</option>
                             <option value="Other">Other</option>
                             <option value="Permitting">Permitting</option>
                             <option value="Planning & Zoning">Planning & Zoning</option>
@@ -133,8 +120,6 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                             <option value="Sheriff-Hwy DUI/EVN">Sheriff-Hwy DUI/EVN</option>
                             <option value="Sheriffs Office/DSS">Sheriffs Office/DSS</option>
                             <option value="SHF-COPS GRANT">SHF-COPS GRANT</option>
-                            <option value="SHF-DUI GRANT #2">SHF-DUI GRANT #2</option>
-                            <option value="SHF-DUI GRANT #2">SHF-DUI GRANT #2</option>
                             <option value="SHF-DUI GRANT #2">SHF-DUI GRANT #2</option>
                             <option value="Solicitor - JAG Grant">Solicitor - JAG Grant</option>
                             <option value="SOLICITOR - STATE">SOLICITOR - STATE</option>
@@ -161,8 +146,6 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                             <option value="Treatment Plant">Treatment Plant</option>
                             <option value="Veterans Affairs">Veterans Affairs</option>
                             <option value="VICTIM ADVOCATE GRANT">VICTIM ADVOCATE GRANT</option>
-                            <option value="VICTIM ADVOCATE GRANT">VICTIM ADVOCATE GRANT</option>
-                            <option value="VICTIM ADVOCATE GRANT">VICTIM ADVOCATE GRANT</option>
                             <option value="Voters Registration & Elections">Voters Registration & Elections</option>
                             <option value="Wastewater Collections">Wastewater Collections</option>
                             <option value="WASTEWATER COLLECTIONS">WASTEWATER COLLECTIONS</option>
@@ -177,88 +160,88 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                 <div class="mid-section">
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions1">
-                            <label class="form-check-label" for="paperTypeOptions1">
-                                20 lb
+                            <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions1" checked>
+                            <label class="form-check-label form-text" for="paperTypeOptions1">
+                                20 lb | Basic copy paper, single sided copies
+                                <!-- <p class="form-text">Basic copy paper, single sided copies</p> -->
                             </label>
-                            <p class="form-text">Basic copy paper, single sided copies</p>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions2">
-                            <label class="form-check-label" for="paperTypeOptions2">
-                                24 lb
+                            <label class="form-check-label form-text" for="paperTypeOptions2">
+                                24 lb | Letterhead
+                                <!-- <p class="form-text">Letterhead</p> -->
                             </label>
-                            <p class="form-text">Letterhead</p>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions3">
-                            <label class="form-check-label" for="paperTypeOptions3">
-                                28 lb
+                            <label class="form-check-label form-text" for="paperTypeOptions3">
+                                28 lb | Double sided copies, presentations, brochures
+                                <!-- <p class="form-text">Double sided copies, presentations, brochures</p> -->
                             </label>
-                            <p class="form-text">Double sided copies, presentations, brochures</p>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions4">
-                            <label class="form-check-label" for="paperTypeOptions4">
-                                Cardstock
+                            <label class="form-check-label form-text" for="paperTypeOptions4">
+                                Cardstock | Business Cards, Cut Materials, Greeting Cards, etc.
+                                <!-- <p class="form-text">Business Cards, Cut Materials, Greeting Cards, etc.</p> -->
                             </label>
-                            <p class="form-text">Business Cards, Cut Materials, Greeting Cards, etc.</p>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="paperTypeOptions" id="paperTypeOptions5">
-                            <label class="form-check-label" for="paperTypeOptions5">
-                                Other
+                            <label class="form-check-label form-text" for="paperTypeOptions5">
+                                Other | Photo, Certificate, etc.
+                                <!-- <p class="form-text">Photo, Certificate, etc.</p> -->
                             </label>
-                            <p class="form-text">Photo, Certificate, etc.</p>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="colorPaper" name="colorPaper">
-                            <label class="form-check-label" for="colorPaper">
-                                Color Paper
+                            <label class="form-check-label form-text" for="colorPaper">
+                                Color Paper | Yellow, Blue, etc.
+                                <!-- <p class="form-text">Yellow, Blue, etc.</p> -->
                             </label>
-                            <p class="form-text">Yellow, Blue, etc.</p>
                         </div>
                     </div>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="configOptions" id="configOptions1">
-                            <label class="form-check-label" for="configOptions1">
+                            <input class="form-check-input" type="radio" name="configOptions" id="configOptions1" checked>
+                            <label class="form-check-label form-text" for="configOptions1">
                                 1-sided
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="configOptions" id="configOptions2">
-                            <label class="form-check-label" for="configOptions2">
+                            <label class="form-check-label form-text" for="configOptions2">
                                 2-sided
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="foldedPaper" name="foldedPaper">
-                            <label class="form-check-label" for="foldedPaper">
+                            <label class="form-check-label form-text" for="foldedPaper">
                                 Folded
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="cutPaper" name="cutPaper">
-                            <label class="form-check-label" for="cutPaper">
+                            <label class="form-check-label form-text" for="cutPaper">
                                 Cut
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="multiPaper" name="multiPaper">
-                            <label class="form-check-label" for="multiPaper">
+                            <label class="form-check-label form-text" for="multiPaper">
                                 Multi images on page
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="threeHolePaper" name="threeHolePaper">
-                            <label class="form-check-label" for="threeHolePaper">
+                            <label class="form-check-label form-text" for="threeHolePaper">
                                 3-hole punch
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="stapledPaper" name="stapledPaper">
-                            <label class="form-check-label" for="stapledPaper">
+                            <label class="form-check-label form-text" for="stapledPaper">
                                 Stapled
                             </label>
                         </div>
@@ -272,19 +255,19 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                         <p><b>Regular Envelopes</b></p>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="" id="regEnvelope1" name="regEnvelope">
-                            <label class="form-check-label" for="regEnvelope1">
+                            <label class="form-check-label form-text" for="regEnvelope1">
                                 Box (500)
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="" id="regEnvelope2" name="regEnvelope">
-                            <label class="form-check-label" for="regEnvelope2">
+                            <label class="form-check-label form-text" for="regEnvelope2">
                                 Case (2,500)
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="" id="regEnvelope3" name="regEnvelope" selected>
-                            <label class="form-check-label" for="regEnvelope3">
+                            <input class="form-check-input" type="radio" value="" id="regEnvelope3" name="regEnvelope" checked>
+                            <label class="form-check-label form-text" for="regEnvelope3">
                                 N/A
                             </label>
                         </div>
@@ -293,19 +276,19 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                         <p><b>Window Envelopes</b></p>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="" id="winEnvelope1" name="winEnvelope">
-                            <label class="form-check-label" for="winEnvelope1">
+                            <label class="form-check-label form-text" for="winEnvelope1">
                                 Box (500)
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="" id="winEnvelope2" name="winEnvelope">
-                            <label class="form-check-label" for="winEnvelope2">
+                            <label class="form-check-label form-text" for="winEnvelope2">
                                 Case (2,500)
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="" id="winEnvelope3" name="winEnvelope" selected>
-                            <label class="form-check-label" for="winEnvelope3">
+                            <input class="form-check-input" type="radio" value="" id="winEnvelope3" name="winEnvelope" checked>
+                            <label class="form-check-label form-text" for="winEnvelope3">
                                 N/A
                             </label>
                         </div>
@@ -315,7 +298,7 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
             <fieldset>
                 <legend>Description / Details</legend>
                 <div class="form-group">
-                    <label class="form-label" for="additionalInfo">Please provide details of your Paper and Configuration options</label>
+                    <label class="form-label form-text" for="additionalInfo">Please provide details of your Paper and Configuration options</label>
                     <textarea class="form-control" aria-label="With textarea" name="additionalInfo" id="additionalInfo" rows="3"></textarea>
                 </div>
             </fieldset>
@@ -334,11 +317,11 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
                 <legend>When completed</legend>
                 <div class="bottom-section">
                     <div class="form-group">
-                        <label class="form-label" for="sendTo">Please send to:</label>
+                        <label class="form-label form-text" for="sendTo">Please send to:</label>
                         <input type="text" name="sendTo" id="sendTo">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="emailTo">Or email for pick up</label>
+                        <label class="form-label form-text" for="emailTo">Or email for pick up</label>
                         <input type="email" name="emailTo" id="emailTo">
                     </div>
                 </div>
@@ -379,4 +362,8 @@ include(dirname(__FILE__) . '/../components/sidenav.php');
     legend {
         border-bottom: 1px solid var(--accent);
     }
+
+    /* .form-check-input:checked label {
+        color: var(--accent);
+    } */
 </style>
