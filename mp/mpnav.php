@@ -1,6 +1,6 @@
 <div class='mpnav'>
-    <button class='btn btn-sm btn-info' popovertarget='mpadminmenu' popovertargetaction='show'>Admin</button>
-    </button>
+    <!-- <button class='btn btn-sm btn-info' popovertarget='mpadminmenu' popovertargetaction='show'>Admin</button>
+    </button> -->
     <button class='btn btn-sm btn-info' popovertarget='mp-popover' popovertargetaction='show'>Admin</button>
     </button>
     <!-- <div id='mpadminmenu' popover class='mpadminmenu-popover'>
@@ -55,6 +55,14 @@
                             <path d="M20.96 16.45C20.97 16.3 21 16.15 21 16V16.5L20.96 16.45M11 16C11 16.71 11.15 17.39 11.42 18H6V19C6 19.55 5.55 20 5 20H4C3.45 20 3 19.55 3 19V11L5.08 5C5.28 4.42 5.84 4 6.5 4H17.5C18.16 4 18.72 4.42 18.92 5L21 11V16C21 13.24 18.76 11 16 11S11 13.24 11 16M8 13.5C8 12.67 7.33 12 6.5 12S5 12.67 5 13.5 5.67 15 6.5 15 8 14.33 8 13.5M19 10L17.5 5.5H6.5L5 10H19M22.87 21.19L18.76 17.08C19.17 16.04 18.94 14.82 18.08 13.97C17.18 13.06 15.83 12.88 14.74 13.38L16.68 15.32L15.33 16.68L13.34 14.73C12.8 15.82 13.05 17.17 13.93 18.08C14.79 18.94 16 19.16 17.05 18.76L21.16 22.86C21.34 23.05 21.61 23.05 21.79 22.86L22.83 21.83C23.05 21.65 23.05 21.33 22.87 21.19Z" />
                         </svg>
                         Manage Vehicles
+                    </a>
+                </li>
+                <li>
+                    <a href="/mp/mpdrivers.php" class="nav-link d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+                            <path d="M18,1.83C17.5,1.83 17,2 16.59,2.41C13.72,5.28 8,11 8,11L9.5,12.5L6,16H4L2,20L4,22L8,20V18L11.5,14.5L13,16C13,16 18.72,10.28 21.59,7.41C22.21,6.5 22.37,5.37 21.59,4.59L19.41,2.41C19,2 18.5,1.83 18,1.83M18,4L20,6L13,13L11,11L18,4Z" />
+                        </svg>
+                        Manage Drivers
                     </a>
                 </li>
                 <li>

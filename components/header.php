@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/30 15:35:42
+// Last modified: 2024/12/31 08:15:58
 
 if (!isset($_SESSION)) {
     session_start();
@@ -330,7 +330,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <section>
         <div class="card-hide-btn-holder">
             <label for="card-hide-btn" class="sidebar-hover-btn-label">Hide cards you do not want displayed.</label>
-            <button name="card-hide-btn" class="btn btn-secondary" popovertarget="card-hide-menu" popovertargetaction="show">Change</button>
+            <button name="card-hide-btn" class="btn btn-secondary" popovertarget="card-hide-menu" popovertargetaction="show" disabled>Change</button>
         </div>
     </section>
     <section>
