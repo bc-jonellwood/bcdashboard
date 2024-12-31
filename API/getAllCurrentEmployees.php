@@ -1,6 +1,6 @@
 <?php
 // Created: 2020/10/09 11:33:11
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2024/12/31 13:43:56
 
 include_once "../data/appConfig.php";
 
@@ -19,7 +19,7 @@ try {
     // echo "Connection failed: " . $e->getMessage();
 }
 $data = [];
-$sql = "SELECT sFirstName, sLastName, iEmployeeNumber from data_employees where dtSeparationDate is null order by dtStartDate DESC";
+$sql = "SELECT sFirstName, sLastName, iEmployeeNumber from app_users where dtSeparationDate is null order by dtStartDate DESC";
 
 try {
     $stmt = $conn->prepare($sql);
