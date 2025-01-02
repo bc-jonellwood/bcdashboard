@@ -3,11 +3,9 @@ BEGIN TRY
     BEGIN TRANSACTION;
     UPDATE app_users
     SET 
-        sUserName = LEFT(sEmail, CHARINDEX('@', sEmail) - 1)
+        sFristName = LEFT(sUserName, CHARINDEX('.', sUserName) -1) 
     WHERE 
-        sEmail IS NOT NULL 
-        AND sEmail <> ''
-        AND sUserName IS NULL;
+         sFirstName IS NULL;
     COMMIT TRANSACTION;
 
 END TRY

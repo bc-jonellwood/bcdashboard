@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/11/04 15:59:29
-// Last Modified: 2024/12/20 16:02:14
+// Last Modified: 2025/01/02 10:41:58
 
 class newUser
 {
@@ -37,15 +37,25 @@ class newUser
 
 $start_time = microtime(true);
 $a = 1;
-// $output = shell_exec('C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File C:\xampp\htdocs\bcdashboard\data\ad_sync_scripts\echo.ps1');
+$output = shell_exec('C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File C:\xampp\htdocs\bcdashboard\data\ad_sync_scripts\echo.ps1');
+if ($output) {
+    // $users = json_decode($output, true);
+    // print_r($output);
+} else {
+    echo "No output from the PoweShell Script";
+}
 // assign the contents of file emps.txt to $output
-$output = file_get_contents('http://myberkeley.berkeleycountysc.gov/data/ad_sync_scripts/emps.txt');
+// $output = file_get_contents('http://myberkeley.berkeleycountysc.gov/data/ad_sync_scripts/emps.txt');
 // var_dump($output);
+echo "<pre>";
+print_r($output);
+echo "</pre>";
 $employeeArray = array();
 foreach (preg_split("/((\r?\n)|(\r\n?))/", $output, -1) as $line) {
     $line = trim($line, '"');
     $oparray = explode('","', $line);
     // print_r($line);
+    // print_r($oparray);
     if (is_numeric($oparray[0]) && count($oparray) == 5) {
         // echo "<pre>";
         // echo "<p>oparray yes</p>";
@@ -64,10 +74,10 @@ foreach (preg_split("/((\r?\n)|(\r\n?))/", $output, -1) as $line) {
 echo 'AD Complete
 
 <hr />';
-// echo "<pre>";
-// echo "<p>There should be data in here!</p>";
-// print_r($employeeArray);
-// echo "</pre>";
+echo "<pre>";
+echo "<p>There should be data in here!</p>";
+print_r($employeeArray);
+echo "</pre>";
 var_dump(count($employeeArray));
 if (count($employeeArray) == 0) {
     echo 'AD Count ' . count($employeeArray) . '

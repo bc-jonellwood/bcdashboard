@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/30 14:24:50
+// Last modified: 2025/01/02 09:04:12
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -346,7 +346,7 @@ function getCardsFromDatabase()
         padding-top: 15px;
         white-space: nowrap;
         word-break: keep-all;
-
+        font-size: large !important;
     }
 
 

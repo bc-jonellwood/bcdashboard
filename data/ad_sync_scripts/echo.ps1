@@ -3,20 +3,21 @@ Select-Object -Property EmployeeID, EmailAddress, OfficePhone, mobile, @{
     Name       = 'AccountStatus'
     Expression = {
         if ($_.userAccountControl -band 2) {
-            'Disabled'
+            0
         }
         else {
-            'Enabled'
+            1
         }
     }
 }
+$users | ConvertTo-Json -Depth 3
 
-if ($users) {
-    $users | Export-Csv -Path "./emps.txt" -NoTypeInformation
-}
-else {
-    Write-Host "No users found."
-}
+# if ($users) {
+#     return $users
+# }
+# else {
+#     Write-Host "No users found."
+# }
 
 # Get-ADUser -Filter * -SearchBase "DC=berkeleycounty,DC=int" -Properties @("EmployeeID", "OfficePhone", "EmailAddress", "DistinguishedName") | 
 # Select-Object -Property EmployeeID, EmailAddress, OfficePhone, @{

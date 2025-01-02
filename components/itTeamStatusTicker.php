@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/16 13:02:27
-// Last modified: 2024/12/13 12:33:19
+// Last modified: 2025/01/02 10:14:01
 
 include_once "./data/appConfig.php";
 
@@ -45,7 +45,7 @@ FROM
   LEFT JOIN LatestStatus lst 
     ON au.sEmployeeNumber = lst.sEmployeeId
 WHERE 
-  au.bIsActive = 1
+  au.sADStatus = 1
   AND (au.iDepartmentNumber = '41515' OR au.iDepartmentNumber = '41514') 
 ORDER BY 
   au.sFirstName ASC";
