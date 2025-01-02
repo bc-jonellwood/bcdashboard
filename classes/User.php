@@ -16,6 +16,8 @@ class User
         $database = $this->db->database;
         $uid = $this->db->uid;
         $pwd = $this->db->pwd;
+
+
         try {
             $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

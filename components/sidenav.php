@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/27 15:08:29
+// Last modified: 2025/01/02 13:27:53
 ?>
 
 <div class="sidenav-popover sidenav" popover="manual" name="sidenav-popver" id="sidenav-popover">
@@ -162,15 +162,15 @@
                     Print Shop
                 </a>
             </li>
-            <!-- <li>
-                <a href="/usermanagement.php" class="nav-link d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
+            <li>
+                <a href="/ua/index.php" class="nav-link d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M13.2 10L11 13l-1-1.4L9 13l-2.2-3C3 11 3 13 3 16.9c0 0 3 1.1 6.4 1.1h1.2c3.4-.1 6.4-1.1 6.4-1.1c0-3.9 0-5.9-3.8-6.9m-3.2.7L8.4 10l1.6 1.6l1.6-1.6zm0-8.6c-1.9 0-3 1.8-2.7 3.8S8.6 9.3 10 9.3s2.4-1.4 2.7-3.4c.3-2.1-.8-3.8-2.7-3.8" />
                     </svg>
                     User Management
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/usermanagementemaillayout.php" class="nav-link d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bi me-2 recolor" width="24" height="24">
                         <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z" />
