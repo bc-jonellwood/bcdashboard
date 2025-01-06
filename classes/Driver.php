@@ -6,7 +6,7 @@ class Driver
 
     public function __construct()
     {
-        include(dirname(__FILE__) . '/../data/appConfig.php');
+        include_once(dirname(__FILE__) . '/../data/appConfig.php');
         $this->db = new appConfig();
     }
 
@@ -20,10 +20,10 @@ class Driver
         try {
             $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT dvp.id, dvp.sBcgiId, dvp.sEmployeeNumber, dvp.sUserId, dvp.dtDlExpires, dvp.dtFleetTestAttempt, dvp.iFleetTestAttemptCount, dvp.         dtFleetTestPassed, dvp.dtFuelCardTestPassed, dvp.dtAcknowledge, dvp.dlFront, dvp.dlBack, dvp.sNotes, au.sFirstName, au.sLastName
+            $sql = "SELECT dvp.id, dvp.sBcgiId, dvp.sEmployeeNumber, dvp.sUserId, dvp.dtDlExpires, dvp.dtFleetTestAttempt, dvp.iFleetTestAttemptCount, dvp.dtFleetTestPassed, dvp.dtFuelCardTestPassed, dvp.dtAcknowledge, dvp.dlFront, dvp.dlBack, dvp.sNotes, au.sFirstName, au.sLastName
                     FROM data_mp_vehicle_drivers dvp
                     JOIN app_users au on dvp.sUserId = au.id
-                    where au.sADStatus = 'Enabled'
+                    where au.sADStatus = '1'
                     order by au.sLastName, au.sFirstName";
             $stmt = $conn->prepare($sql);
             $stmt->execute();

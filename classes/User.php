@@ -6,7 +6,7 @@ class User
 
     public function __construct()
     {
-        include(dirname(__FILE__) . '/../data/appConfig.php');
+        include_once(dirname(__FILE__) . '/../data/appConfig.php');
         $this->db = new appConfig();
     }
 
@@ -163,6 +163,70 @@ class User
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();
+        }
+    }
+
+    public function updateUserDepartments($id, $departments)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+
+        try {
+            $conn = new PDO(
+                "sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true",
+                $uid,
+                $pwd
+            );
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "
+            IF NOT EXISTS (
+                SELECT 1 FROM data_emp_departments 
+                WHERE sUserId = :id AND iDepartmentId = :departmentId
+            )
+            BEGIN
+                INSERT INTO data_emp_departments (sUserId, iDepartmentId)
+                VALUES (:id, :departmentId)
+            END
+        ";
+
+            $stmt = $conn->prepare($sql);
+
+            // Loop over de IDs
+            foreach ($departments as $departmentId) {
+                $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+                $stmt->bindParam(':departmentId', $departmentId, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+
+            return true;
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function getUserAdditionalDepartments($id)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT ed.iDepartmentNumber, dd.sDepartmentName 
+                from data_emp_departments ed
+                LEFT JOIN data_departments dd on dd.iDepartmentNumber = ed.iDepartmentNumber
+                where ed.sUserId = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $userDepartments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $userDepartments;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
         }
     }
 }
