@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/07 12:30:17
-// Last modified: 2025/01/07 12:54:27
+// Last modified: 2025/01/07 12:57:34
 
 class CustomSessionHandler implements SessionHandlerInterface
 {
@@ -56,26 +56,26 @@ class CustomSessionHandler implements SessionHandlerInterface
     }
 
     // Write
-    // public function write($sessionId, $data): bool
-    // {
-    //     $serverName = $this->db->serverName;
-    //     $database = $this->db->database;
-    //     $uid = $this->db->uid;
-    //     $pwd = $this->db->pwd;
-    //     try {
-    //         $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
-    //         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //         $sql = "REPLACE INTO data_sessions (sSessionId, sUserId, dtLastActive) VALUES (:id, :userId, :time)";
-    //         $stmt = $conn->prepare($sql);
-    //         $stmt->bindParam(":id", $sessionId);
-    //         $stmt->bindParam(":userId", $userId);
-    //         $stmt->bindParam(":time", time());
-    //         $stmt->execute();
-    //         return true;
-    //     } catch (PDOException $e) {
-    //         return false;
-    //     }
-    // }
+    public function write($sessionId, $data): bool
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "REPLACE INTO data_sessions (sSessionId, sUserId, dtLastActive) VALUES (:id, :userId, :time)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":id", $sessionId);
+            $stmt->bindParam(":userId", $userId);
+            $stmt->bindParam(":time", time());
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
     public function writeData($sessionId, $userId): bool
     {
         $serverName = $this->db->serverName;

@@ -258,6 +258,15 @@ input:disabled {
   font-size: large;
   /* gap: 20px; */
 }
+.sidenav-select-box {
+  display: grid !important;
+  width: 100%;
+  overflow: hidden;
+  border: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: large;
+}
 .dash-select-box {
   display: grid !important;
   width: 100%;
@@ -267,6 +276,16 @@ input:disabled {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   font-size: large;
 }
+/* .sidenav-select-box{
+
+} */
+.sidenav-select-box label {
+  margin-right: 10px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 2px;
+}
 .select-box label {
   margin-right: 10px;
   border-radius: 5px;
@@ -274,6 +293,7 @@ input:disabled {
   padding-right: 5px;
   margin-top: 2px;
 }
+
 .dash-select-box label {
   margin-right: 10px;
   border-radius: 5px;
@@ -287,6 +307,10 @@ input:disabled {
   color: var(--bg);
 }
 .dash-select-box label:has(input[type="checkbox"]:checked) {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+.sidenav-select-box label:has(input[type="checkbox"]:checked) {
   background-color: var(--accent);
   color: var(--bg);
 }

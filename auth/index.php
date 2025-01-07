@@ -1,12 +1,15 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2025/01/07 11:07:52
+// Last modified: 2025/01/07 14:47:34
 session_start();
 require_once 'UserAuth.php';
+// require_once(dirname(__FILE__) . '../classes/Session.php');
 // init the UserAuth class  
 $auth = new UserAuth();
+// $session = new CustomSessionHandler();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    // $CustomSessionHandler->writeData($session_id, $_SESSION['userID']);
     header("Location: ../index.php");
     exit;
 } elseif (isset($_COOKIE['rememberme'])) {
@@ -15,6 +18,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     logError("Cookie username: " . $cookie_data['username']);
     $userData = $auth->checkUser($cookie_data['username']);
     if ($userData) {
+        // $CustomSessionHandler->writeData($session_id, $_SESSION['userID']);
         // $_SESSION['loggedin'] = true;
         // $_SESSION['loggedinuser'] = $cookie_data['username'];
         logError("User logged in from cookie: " . $cookie_data['username']);
@@ -65,7 +69,7 @@ function handleLogin()
             if ($userData) {
                 logError("User db is valid: $username");
                 if ($auth->logLogin()) {
-                    if ($auth->checkEntryCount() && $auth->checkCardAccessCount()) {
+                    if ($auth->checkEntryCount() && $auth->checkCardAccessCount() && $auth->checkSidenavItemCount()) {
                         header("Location: ../index.php");
                         exit;
                     } else {

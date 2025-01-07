@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/07 12:07:28
+// Last modified: 2025/01/07 13:17:17
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -131,9 +131,9 @@ function getCardsFromDatabase()
 <script>
     function fakeLoader() {
         showLoader();
-        setTimeout(hideLoader, 200);
+        setTimeout(hideLoader, 3000);
     }
-    // fakeLoader()
+    fakeLoader()
     fetchCardData();
 </script>
 <script>

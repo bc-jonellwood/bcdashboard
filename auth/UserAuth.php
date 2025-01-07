@@ -201,4 +201,46 @@ class UserAuth
             return true;
         }
     }
+
+    public function checkSidenavItemCount()
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            logError("Error in checkSidenavItemCount function Connection: " . $e->getMessage());
+        }
+        $UserId = $_SESSION['userID'];
+        $sql = "SELECT count(*) FROM bcg_intranet.dbo.app_sidenav_users WHERE sUserId = :UserId";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        logError("SidenavItemCount: $count");
+        // return $count;
+        if ($count == 0) {
+            $sql = "SELECT sItemId from app_sidenav_items where bForAll = 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($items as $item) {
+                $sql = "INSERT INTO app_sidenav_users (sUserId, sItemId) VALUES (:UserId, :ItemId)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+                $stmt->bindParam(':ItemId', $item['sItemId'], PDO::PARAM_STR);
+                if ($stmt->execute()) {
+                    logError("Inserted Sidenav Access Record for User ID: $UserId, Card ID:" . $item['sItemId']);
+                } else {
+                    logError("Failed to insert Sidenav Access Record for user ID: $UserId, Card ID:" . $item['sItemId']);
+                }
+            }
+            return true;
+        } else {
+            return true;
+        }
+    }
 }
