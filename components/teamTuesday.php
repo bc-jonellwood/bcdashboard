@@ -1,8 +1,9 @@
 <?php
 // Created: 2024/12/06 12:10:10
-// Last modified: 2024/12/31 12:13:26
+// Last modified: 2025/01/07 10:18:31
 
-require_once './data/appConfig.php';
+// require_once './data/appConfig.php';
+include_once(dirname(__FILE__) . '/../data/appConfig.php');
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
 $database = $dbconf->database;

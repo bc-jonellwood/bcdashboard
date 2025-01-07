@@ -1,11 +1,12 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/06 15:40:11
+// Last modified: 2025/01/07 11:52:25
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../classes/User.php');
 include(dirname(__FILE__) . '/../classes/Department.php');
+include(dirname(__FILE__) . '/../classes/DashboardItem.php');
 
 $user = new User();
 if (isset($_GET['id'])) {
@@ -13,10 +14,12 @@ if (isset($_GET['id'])) {
     // die();
     $userData = $user->getUser($_GET['id']);
     $userDeps = $user->getUserAdditionalDepartments($_GET['id']);
+    $userCards = $user->getUserDashboardItems($_GET['id']);
     // print_r($userDeps);
 }
 
 echo '<div class="main">';
+echo '<p class="user-name-display">' . ($userData['sPreferredName'] ? strtolower($userData['sPreferredName']) : strtolower($userData['sFirstName'])) . ' ' . strtolower($userData['sLastName']) . '</p>';
 echo '<div class="content">';
 echo '<div class="user-content" id="user-content">';
 echo '<div class="user-form-data-only">';
@@ -95,11 +98,10 @@ echo '<div class="form-group">';
 echo '<label for="sSecondaryPhoneNumber">Secondary Phone Number <img src="/images/ad.png" alt="ad" class="edit-icon"/></label>';
 echo '<p>' . ($userData['sSecondaryPhoneNumber'] ? $userData['sSecondaryPhoneNumber'] : 'None') . '</p>';
 echo '</div>';
-
-
+echo '</div>';
 
 echo '<div class="legend">';
-echo '<h3>Legend</h3>';
+// echo '<h3>Legend</h3>';
 echo '<p class="legend-text"><img src="/images/ad.png" alt="ad" /> edit in Active Directory</p>';
 echo '<p class="legend-text"><img src="/images/database.png" alt="ad" /> edit in Finance Enterprise</p>';
 echo '<p class="legend-text"><img src="/images/app.png" alt="app" /> generated in myBerkeley App</p>';
@@ -171,7 +173,7 @@ if ($userData['iDriverId']) {
     // echo '<p><a href="/mp/mpdrivers.php" class="btn btn-primary btn-sm">Edit in Motor Pool App</a>' . '</p>';
     // echo '</div>';
 } else {
-    echo '<button class="btn btn-primary btn-sm" type="button">Create Driver</button>';
+    echo '<button class="btn btn-primary btn-sm" type="button" onclick="createDriver(' . $userData['id'] . ')">Create Driver</button>';
 }
 echo '</p>';
 
@@ -184,30 +186,52 @@ echo '<p><b>Additional Access Departments:</b><ul>';
 foreach ($userDeps as $dep) {
     echo '<li>' . $dep['sDepartmentName'] . '(' . $dep['iDepartmentNumber'] . ') </li>';
 }
-'</ul>';
+echo '</ul>';
 
 $department = new Department();
 $departments = $department->getDepartments();
-// include_once(dirname(__FILE__) . '/../components/departmentMultiSelect.php');
 echo '<div class="form-group">';
 echo '<details>';
 echo '<summary>';
-echo '<label for="departments">Departments <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>Use Ctrl + Click to select multiple</p>';
+echo '<p><b>Add Departments</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</p>';
 echo '</summary>';
-echo '<select class="form-control" id="departments" name="departments[]" multiple>';
+echo '<div class="select-box" id="departments">';
 foreach ($departments as $department) {
-    echo '<option value="' . $department['iDepartmentNumber'] . '">' . $department['sDepartmentName'] . '</option>';
+    $selected = '';
+    foreach ($userDeps as $dep) {
+        if ($department['iDepartmentNumber'] == $dep['iDepartmentNumber']) {
+            $selected = 'checked';
+            break;
+        }
+    }
+    echo '<label for="' . $department['iDepartmentNumber'] . '">' . $department['sDepartmentName'] . '<input type="checkbox" id="' . $department['iDepartmentNumber'] . '" value="' . $department['iDepartmentNumber'] . '" name="departments[]" ' . $selected . '/></label>';
 }
-echo '</select>';
+echo "</div>";
 echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateDepartments()">Update Departments</button>';
 echo '</details>';
 echo '</div>';
-echo "</div>";
+echo '</div>';
 
+$dashboardItems = new DashboardItem();
+$dashboardItems = $dashboardItems->getDashboardItems();
+echo '<div class="divider"></div>';
+echo '<details><summary>';
+echo '<p><b>Dashboard Items Access</b> - - Use Ctrl + Click to select multiple. Unselect to remove access.</p></summary>';
+echo '<div class="dash-select-box" id="dashItems">';
+foreach ($dashboardItems as $dashboardItem) {
+    $selected = '';
+    foreach ($userCards as $card) {
+        if ($dashboardItem['sCardId'] == $card['sCardId']) {
+            $selected = 'checked';
+            break;
+        }
+    }
 
-echo "</div>";
-echo "</div>";
+    echo '<label for="' . $dashboardItem['sCardId'] . '">' . $dashboardItem['sCardName'] . '<input type="checkbox" id="' . $dashboardItem['sCardId'] . '" value="' . $dashboardItem['sCardId'] . '" name="cardItems[]" ' . $selected . '/></label>';
+}
+echo '</div>';
+echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateCards()">Update Cards</button>';
+echo '</div>';
 
 
 echo '<div class="user-form">';
@@ -228,13 +252,14 @@ echo '</div>';
     }
 
     function getSelectedDepartments(departmentSelect) {
+        // console.log(departmentSelect);
         const selectedValues = [];
-
-        for (const option of departmentSelect.options) {
-            if (option.selected) {
-                selectedValues.push(option.value);
+        const checkboxes = document.querySelectorAll('#departments input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedValues.push(checkbox.value)
             }
-        }
+        })
         return selectedValues;
     }
 
@@ -244,8 +269,31 @@ echo '</div>';
         var departmentSelect = document.getElementById('departments');
         var departments = getSelectedDepartments(departmentSelect);
         fetch("/API/updateUserDepartments.php?userId=" + userId + "&departments=" + departments)
-            .then(console.log('userId', userId))
-            .then(console.log('departments', departments))
+            .then(window.location.reload())
+
+    }
+
+    function getSelectedCards(cardSelect) {
+        const selectedValues = [];
+        const checkboxes = document.querySelectorAll('#dashItems input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedValues.push(checkbox.value)
+            }
+        })
+        return selectedValues;
+    }
+
+    function updateCards() {
+        var userId = document.getElementById('userId').value;
+        var cardSelect = document.getElementById('dashItems')
+        var cards = getSelectedCards(cardSelect);
+        fetch("/API/updateUserCards.php?userId=" + userId + "&cards=" + cards)
+            .then(window.location.reload())
+    }
+
+    function createDriver(userId) {
+        alert('Creating Driver for User ID ' + userId);
     }
 </script>
 

@@ -159,4 +159,46 @@ class UserAuth
         }
         // return false;
     }
+
+    public function checkCardAccessCount()
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            logError("Error in checkCardAccessCount function Connection: " . $e->getMessage());
+        }
+        $UserId = $_SESSION['userID'];
+        $sql = "SELECT count(*) FROM bcg_intranet.dbo.data_cards_users WHERE sUserId = :UserId";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        logError("CardAccessCount: $count");
+
+        if ($count == 0) {
+            $sql = "SELECT sCardId from data_cards where bForAll = 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $cards = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($cards as $card) {
+                $sql = "INSERT INTO data_cards_users (sUserId, sCardId) VALUES (:UserId, :CardId)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+                $stmt->bindParam(':CardId', $card['sCardId'], PDO::PARAM_STR);
+                if ($stmt->execute()) {
+                    logError("Inserted card access record for User ID: $UserId, Card ID:" . $card['sCardId']);
+                } else {
+                    logError("Failed to insert Card Access Record for user ID: $UserId, Card ID:" . $card['sCardId']);
+                }
+            }
+            return true;
+        } else {
+            return true;
+        }
+    }
 }

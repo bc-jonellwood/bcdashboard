@@ -229,4 +229,24 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function getUserDashboardItems($id)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT * FROM data_cards_users WHERE sUserId = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $dashboardItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $dashboardItems;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
 }

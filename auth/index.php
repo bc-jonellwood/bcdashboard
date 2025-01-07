@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2024/12/13 14:57:40
+// Last modified: 2025/01/07 11:07:52
 session_start();
 require_once 'UserAuth.php';
 // init the UserAuth class  
@@ -65,7 +65,7 @@ function handleLogin()
             if ($userData) {
                 logError("User db is valid: $username");
                 if ($auth->logLogin()) {
-                    if ($auth->checkEntryCount()) {
+                    if ($auth->checkEntryCount() && $auth->checkCardAccessCount()) {
                         header("Location: ../index.php");
                         exit;
                     } else {

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/02 09:02:08
+// Last modified: 2025/01/07 10:16:30
 
 include_once "./data/appConfig.php";
 
@@ -153,7 +153,7 @@ try {
                         <td>' .
                 (isset($employee['dtStartDate']) ? parseDateForMonthAndDayOnly($employee['dtStartDate']) : "Poop") . '</td>
                         <td>' .
-                (isset($employee['yearsInService']) ? $employee['yearsInService'] : "Oops") . ' years</td>
+                (isset($employee['yearsInService']) ? $employee['yearsInService'] : "Oops") . '</td>
                     </tr>';
         }
     }

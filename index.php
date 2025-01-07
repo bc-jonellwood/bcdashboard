@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/02 09:04:12
+// Last modified: 2025/01/07 10:27:12
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -147,7 +147,7 @@ function getCardsFromDatabase()
         </div>
     </div>
 
-    <?php include(dirname(__FILE__) . '/components/itTeamStatusTicker.php'); ?>
+    <!-- </?php include(dirname(__FILE__) . '/components/itTeamStatusTicker.php'); ?> -->
     <?php include(dirname(__FILE__) . '/components/footer.php'); ?>
 
 </body>
