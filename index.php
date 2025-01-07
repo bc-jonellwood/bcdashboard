@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/07 10:27:12
+// Last modified: 2025/01/07 12:07:28
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -35,11 +35,22 @@ function getCardsFromDatabase()
 
     $userID = $_SESSION["userID"];
 
-    $sql = 'SELECT dc.sCardFilePath 
-  FROM app_user_component_order uco
-  left join data_cards dc on dc.sCardId = uco.sComponentId
-  WHERE sUserId = :userID and uco.bIsVisible = 1
-  ORDER BY iDisplayorder';
+    //     $sql = 'SELECT dc.sCardFilePath 
+    //   FROM app_user_component_order uco
+    //   left join data_cards dc on dc.sCardId = uco.sComponentId
+    //   WHERE sUserId = :userID and uco.bIsVisible = 1
+    //   ORDER BY iDisplayorder';
+    // changing the query to check for allowed access via data_cards_users table.
+    // NOTE: if nothing is set there are currently 5 cards concidered "for all" that everyone gets by default upon first log in.
+    $sql = 'SELECT dc.sCardFilePath
+    FROM data_cards dc
+    JOIN data_cards_users dcu
+        ON dc.sCardId = dcu.sCardId
+    LEFT JOIN app_user_component_order aco
+        ON dcu.sUserId = aco.sUserId AND dcu.sCardId = aco.sComponentId
+    WHERE dcu.sUserId = :userID
+    AND dc.bIsVisible = 1
+    ORDER BY aco.iDisplayOrder ASC';
 
     try {
         $stmt = $conn->prepare($sql);

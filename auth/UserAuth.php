@@ -102,13 +102,13 @@ class UserAuth
         }
         $UserId = $_SESSION['userID'];
         $loginTime = date('Y-m-d H:i:s');
-        $sql = "UPDATE app_users SET dtLastLogin = '$loginTime' WHERE id = '$UserId'";
+        $sql = "UPDATE app_users SET dtLastLogin = '$loginTime', dtLastActivity = '$loginTime' WHERE id = '$UserId'";
         $stmt = $conn->prepare($sql);
         if ($stmt->execute()) {
-            logError("Login time updated successfully for user ID: $UserId");
+            logError("Login time and last activity updated successfully for user ID: $UserId");
             return true;
         } else {
-            logError("Failed to update login time for user ID: $UserId");
+            logError("Failed to update login time and last activity for user ID: $UserId");
             return false;
         }
     }
