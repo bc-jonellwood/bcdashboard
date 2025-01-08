@@ -922,3 +922,72 @@
 [2025-01-07 18:25:56] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
 [2025-01-07 18:25:56] Count: 8
 [2025-01-07 18:25:56] User logged in from cookie: Cheryl.greenwood
+[2025-01-07 20:36:34] POST request received
+[2025-01-07 20:36:34] Login attempt for user: jon.ellwood
+[2025-01-07 20:36:34] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-07 20:36:34] Invalid credentials for user: jon.ellwood
+[2025-01-07 20:36:50] POST request received
+[2025-01-07 20:36:50] Login attempt for user: jon.ellwood
+[2025-01-07 20:36:51] User ldap logged in: jon.ellwood
+[2025-01-07 20:36:51] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-07 20:36:51] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-07 20:36:51] Count: 9
+[2025-01-07 20:36:51] User db is valid: jon.ellwood
+[2025-01-07 20:36:51] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-07 20:36:51] Count: 9
+[2025-01-07 20:36:51] CardAccessCount: 9
+[2025-01-07 20:36:51] Uncaught exception: SQLSTATE[42S02]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bcg_intranet.dbo.app_sidenav_users'.
+[2025-01-08 12:28:24] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2025-01-08 12:28:24] Cookie username: jerri.christmas
+[2025-01-08 12:28:24] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 12:28:24] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 12:28:24] Count: 8
+[2025-01-08 12:28:24] User logged in from cookie: jerri.christmas
+[2025-01-08 12:29:11] POST request received
+[2025-01-08 12:29:11] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:29:11] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:29:11] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:29:23] POST request received
+[2025-01-08 12:29:23] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:29:23] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:29:23] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:29:48] POST request received
+[2025-01-08 12:29:48] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:29:48] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:29:48] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:30:25] POST request received
+[2025-01-08 12:30:25] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:30:25] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:30:25] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:30:39] POST request received
+[2025-01-08 12:30:39] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:30:39] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:30:39] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:31:23] POST request received
+[2025-01-08 12:31:23] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 12:31:23] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 12:31:23] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 13:59:18] POST request received
+[2025-01-08 13:59:18] Login attempt for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 13:59:18] Error [2] on line 27 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-08 13:59:18] Invalid credentials for user: jerri.christmas@berkeleycountysc.gov
+[2025-01-08 15:14:22] POST request received
+[2025-01-08 15:14:22] Login attempt for user: jerri.christmas
+[2025-01-08 15:14:22] User ldap logged in: jerri.christmas
+[2025-01-08 15:14:22] User data set in session: {"loggedin":true,"loggedinuser":"jerri.christmas","username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 15:14:22] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 15:14:22] Count: 8
+[2025-01-08 15:14:22] User db is valid: jerri.christmas
+[2025-01-08 15:14:22] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 15:14:22] Count: 8
+[2025-01-08 15:14:22] CardAccessCount: 0
+[2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:7e705475-5743-4477-a1c7-9165ecf62ddb
+[2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:a315fae2-3716-49f8-a076-95ddef2313b4
+[2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:4c2fe295-7d3d-4a0f-97b6-964930142902
+[2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:988846bf-c1bf-4867-8399-e0dd5000458d
+[2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2025-01-08 15:14:22] Uncaught exception: SQLSTATE[42S02]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bcg_intranet.dbo.app_sidenav_users'.

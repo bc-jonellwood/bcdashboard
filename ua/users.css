@@ -90,9 +90,7 @@ td {
   filter: grayscale() brightness(10);
 }
 
-.user-pagination {
-  /* display: flex; */
-  /* flex-direction: column; */
+/* .user-pagination {
   ul {
     list-style: none;
     font-size: large;
@@ -107,7 +105,39 @@ td {
     text-align: center;
     padding-right: 1.75rem;
   }
+  li::hover {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px var(--accent));
+  }
+  li::last-child {
+    border-right: none;
+  }
+} */
+.user-pagination ul {
+  list-style: none;
+  font-size: large;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  padding-bottom: 8px;
 }
+
+.user-pagination li {
+  border-right: 1px solid var(--accent);
+  text-align: center;
+  padding-right: 1.75rem;
+}
+
+.user-pagination li:hover {
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 6px var(--accent));
+}
+
+.user-pagination li:last-child {
+  border-right: none;
+}
+
 /* .updateDLpopover,
 .updatemileagepopover {
   background: var(--fg);
@@ -123,6 +153,14 @@ td {
   padding-top: 2rem;
 }
 */
+.user-interactions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-around;
+  margin-left: 40px;
+  margin-right: 40px;
+}
 .updateDLpopover:popover-open {
   backdrop-filter: blur(10px);
   position: fixed;
@@ -154,6 +192,26 @@ input:disabled {
   gap: 10px;
   font-size: large !important;
 }
+
+.user-pagination {
+  position: sticky;
+  z-index: 5;
+  top: 100px;
+}
+.pagination-scrolled {
+  border-bottom: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: -1px 26px 24px -3px rgba(0, 0, 0, 0.75);
+  padding-bottom: 10px;
+  padding-top: 10px;
+  height: min-content;
+  background-color: var(--bg);
+}
+
 .info-text {
   color: var(--fg) !important;
   filter: brightness(0.85) !important;

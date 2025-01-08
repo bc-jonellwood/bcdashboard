@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/07 15:54:11
+// Last modified: 2025/01/08 12:25:56
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -28,32 +28,32 @@ echo '<div class="user-form-data-only">';
 
 echo '<div class="form-group">';
 echo '<label for="first_name">First Name <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['first_name'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sFirstName'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="middle_name">Middle Name <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['middle_name'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sMiddleName'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="lastName">Last Name <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['lastName'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sLastName'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="preferredName">Preferred Name <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['preferredName'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sPreferredName'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="email">Email <img src="/images/ad.png" alt="ad" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['email'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sEmail'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="employeeNumber">Employee Number <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['employeeNumber'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sEmployeeNumber'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
@@ -63,42 +63,42 @@ echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="departmentName">Department Name <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['departmentName'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sDepartmentName'] ?? 'None') . '</p>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="jobTitle">Job Title <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . htmlspecialchars($userData['jobTitle'] ?? 'None') . '</p>';
+echo '<p>' . htmlspecialchars($userData['sJobTitle'] ?? 'None') . '</p>';
 echo '</div>';  // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="lastLogin">Last Login <img src="/images/app.png" alt="app" class="edit-icon"/></label>';
-echo '<p>' . (!empty($userData['lastLogin']) ? htmlspecialchars($userData['lastLogin']) : 'No Data') . '</p>';
+echo '<p>' . (!empty($userData['dtLastLogin']) ? htmlspecialchars($userData['dtLastLogin']) : 'No Data') . '</p>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo '<label for="lastSystemUpdate">Last System Update <img src="/images/app.png" alt="app" class="edit-icon"/></label>';
-echo '<p>' . (!empty($userData['lastSystemUpdate']) ? htmlspecialchars($userData['lastSystemUpdate']) : 'No Data') . '</p>';
+echo '<p>' . (!empty($userData['dtLastSystemUpdate']) ? htmlspecialchars($userData['dtLastSystemUpdate']) : 'No Data') . '</p>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo '<label for="startDate">Start Date <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . (!empty($userData['startDate']) ? htmlspecialchars($userData['startDate']) : 'No Data') . '</p>';
+echo '<p>' . (!empty($userData['dtStartDate']) ? htmlspecialchars($userData['dtStartDate']) : 'No Data') . '</p>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo '<label for="separationDate">Separation Date <img src="/images/database.png" alt="db" class="edit-icon" /></label>';
-echo '<p>' . (!empty($userData['separationDate']) ? htmlspecialchars($userData['separationDate']) : 'No Data') . '</p>';
+echo '<p>' . (!empty($userData['dtSeparationDate']) ? htmlspecialchars($userData['dtSeparationDate']) : 'No Data') . '</p>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo '<label for="mainPhoneNumber">Main Phone Number <img src="/images/ad.png" alt="ad" class="edit-icon" /></label>';
-echo '<p>' . (!empty($userData['mainPhoneNumber']) ? htmlspecialchars($userData['mainPhoneNumber']) : 'None') . '</p>';
+echo '<p>' . (!empty($userData['sMainPhoneNumber']) ? htmlspecialchars($userData['sMainPhoneNumber']) : 'None') . '</p>';
 echo '</div>';
 
 echo '<div class="form-group">';
 echo '<label for="secondaryPhoneNumber">Secondary Phone Number <img src="/images/ad.png" alt="ad" class="edit-icon"/></label>';
-echo '<p>' . (!empty($userData['secondaryPhoneNumber']) ? htmlspecialchars($userData['secondaryPhoneNumber']) : 'None') . '</p>';
+echo '<p>' . (!empty($userData['sSecondaryPhoneNumber']) ? htmlspecialchars($userData['sSecondaryPhoneNumber']) : 'None') . '</p>';
 echo '</div>'; // close form-group
 echo '</div>'; // close user-form-data-only
 
@@ -122,7 +122,7 @@ echo '<label for="bIsLDAP">Is LDAP';
 echo '<input type="checkbox" name="bIsLDAP"' . (intval($userData['bIsLDAP']) === 1 ? 'checked' : '') . '>';
 echo '</label>';
 echo '</div>'; // close form-group
-echo '</div>'; // close options-ribbon
+// echo '</div>'; // close options-ribbon
 
 echo '<div class="form-group">';
 echo '<label for="bIsAdmin">Is Admin';
@@ -136,8 +136,8 @@ echo '<label for="bHideBirthday">Hide Birthday';
 echo '<input type="checkbox" name="bHideBirthday"' . (intval($userData['bHideBirthday']) === 1 ? 'checked' : '')  . '>';
 echo '</label>';
 echo '</div>'; // close form-group
-echo '<button type=button" class="btn btn-primary" onclick="updateOptions()">Update Options</button>';
-// echo '</div>'; // close options-ribbon
+echo '</div>'; // close options-ribbon
+echo '<button type=button" class="btn btn-primary btn-sm" onclick="updateOptions()">Update Options</button>';
 
 echo '<div class="divider"></div>';
 
@@ -191,18 +191,24 @@ $departments = $department->getDepartments();
 echo '<div class="form-group">';
 echo '<details>';
 echo '<summary>';
-echo '<p><b>Add Departments</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</p>';
+echo '<b>Add Departments</b> - Use Ctrl + Click to select multiple. Unselect to remove access.';
 echo '</summary>';
 echo '<div class="select-box" id="departments">';
+// echo '<p>Note: You can not remove access to your assigned department. Unchecking it will not remove access.</p>';
 foreach ($departments as $department) {
     $selected = '';
+    $disabled = '';
     foreach ($userDeps as $dep) {
         if ($department['iDepartmentNumber'] == $dep['iDepartmentNumber']) {
             $selected = 'checked';
             break;
         }
     }
-    echo '<label for="' . $department['iDepartmentNumber'] . '">' . $department['sDepartmentName'] . '<input type="checkbox" id="' . $department['iDepartmentNumber'] . '" value="' . $department['iDepartmentNumber'] . '" name="departments[]" ' . $selected . '/></label>';
+    if ($department['iDepartmentNumber'] == $userData['iDepartmentNumber']) {
+        $selected = 'checked';
+        $disabled = 'disabled';
+    }
+    echo '<label for="' . $department['iDepartmentNumber'] . '">' . $department['sDepartmentName'] . ' (' . $department['iDepartmentNumber'] . ')' . '<input type="checkbox" id="' . $department['iDepartmentNumber'] . '" ' .  $disabled . '  value="' . $department['iDepartmentNumber'] . '" name="departments[]" ' . $selected . '/></label>';
 }
 echo "</div>";
 echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateDepartments()">Update Departments</button>';
@@ -214,8 +220,8 @@ $dashboardItems = new DashboardItem();
 $dashboardItems = $dashboardItems->getDashboardItems();
 echo '<div class="divider"></div>';
 echo '<div class="form-group">';
-echo '<details><summary>';
-echo '<p><b>Dashboard Items Access</b> - - Use Ctrl + Click to select multiple. Unselect to remove access.</p></summary>';
+echo '<details>';
+echo '<summary><b>Dashboard Items Access</b> - - Use Ctrl + Click to select multiple. Unselect to remove access.</summary>';
 echo '<div class="dash-select-box" id="dashItems">';
 foreach ($dashboardItems as $dashboardItem) {
     $selected = '';
@@ -239,8 +245,8 @@ $allSidenavItems = $sidenavItems->getAllSidenavItems();
 // echo var_dump($allSidenavItems);
 echo '<div class="divider"></div>';
 echo '<div class="form-group">';
-echo '<details><summary>';
-echo '<p><b>Sidenav Items Access</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</p></summary>';
+echo '<details>';
+echo '<summary><b>Sidenav Items Access</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</summary>';
 echo '<div class="sidenav-select-box" id="sidenavItems">';
 foreach ($allSidenavItems as $sidenavItem) {
     $selected = '';

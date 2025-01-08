@@ -215,7 +215,7 @@ class UserAuth
             logError("Error in checkSidenavItemCount function Connection: " . $e->getMessage());
         }
         $UserId = $_SESSION['userID'];
-        $sql = "SELECT count(*) FROM bcg_intranet.dbo.app_sidenav_users WHERE sUserId = :UserId";
+        $sql = "SELECT count(*) FROM data_sidenav_users WHERE sUserId = :UserId";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
         $stmt->execute();
@@ -228,7 +228,7 @@ class UserAuth
             $stmt->execute();
             $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($items as $item) {
-                $sql = "INSERT INTO app_sidenav_users (sUserId, sItemId) VALUES (:UserId, :ItemId)";
+                $sql = "INSERT INTO data_sidenav_users (sUserId, sItemId) VALUES (:UserId, :ItemId)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
                 $stmt->bindParam(':ItemId', $item['sItemId'], PDO::PARAM_STR);
