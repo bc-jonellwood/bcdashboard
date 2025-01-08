@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/02 07:57:37
-// Last modified: 2025/01/08 14:43:38
+// Last modified: 2025/01/08 15:04:33
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -65,7 +65,7 @@ echo '</ul>';
         </a>
     </div>
     <div>
-        <input type="text" id="myInput" onkeyup="filterUsers()" placeholder="Search for names..">
+        <input type="text" id="searchInput" class=" searchInput" onkeyup="filterUsers()" placeholder="Search for names..">
     </div>
 </div>
 </div>
@@ -153,7 +153,7 @@ echo '</div>';
 <script>
     function filterUsers(str) {
         var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
+        input = document.getElementById("searchInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("userTable");
         tr = table.getElementsByTagName("tr");

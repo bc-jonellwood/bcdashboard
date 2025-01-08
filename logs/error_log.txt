@@ -991,3 +991,61 @@
 [2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:988846bf-c1bf-4867-8399-e0dd5000458d
 [2025-01-08 15:14:22] Inserted card access record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
 [2025-01-08 15:14:22] Uncaught exception: SQLSTATE[42S02]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bcg_intranet.dbo.app_sidenav_users'.
+[2025-01-08 16:04:00] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-08 16:04:00] Cookie username: jon.ellwood
+[2025-01-08 16:04:00] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 16:04:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-08 16:04:00] Count: 9
+[2025-01-08 16:04:00] User logged in from cookie: jon.ellwood
+[2025-01-08 17:02:00] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-08 17:02:00] Cookie username: jon.ellwood
+[2025-01-08 17:02:00] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 17:02:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-08 17:02:00] Count: 9
+[2025-01-08 17:02:00] User logged in from cookie: jon.ellwood
+[2025-01-08 18:18:02] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-08 18:18:02] Cookie username: jon.ellwood
+[2025-01-08 18:18:02] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 18:18:02] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-08 18:18:02] Count: 9
+[2025-01-08 18:18:02] User logged in from cookie: jon.ellwood
+[2025-01-08 19:55:22] Cookie data: Array
+(
+    [username] => jerri.christmas
+)
+
+[2025-01-08 19:55:22] Cookie username: jerri.christmas
+[2025-01-08 19:55:22] User data set in session: {"loggedin":true,"username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 19:55:22] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 19:55:22] Count: 8
+[2025-01-08 19:55:22] User logged in from cookie: jerri.christmas
+[2025-01-08 19:56:13] POST request received
+[2025-01-08 19:56:13] Login attempt for user: jerri.christmas
+[2025-01-08 19:56:13] User ldap logged in: jerri.christmas
+[2025-01-08 19:56:13] User data set in session: {"loggedin":true,"loggedinuser":"jerri.christmas","username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-08 19:56:13] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 19:56:13] Count: 8
+[2025-01-08 19:56:13] User db is valid: jerri.christmas
+[2025-01-08 19:56:13] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-08 19:56:13] Count: 8
+[2025-01-08 19:56:13] CardAccessCount: 9
+[2025-01-08 19:56:13] SidenavItemCount: 0
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:C052B5EE-8C20-4D05-BE27-392D644EC1FD
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:F117D09B-3AE5-43E6-92C5-76BE0E660B24
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:A459C495-6210-4B0E-94D8-D9C5EAE2852F
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:D24EDF84-6AED-4D30-A4F8-EF9274521CFA
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:A158B3A3-F73D-432D-A14E-2D97090137DA
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:2509174F-3976-4B7B-BCFF-1AE08D52E87B
+[2025-01-08 19:56:13] Inserted Sidenav Access Record for User ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92, Card ID:0B5AB3E8-9BE1-471A-85F8-8AFDC72B26F5

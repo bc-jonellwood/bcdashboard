@@ -16,6 +16,7 @@
 }
 .content {
   padding: 20px;
+  background-color: var(--bg);
 }
 .masthead {
   display: flex;
@@ -28,13 +29,13 @@
   /* if you don't want it to take up the full screen, reduce this number */
   overflow: hidden;
   background-size: cover !important;
-  background: radial-gradient(
+  /* background: radial-gradient(
       ellipse at center,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) 36%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url(/images/hero-welcome-bg.png) no-repeat center center scroll;
+    url(/images/hero-welcome-bg.png) no-repeat center center scroll; */
   position: relative;
 }
 
@@ -113,6 +114,9 @@ td {
     border-right: none;
   }
 } */
+.user-pagination {
+  padding-bottom: 8px;
+}
 .user-pagination ul {
   list-style: none;
   font-size: large;
@@ -120,7 +124,6 @@ td {
   flex-direction: row;
   justify-content: space-around;
   gap: 10px;
-  padding-bottom: 8px;
 }
 
 .user-pagination li {
@@ -136,6 +139,24 @@ td {
 
 .user-pagination li:last-child {
   border-right: none;
+}
+.searchInput {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: var(--bg);
+  color: var(--fg);
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /* .updateDLpopover,

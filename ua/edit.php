@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/08 12:25:56
+// Last modified: 2025/01/08 15:51:43
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -240,24 +240,27 @@ echo '</div>';
 // echo '</div>';
 
 $sidenavItems = new SidenavItem();
-$allSidenavItems = $sidenavItems->getAllSidenavItems();
-// echo var_dump($userSidenavItems);
-// echo var_dump($allSidenavItems);
+$sidenavItems = $sidenavItems->getAllSidenavItems();
 echo '<div class="divider"></div>';
 echo '<div class="form-group">';
 echo '<details>';
 echo '<summary><b>Sidenav Items Access</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</summary>';
 echo '<div class="sidenav-select-box" id="sidenavItems">';
-foreach ($allSidenavItems as $sidenavItem) {
+foreach ($sidenavItems as $sidenavItem) {
     $selected = '';
-    foreach ($userSidenavItems as $userSidenavItem) {
-        if ($userSidenavItem['sItemId'] == $sidenavItem['sItemId']) {
-            $selected = 'checked';
-            break;
+    $disabled = '';
+    if (!empty($userSidenavItems)) {
+        foreach ($userSidenavItems as $item) {
+            if ($sidenavItem['sItemId'] == $item['sItemId']) {
+                $selected = 'checked';
+                break;
+            }
+        }
+        if ($sidenavItem['sItemId'] === 'C052B5EE-8C20-4D05-BE27-392D644EC1FD') {
+            $disabled = 'disabled';
         }
     }
-
-    echo '<label for="' . $sidenavItem['sItemId'] . '">' . $sidenavItem['sItemText'] . '<input type="checkbox" id="' . $sidenavItem['sItemId'] . '" value="' . $sidenavItem['sItemId'] . '" name="sidenavItems[]" ' . $selected . '/></label>';
+    echo '<label for="' . $sidenavItem['sItemId'] . '">' . $sidenavItem['sItemText'] . '<input type="checkbox" id="' . $sidenavItem['sItemId'] . '" ' . $disabled . ' value="' . $sidenavItem['sItemId'] . '" name="sidenavItems[]" ' . $selected . '/></label>';
 }
 echo '</div>';
 echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateNavItems()">Update Nav Items</button>';
@@ -328,8 +331,23 @@ echo '</div>';
         alert('Creating Driver for User ID ' + userId);
     }
 
+    function getSelectedNavItems(itemSelect) {
+        const selectedItems = [];
+        const checkboxes = document.querySelectorAll('#sidenavItems input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedItems.push(checkbox.value)
+            }
+        })
+        return selectedItems;
+    }
+
     function updateNavItems() {
-        alert('Updated those Nav Items');
+        var userId = document.getElementById('userId').value;
+        var itemSelect = document.getElementById('sidenavItems')
+        var items = getSelectedNavItems(itemSelect);
+        fetch("/API/updateUserSidenavItems.php?userId=" + userId + "&items=" + items)
+            .then(window.location.reload())
     }
 </script>
 
