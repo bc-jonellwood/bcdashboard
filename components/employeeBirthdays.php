@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/02 09:01:55
+// Last modified: 2025/01/09 09:05:54
 
 include_once "./data/appConfig.php";
 
@@ -25,12 +25,14 @@ $sql = "BEGIN TRY
            ,au.sLastName
            ,au.dtDateOfBirth
            ,au.bIsActive
+           ,au.sADStatus
            ,dd.sDepartmentName
     FROM app_users au
     JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtDateOFBirth) = MONTH(GETDATE())
       AND dtSeparationDate IS NULL
-      AND bIsActive = 1
+      AND sADStatus = 1
+      AND bHideBirthday = 0
     ORDER BY DAY(dtDateOfBirth) ASC;
 END TRY
 BEGIN CATCH
@@ -51,12 +53,14 @@ $nextSql = "BEGIN TRY
            ,au.sLastName
            ,au.dtDateOfBirth
            ,au.bIsActive
+           ,au.sADStatus
            ,dd.sDepartmentName
     FROM app_users au
     JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
     WHERE MONTH(dtDateOFBirth) = MONTH(DATEADD(MONTH, 1, GETDATE()))
       AND dtSeparationDate IS NULL
-      AND bIsActive = 1
+      AND sADStatus = 1
+      AND bHideBirthday = 0
     ORDER BY DAY(dtDateOfBirth) ASC;
 END TRY
 BEGIN CATCH

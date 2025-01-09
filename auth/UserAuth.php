@@ -24,6 +24,7 @@ class UserAuth
         $ldapConn = ldap_connect($this->ldapHost) or die("Could not connect to LDAP");
         ldap_set_option($ldapConn, LDAP_OPT_PROTOCOL_VERSION, 3);
 
+
         if (@ldap_bind($ldapConn, $username . $this->ldapDomain, $password)) {
             return true;
         } else {

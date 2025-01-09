@@ -151,7 +151,8 @@ td {
   background-color: var(--bg);
   color: var(--fg);
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid;
+  border-color: var(--fg);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -301,6 +302,7 @@ input:disabled {
   font-size: xx-large;
   text-transform: capitalize;
   background-color: #00000050;
+  color: var(--accent);
   padding: 2px;
   padding-inline-start: 0.5rem;
   padding-inline-end: 0.5rem;
