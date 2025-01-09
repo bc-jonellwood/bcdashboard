@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/07 13:16:51
+// Last modified: 2025/01/09 10:25:40
 
 if (!isset($_SESSION)) {
     session_start();
@@ -305,21 +305,25 @@ include_once(dirname(__FILE__) . '/../init.php');
                 </button>
             </div>
         </section>
-        <section class="status-select-section">
-            <label for="status-select" class="status-select">Update Status:</label>
-            <select name="status-select" id="status-select" class="status-select" onchange="updateStatusFromDash(this.value)">
-                <option value="">Select Status</option>
-                <option value="0">Available</option>
-                <option value="1">Not in the office</option>
-                <option value="2">On Leave</option>
-                <option value="3">At Lunch</option>
-                <option value="4">On the Floor Call cell</option>
-                <option value="5">At another building</option>
-                <option value="6">Offsite Coverage</option>
-                <option value="7">Working Remote</option>
-                <option value="6">Unavailable</option>
-            </select>
-        </section>
+        <!-- TODO: Make this section show only if department is IT -->
+        <?php if (isset($_SESSION['DepartmentNumber']) && ($_SESSION['DepartmentNumber'] == '41515') || $_SESSION['DepartmentNumber'] == '41514') { ?>
+            <section class="status-select-section">
+                <label for="status-select" class="status-select">Update Status:</label>
+                <select name="status-select" id="status-select" class="status-select" onchange="updateStatusFromDash(this.value)">
+                    <option value="">Select Status</option>
+                    <option value="0">Available</option>
+                    <option value="1">Not in the office</option>
+                    <option value="2">On Leave</option>
+                    <option value="3">At Lunch</option>
+                    <option value="4">On the Floor Call cell</option>
+                    <option value="5">At another building</option>
+                    <option value="6">Offsite Coverage</option>
+                    <option value="7">Working Remote</option>
+                    <option value="6">Unavailable</option>
+                </select>
+            </section>
+        <?php  } ?>
+        <!-- End TODO -->
     </div>
     <section>
         <div class="card-order-btn-holder">
@@ -964,7 +968,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     .status-select {
         color: var(--fg);
         font-size: 1rem;
-        margin-left: 10px;
+        /* margin-left: 10px; */
     }
 
     .no-margin {

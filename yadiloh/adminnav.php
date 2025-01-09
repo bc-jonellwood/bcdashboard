@@ -1,7 +1,7 @@
 <nav>
     <ul class="adminnav">
-        <li><button class='not-btn' value='edit-links' onclick=showDiv(this.value)>Edit Links</button></li>
-        <li><button class='not-btn' value='add-links' onclick=showDiv(this.value)>Add Links</button></li>
+        <li><button class='not-btn' value='edit-holidays' onclick=showDiv(this.value)>Edit Holidays</button></li>
+        <li><button class='not-btn' value='add-holidays' onclick=showDiv(this.value)>Add Holiday</button></li>
         <!-- <li><button class='not-btn' value='other-things' onclick=showDiv(this.value)>Other Things</button></li> -->
 
     </ul>
@@ -9,6 +9,7 @@
 
 <script>
     function showDiv(value) {
+        console.log(value);
         var divs = document.getElementsByClassName('hidden');
         for (var i = 0; i < divs.length; i++) {
             divs[i].style.display = 'none';

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/23 09:42:08
+// Last modified: 2025/01/09 10:33:43
 ?>
 <script>
     function closeToast() {
@@ -29,7 +29,7 @@
         </svg>
         <div id='add-year'>Developed by Berkeley County Government IT Department <a href="/nimda/index.php" class="hidden-link">&copy;</a></div>
         <div><a href='/changelog/index.html' target="_blank">App Version: 0.0.0</a></div>
-        <div id='mode'>Mode: </div>
+        <div id='mode'>User: <?php echo $_SESSION['userID']; ?> </div>
         <!-- <a href='/changelogView.php' target='_blank'>App Version: -->
         <!-- <//?php echo $_SESSION['appVersion'] ?></a> -->
 
