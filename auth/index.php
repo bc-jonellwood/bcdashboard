@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2025/01/08 11:00:50
+// Last modified: 2025/01/09 14:51:19
 session_start();
 require_once 'UserAuth.php';
 // require_once(dirname(__FILE__) . '../classes/Session.php');
@@ -162,5 +162,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+<script>
+    // TODO: impliment this
+    // const input = document.getElementById('inputUserName');
+    // const submitButton = document.getElementById('submitButton');
+    // const errHolder = document.getElementById('errorMessage');
+    // input.addEventListener('keyup', () => {
+    //     console.log('key up');
+    //     if (input.value.includes('@')) {
+    //         input.classList.add('error');
+    //         submitButton.setAttribute('disabled', 'disabled');
+    //         errHolder.innerText =
+    //             'Please enter a valid username. The @ symbol not allowed. Your user name is the first.last format.'
+
+    //     } else {
+    //         input.classList.remove('error');
+    //         submitButton.removeAttribute('disabled');
+    //         errHolder.innerText = ''
+    //     }
+    // })
+</script>
 
 </html>

@@ -1125,3 +1125,48 @@
 [2025-01-09 14:31:24] 19C6F878-CD8E-4E88-9D89-C65C7DD80779
 [2025-01-09 14:31:24] Error [2] on line 13 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
 [2025-01-09 14:31:24] Array
+[2025-01-09 14:33:21] A8587F66-D5CE-42B8-BEDD-E8ED55116D75
+[2025-01-09 14:33:21] [{"isLDAP":true},{"isAdmin":true},{"hideBirthday":true}]
+[2025-01-09 14:34:55] Test Demark Delta 4 Alpha 1
+[2025-01-09 14:34:55] EDF66E35-ACBC-4130-AEFB-491428B3A554
+[2025-01-09 14:34:55] [{"isLDAP":true},{"isAdmin":true},{"hideBirthday":true}]
+[2025-01-09 15:21:46] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-09 15:21:46] Cookie username: Cheryl.greenwood
+[2025-01-09 15:21:46] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-09 15:21:46] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 15:21:46] Count: 8
+[2025-01-09 15:21:46] User logged in from cookie: Cheryl.greenwood
+[2025-01-09 17:29:32] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-09 17:29:32] Cookie username: jon.ellwood
+[2025-01-09 17:29:32] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 17:29:32] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 17:29:32] Count: 9
+[2025-01-09 17:29:32] User logged in from cookie: jon.ellwood
+[2025-01-09 19:15:07] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-09 19:15:07] Cookie username: jon.ellwood
+[2025-01-09 19:15:07] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 19:15:07] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 19:15:07] Count: 9
+[2025-01-09 19:15:07] User logged in from cookie: jon.ellwood
+[2025-01-09 19:24:14] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-09 19:24:14] Cookie username: patrick.snow
+[2025-01-09 19:24:14] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 19:24:14] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-09 19:24:14] Count: 8
+[2025-01-09 19:24:14] User logged in from cookie: patrick.snow

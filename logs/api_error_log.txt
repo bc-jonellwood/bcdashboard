@@ -29,3 +29,13 @@
 [2025-01-09 15:03:20] string [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":true}]
 [2025-01-09 15:03:20] Database Error: SQLSTATE[42S22]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'isLDAP'.
 [2025-01-09 15:04:39] string [{"bIsLDAP":true},{"bIsAdmin":false},{"bHideBirthday":true}]
+[2025-01-09 15:05:05] string [{"bIsLDAP":true},{"bIsAdmin":true},{"bHideBirthday":false}]
+[2025-01-09 19:15:32] Error [2] on line 35 in file /var/www/html/user/uploadProfileImage.php: Undefined array key "userID"
+[2025-01-09 19:15:32] Error [2] on line 38 in file /var/www/html/user/uploadProfileImage.php: Undefined array key "profileImge"
+[2025-01-09 19:15:32] Error [2] on line 38 in file /var/www/html/user/uploadProfileImage.php: Trying to access array offset on null
+[2025-01-09 19:15:32] Error [8192] on line 53 in file /var/www/html/user/uploadProfileImage.php: move_uploaded_file(): Passing null to parameter #1 ($from) of type string is deprecated
+[2025-01-09 19:15:32] Error: Filed to move the uploaded file.
+[2025-01-09 19:18:13] File uploaded and user profile updated successfully
+[2025-01-09 19:35:14] Error: No file was uploaded.
+[2025-01-09 19:35:26] File uploaded and user profile updated successfully.
+[2025-01-09 19:37:58] File uploaded and user profile updated successfully.

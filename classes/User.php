@@ -99,7 +99,7 @@ class User
                 ,au.sLastName, au.dtDateOfBirth, au.iDepartmentNumber, au.sEmail, au.sMainPhoneNumber
                 ,au.sMainPhoneNumberLabel, au.sSecondaryPhoneNumber, au.sSecondaryPhoneNumberLabel, au.bIsActive
                 ,au.bIsLDAP, au.bIsAdmin, au.bHideBirthday, au.dtLastLogin, au.dtLastSystemUpdate
-                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus
+                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus, au.sProfileImgPath
                 ,dd.sDepartmentName
                 ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge, mvd.dtDlExpires
                 ,mvd.dtFleetTestAttempt, mvd.iFleetTestAttemptCount

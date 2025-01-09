@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/09 10:25:40
+// Last modified: 2025/01/09 15:50:11
 
 if (!isset($_SESSION)) {
     session_start();
@@ -20,6 +20,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 ////////////////////////////////+++++++++++++++++
 // }
 include_once(dirname(__FILE__) . '/../init.php');
+
+// include_once(dirname(__FILE__) . '/../classes/User.php');
+
+// $user = new User();
+
+// $userData = $user->getUser($_SESSION['userID']);
 
 
 ?>
@@ -1178,5 +1184,10 @@ include_once(dirname(__FILE__) . '/../init.php');
         animation: typeAndDelete 3s steps(11) infinite,
             blinkCursor 0.5s step-end infinite alternate;
         margin-top: 1.5em;
+    }
+
+    .notification-profile-pic {
+        border-radius: 50%;
+        width: 2em;
     }
 </style>

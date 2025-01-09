@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/11/05 10:31:55
-// Last modified: 2024/12/19 12:56:20
+// Last modified: 2025/01/09 15:24:36
 
 require_once '../data/appConfig.php';
 $dbconf = new appConfig;
@@ -40,6 +40,13 @@ $sql = "SELECT au.id,
             au.bIsLDAP,
             au.bIsAdmin,
             au.bHideBirthday,
+            au.dtLastActivity,
+            au.dtDLExpires,
+            au.sJobTitle,
+            au.sADStatus,
+            au.sDLType,
+            au.sDLIsValid,
+            au.sProfileImgPath,
             dvd.id as sDriverId,
             dvd.sBcgiId,
             dvd.sEmployeeNumber,
@@ -78,6 +85,13 @@ if ($user) {
     $response['bIsLDAP'] = $user['bIsLDAP'];
     $response['bIsAdmin'] = $user['bIsAdmin'];
     $response['bHideBirthday'] = $user['bHideBirthday'];
+    $response['dtLastActivity'] = $user['dtLastActivity'];
+    $response['dtDLExpires'] = $user['dtDLExpires'];
+    $response['sJobTitle'] = $user['sJobTitle'];
+    $response['sADStatus'] = $user['sADStatus'];
+    $response['sDLType'] = $user['sDLType'];
+    $response['sDLIsValid'] = $user['sDLIsValid'];
+    $response['sProfileImgPath'] = $user['sProfileImgPath'];;
     $response['sDriverId'] = $user['sDriverId'];
     $response['sBcgiId'] = $user['sBcgiId'];
     $response['sEmployeeNumber'] = $user['sEmployeeNumber'];
