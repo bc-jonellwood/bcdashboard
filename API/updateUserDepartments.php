@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 14:38:52
-// Last modified: 2025/01/06 15:06:22
+// Last modified: 2025/01/09 09:24:23
 
 include "dbheader.php";
 
@@ -9,9 +9,9 @@ $id = $_GET['userId'];
 
 $depString = $_GET['departments'];
 $departments = explode(",", $depString);
-echo "<pre>";
-print_r($departments);
-echo "</pre>";
+// echo "<pre>";
+// print_r($departments);
+// echo "</pre>";
 // echo $depString;
 
 // Loop over de IDs

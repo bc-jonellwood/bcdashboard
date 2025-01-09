@@ -1,0 +1,31 @@
+[2025-01-09 14:36:20] Test Demark Delta 4 Alpha 1
+[2025-01-09 14:36:20] EDF66E35-ACBC-4130-AEFB-491428B3A554
+[2025-01-09 14:36:20] [{"isLDAP":true},{"isAdmin":true},{"hideBirthday":false}]
+[2025-01-09 14:37:12] Test Demark Delta 4 Alpha 1
+[2025-01-09 14:37:12] EDF66E35-ACBC-4130-AEFB-491428B3A554
+[2025-01-09 14:37:12] [{"isLDAP":true},{"isAdmin":true},{"hideBirthday":false}]
+[2025-01-09 14:38:48] Test Demark Delta 4 Alpha 1
+[2025-01-09 14:38:48] E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 14:38:48] [{"isLDAP":true},{"isAdmin":true},{"hideBirthday":true}]
+[2025-01-09 14:43:58] E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 14:43:58] [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":false}]
+[2025-01-09 14:43:58] Error [2] on line 37 in file /var/www/html/API/updateUserOptions.php: foreach() argument must be of type array|object, string given
+[2025-01-09 14:45:58] 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 14:45:58] Error [2] on line 13 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
+[2025-01-09 14:45:58] Array
+[2025-01-09 14:45:58] Error [2] on line 39 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
+[2025-01-09 14:45:58] Uncaught exception: SQLSTATE[42000]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near the keyword 'user'.
+[2025-01-09 14:47:03] 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 14:47:03] Error [2] on line 13 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
+[2025-01-09 14:47:03] Array
+[2025-01-09 14:47:03] Error [2] on line 39 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
+[2025-01-09 14:47:03] Uncaught exception: SQLSTATE[42000]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near '0'.
+[2025-01-09 14:49:58] string [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":true}]
+[2025-01-09 14:49:58] Error [2] on line 39 in file /var/www/html/API/updateUserOptions.php: foreach() argument must be of type array|object, string given
+[2025-01-09 14:53:36] string [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":true}]
+[2025-01-09 14:53:36] Error [2] on line 39 in file /var/www/html/API/updateUserOptions.php: foreach() argument must be of type array|object, string given
+[2025-01-09 14:54:30] string [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":true}]
+[2025-01-09 14:54:30] Error [2] on line 39 in file /var/www/html/API/updateUserOptions.php: foreach() argument must be of type array|object, string given
+[2025-01-09 15:03:20] string [{"isLDAP":true},{"isAdmin":false},{"hideBirthday":true}]
+[2025-01-09 15:03:20] Database Error: SQLSTATE[42S22]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'isLDAP'.
+[2025-01-09 15:04:39] string [{"bIsLDAP":true},{"bIsAdmin":false},{"bHideBirthday":true}]

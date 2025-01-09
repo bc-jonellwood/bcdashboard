@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/08 15:51:43
+// Last modified: 2025/01/09 10:04:24
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -119,7 +119,7 @@ echo '<h3>Options</h3>';
 echo '<div class="options-ribbon">';
 echo '<div class="form-group">';
 echo '<label for="bIsLDAP">Is LDAP';
-echo '<input type="checkbox" name="bIsLDAP"' . (intval($userData['bIsLDAP']) === 1 ? 'checked' : '') . '>';
+echo '<input type="checkbox" id="bIsLDAP" name="bIsLDAP"' . (intval($userData['bIsLDAP']) === 1 ? 'checked' : '') . '>';
 echo '</label>';
 echo '</div>'; // close form-group
 // echo '</div>'; // close options-ribbon
@@ -127,13 +127,13 @@ echo '</div>'; // close form-group
 echo '<div class="form-group">';
 echo '<label for="bIsAdmin">Is Admin';
 // echo '<input type="checkbox" name="bIsAdmin" checked= ' . (intval($user['bIsAdmin']) === 1 ? 'checked' : '')  . '>';
-echo '<input type="checkbox" name="bIsAdmin"' . (intval($userData['bIsAdmin']) === 1 ? 'checked' : '') . '>';
+echo '<input type="checkbox" id="bIsAdmin" name="bIsAdmin"' . (intval($userData['bIsAdmin']) === 1 ? 'checked' : '') . '>';
 echo '</label>';
 echo '</div>'; // close form-group
 
 echo '<div class="form-group">';
 echo '<label for="bHideBirthday">Hide Birthday';
-echo '<input type="checkbox" name="bHideBirthday"' . (intval($userData['bHideBirthday']) === 1 ? 'checked' : '')  . '>';
+echo '<input type="checkbox" id="bHideBirthday" name="bHideBirthday"' . (intval($userData['bHideBirthday']) === 1 ? 'checked' : '')  . '>';
 echo '</label>';
 echo '</div>'; // close form-group
 echo '</div>'; // close options-ribbon
@@ -282,8 +282,32 @@ echo '</div>';
 ?>
 <link rel="stylesheet" type="text/css" href="users.css">
 <script>
+    function getSelectedOptions() {
+        const selectedValues = [];
+        const isLDAP = document.getElementById('bIsLDAP').checked;
+        const isAdmin = document.getElementById('bIsAdmin').checked;
+        const hideBirthday = document.getElementById('bHideBirthday').checked;
+
+        selectedValues.push({
+            bIsLDAP: isLDAP
+        });
+        selectedValues.push({
+            bIsAdmin: isAdmin
+        });
+        selectedValues.push({
+            bHideBirthday: hideBirthday
+        });
+        return selectedValues;
+    }
+
+
+
     function updateOptions() {
-        alert('Updated those Options');
+        // getSelectedOptions();
+        // console.log(getSelectedOptions());
+        var userId = document.getElementById('userId').value;
+        fetch("/API/updateUserOptions.php?id=" + userId + "&options=" + JSON.stringify(getSelectedOptions()))
+            .then(window.location.reload())
     }
 
     function getSelectedDepartments(departmentSelect) {

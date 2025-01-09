@@ -1090,3 +1090,38 @@
 [2025-01-09 13:47:56] Login attempt for user: jon.ellwood@berkeleycountysc.gov
 [2025-01-09 13:47:56] User ldap logged in: jon.ellwood@berkeleycountysc.gov
 [2025-01-09 13:47:56] Invalid username or password for user: jon.ellwood@berkeleycountysc.gov
+[2025-01-09 13:50:00] POST request received
+[2025-01-09 13:50:00] Login attempt for user: jon.ellwood
+[2025-01-09 13:50:00] User ldap logged in: jon.ellwood
+[2025-01-09 13:50:00] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 13:50:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 13:50:00] Count: 9
+[2025-01-09 13:50:00] User db is valid: jon.ellwood
+[2025-01-09 13:50:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 13:50:00] Count: 9
+[2025-01-09 13:50:00] CardAccessCount: 9
+[2025-01-09 13:50:00] SidenavItemCount: 15
+[2025-01-09 14:06:31] POST request received
+[2025-01-09 14:06:31] Login attempt for user: jon.ellwood
+[2025-01-09 14:06:31] User ldap logged in: jon.ellwood
+[2025-01-09 14:06:31] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 14:06:31] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 14:06:32] Count: 9
+[2025-01-09 14:06:32] User db is valid: jon.ellwood
+[2025-01-09 14:06:32] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 14:06:32] Count: 9
+[2025-01-09 14:06:32] CardAccessCount: 9
+[2025-01-09 14:06:32] SidenavItemCount: 15
+[2025-01-09 14:23:42] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-09 14:23:42] Cookie username: Cheryl.greenwood
+[2025-01-09 14:23:42] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 14:23:42] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 14:23:42] Count: 8
+[2025-01-09 14:23:42] User logged in from cookie: Cheryl.greenwood
+[2025-01-09 14:31:24] 19C6F878-CD8E-4E88-9D89-C65C7DD80779
+[2025-01-09 14:31:24] Error [2] on line 13 in file /var/www/html/API/updateUserOptions.php: Array to string conversion
+[2025-01-09 14:31:24] Array
