@@ -172,7 +172,11 @@ button {
 }
 
 .errorMessage {
-  color: darkred;
+  min-height: 50px;
+  /* color: darkred; */
+  color: #ff0000;
+
   font-size: medium;
   margin: 0 !important;
 }
+/* id="errorMessage" */

@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2025/01/09 14:51:19
+// Last modified: 2025/01/10 08:16:30
 session_start();
 require_once 'UserAuth.php';
 // require_once(dirname(__FILE__) . '../classes/Session.php');
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <form method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="username" required>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="username" required>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required>
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="checkbox" id="rememberme" name="rememberme" class="form-check-input" checked>
                     <label for="rememberme" class="form-check-label">Remember Me</label>
                 </div>
-                <input type="submit" value="Sign In" class="btn btn-primary">
+                <input type="submit" value="Sign In" class="btn btn-primary" id="submitButton">
             </form>
             <?php
             if ($loginfailure) {
@@ -146,6 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             // print_r($_SESSION);
             ?>
+            <p id="errorMessage" class="errorMessage"></p>
             <p class="login-form-footer">Don't have an account? <a href="mailto:dashboard@berkeleycountysc.gov">Request One</a></p>
         </div>
     </div>
@@ -154,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <path fill="#E3E3E3" d="M10 .4A9.6 9.6 0 0 0 .4 10a9.6 9.6 0 1 0 19.2-.001C19.6 4.698 15.301.4 10 .4m-.151 15.199h-.051c-.782-.023-1.334-.6-1.311-1.371c.022-.758.587-1.309 1.343-1.309l.046.002c.804.023 1.35.594 1.327 1.387c-.023.76-.578 1.291-1.354 1.291m3.291-6.531c-.184.26-.588.586-1.098.983l-.562.387q-.46.358-.563.688c-.056.174-.082.221-.087.576v.09H8.685l.006-.182c.027-.744.045-1.184.354-1.547c.485-.568 1.555-1.258 1.6-1.287a1.7 1.7 0 0 0 .379-.387c.225-.311.324-.555.324-.793c0-.334-.098-.643-.293-.916c-.188-.266-.545-.398-1.061-.398c-.512 0-.863.162-1.072.496c-.216.341-.325.7-.325 1.067v.092H6.386l.004-.096c.057-1.353.541-2.328 1.435-2.897c.563-.361 1.264-.544 2.081-.544c1.068 0 1.972.26 2.682.772c.721.519 1.086 1.297 1.086 2.311c-.001.567-.18 1.1-.534 1.585" class="contrast" />
         </svg>
         <div id='add-year'> &copy; Berkeley County Government </div>
-        <div>App Version: 0.0.0</div>
+        <!-- <div>App Version: 0.0.0</div> -->
         <a href='../changelog/index.html' target='_blank'>App Version: 0.0.0</a>
         <!-- </?php echo $_SESSION['appVersion'] ?></a> -->
     </footer>
@@ -163,24 +164,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 <script>
-    // TODO: impliment this
-    // const input = document.getElementById('inputUserName');
-    // const submitButton = document.getElementById('submitButton');
-    // const errHolder = document.getElementById('errorMessage');
-    // input.addEventListener('keyup', () => {
-    //     console.log('key up');
-    //     if (input.value.includes('@')) {
-    //         input.classList.add('error');
-    //         submitButton.setAttribute('disabled', 'disabled');
-    //         errHolder.innerText =
-    //             'Please enter a valid username. The @ symbol not allowed. Your user name is the first.last format.'
+    const input = document.getElementById('username');
+    const submitButton = document.getElementById('submitButton');
+    const errHolder = document.getElementById('errorMessage');
+    input.addEventListener('keyup', () => {
+        console.log('key up');
+        if (input.value.includes('@')) {
+            input.classList.add('error');
+            submitButton.setAttribute('disabled', 'disabled');
+            errHolder.innerText =
+                'Please enter a valid username. The @ symbol not allowed. Your user name is the first.last format.'
 
-    //     } else {
-    //         input.classList.remove('error');
-    //         submitButton.removeAttribute('disabled');
-    //         errHolder.innerText = ''
-    //     }
-    // })
+        } else {
+            input.classList.remove('error');
+            submitButton.removeAttribute('disabled');
+            errHolder.innerText = ''
+        }
+    })
 </script>
 
 </html>

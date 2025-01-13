@@ -244,4 +244,25 @@ class UserAuth
             return true;
         }
     }
+
+    public function checkIsUserLDAP()
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $UserId = $_SESSION['userID'];
+            $sql = "SELECT bIsLDAP FROM app_users WHERE id = :UserId";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+            $stmt->execute();
+            $isLDAP = $stmt->fetchColumn();
+            return $isLDAP;
+        } catch (PDOException $e) {
+            logError("Error in checkIsUserLDAP function Connection: " . $e->getMessage());
+        }
+    }
 }
