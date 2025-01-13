@@ -245,7 +245,7 @@ class UserAuth
         }
     }
 
-    public function checkIsUserLDAP()
+    public function checkIsUserLDAP($username, $password)
     {
         $serverName = $this->db->serverName;
         $database = $this->db->database;
@@ -254,15 +254,58 @@ class UserAuth
         try {
             $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $UserId = $_SESSION['userID'];
-            $sql = "SELECT bIsLDAP FROM app_users WHERE id = :UserId";
+            $UserName = $username;
+            $sql = "SELECT id, bIsLDAP, sHashedPass FROM app_users WHERE sUserName = :UserName";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':UserId', $UserId, PDO::PARAM_STR);
+            $stmt->bindParam(':UserName', $UserName, PDO::PARAM_STR);
             $stmt->execute();
-            $isLDAP = $stmt->fetchColumn();
-            return $isLDAP;
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result === false) {
+                logError("User " . $username . " was not found");
+                return ['status' => 'USER_NOT_FOUND', 'message' => 'User does not exist'];
+            }
+
+            $isLDAP = $result['bIsLDAP'];
+            $hashedPass = $result['sHashedPass'];
+
+            if ($isLDAP) {
+                logError("User " . $username . " is LDAP");
+                return ['status' => 'IS_LDAP', 'message' => 'User should authenticate via LDAP'];
+            }
+
+            // $hashedInputPassword = password_hash($password, PASSWORD_DEFAULT);
+            // I believe password_veriy method will handle the hashing of the password for me.... 
+            if (password_verify($password, $hashedPass)) {
+                logError("Non LDAP User Password for " . $username . " is correct");
+                return ['status' => 'PASSWORD_CORRECT', 'message' => 'Non LDAP Password for ' . $username . ' is correct'];
+            } else {
+                logError("Non LDAP User Password for " . $username . " is incorrect");
+                return ['status' => 'PASSWORD_INCORRECT', 'message' => 'Non LDDAP Password for ' . $username . ' is incorrect'];
+            }
         } catch (PDOException $e) {
             logError("Error in checkIsUserLDAP function Connection: " . $e->getMessage());
+        }
+    }
+
+    public function updatePassword($username, $password)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "UPDATE app_users set sHashedPass = :hashedPass where sUserName = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':hashedPass', $hashedPass, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            logError("Password updated successfully for user: $username");
+        } catch (PDOException $e) {
+            logError("Error in updatePassword function Connection: " . $e->getMessage());
         }
     }
 }

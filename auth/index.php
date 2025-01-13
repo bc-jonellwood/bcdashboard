@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/13 08:09:15
-// Last modified: 2025/01/10 08:16:30
+// Last modified: 2025/01/13 14:47:38
 session_start();
 require_once 'UserAuth.php';
 // require_once(dirname(__FILE__) . '../classes/Session.php');
@@ -86,6 +86,33 @@ function handleLogin()
                 logError("Invalid username or password for user: $username");
             }
         } else {
+            $isUserLDAP = $auth->checkIsUserLDAP($username, $password);
+            if ($isUserLDAP['status'] === 'PASSWORD_CORRECT') {
+                $_SESSION['loggedin'] = true;
+                $_SESSION['loggedinuser'] = $_POST['username'];
+                logError("NON LDAP User logged in: $username");
+                $userData = $auth->checkUser($_SESSION['loggedinuser']);
+                if ($userData) {
+                    logError("User db is valid: $username");
+                    if ($auth->logLogin()) {
+                        if ($auth->checkEntryCount() && $auth->checkCardAccessCount() && $auth->checkSidenavItemCount()) {
+                            header("Location: ../index.php");
+                            exit;
+                        } else {
+                            $loginfailuremessage = "Failed to check entry count or check Card Accss Count or check Sidenav Item Count.";
+                            logError("Failed to check entry count for user: $username");
+                        }
+                    } else {
+                        $loginfailuremessage = "Failed to log login time.";
+                        logError("Failed to log login time for user: $username");
+                    }
+                }
+            } else {
+                $loginfailure = true;
+                $loginfailuremessage = "Invalid username or password.";
+                logError("Invalid username or password for user: $username");
+            }
+        } {
             $loginfailure = true;
             $_SESSION['loggedin'] = false;
             unset($_SESSION['loggedinuser']);

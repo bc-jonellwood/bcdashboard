@@ -1170,3 +1170,141 @@
 [2025-01-09 19:24:14] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
 [2025-01-09 19:24:14] Count: 8
 [2025-01-09 19:24:14] User logged in from cookie: patrick.snow
+[2025-01-09 19:41:35] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-09 19:41:35] Cookie username: Cheryl.greenwood
+[2025-01-09 19:41:35] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-09 19:41:35] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 19:41:35] Count: 8
+[2025-01-09 19:41:35] User logged in from cookie: Cheryl.greenwood
+[2025-01-09 20:38:32] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-09 20:38:32] Cookie username: jon.ellwood
+[2025-01-09 20:38:32] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-09 20:38:32] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-09 20:38:32] Count: 9
+[2025-01-09 20:38:32] User logged in from cookie: jon.ellwood
+[2025-01-09 20:39:27] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-09 20:39:27] Cookie username: Cheryl.greenwood
+[2025-01-09 20:39:27] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-09 20:39:27] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 20:39:27] Count: 8
+[2025-01-09 20:39:27] User logged in from cookie: Cheryl.greenwood
+[2025-01-09 21:45:19] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-09 21:45:19] Cookie username: Cheryl.greenwood
+[2025-01-09 21:45:19] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-09 21:45:19] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-09 21:45:19] Count: 8
+[2025-01-09 21:45:19] User logged in from cookie: Cheryl.greenwood
+[2025-01-10 12:59:20] POST request received
+[2025-01-10 12:59:20] Login attempt for user: jerri.christmas
+[2025-01-10 12:59:20] User ldap logged in: jerri.christmas
+[2025-01-10 12:59:20] User data set in session: {"loggedin":true,"loggedinuser":"jerri.christmas","username":"jerri.christmas","employeeID":"6052","userID":"2E189D38-87F7-41A7-AD56-A0022B1EBE92","FirstName":"JERRI","LastName":"CHRISTMAS","PreferredName":"JERRI","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-10 12:59:20] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-10 12:59:20] Count: 8
+[2025-01-10 12:59:20] User db is valid: jerri.christmas
+[2025-01-10 12:59:20] Login time and last activity updated successfully for user ID: 2E189D38-87F7-41A7-AD56-A0022B1EBE92
+[2025-01-10 12:59:20] Count: 8
+[2025-01-10 12:59:20] CardAccessCount: 9
+[2025-01-10 12:59:20] SidenavItemCount: 15
+[2025-01-10 13:17:07] POST request received
+[2025-01-10 13:17:07] Login attempt for user: jon.ellwood
+[2025-01-10 13:17:08] User ldap logged in: jon.ellwood
+[2025-01-10 13:17:08] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-10 13:17:08] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-10 13:17:08] Count: 9
+[2025-01-10 13:17:08] User db is valid: jon.ellwood
+[2025-01-10 13:17:08] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-10 13:17:08] Count: 9
+[2025-01-10 13:17:08] CardAccessCount: 9
+[2025-01-10 13:17:08] SidenavItemCount: 17
+[2025-01-10 16:29:43] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-10 16:29:43] Cookie username: jon.ellwood
+[2025-01-10 16:29:43] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-10 16:29:43] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-10 16:29:44] Count: 9
+[2025-01-10 16:29:44] User logged in from cookie: jon.ellwood
+[2025-01-13 12:40:16] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-13 12:40:16] Cookie username: jon.ellwood
+[2025-01-13 12:40:16] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 12:40:16] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 12:40:16] Count: 9
+[2025-01-13 12:40:16] User logged in from cookie: jon.ellwood
+[2025-01-13 14:05:07] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-13 14:05:07] Cookie username: Cheryl.greenwood
+[2025-01-13 14:05:07] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-13 14:05:07] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-13 14:05:07] Count: 8
+[2025-01-13 14:05:07] User logged in from cookie: Cheryl.greenwood
+[2025-01-13 14:25:55] POST request received
+[2025-01-13 14:25:55] Login attempt for user: jon.ellwood
+[2025-01-13 14:25:55] User ldap logged in: jon.ellwood
+[2025-01-13 14:25:56] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 14:25:56] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 14:25:56] Count: 9
+[2025-01-13 14:25:56] User db is valid: jon.ellwood
+[2025-01-13 14:25:56] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 14:25:56] Count: 9
+[2025-01-13 14:25:56] CardAccessCount: 9
+[2025-01-13 14:25:56] SidenavItemCount: 17
+[2025-01-13 14:26:46] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-13 14:26:46] Cookie username: jon.ellwood
+[2025-01-13 14:26:46] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 14:26:46] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 14:26:46] Count: 9
+[2025-01-13 14:26:46] User logged in from cookie: jon.ellwood
+[2025-01-13 15:33:41] POST request received
+[2025-01-13 15:33:41] Login attempt for user: jon.ellwood
+[2025-01-13 15:33:41] User ldap logged in: jon.ellwood
+[2025-01-13 15:33:41] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 15:33:41] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 15:33:42] Count: 9
+[2025-01-13 15:33:42] User db is valid: jon.ellwood
+[2025-01-13 15:33:42] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 15:33:42] Count: 9
+[2025-01-13 15:33:42] CardAccessCount: 9
+[2025-01-13 15:33:42] SidenavItemCount: 17
+[2025-01-13 18:00:17] Error [2] on line 35 in file /var/www/html/ua/updatePassword.php: Undefined array key "password"
+[2025-01-13 18:00:17] Error [2] on line 36 in file /var/www/html/ua/updatePassword.php: Undefined array key "username"
+[2025-01-13 18:00:17] Error [2] on line 37 in file /var/www/html/ua/updatePassword.php: Undefined array key "newPassword"
+[2025-01-13 18:09:01] Error in checkIsUserLDAP function Connection: SQLSTATE[42000]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Conversion failed when converting from a character string to uniqueidentifier.
+[2025-01-13 18:09:01] Unexpected return value from checkIsUserLDAP for user 'jon.ellwood'.
+[2025-01-13 18:11:07] User jon.ellwood is LDAP
+[2025-01-13 18:12:11] Non LDAP User Password for test.user is incorrect
+[2025-01-13 18:23:33] User jon.ellwood is LDAP
+[2025-01-13 18:23:33] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Undefined variable $result
+[2025-01-13 18:23:33] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Trying to access array offset on null
+[2025-01-13 18:25:26] User jon.ellwood is LDAP
+[2025-01-13 18:25:26] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Undefined variable $usUserLDAP
+[2025-01-13 18:25:26] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Trying to access array offset on null
+[2025-01-13 18:26:34] User jon.ellwood is LDAP

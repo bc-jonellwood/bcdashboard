@@ -287,4 +287,87 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function addUser()
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO app_users (sUsername, sPassword, sEmail, sFirstName, sLastName, bIsActive, bIsLDAP) VALUES (:username, :password, :email, :fname, :lname, 1, 0)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':fname', $fname, PDO::PARAM_STR);
+            $stmt->bindParam(':lname', $lname, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function checkUserNameExists($username)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT COUNT(*) as count FROM app_users WHERE sUsername = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            $count = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $count['count'];
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function checkIfExists($table, $field, $value)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT COUNT(*) as count FROM $table WHERE $field = :value";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':value', $value);
+            $stmt->execute();
+            $count = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $count['count'];
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    // public function validateUserPassword($username, $password)
+    // {
+    //     $serverName = $this->db->serverName;
+    //     $database = $this->db->database;
+    //     $uid = $this->db->uid;
+    //     $pwd = $this->db->pwd;
+    //     try {
+    //         $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+    //         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //         $sql = "SELECT COUNT(*) as count FROM app_users WHERE sUsername = :username AND sPassword = :password";
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->bindParam(':username', $username);
+    //         $stmt->bindParam(':password', $password);
+    //         $stmt->execute();
+    //         $count = $stmt->fetch(PDO::FETCH_ASSOC);
+    //         return $count['count'];
+    //     } catch (PDOException $e) {
+    //         echo "Connection failed: " . $e->getMessage();
+    //     }
+    // }
 }

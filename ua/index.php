@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/02 07:57:37
-// Last modified: 2025/01/09 15:48:47
+// Last modified: 2025/01/13 13:56:50
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -63,6 +63,9 @@ echo '</ul>';
         <a href="?lastNameStartsWith=<?= $defaultLastNameStartsWith ?>&enabled=<?= $defaultEnabled ?>&temp=<?= $defaultTemp ?>" class="btn btn-info">
             Reset Filters
         </a>
+
+        <a href="/ua/updatePassword.php" class="btn btn-warning">Update A User Password</a>
+        <a href="/ua/addUser.php" class="btn btn-danger">Add Non LDAP User</a>
     </div>
     <div>
         <input type="text" id="searchInput" class=" searchInput" onkeyup="filterUsers()" placeholder="Search for names..">
