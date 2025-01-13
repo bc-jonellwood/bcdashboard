@@ -5,6 +5,7 @@
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../classes/User.php');
+include(dirname(__FILE__) . '/../functions/logErrors.php');
 
 $user = new User();
 
@@ -14,7 +15,7 @@ if (isset($_GET['id'])) {
     $userData = $user->getUser($id);
 }
 
-?> </td>
+?>
 <link rel="stylesheet" type="text/css" href="user.css">
 <div class="main">
     <div class="content">
@@ -76,11 +77,14 @@ if (isset($_GET['id'])) {
                             <div class="row">
                                 <div>
                                     <img src=<?= $userData['sProfileImgPath'] ?> alt="avatar" class='avatar' />
-                                    <!-- <img src="https://ui-avatars.com/api/?name=<?= $userData['sPreferredName'] . ' ' . $userData['sLastName'] ?>" alt="not a kitty" class="avatar" /> -->
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary btn-sm" type="button" popovertarget="updateProfileImagePopover" popovertargetaction="show">Update Profile Image</button>
+
+                                <button class="btn btn-primary btn-sm" type="button" onclick="createPopover('updateProfileImage')">Update Profile Image</button>
+                                <?php if (isset($userData['bIsLDAP']) && $userData['bIsLDAP'] == 1) {
+                                    echo '<button class="btn btn-primary btn-sm" type="button" onclick="createPopover(\'updatePassword\')">Update Password</button>';
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -90,9 +94,13 @@ if (isset($_GET['id'])) {
 </div>
 </div>
 </div>
+
+
+
+
 <? include(dirname(__FILE__) . '/../components/footer.php') ?> </td>
 
-<div class="updateProfileImagePopover" id="updateProfileImagePopover" name="updateProfileImagePopover" popover=manual>
+<!-- <div class="updateProfileImagePopover" id="updateProfileImagePopover" name="updateProfileImagePopover" popover=manual>
     <button class="btn-close mb-2" popovertarget="updateProfileImagePopover" popovertargetaction="hide">
         <span aria-hidden=”true”>❌</span>
         <span class="sr-only">Close</span>
@@ -104,4 +112,104 @@ if (isset($_GET['id'])) {
             <input type="hidden" value="<?= $userData['id'] ?>" name="userID" id="userID">
         </form>
     </div>
-</div>
+</div> -->
+
+<!-- <div class="updatePasswordPopover" id="updatePasswordPopover" name="updatePasswordPopover" popover=manual>
+    <button class="btn-close mb-2" popovertarget="updatePasswordPopover" popovertargetaction="hide">
+        <span aria-hidden=”true”>❌</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <div id="updatePasswordPopover-content">
+        <form method="post">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" class="form-control" id="currentPassword" name="currentPassword">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            </div>
+            <input type="hidden" value="<?= $userData['id'] ?>" name="userID" id="userID">
+            <input type="submit" value="Update" name="submit" class="btn btn-primary btn-sm">
+        </form>
+    </div>
+</div> -->
+
+<script>
+    function createPopover(type) {
+        // Remove any existing popover of the same type
+        const existingPopover = document.getElementById("popover");
+        if (existingPopover) {
+            existingPopover.remove();
+        }
+
+        // Create the popover container
+        const popover = document.createElement("div");
+        popover.className = type + "Popover";
+        // popover.id = type + "Popover";
+        popover.id = 'popover';
+        popover.setAttribute("popover", "manual");
+
+        // Add the close button
+        const closeButton = document.createElement("button");
+        closeButton.className = "btn-close mb-2";
+        closeButton.setAttribute("popovertarget", type + "Popover");
+        closeButton.setAttribute("popovertargetaction", "hide");
+        closeButton.innerHTML = `<span aria-hidden="true">❌</span><span class="sr-only">Close</span>`;
+        closeButton.addEventListener("click", () => popover.remove());
+        popover.appendChild(closeButton);
+
+        // Add the form content
+        const formContainer = document.createElement("div");
+        formContainer.id = type + "Popover-content";
+        // <input type="hidden" value="${userID}" name="userID" id="userID">
+
+        if (type === "updateProfileImage") {
+            formContainer.innerHTML = `
+            <form action="uploadProfileImage.php" method="post" enctype="multipart/form-data">
+                <input type="file" name="profileImage" id="profileImage">
+                <input type="submit" value="Upload Image" name="submit" class="btn btn-primary btn-sm">
+                <input type="hidden" value="<?= $userData['id'] ?>" name="userID" id="userID">
+            </form>`;
+        } else if (type === "updatePassword") {
+            formContainer.innerHTML = `
+            <form method="post">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" class="form-control" id="currentPassword" name="currentPassword">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                </div>
+                <input type="hidden" value="<?= $userData['id'] ?>" name="userID" id="userID">
+                <input type="submit" value="Update" name="submit" class="btn btn-primary btn-sm">
+            </form>`;
+        } else {
+            console.error("Unknown popover type:", type);
+            return;
+        }
+
+        popover.appendChild(formContainer);
+
+        // Append the popover to the body (or another container)
+        document.body.appendChild(popover);
+
+        // Optionally position the popover
+        popover.style.inset = "auto";
+        popover.style.display = "block";
+        popover.style.position = "absolute";
+        popover.style.top = "65%";
+        popover.style.left = "50%";
+        popover.style.transform = "translate(-50%, -50%)";
+        popover.style.zIndex = 1000;
+    }
+</script>
