@@ -210,6 +210,7 @@ if (isset($_GET['id'])) {
         popover.style.top = "65%";
         popover.style.left = "50%";
         popover.style.transform = "translate(-50%, -50%)";
-        popover.style.zIndex = 1000;
+        // popover.style.zIndex = 1000;
+        document.body.style.backdropFilter = "blur(5px)";
     }
 </script>
