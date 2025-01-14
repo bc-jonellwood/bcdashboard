@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/09 15:48:29
+// Last modified: 2025/01/14 15:49:17
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -17,8 +17,10 @@ if (isset($_GET['id'])) {
     $userDeps = $user->getUserAdditionalDepartments($_GET['id']);
     $userCards = $user->getUserDashboardItems($_GET['id']);
     $userSidenavItems = $user->getUserSidenavItems($_GET['id']);
+    $app_roles = $user->getAppRoles();
     // print_r($userDeps);
 }
+
 
 echo '<div class="main">';
 echo '<p class="user-name-display">' . ($userData['sPreferredName'] ? strtolower($userData['sPreferredName']) : strtolower($userData['sFirstName'])) . ' ' . strtolower($userData['sLastName']) . '</p>';
@@ -136,6 +138,18 @@ echo '<label for="bHideBirthday">Hide Birthday';
 echo '<input type="checkbox" id="bHideBirthday" name="bHideBirthday"' . (intval($userData['bHideBirthday']) === 1 ? 'checked' : '')  . '>';
 echo '</label>';
 echo '</div>'; // close form-group
+
+echo '<div class="form-group">';
+echo '<label for="iAppRoleId">Access Level - currently ' . $userData['iAppRoleId'];
+echo '<select class="form-control" id="iAppRoleId" name="iAppRoleId">';
+foreach ($appRoles as $appRole) {
+    echo '<option value="' . $appRole['iAppRoleId'] . '">' . $appRole['sAppRoleName'] . '</option>';
+}
+echo '</select>';
+echo '</label>';
+echo '</div>'; // close form-group
+
+
 echo '</div>'; // close options-ribbon
 echo '<button type=button" class="btn btn-primary btn-sm" onclick="updateOptions()">Update Options</button>';
 

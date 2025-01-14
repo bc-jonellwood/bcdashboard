@@ -1,16 +1,17 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/12/13 15:07:04
+// Last modified: 2025/01/14 15:02:39
 
-require_once './data/appConfig.php';
+require_once(dirname(__FILE__) . '/../data/appConfig.php');
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
 $database = $dbconf->database;
 $uid = $dbconf->uid;
 $pwd = $dbconf->pwd;
-include "./components/header.php";
+include(dirname(__FILE__) . '/../components/header.php');
+include(dirname(__FILE__) . '/../components/sidenav.php');
 
-include_once "./components/sidenav.php";
+// include_once "./components/sidenav.php";
 function formatDateTime($dateTimeString)
 {
     $dateTime = new DateTime($dateTimeString);
@@ -166,7 +167,7 @@ try {
         echo "<p>No results found.</p>";
         echo "</div>";
     }
-    include_once "./components/footer.php";
+    include(dirname(__FILE__) . '/../components/footer.php');
     echo "</div>";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
@@ -274,7 +275,7 @@ try {
 
     .badge {
         padding: 5px;
-        border-radius: 15px;
+        border-radius: 5px;
     }
 
     .Emergency {

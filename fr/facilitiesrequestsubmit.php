@@ -1,14 +1,14 @@
 <?php
 // Created: 2024/11/15 11:22:08
-// Last Modified: 2024/12/13 14:59:44
+// Last Modified: 2025/01/14 09:36:11
 
-include "./components/header.php";
+include(dirname(__FILE__) . '/../components/header.php');
+include(dirname(__FILE__) . '/../components/sidenav.php');
 
 ?>
 
 
 <div class="main">
-    <?php include "./components/sidenav.php" ?>
     <div class="content">
         <form id="newFacilitiesRequestForm" method="post" action="API/addNewFacilitiesRequestToDatabase.php">
             <div class="d-flex flex-row justify-content-between gap-2 mt-2">
@@ -61,12 +61,13 @@ include "./components/header.php";
         </form>
     </div>
 </div>
+<?php include(dirname(__FILE__) . '/../components/footer.php'); ?>
 
 <script>
     // API file is currently set to only return a single value, Facility Problem, until further notice
     // select element is set to disabled until further notice
     function renderRequestTypeSelect() {
-        fetch("./API/getFacilitiesRequestTypes.php")
+        fetch("/API/getFacilitiesRequestTypes.php")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -81,7 +82,7 @@ include "./components/header.php";
     }
 
     function renderRequestLocationSelect() {
-        fetch("./API/getFacilitiesRequestLocations.php")
+        fetch("/API/getFacilitiesRequestLocations.php")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -99,7 +100,7 @@ include "./components/header.php";
         // $dept = $_SESSION['DepartmentNumber'];
         // $dept = '41515';
         // fetch("./API/getAllUsersFromDepartment.php?dept=" + $dept)
-        fetch("./API/getAllUsersFromDepartment.php")
+        fetch("/API/getAllUsersFromDepartment.php")
             .then(response => response.json())
             .then(data => {
                 console.log(data);

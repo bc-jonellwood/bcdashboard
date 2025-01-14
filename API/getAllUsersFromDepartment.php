@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/12/02 12:36:43
-// Last Modified: 2024/12/13 11:09:06
+// Last Modified: 2025/01/14 09:39:07
 session_start();
 include "dbheader.php";
 
@@ -12,7 +12,8 @@ $dept = $_SESSION['DepartmentNumber'];
 $sql = "SELECT DISTINCT au.id as userId, au.sFirstName, au.sMiddleName, au.sLastName, au.sPreferredName, au.sEmployeeNumber, au.iDepartmentNumber, dd.sDepartmentName, au.dtStartDate, au.sEmail
 from app_users au
 JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
-where au.bIsActive = 1
+-- where au.bIsActive = 1
+where au.sADStatus = 1
 AND au.iDepartmentNumber = '$dept'
 order by au.sFirstName ASC";
 

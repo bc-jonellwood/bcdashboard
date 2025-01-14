@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/14 08:54:07
+// Last modified: 2025/01/14 15:00:37
 
 if (!isset($_SESSION)) {
     session_start();
@@ -17,8 +17,12 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
     header("Location: /auth/index.php");
 }
-////////////////////////////////+++++++++++++++++
+
+// if (isset($_SESSION['bIsLDAP']) && $_SESSION['bIsLDAP'] === 0) {
+//     header("Location: /fr/facilitiesrequestsubmit.php");
+//     exit;
 // }
+
 include_once(dirname(__FILE__) . '/../init.php');
 
 // include_once(dirname(__FILE__) . '/../classes/User.php');
@@ -773,6 +777,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     .alert-text {
         margin-bottom: 0 !important;
         padding-left: 20px;
+        padding-right: 20px;
         font-weight: bold;
     }
 

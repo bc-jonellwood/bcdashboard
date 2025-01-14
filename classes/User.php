@@ -25,9 +25,10 @@ class User
                 ,au.sLastName, au.dtDateOfBirth, au.iDepartmentNumber, au.sEmail, au.sMainPhoneNumber
                 ,au.sMainPhoneNumberLabel, au.sSecondaryPhoneNumber, au.sSecondaryPhoneNumberLabel, au.bIsActive
                 ,au.bIsLDAP, au.bIsAdmin, au.bHideBirthday, au.dtLastLogin, au.dtLastSystemUpdate
-                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus
+                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus ,au.iAppRoleId
+                ,au.dtDlExpires, au.sDLType, au.sDLIsValid, au.sProfileImgPath
                 ,dd.sDepartmentName
-                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge, mvd.dtDlExpires
+                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed ,mvd.dtAcknowledge
                 ,mvd.dtFleetTestAttempt, mvd.iFleetTestAttemptCount
                 FROM app_users au
                 LEFT JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
@@ -100,8 +101,9 @@ class User
                 ,au.sMainPhoneNumberLabel, au.sSecondaryPhoneNumber, au.sSecondaryPhoneNumberLabel, au.bIsActive
                 ,au.bIsLDAP, au.bIsAdmin, au.bHideBirthday, au.dtLastLogin, au.dtLastSystemUpdate
                 ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus, au.sProfileImgPath
+                ,au.dtDlExpires, au.sDLType, au.sDLIsValid
                 ,dd.sDepartmentName
-                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge, mvd.dtDlExpires
+                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge
                 ,mvd.dtFleetTestAttempt, mvd.iFleetTestAttemptCount
                 FROM app_users au
                 LEFT JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
@@ -129,9 +131,10 @@ class User
                 ,au.sLastName, au.dtDateOfBirth, au.iDepartmentNumber, au.sEmail, au.sMainPhoneNumber
                 ,au.sMainPhoneNumberLabel, au.sSecondaryPhoneNumber, au.sSecondaryPhoneNumberLabel, au.bIsActive
                 ,au.bIsLDAP, au.bIsAdmin, au.bHideBirthday, au.dtLastLogin, au.dtLastSystemUpdate
-                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus
+                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus, au.sProfileImgPath
+                ,au.dtDlExpires, au.sDLType, au.sDLIsValid
                 ,dd.sDepartmentName
-                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge, mvd.dtDlExpires
+                ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge
                 ,mvd.dtFleetTestAttempt, mvd.iFleetTestAttemptCount
                 FROM app_users au
                 LEFT JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber                
@@ -349,7 +352,24 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
-
+    public function getAppRoles()
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT * FROM app_roles";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $roles;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
     // public function validateUserPassword($username, $password)
     // {
     //     $serverName = $this->db->serverName;
