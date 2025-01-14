@@ -3,7 +3,7 @@ function toast(title, message, type) {
   var toastMessageElement = document.getElementById("toast-message");
   var toastHeader = document.getElementById("toast-popover-title");
   var toastEl = document.getElementById("toast-popover");
-
+  // console.log(toastEl);
   toastTitleElement.textContent = title;
   toastMessageElement.textContent = message;
   toastHeader.classList.add(type);

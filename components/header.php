@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/09 15:50:11
+// Last modified: 2025/01/14 08:54:07
 
 if (!isset($_SESSION)) {
     session_start();
@@ -44,30 +44,6 @@ include_once(dirname(__FILE__) . '/../init.php');
     <link rel="stylesheet" href="/styles/custom.css">
     <link rel="stylesheet" href="/styles/theme.css">
     <link rel="stylesheet" href="/styles/newEmpCard.css">
-    <!-- <script defer type="module" src="https://unpkg.com/@zachleat/snow-fall@1.0.1/snow-fall.js"></script> -->
-
-
-    <!-- <link rel="stylesheet" href="styles/teams.css"> -->
-    <!-- <script type="module" defer>
-        const snow = document.createElement('snow-fall');
-        document.body.prepend(snow)
-    </script> -->
-    <!-- <script type="module">
-        import {
-            test,
-            other
-        } from '/functions/test.js';
-        test();
-        other();
-    </script>
-    <script type="module">
-        import {
-            showLoader,
-            hideLoader
-        } from '/functions/loader.js';
-        test(); 
-        other();
-    </script> -->
     <script src="/functions/utils.js"></script>
     <script src="/functions/randomAlert.js"></script>
     <script src="/classes/Notification.js"></script>
@@ -77,8 +53,7 @@ include_once(dirname(__FILE__) . '/../init.php');
     <script src="/functions/renderPhoneLookup.js"></script>
     <script src="/functions/renderQuickLinks.js"></script>
     <script src="/functions/setUserData.js"></script>
-    <!-- <script src="/functions/renderQuickLinks.js"></script> -->
-    <!-- <script src="/functions/renderQuickLinks.js"></script> -->
+    <script src="/functions/toast.js"></script>
     <script src="/components/setCardOrder.js"></script>
     <script src="/components/toggleHiddenCards.js"></script>
     <!-- favicon -->
@@ -190,8 +165,9 @@ include_once(dirname(__FILE__) . '/../init.php');
             var employee = <?php echo $_SESSION['employeeID'] ?>;
             var status = status;
             fetch("/API/updateItStatusInDb.php?employee=" + employee + "&status=" + status)
-                .then(alert('Status Updated'))
+                .then(makeToast('Success', 'Status Updated', 'success'))
                 .then(getUserCurrentStatus())
+
         }
     </script>
     <script>
@@ -349,6 +325,11 @@ include_once(dirname(__FILE__) . '/../init.php');
             <button name="sidebar-hover-btn" class="btn btn-secondary" onclick="toggleSidbarHover()">Allow Hover</button>
         </div>
     </section>
+    <!-- <section>
+        <div class="temp-btn-holder">
+            <label for="temp-btn" class="sidebar-hover-btn-label">Toast?</label>
+            <button name="make-toast" class="btn btn-danger" onclick="makeToast('This is a toast', 'You got toast!', 'success')">Yes please</button>
+    </section> -->
 </div>
 <!-- Card order popover -->
 <div class="card-order-menu" name="card-order-menu" id="card-order-menu" popover="manual">
@@ -529,17 +510,18 @@ include_once(dirname(__FILE__) . '/../init.php');
     }
     document.addEventListener('DOMContentLoaded', renderLookups);
 
-    // var accountIcon = document.getElementById('account-icon');
-    // accountIcon.addEventListener('mouseenter', function() {
-    //     var accountMenu = document.getElementById('logout-menu');
-    //     accountMenu.classList.remove('hidden');
-    // });
-    // accountIcon.addEventListener('mouseleave', function() {
-    //     setTimeout(function() {
-    //         var accountMenu = document.getElementById('logout-menu');
-    //         accountMenu.classList.add('hidden');
-    //     }, 1000)
-    // })
+    function makeToast() {
+        var toaster = document.getElementById('toast-popover');
+        var blockingMenu = document.getElementById('settings-popover-menu');
+        // console.log('toast');
+        toast('Success', 'Status Updated', 'success')
+        toaster.style.display = 'block';
+        toaster.style.marginLeft = '53dvw';
+        toaster.style.zIndex = 50;
+        blockingMenu.hidePopover();
+        // setTimeout(() => toaster.hidePopover(), 2500)
+        setTimeout(() => toaster.style.display = 'none', 2500)
+    }
 </script>
 <style>
     .header {
