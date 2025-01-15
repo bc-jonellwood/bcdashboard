@@ -1,9 +1,12 @@
 <?php
 // Created: 2025/01/09 10:53:08
-// Last modified: 2025/01/09 11:52:21
+// Last modified: 2025/01/15 14:41:32
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../yadiloh/adminnav.php');
+$pageId = 'bde8e412-daae-4cc8-bcad-16b914680465';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 ?>
 
 <div class="main">

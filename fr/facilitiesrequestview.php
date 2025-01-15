@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/14 15:02:39
+// Last modified: 2025/01/15 13:49:01
 
 require_once(dirname(__FILE__) . '/../data/appConfig.php');
 $dbconf = new appConfig;
@@ -10,7 +10,12 @@ $uid = $dbconf->uid;
 $pwd = $dbconf->pwd;
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
-
+$pageId = '48f2fc7c-959a-4d4a-a3c3-4ccdf2a9c362';
+$accessRequired = Page::getAccessRequired($pageId);
+// echo "<pre>";
+// print_r($accessRequired);
+// echo "</pre>";
+AccessControl::enforce($accessRequired);
 // include_once "./components/sidenav.php";
 function formatDateTime($dateTimeString)
 {
@@ -103,7 +108,7 @@ try {
         echo "<p>Facilities Requests</p>";
         echo "<input type='text' placeholder='Search'>";
         echo "<hr>";
-        echo "<button class='btn btn-primary btn-sm'>New Request</button>";
+        echo "<a href='facilitiesrequestsubmit.php'><button class='btn btn-primary btn-sm'>New Request</button></a>";
         echo "</div>";
         echo "<div class='content'>";
         echo "<h2>All Requests</h2>";

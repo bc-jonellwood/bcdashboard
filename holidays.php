@@ -1,8 +1,12 @@
 <?php
 // Created: 2024/12/10 11:37:28
-// Last modified: 2024/12/20 09:02:56
+// Last modified: 2025/01/15 14:45:57
 
-include "./components/header.php";
+include(dirname(__FILE__) . '/components/header.php');
+include(dirname(__FILE__) . '/components/sidenav.php');
+$pageId = 'FBDD0425-CEA5-499C-B0BE-3A7D4C6725FF';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 ?>
 <script>
     async function renderHolidaysAsCalendar() {
@@ -52,7 +56,6 @@ include "./components/header.php";
 
 
 <div class="main">
-    <?php include "./components/sidenav.php" ?>
     <div class="content">
         <h1>Holidays for </h1>
         <div id="holiday-content">
@@ -60,7 +63,7 @@ include "./components/header.php";
         </div>
     </div>
 
-    <?php include './components/footer.php'; ?>
+    <?php include(dirname(__FILE__) . '/components/footer.php') ?>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {

@@ -1,10 +1,10 @@
 <?php
 // Created: 2024/12/16 08:01:24
-// Last modified: 2024/12/19 15:40:43
+// Last modified: 2025/01/15 12:09:31
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
-
+AccessControl::enforce(104);
 ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 <div class="main">

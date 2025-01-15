@@ -1,12 +1,14 @@
 <?php
 // Created: 2025/01/09 12:30:54
-// Last modified:
+// Last modified: 2025/01/15 14:40:44
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../classes/User.php');
 include(dirname(__FILE__) . '/../functions/logErrors.php');
-
+$pageId = '72f2f700-6684-4efc-a988-93f888563512';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 $user = new User();
 
 if (isset($_GET['id'])) {

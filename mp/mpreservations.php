@@ -1,10 +1,11 @@
 <?php
 // Created: 2024/12/17 09:22:51
-// Last modified: 2024/12/18 12:12:44
+// Last modified: 2025/01/15 12:10:13
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
+AccessControl::enforce(104);
 ?>
 <div class="main">
     <div class="content">

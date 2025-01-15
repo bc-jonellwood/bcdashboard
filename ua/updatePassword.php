@@ -1,22 +1,26 @@
 <?php
 // Created: 2025/01/13 12:13:27
-// Last modified: 2025/01/15 11:03:01
+// Last modified: 2025/01/15 14:37:34
 
 // session_start();
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
-require_once '../auth/UserAuth.php';
-require_once '../classes/User.php';
+include(dirname(__FILE__) . '/../auth/UserAuth.php');
+// require_once '../auth/UserAuth.php';
+// require_once '../classes/User.php';
+$pageId = 'd0ae59de-08dc-4328-8929-ddaa08fb26f0';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 $auth = new UserAuth();
-$user = new User();
-$accessRequired = 102;
-$userAccess = $user->getUserRoleId($_SESSION['userID']);
-// user access then page access for order params are passed in.
-$isAllowed = $auth->checkUserAccess($userAccess, $accessRequired);
-if ($isAllowed == false) {
-    header("Location: /403.html");
-    exit;
-}
+// $user = new User();
+// $accessRequired = 102;
+// $userAccess = $user->getUserRoleId($_SESSION['userID']);
+// // user access then page access for order params are passed in.
+// $isAllowed = $auth->checkUserAccess($userAccess, $accessRequired);
+// if ($isAllowed == false) {
+//     header("Location: /403.html");
+//     exit;
+// }
 function logError($message)
 {
     $logDir = __DIR__ . '/../logs';

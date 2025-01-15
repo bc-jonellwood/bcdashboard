@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/14 15:00:37
+// Last modified: 2025/01/15 12:53:19
 
 if (!isset($_SESSION)) {
     session_start();
@@ -24,8 +24,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != 1) {
 // }
 
 include_once(dirname(__FILE__) . '/../init.php');
-
-// include_once(dirname(__FILE__) . '/../classes/User.php');
+include_once(dirname(__FILE__) . '/../classes/AccessControl.php');
+include_once(dirname(__FILE__) . '/../classes/Page.php');
 
 // $user = new User();
 

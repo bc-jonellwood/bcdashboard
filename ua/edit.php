@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/15 11:02:36
+// Last modified: 2025/01/15 14:36:59
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -8,18 +8,12 @@ include(dirname(__FILE__) . '/../classes/User.php');
 include(dirname(__FILE__) . '/../classes/Department.php');
 include(dirname(__FILE__) . '/../classes/DashboardItem.php');
 include(dirname(__FILE__) . '/../auth/UserAuth.php');
-// include(dirname(__FILE__) . '/../classes/SidenavItem.php');
 
 $user = new User();
 $auth = new UserAuth();
-$accessRequired = 102;
-$userAccess = $user->getUserRoleId($_SESSION['userID']);
-// user access then page access for order params are passed in.
-$isAllowed = $auth->checkUserAccess($userAccess, $accessRequired);
-if ($isAllowed == false) {
-    header("Location: /403.html");
-    exit;
-}
+$pageId = 'a94bb02f-c667-4b0e-889f-6515edee010d';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 
 
 if (isset($_GET['id'])) {

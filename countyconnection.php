@@ -1,10 +1,16 @@
 <?php
 //Created: 2024/12/05 09:36:35
-//Last modified: 2024/12/06 10:21:47
+//Last modified: 2025/01/15 14:46:12
 
 // include_once "./API/dbheader.php";
-include "./components/header.php";
-include "./components/sidenav.php";
+// include "./components/header.php";
+// include "./components/sidenav.php";
+include(dirname(__FILE__) . '/components/header.php');
+include(dirname(__FILE__) . '/components/sidenav.php');
+$pageId = '3B94B683-70DF-40B1-8CC6-5EA91E46AB03';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
+?>
 ?>
 
 <div class='container-header'>

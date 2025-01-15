@@ -1,39 +1,18 @@
 <?php
 //Created: 2024/12/05 09:36:35
-//Last modified: 2024/12/05 15:47:52
+//Last modified: 2025/01/15 14:46:21
 
 // include_once "./API/dbheader.php";
-include "./components/header.php";
-include "./components/sidenav.php";
+// include "./components/header.php";
+// include "./components/sidenav.php";
+include(dirname(__FILE__) . '/components/header.php');
+include(dirname(__FILE__) . '/components/sidenav.php');
+
+$pageId = 'eb68a2e8-348a-4bb9-a6de-3cc470bb7fc8';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 ?>
 
-<!-- 
-// echo "<div class='container-header'>";
-// echo "<h1>County Connection Admin</h1>";
-// echo "</div>";
-
-// PDF upload form
-// echo "<div class='pdf-upload-container'>";
-// echo "<form id='pdf-upload-form' action='./API/connectionupload.php' method='post' enctype='multipart/form-data'>";
-// echo "<input type='file' id='file-input' name='file' accept='application/pdf' hidden>";
-// echo "<div id='drop-zone' class='drop-zone'>";
-// echo "<p>Drag & Drop your PDF here or <span id='file-browse'>browse</span></p>";
-// echo "</div>";
-// echo "<hr>";
-// echo "<button class='btn btn-primary' type='submit'>Upload PDF</button>";
-// echo "</form>";
-// echo "<form action='/target' class='dropzone'></form>";
-// echo "</div>";
-
-
-// echo "<div class='connection-container'>";
-// echo "<div class='connection-menu'>";
-// echo "<p>List of Previous Uploads</p>";
-// echo "</div>";
-// echo "<div class='connection-content'>";
-// echo "<p>Actions</p>";
-// echo "</div>";
-// echo "</div>"; -->
 
 <!DOCTYPE html>
 <html lang="en">

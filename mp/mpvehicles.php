@@ -1,10 +1,11 @@
 <?php
 // Created: 2024/12/17 09:22:51
-// Last modified: 2024/12/18 12:12:35
+// Last modified: 2025/01/15 12:10:31
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../classes/Vehicle.php');
 include(dirname(__FILE__) . '/../mp/mpnav.php');
+AccessControl::enforce(103);
 //include "./components/header.php";
 //include "./classes/Vehicle.php";
 $vehicle = new Vehicle();
