@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/15 11:36:46
-// Last modified: 2025/01/15 11:53:32
+// Last modified: 2025/01/15 15:01:50
 
 class AccessControl
 {
@@ -16,9 +16,13 @@ class AccessControl
         $auth = new UserAuth();
 
         $userAccess = $user->getUserRoleId($_SESSION['userID']);
-        if (!$auth->checkUserAccess($userAccess, $accessRequired)) {
-            header("Location: /403.html");
-            exit;
+        if ($userAccess == 105) {
+            header("Location: /fr/facilitiesrequestsubmit.php");
+        } else {
+            if (!$auth->checkUserAccess($userAccess, $accessRequired)) {
+                header("Location: /403.html");
+                exit;
+            }
         }
     }
 }

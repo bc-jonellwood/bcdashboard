@@ -1,6 +1,6 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/07 13:17:17
+// Last modified: 2025/01/15 15:00:02
 
 // echo session_status();
 // if (session_status() == PHP_SESSION_NONE) {
@@ -16,6 +16,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // include "./components/header.php";
 include(dirname(__FILE__) . '/components/header.php');
+$pageId = '660d926f-2db7-403a-b485-b284fb8f601e';
+$accessRequired = Page::getAccessRequired($pageId);
+AccessControl::enforce($accessRequired);
 function getCardsFromDatabase()
 {
     require_once 'data/appConfig.php';

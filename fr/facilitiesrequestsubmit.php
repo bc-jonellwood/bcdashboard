@@ -1,10 +1,10 @@
 <?php
 // Created: 2024/11/15 11:22:08
-// Last Modified: 2025/01/15 12:00:01
+// Last Modified: 2025/01/15 15:04:05
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
-AccessControl::enforce(105);
+// AccessControl::enforce(105);
 ?>
 
 
