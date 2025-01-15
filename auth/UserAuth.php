@@ -308,4 +308,13 @@ class UserAuth
             logError("Error in updatePassword function Connection: " . $e->getMessage());
         }
     }
+
+    public function checkUserAccess($userAccess, $pageAccess)
+    {
+        if ($userAccess <= $pageAccess) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

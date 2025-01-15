@@ -1308,3 +1308,313 @@
 [2025-01-13 18:25:26] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Undefined variable $usUserLDAP
 [2025-01-13 18:25:26] Error [2] on line 58 in file /var/www/html/ua/updatePassword.php: Trying to access array offset on null
 [2025-01-13 18:26:34] User jon.ellwood is LDAP
+[2025-01-13 18:27:32] Non LDAP User Password for test.user is incorrect
+[2025-01-13 18:28:51] Non LDAP User Password for test.user is correct
+[2025-01-13 18:28:51] Password updated successfully for user: test.user
+[2025-01-13 18:30:10] User test.balls was not found
+[2025-01-13 18:31:58] User test.balls was not found
+[2025-01-13 18:34:21] User joke.name was not found
+[2025-01-13 18:35:24] User joke.name was not found
+[2025-01-13 18:51:05] Non LDAP User Password for test.user is correct
+[2025-01-13 18:51:05] Password updated successfully for user: test.user
+[2025-01-13 18:52:23] Non LDAP User Password for test.user is correct
+[2025-01-13 18:52:23] Password updated successfully for user: test.user
+[2025-01-13 19:05:41] User test.users was not found
+[2025-01-13 19:29:21] POST request received
+[2025-01-13 19:29:21] Login attempt for user: test.user
+[2025-01-13 19:29:21] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:29:21] Non LDAP User Password for test.user is correct
+[2025-01-13 19:29:21] NON LDAP User logged in: test.user
+[2025-01-13 19:29:21] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:29:21] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:29:21] Count: 0
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 7e705475-5743-4477-a1c7-9165ecf62ddb
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: a315fae2-3716-49f8-a076-95ddef2313b4
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: a05ca0c4-c518-4692-a363-093a7a5f5af6
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 350e8ab0-a00c-4484-b42c-320670ec6d76
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 4c2fe295-7d3d-4a0f-97b6-964930142902
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 9f8a4rbt-c1bf-4867-8399-e0dd5000458d
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 988846bf-c1bf-4867-8399-e0dd5000458d
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2025-01-13 19:29:21] Inserted component order for user ID: EEB64476-7214-4845-A964-A627F85832DF, Component ID: 69D7DF6D-8DF5-7F80-A1E9-50E2AB848EEF
+[2025-01-13 19:29:21] User db is valid: test.user
+[2025-01-13 19:29:21] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:29:21] Count: 9
+[2025-01-13 19:29:21] CardAccessCount: 0
+[2025-01-13 19:29:21] Inserted card access record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:7e705475-5743-4477-a1c7-9165ecf62ddb
+[2025-01-13 19:29:21] Inserted card access record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:a315fae2-3716-49f8-a076-95ddef2313b4
+[2025-01-13 19:29:21] Inserted card access record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:4c2fe295-7d3d-4a0f-97b6-964930142902
+[2025-01-13 19:29:21] Inserted card access record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:988846bf-c1bf-4867-8399-e0dd5000458d
+[2025-01-13 19:29:21] Inserted card access record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2025-01-13 19:29:21] SidenavItemCount: 0
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:C052B5EE-8C20-4D05-BE27-392D644EC1FD
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:F117D09B-3AE5-43E6-92C5-76BE0E660B24
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:A459C495-6210-4B0E-94D8-D9C5EAE2852F
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:D24EDF84-6AED-4D30-A4F8-EF9274521CFA
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:A158B3A3-F73D-432D-A14E-2D97090137DA
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:2509174F-3976-4B7B-BCFF-1AE08D52E87B
+[2025-01-13 19:29:21] Inserted Sidenav Access Record for User ID: EEB64476-7214-4845-A964-A627F85832DF, Card ID:0B5AB3E8-9BE1-471A-85F8-8AFDC72B26F5
+[2025-01-13 19:32:09] POST request received
+[2025-01-13 19:32:09] Login attempt for user: test.user
+[2025-01-13 19:32:09] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:32:09] Non LDAP User Password for test.user is incorrect
+[2025-01-13 19:32:09] NON LDAP User logged in: test.user
+[2025-01-13 19:32:09] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:32:09] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:32:09] Count: 9
+[2025-01-13 19:32:09] User db is valid: test.user
+[2025-01-13 19:32:09] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:32:09] Count: 9
+[2025-01-13 19:32:09] CardAccessCount: 5
+[2025-01-13 19:32:09] SidenavItemCount: 7
+[2025-01-13 19:32:30] POST request received
+[2025-01-13 19:32:30] Login attempt for user: test.user
+[2025-01-13 19:32:30] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:32:30] Non LDAP User Password for test.user is incorrect
+[2025-01-13 19:32:30] NON LDAP User logged in: test.user
+[2025-01-13 19:32:30] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:32:30] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:32:30] Count: 9
+[2025-01-13 19:32:30] User db is valid: test.user
+[2025-01-13 19:32:30] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:32:30] Count: 9
+[2025-01-13 19:32:30] CardAccessCount: 5
+[2025-01-13 19:32:30] SidenavItemCount: 7
+[2025-01-13 19:47:55] POST request received
+[2025-01-13 19:47:55] Login attempt for user: test.user
+[2025-01-13 19:47:55] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:47:55] Non LDAP User Password for test.user is incorrect
+[2025-01-13 19:47:55] NON LDAP User logged in: test.user
+[2025-01-13 19:47:55] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:47:55] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:47:55] Count: 9
+[2025-01-13 19:47:55] User db is valid: test.user
+[2025-01-13 19:47:55] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:47:55] Count: 9
+[2025-01-13 19:47:55] CardAccessCount: 5
+[2025-01-13 19:47:55] SidenavItemCount: 7
+[2025-01-13 19:48:26] POST request received
+[2025-01-13 19:48:26] Login attempt for user: test.user
+[2025-01-13 19:48:26] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:48:26] Non LDAP User Password for test.user is incorrect
+[2025-01-13 19:48:26] NON LDAP User logged in: test.user
+[2025-01-13 19:48:26] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:48:26] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:48:26] Count: 9
+[2025-01-13 19:48:26] User db is valid: test.user
+[2025-01-13 19:48:26] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:48:26] Count: 9
+[2025-01-13 19:48:26] CardAccessCount: 5
+[2025-01-13 19:48:26] SidenavItemCount: 7
+[2025-01-13 19:49:13] POST request received
+[2025-01-13 19:49:13] Login attempt for user: test.user
+[2025-01-13 19:49:13] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:49:13] Non LDAP User Password for test.user is incorrect
+[2025-01-13 19:49:13] Invalid username or password for user: test.user
+[2025-01-13 19:49:13] Invalid credentials for user: test.user
+[2025-01-13 19:49:23] POST request received
+[2025-01-13 19:49:23] Login attempt for user: test.user
+[2025-01-13 19:49:23] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:49:23] Non LDAP User Password for test.user is correct
+[2025-01-13 19:49:23] NON LDAP User logged in: test.user
+[2025-01-13 19:49:23] User data set in session: {"loggedin":true,"loggedinuser":"test.user","username":"test.user","employeeID":"007","userID":"EEB64476-7214-4845-A964-A627F85832DF","FirstName":"Test","LastName":"User","PreferredName":"Test","DepartmentNumber":"Department is TOP SECRET","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-13 19:49:23] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:49:23] Count: 9
+[2025-01-13 19:49:23] User db is valid: test.user
+[2025-01-13 19:49:23] Login time and last activity updated successfully for user ID: EEB64476-7214-4845-A964-A627F85832DF
+[2025-01-13 19:49:23] Count: 9
+[2025-01-13 19:49:23] CardAccessCount: 5
+[2025-01-13 19:49:23] SidenavItemCount: 7
+[2025-01-13 19:50:00] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-13 19:50:00] Cookie username: jon.ellwood
+[2025-01-13 19:50:00] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 19:50:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 19:50:00] Count: 9
+[2025-01-13 19:50:00] User logged in from cookie: jon.ellwood
+[2025-01-13 19:50:20] POST request received
+[2025-01-13 19:50:20] Login attempt for user: joe.blow
+[2025-01-13 19:50:20] Error [2] on line 28 in file /var/www/html/auth/UserAuth.php: ldap_bind(): Unable to bind to server: Invalid credentials
+[2025-01-13 19:50:20] User joe.blow was not found
+[2025-01-13 19:50:20] Invalid username or password for user: joe.blow
+[2025-01-13 19:50:20] Invalid credentials for user: joe.blow
+[2025-01-13 20:02:31] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-13 20:02:31] Cookie username: jon.ellwood
+[2025-01-13 20:02:31] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-13 20:02:31] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-13 20:02:31] Count: 9
+[2025-01-13 20:02:31] User logged in from cookie: jon.ellwood
+[2025-01-14 13:22:18] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-14 13:22:18] Cookie username: jon.ellwood
+[2025-01-14 13:22:18] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 13:22:18] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 13:22:18] Count: 9
+[2025-01-14 13:22:18] User logged in from cookie: jon.ellwood
+[2025-01-14 14:28:04] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-14 14:28:04] Cookie username: patrick.snow
+[2025-01-14 14:28:04] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 14:28:04] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-14 14:28:04] Count: 8
+[2025-01-14 14:28:04] User logged in from cookie: patrick.snow
+[2025-01-14 14:28:50] POST request received
+[2025-01-14 14:28:50] Login attempt for user: patrick.snow
+[2025-01-14 14:28:50] User ldap logged in: patrick.snow
+[2025-01-14 14:28:50] User data set in session: {"loggedin":true,"loggedinuser":"patrick.snow","username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 14:28:50] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-14 14:28:50] Count: 8
+[2025-01-14 14:28:50] User db is valid: patrick.snow
+[2025-01-14 14:28:50] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-14 14:28:50] Count: 8
+[2025-01-14 14:28:50] CardAccessCount: 0
+[2025-01-14 14:28:50] Inserted card access record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:7e705475-5743-4477-a1c7-9165ecf62ddb
+[2025-01-14 14:28:50] Inserted card access record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:a315fae2-3716-49f8-a076-95ddef2313b4
+[2025-01-14 14:28:50] Inserted card access record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:4c2fe295-7d3d-4a0f-97b6-964930142902
+[2025-01-14 14:28:50] Inserted card access record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:988846bf-c1bf-4867-8399-e0dd5000458d
+[2025-01-14 14:28:50] Inserted card access record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:8dd2ea8e-560b-48a9-9a5f-1f152cafaa9c
+[2025-01-14 14:28:50] SidenavItemCount: 0
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:C052B5EE-8C20-4D05-BE27-392D644EC1FD
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:F117D09B-3AE5-43E6-92C5-76BE0E660B24
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:A459C495-6210-4B0E-94D8-D9C5EAE2852F
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:D24EDF84-6AED-4D30-A4F8-EF9274521CFA
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:A158B3A3-F73D-432D-A14E-2D97090137DA
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:2509174F-3976-4B7B-BCFF-1AE08D52E87B
+[2025-01-14 14:28:50] Inserted Sidenav Access Record for User ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40, Card ID:0B5AB3E8-9BE1-471A-85F8-8AFDC72B26F5
+[2025-01-14 15:10:59] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-14 15:10:59] Cookie username: jon.ellwood
+[2025-01-14 15:11:00] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 15:11:00] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 15:11:00] Count: 9
+[2025-01-14 15:11:00] User logged in from cookie: jon.ellwood
+[2025-01-14 15:28:00] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-14 15:28:00] Cookie username: patrick.snow
+[2025-01-14 15:28:00] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 15:28:00] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-14 15:28:00] Count: 8
+[2025-01-14 15:28:00] User logged in from cookie: patrick.snow
+[2025-01-14 16:06:12] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-14 16:06:12] Cookie username: jon.ellwood
+[2025-01-14 16:06:12] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 16:06:12] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 16:06:12] Count: 9
+[2025-01-14 16:06:12] User logged in from cookie: jon.ellwood
+[2025-01-14 17:37:14] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-14 17:37:14] Cookie username: jon.ellwood
+[2025-01-14 17:37:14] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 17:37:14] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 17:37:15] Count: 9
+[2025-01-14 17:37:15] User logged in from cookie: jon.ellwood
+[2025-01-14 17:37:46] POST request received
+[2025-01-14 17:37:46] Login attempt for user: jon.ellwood
+[2025-01-14 17:37:46] User ldap logged in: jon.ellwood
+[2025-01-14 17:37:46] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-14 17:37:46] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 17:37:46] Count: 9
+[2025-01-14 17:37:46] User db is valid: jon.ellwood
+[2025-01-14 17:37:47] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 17:37:47] Count: 9
+[2025-01-14 17:37:47] CardAccessCount: 9
+[2025-01-14 17:37:47] SidenavItemCount: 17
+[2025-01-14 17:38:54] POST request received
+[2025-01-14 17:38:54] Login attempt for user: jon.ellwood
+[2025-01-14 17:38:54] User ldap logged in: jon.ellwood
+[2025-01-14 17:38:54] User data set in session: {"loggedin":true,"loggedinuser":"jon.ellwood","username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-14 17:38:54] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 17:38:54] Count: 9
+[2025-01-14 17:38:54] User db is valid: jon.ellwood
+[2025-01-14 17:38:54] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 17:38:54] Count: 9
+[2025-01-14 17:38:54] CardAccessCount: 9
+[2025-01-14 17:38:54] SidenavItemCount: 17
+[2025-01-14 19:05:24] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-14 19:05:24] Cookie username: patrick.snow
+[2025-01-14 19:05:24] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-14 19:05:24] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-14 19:05:24] Count: 8
+[2025-01-14 19:05:24] User logged in from cookie: patrick.snow
+[2025-01-14 19:33:13] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-14 19:33:13] Cookie username: jon.ellwood
+[2025-01-14 19:33:13] User data set in session: {"employeeID":"4438","loggedin":true,"username":"jon.ellwood","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-14 19:33:13] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-14 19:33:13] Count: 9
+[2025-01-14 19:33:13] User logged in from cookie: jon.ellwood
+[2025-01-15 13:23:06] Cookie data: Array
+(
+    [username] => jon.ellwood
+)
+
+[2025-01-15 13:23:06] Cookie username: jon.ellwood
+[2025-01-15 13:23:06] User data set in session: {"loggedin":true,"username":"jon.ellwood","employeeID":"4438","userID":"E4BCDD46-0DDA-459D-A835-2C8B88B3421E","FirstName":"JONATHAN","LastName":"ELLWOOD","PreferredName":"JON","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"No info"}
+[2025-01-15 13:23:06] Login time and last activity updated successfully for user ID: E4BCDD46-0DDA-459D-A835-2C8B88B3421E
+[2025-01-15 13:23:06] Count: 9
+[2025-01-15 13:23:06] User logged in from cookie: jon.ellwood
+[2025-01-15 13:40:00] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-15 13:40:00] Cookie username: patrick.snow
+[2025-01-15 13:40:00] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-15 13:40:01] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-15 13:40:01] Count: 8
+[2025-01-15 13:40:01] User logged in from cookie: patrick.snow
+[2025-01-15 13:57:51] Cookie data: Array
+(
+    [username] => Cheryl.greenwood
+)
+
+[2025-01-15 13:57:51] Cookie username: Cheryl.greenwood
+[2025-01-15 13:57:51] User data set in session: {"loggedin":true,"username":"Cheryl.greenwood","employeeID":"6865","userID":"2C8147D7-CA9F-4D63-8C3A-F96C86EA6526","FirstName":"CHERYL","LastName":"GREENWOOD","PreferredName":"CHERYL","DepartmentNumber":"41514","isAdmin":"1","isLDAP":"1"}
+[2025-01-15 13:57:51] Login time and last activity updated successfully for user ID: 2C8147D7-CA9F-4D63-8C3A-F96C86EA6526
+[2025-01-15 13:57:51] Count: 8
+[2025-01-15 13:57:51] User logged in from cookie: Cheryl.greenwood
+[2025-01-15 14:59:50] Database Error: SQLSTATE[42S22]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'sId'.
+[2025-01-15 15:00:17] Cookie data: Array
+(
+    [username] => patrick.snow
+)
+
+[2025-01-15 15:00:17] Cookie username: patrick.snow
+[2025-01-15 15:00:17] User data set in session: {"loggedin":true,"username":"patrick.snow","employeeID":"7980","userID":"DD765EE4-1955-45EF-ABB8-B93FE9177C40","FirstName":"PATRICK","LastName":"SNOW","PreferredName":"PATRICK","DepartmentNumber":"41515","isAdmin":"No Info","isLDAP":"1"}
+[2025-01-15 15:00:17] Login time and last activity updated successfully for user ID: DD765EE4-1955-45EF-ABB8-B93FE9177C40
+[2025-01-15 15:00:18] Count: 8
+[2025-01-15 15:00:18] User logged in from cookie: patrick.snow
+[2025-01-15 15:00:45] Database Error: SQLSTATE[42S22]: [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'sId'.

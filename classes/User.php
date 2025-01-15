@@ -17,7 +17,6 @@ class User
         $uid = $this->db->uid;
         $pwd = $this->db->pwd;
 
-
         try {
             $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -100,14 +99,17 @@ class User
                 ,au.sLastName, au.dtDateOfBirth, au.iDepartmentNumber, au.sEmail, au.sMainPhoneNumber
                 ,au.sMainPhoneNumberLabel, au.sSecondaryPhoneNumber, au.sSecondaryPhoneNumberLabel, au.bIsActive
                 ,au.bIsLDAP, au.bIsAdmin, au.bHideBirthday, au.dtLastLogin, au.dtLastSystemUpdate
-                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus, au.sProfileImgPath
+                ,au.dtStartDate, au.dtSeparationDate, au.iStatus, au.bShowStatus, au.sJobTitle ,au.sADStatus, au.sProfileImgPath, au.iAppRoleId
                 ,au.dtDlExpires, au.sDLType, au.sDLIsValid
                 ,dd.sDepartmentName
                 ,mvd.id as iDriverId, mvd.dtFleetTestPassed, mvd.dtFuelCardTestPassed, mvd.dtAcknowledge
                 ,mvd.dtFleetTestAttempt, mvd.iFleetTestAttemptCount
+                ,ar.sAppRoleName
                 FROM app_users au
                 LEFT JOIN data_departments dd on dd.iDepartmentNumber = au.iDepartmentNumber
-                LEFT join data_mp_vehicle_drivers mvd on mvd.sUserId = au.id where au.id = :id";
+                LEFT JOIN data_mp_vehicle_drivers mvd on mvd.sUserId = au.id 
+                LEFT JOIN app_roles ar on ar.iAppRoleId = au.iAppRoleId
+                where au.id = :id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -370,6 +372,27 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
+
+    public function getUserRoleId($id)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT iAppRoleId FROM app_users WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $roleId = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $roleId['iAppRoleId'];
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
     // public function validateUserPassword($username, $password)
     // {
     //     $serverName = $this->db->serverName;

@@ -1,15 +1,27 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/14 15:49:17
+// Last modified: 2025/01/15 11:02:36
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
 include(dirname(__FILE__) . '/../classes/User.php');
 include(dirname(__FILE__) . '/../classes/Department.php');
 include(dirname(__FILE__) . '/../classes/DashboardItem.php');
+include(dirname(__FILE__) . '/../auth/UserAuth.php');
 // include(dirname(__FILE__) . '/../classes/SidenavItem.php');
 
 $user = new User();
+$auth = new UserAuth();
+$accessRequired = 102;
+$userAccess = $user->getUserRoleId($_SESSION['userID']);
+// user access then page access for order params are passed in.
+$isAllowed = $auth->checkUserAccess($userAccess, $accessRequired);
+if ($isAllowed == false) {
+    header("Location: /403.html");
+    exit;
+}
+
+
 if (isset($_GET['id'])) {
     // var_dump($user);
     // die();
@@ -17,7 +29,7 @@ if (isset($_GET['id'])) {
     $userDeps = $user->getUserAdditionalDepartments($_GET['id']);
     $userCards = $user->getUserDashboardItems($_GET['id']);
     $userSidenavItems = $user->getUserSidenavItems($_GET['id']);
-    $app_roles = $user->getAppRoles();
+    $appRoles = $user->getAppRoles();
     // print_r($userDeps);
 }
 
@@ -117,7 +129,7 @@ echo '</div>'; // close form-group
 // echo '<form method="POST" action="update.php">';
 echo '<input type="hidden" id="userId" name="id" value="' . $userData['id'] . '">';
 
-echo '<h3>Options</h3>';
+echo '<h3><b>Options</b></h3>';
 echo '<div class="options-ribbon">';
 echo '<div class="form-group">';
 echo '<label for="bIsLDAP">Is LDAP';
@@ -139,19 +151,23 @@ echo '<input type="checkbox" id="bHideBirthday" name="bHideBirthday"' . (intval(
 echo '</label>';
 echo '</div>'; // close form-group
 
+echo '</div>'; // close options-ribbon
+echo '<button type=button" class="btn btn-primary btn-sm" onclick="updateOptions()">Update Options</button>';
+
+echo '<div class="divider"></div>';
+echo '<div class="access-level">';
+echo '<h3><b>Access Level</b></h3>';
 echo '<div class="form-group">';
-echo '<label for="iAppRoleId">Access Level - currently ' . $userData['iAppRoleId'];
-echo '<select class="form-control" id="iAppRoleId" name="iAppRoleId">';
+echo '<label for="iAppRoleId">Current Access Level:  ' . $userData['sAppRoleName'];
+echo '</label>';
+echo '<select class="form-control" id="iAppRoleId" name="iAppRoleId" onchange="updateUserRole(this.value)">';
+echo '<option value="0">Select Access Level</option>';
 foreach ($appRoles as $appRole) {
     echo '<option value="' . $appRole['iAppRoleId'] . '">' . $appRole['sAppRoleName'] . '</option>';
 }
 echo '</select>';
-echo '</label>';
+echo '</div>'; // close access-level
 echo '</div>'; // close form-group
-
-
-echo '</div>'; // close options-ribbon
-echo '<button type=button" class="btn btn-primary btn-sm" onclick="updateOptions()">Update Options</button>';
 
 echo '<div class="divider"></div>';
 
@@ -385,6 +401,12 @@ echo '</div>';
         var itemSelect = document.getElementById('sidenavItems')
         var items = getSelectedNavItems(itemSelect);
         fetch("/API/updateUserSidenavItems.php?userId=" + userId + "&items=" + items)
+            .then(window.location.reload())
+    }
+
+    function updateUserRole(roleId) {
+        var userId = document.getElementById('userId').value;
+        fetch("/API/updateUserRole.php?id=" + userId + "&roleId=" + roleId)
             .then(window.location.reload())
     }
 </script>

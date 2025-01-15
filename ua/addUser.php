@@ -1,11 +1,22 @@
 <?php
 // Created: 2025/01/13 10:36:06
-// Last modified: 2025/01/13 14:01:37
+// Last modified: 2025/01/15 11:04:39
 
 // include(dirname(__FILE__) . '/../classes/User.php');
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
-
+include(dirname(__FILE__) . '/../classes/User.php');
+include(dirname(__FILE__) . '/../auth/UserAuth.php');
+$user = new User();
+$auth = new UserAuth();
+$accessRequired = 102;
+$userAccess = $user->getUserRoleId($_SESSION['userID']);
+// user access then page access for order params are passed in.
+$isAllowed = $auth->checkUserAccess($userAccess, $accessRequired);
+if ($isAllowed == false) {
+    header("Location: /403.html");
+    exit;
+}
 
 ?>
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/custom.css">
+    <link rel="stylesheet" href="/styles/theme.css">
+</head>
+<body>
+    <div class="main">
+        <div class="content">
+            <img src="/images/403.png" alt="404 with a sus looking pup" />
+            <div>
+                <p>Why are you here?</p>
+                <p>You are not supposed to be here</p>
+                <a href="/index.php" class="btn btn-secondary">Go home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    .main{
+        overflow: hidden;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 99dvh;
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        div p {
+            text-align: center;
+        }
+        div button {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
