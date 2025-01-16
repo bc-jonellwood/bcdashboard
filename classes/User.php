@@ -256,25 +256,25 @@ class User
             echo "Connection failed: " . $e->getMessage();
         }
     }
-    public function getUserSidenavItems($id)
-    {
-        $serverName = $this->db->serverName;
-        $database = $this->db->database;
-        $uid = $this->db->uid;
-        $pwd = $this->db->pwd;
-        try {
-            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM data_sidenav_users WHERE sUserId = :id";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-            $sidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $sidenavItems;
-        } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
-    }
+    // public function getUserSidenavItems($id)
+    // {
+    //     $serverName = $this->db->serverName;
+    //     $database = $this->db->database;
+    //     $uid = $this->db->uid;
+    //     $pwd = $this->db->pwd;
+    //     try {
+    //         $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+    //         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //         $sql = "SELECT * FROM data_sidenav_users WHERE sUserId = :id";
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->bindParam(':id', $id);
+    //         $stmt->execute();
+    //         $sidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //         return $sidenavItems;
+    //     } catch (PDOException $e) {
+    //         echo "Connection failed: " . $e->getMessage();
+    //     }
+    // }
 
 
     public function updateLastActivity($id)

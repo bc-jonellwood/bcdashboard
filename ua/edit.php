@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/06 10:24:42
-// Last modified: 2025/01/15 14:36:59
+// Last modified: 2025/01/16 15:23:30
 
 include(dirname(__FILE__) . '/../components/header.php');
 include(dirname(__FILE__) . '/../components/sidenav.php');
@@ -22,7 +22,6 @@ if (isset($_GET['id'])) {
     $userData = $user->getUser($_GET['id']);
     $userDeps = $user->getUserAdditionalDepartments($_GET['id']);
     $userCards = $user->getUserDashboardItems($_GET['id']);
-    $userSidenavItems = $user->getUserSidenavItems($_GET['id']);
     $appRoles = $user->getAppRoles();
     // print_r($userDeps);
 }
@@ -263,33 +262,33 @@ echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateCards(
 echo '</div>';
 // echo '</div>';
 
-$sidenavItems = new SidenavItem();
-$sidenavItems = $sidenavItems->getAllSidenavItems();
-echo '<div class="divider"></div>';
-echo '<div class="form-group">';
-echo '<details>';
-echo '<summary><b>Sidenav Items Access</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</summary>';
-echo '<div class="sidenav-select-box" id="sidenavItems">';
-foreach ($sidenavItems as $sidenavItem) {
-    $selected = '';
-    $disabled = '';
-    if (!empty($userSidenavItems)) {
-        foreach ($userSidenavItems as $item) {
-            if ($sidenavItem['sItemId'] == $item['sItemId']) {
-                $selected = 'checked';
-                break;
-            }
-        }
-        if ($sidenavItem['sItemId'] === 'C052B5EE-8C20-4D05-BE27-392D644EC1FD') {
-            $disabled = 'disabled';
-        }
-    }
-    echo '<label for="' . $sidenavItem['sItemId'] . '">' . $sidenavItem['sItemText'] . '<input type="checkbox" id="' . $sidenavItem['sItemId'] . '" ' . $disabled . ' value="' . $sidenavItem['sItemId'] . '" name="sidenavItems[]" ' . $selected . '/></label>';
-}
-echo '</div>';
-echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateNavItems()">Update Nav Items</button>';
-echo '</div>';
-echo '</div>';
+// $sidenavItems = new SidenavItem();
+// $sidenavItems = $sidenavItems->getAllSidenavItems();
+// echo '<div class="divider"></div>';
+// echo '<div class="form-group">';
+// echo '<details>';
+// echo '<summary><b>Sidenav Items Access</b> - Use Ctrl + Click to select multiple. Unselect to remove access.</summary>';
+// echo '<div class="sidenav-select-box" id="sidenavItems">';
+// foreach ($sidenavItems as $sidenavItem) {
+//     $selected = '';
+//     $disabled = '';
+//     if (!empty($userSidenavItems)) {
+//         foreach ($userSidenavItems as $item) {
+//             if ($sidenavItem['sItemId'] == $item['sItemId']) {
+//                 $selected = 'checked';
+//                 break;
+//             }
+//         }
+//         if ($sidenavItem['sItemId'] === 'C052B5EE-8C20-4D05-BE27-392D644EC1FD') {
+//             $disabled = 'disabled';
+//         }
+//     }
+//     echo '<label for="' . $sidenavItem['sItemId'] . '">' . $sidenavItem['sItemText'] . '<input type="checkbox" id="' . $sidenavItem['sItemId'] . '" ' . $disabled . ' value="' . $sidenavItem['sItemId'] . '" name="sidenavItems[]" ' . $selected . '/></label>';
+// }
+// echo '</div>';
+// echo '<button class="btn btn-primary btn-sm" type="button" onclick="updateNavItems()">Update Nav Items</button>';
+// echo '</div>';
+// echo '</div>';
 
 echo '<div class="divider"></div>';
 

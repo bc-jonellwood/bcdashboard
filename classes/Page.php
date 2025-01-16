@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/15 11:36:46
-// Last modified: 2025/01/15 14:05:22
+// Last modified: 2025/01/16 15:34:29
 
 class Config
 {
@@ -76,7 +76,9 @@ class Page
                 $dbConfig['pwd']
             );
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("SELECT iMinRoleId FROM app_pages WHERE sPageId = :pageId");
+            $stmt = $conn->prepare("SELECT af.iAppRoleId FROM app_features af 
+            JOIN app_pages ap on ap.sFeatureId = af.id
+            WHERE ap.sPageId = :pageId");
             $stmt->execute([':pageId' => $pageId]);
             // return $stmt->fetch(PDO::FETCH_ASSOC);
             return $stmt->fetchColumn();

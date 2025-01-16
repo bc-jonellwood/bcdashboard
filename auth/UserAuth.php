@@ -229,12 +229,12 @@ class UserAuth
         if ($count == 0) {
             include_once(dirname(__FILE__) . '/../classes/SidenavItem.php');
             $userSideItems = new SidenavItem();
-            $items = $userSideItems->getUserAllowedSidenavItem($_SESSION['iAppRoleId']);
+            $items = $userSideItems->getUserAllowedSidenavItems($_SESSION['iAppRoleId']);
             // $sql = "SELECT sItemId from app_sidenav_items where bForAll = 1";
             // $stmt = $conn->prepare($sql);
             // $stmt->execute();
             // $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // $items = SidenavItem::getUserAllowedSidenavItem($_SESSION['iAppRoleId']);
+            // $items = SidenavItem::getUserAllowedSidenavItems($_SESSION['iAppRoleId']);
             foreach ($items as $item) {
                 $sql = "INSERT INTO data_sidenav_users (sUserId, sItemId) VALUES (:UserId, :ItemId)";
                 $stmt = $conn->prepare($sql);

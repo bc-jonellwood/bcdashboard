@@ -1,6 +1,6 @@
 <?php
 // Created: 2025/01/07 14:17:56
-// Last modified: 2025/01/16 14:37:50
+// Last modified: 2025/01/16 15:44:10
 // class Config
 // {
 //     public static $dbConfig = [
@@ -21,32 +21,32 @@ class SidenavItem
         $this->db = new appConfig();
     }
 
-    public function getUserSidenavItems($id)
-    {
-        $serverName = $this->db->serverName;
-        $database = $this->db->database;
-        $uid = $this->db->uid;
-        $pwd = $this->db->pwd;
+    // public function getUserSidenavItems($id)
+    // {
+    //     $serverName = $this->db->serverName;
+    //     $database = $this->db->database;
+    //     $uid = $this->db->uid;
+    //     $pwd = $this->db->pwd;
 
-        try {
-            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     try {
+    //         $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+    //         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $sql = "SELECT asi.Id, asi.sItemId, asi.sItemHref, asi.sItemSvgPath, asi.sItemText
-            FROM app_sidenav_items asi
-            JOIN data_sidenav_users dsu on dsu.sItemId = asi.sItemId
-            where dsu.sUserId = :id
-            order by asi.Id
-            ";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-            $stmt->execute();
-            $sidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $sidenavItems;
-        } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
-        }
-    }
+    //         $sql = "SELECT asi.Id, asi.sItemId, asi.sItemHref, asi.sItemSvgPath, asi.sItemText
+    //         FROM app_sidenav_items asi
+    //         JOIN data_sidenav_users dsu on dsu.sItemId = asi.sItemId
+    //         where dsu.sUserId = :id
+    //         order by asi.Id
+    //         ";
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+    //         $stmt->execute();
+    //         $sidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //         return $sidenavItems;
+    //     } catch (PDOException $e) {
+    //         echo 'Connection failed: ' . $e->getMessage();
+    //     }
+    // }
     public function getAllSidenavItems()
     {
         $serverName = $this->db->serverName;
@@ -71,7 +71,7 @@ class SidenavItem
         }
     }
 
-    public function getUserAllowedSidenavItem($userRoleId)
+    public function getUserAllowedSidenavItems($userRoleId)
     {
         $serverName = $this->db->serverName;
         $database = $this->db->database;
