@@ -1,5 +1,7 @@
 <?php
 
+// namespace App\auth;
+
 class UserAuth
 {
     private $ldapHost;
@@ -61,6 +63,7 @@ class UserAuth
                 $_SESSION['DepartmentNumber'] = $row['iDepartmentNumber'] ? $row['iDepartmentNumber'] : 'Department is TOP SECRET';
                 $_SESSION['isAdmin'] = $row['bIsAdmin'] ? $row['bIsAdmin'] : 'No Info';
                 $_SESSION['isLDAP'] = $row['bIsLDAP'] ? $row['bIsLDAP'] : 'No info';
+                $_SESSION['iAppRoleId'] = $row['iAppRoleId'] ? $row['iAppRoleId'] : 105;
                 logError("User data set in session: " . json_encode($_SESSION));
                 $user_id = json_encode([
                     'userID' => $_SESSION['userID']
@@ -224,10 +227,14 @@ class UserAuth
         logError("SidenavItemCount: $count");
         // return $count;
         if ($count == 0) {
-            $sql = "SELECT sItemId from app_sidenav_items where bForAll = 1";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            include_once(dirname(__FILE__) . '/../classes/SidenavItem.php');
+            $userSideItems = new SidenavItem();
+            $items = $userSideItems->getUserAllowedSidenavItem($_SESSION['iAppRoleId']);
+            // $sql = "SELECT sItemId from app_sidenav_items where bForAll = 1";
+            // $stmt = $conn->prepare($sql);
+            // $stmt->execute();
+            // $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // $items = SidenavItem::getUserAllowedSidenavItem($_SESSION['iAppRoleId']);
             foreach ($items as $item) {
                 $sql = "INSERT INTO data_sidenav_users (sUserId, sItemId) VALUES (:UserId, :ItemId)";
                 $stmt = $conn->prepare($sql);

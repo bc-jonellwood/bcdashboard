@@ -1,6 +1,16 @@
 <?php
 // Created: 2025/01/07 14:17:56
-// Last modified: 2025/01/07 15:17:48
+// Last modified: 2025/01/16 14:37:50
+// class Config
+// {
+//     public static $dbConfig = [
+//         'serverName' => '192.168.182.210\\INTWWW',
+//         'database' => 'bcg_intranet',
+//         'uid' => 'bcg_intranet',
+//         'pwd' => '*0*JsK&Ax7kdAYciyf7JbYP7ZF'
+//     ];
+// }
+
 class SidenavItem
 {
     private $db;
@@ -56,6 +66,33 @@ class SidenavItem
             $stmt->execute();
             $allSidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $allSidenavItems;
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+        }
+    }
+
+    public function getUserAllowedSidenavItem($userRoleId)
+    {
+        $serverName = $this->db->serverName;
+        $database = $this->db->database;
+        $uid = $this->db->uid;
+        $pwd = $this->db->pwd;
+        try {
+            $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "SELECT sni.Id, sni.sItemId, sni.sItemHref
+                ,sni.sItemSvgPath, sni.sItemText, sni.bForAll, sni.sPageId, f.iAppRoleId
+                FROM app_sidenav_items AS sni
+                JOIN app_pages AS p ON sni.sPageId  = p.sPageId
+                JOIN app_features AS f ON p.sFeatureId  = f.id
+                WHERE f.iAppRoleId >= :userRoleId
+                ORDER BY sni.Id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':userRoleId', $userRoleId, PDO::PARAM_INT);
+            $stmt->execute();
+            $userAllowedSidenavItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $userAllowedSidenavItems;
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }

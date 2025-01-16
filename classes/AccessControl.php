@@ -1,6 +1,10 @@
 <?php
 // Created: 2025/01/15 11:36:46
-// Last modified: 2025/01/15 15:01:50
+// Last modified: 2025/01/16 14:25:14
+// namespace App\Classes;
+
+// use App\Classes\User;
+// use App\auth\UserAuth;
 
 class AccessControl
 {
