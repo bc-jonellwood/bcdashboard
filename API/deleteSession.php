@@ -1,8 +1,8 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2024/11/06 11:24:31
+// Last modified: 2025/01/17 11:59:21
 
-include_once "../data/appConfig.php";
+include_once(dirname(__FILE__) . '../data/appConfig.php');
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;

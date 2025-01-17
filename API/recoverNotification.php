@@ -1,6 +1,6 @@
 <?php
 
-include_once "../data/appConfig.php";
+include_once(dirname(__FILE__) . '../data/appConfig.php');
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
