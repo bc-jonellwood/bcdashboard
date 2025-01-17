@@ -1,10 +1,11 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/17 11:59:21
+// Last modified: 2025/01/17 12:27:51
 // if (session_status() !== PHP_SESSION_ACTIVE) {
 //   session_start();
 // }
-include_once(dirname(__FILE__) . '../data/appConfig.php');
+
+include_once "../data/appConfig.php";;
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;

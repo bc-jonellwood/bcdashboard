@@ -1,7 +1,7 @@
 <?php
 // Created: 2024/10/25 14:04:32
-// Last modified: 2024/11/06 11:24:31
-
+// Last modified: 2025/01/17 12:21:27
+// include_once(dirname(__FILE__) . './dbheader.php');
 include_once '../data/appConfig.php';
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;

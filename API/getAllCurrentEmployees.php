@@ -1,9 +1,9 @@
 <?php
 // Created: 2020/10/09 11:33:11
-// Last modified: 2025/01/17 11:59:21
+// Last modified: 2025/01/17 12:27:51
 
-include_once(dirname(__FILE__) . '../data/appConfig.php');
-
+include_once "../data/appConfig.php";
+// include_once "../data/appConfig.php";;
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;
 $database = $dbconf->database;
@@ -19,7 +19,7 @@ try {
     // echo "Connection failed: " . $e->getMessage();
 }
 $data = [];
-$sql = "SELECT sFirstName, sLastName, iEmployeeNumber from app_users where dtSeparationDate is null order by dtStartDate DESC";
+$sql = "SELECT sFirstName, sLastName, sEmployeeNumber from app_users where dtSeparationDate is null order by dtStartDate DESC";
 
 try {
     $stmt = $conn->prepare($sql);
@@ -29,6 +29,6 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-$conn = null;
+// $conn = null;
 header('Content-Type: application/json');
 echo json_encode($result);

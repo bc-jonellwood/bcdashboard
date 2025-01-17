@@ -1,12 +1,12 @@
 <?php
 // Created: 2024/09/12 13:12:49
-// Last modified: 2025/01/17 11:59:21
+// Last modified: 2025/01/17 12:27:51
 
 // query the database for notifications where the current date and time is between the start and end dates of the notification. Return the results as an array.
 
 
 
-include_once(dirname(__FILE__) . '../data/appConfig.php');
+include_once "../data/appConfig.php";;
 
 $dbconf = new appConfig;
 $serverName = $dbconf->serverName;

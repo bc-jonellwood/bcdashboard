@@ -6,7 +6,7 @@ class EmployeeManagement
 
     public function getAllEmployees()
     {
-        include_once(dirname(__FILE__) . '../data/appConfig.php');
+        include_once "../data/appConfig.php";;
 
         $dbconf = new appConfig;
         $serverName = $dbconf->serverName;

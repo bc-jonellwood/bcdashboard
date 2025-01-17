@@ -1,21 +1,21 @@
 <?php
 // Created: 2024/10/25 14:04:32
-// Last modified: 2024/12/02 13:55:11
+// Last modified: 2025/01/17 12:17:40
+include_once(dirname(__FILE__) . './dbheader.php');
+// include_once '../data/appConfig.php';
+// $dbconf = new appConfig;
+// $serverName = $dbconf->serverName;
+// $database = $dbconf->database;
+// $uid = $dbconf->uid;
+// $pwd = $dbconf->pwd;
 
-include_once '../data/appConfig.php';
-$dbconf = new appConfig;
-$serverName = $dbconf->serverName;
-$database = $dbconf->database;
-$uid = $dbconf->uid;
-$pwd = $dbconf->pwd;
-
-try {
-    $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // echo "Connected successfully";
-} catch (PDOException $e) {
-    // echo "Connection failed: " . $e->getMessage();
-}
+// try {
+//     $conn = new PDO("sqlsrv:Server=$serverName;Database=$database;ConnectionPooling=0;TrustServerCertificate=true", $uid, $pwd);
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     // echo "Connected successfully";
+// } catch (PDOException $e) {
+//     // echo "Connection failed: " . $e->getMessage();
+// }
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
