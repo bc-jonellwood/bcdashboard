@@ -1,7 +1,5 @@
 <?php
 
-// namespace App\auth;
-
 class UserAuth
 {
     private $ldapHost;
